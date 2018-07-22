@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-navbar hideBackButton="true" color="white_color">
+    <ion-buttons left>
+      <button ion-button navPop icon-only (click)="cancel()">
+        <ion-icon ios="ios-close" md="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Sign Up</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form *ngIf="form" [formGroup]="form">
+    <ion-list class="select_img">
+      <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />
+      <!-- <div class="profile-image-wrapper" (click)="getPicture()">    -->
+      <div class="profile-image-wrapper" (click)="takePhoto(1)">
+        <div class="profile-image-placeholder" *ngIf="!this.form.controls.profilePic.value">
+          <ion-icon name="add"></ion-icon>
+        </div>
+        <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.profilePic.value"></div>
+      </div>
+    </ion-list>
+    <ion-list class="input_list">
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input type="text" formControlName="fullname"></ion-input>
+      </ion-item>
+ <!--      <ion-item>
+        <ion-label floating>Last Name</ion-label>
+        <ion-input type="text" formControlName="lastname"></ion-input>
+      </ion-item> -->
+      <ion-item>
+        <ion-label floating>Email</ion-label>
+        <ion-input type="email" formControlName="emailaddress"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Confirm Password</ion-label>
+        <ion-input type="password" formControlName="retypepassword"></ion-input>
+      </ion-item>
+      <!-- <ion-label class="birthday-label">Birthday</ion-label>    -->
+      <ion-item>
+        <ion-label floating>Birthday(eg. dd/mm/yyyy)</ion-label>
+        <!-- <ion-datetime displayFormat="MMMM DD, YYYY" formControlName="dateofbirth"></ion-datetime>  -->
+        <ion-input type="text" formControlName="dateofbirth"></ion-input>
+      </ion-item>
+
+      <ion-item> 
+          <!-- <ion-label floating>Select Country Code</ion-label> -->
+          <select class="genderclass" formControlName="countrycode">
+            <option value="" disabled selected>Select Country Code</option>
+            <option value="91">India (+91)</option>    
+          </select>
+        </ion-item>
+      <ion-item>
+        <ion-label floating>Phone number</ion-label>
+        <ion-input type="number" formControlName="mobilenumber"></ion-input>
+      </ion-item>
+      <!-- <ion-item>
+        <ion-label floating>Gender</ion-label>
+        <ion-input type="text" formControlName="gender"></ion-input>  
+      </ion-item> -->
+      <ion-item>
+        <!-- <ion-label floating>Gender</ion-label>  -->
+        <!-- <ion-select formControlName="gender">
+          <ion-option value="male">Male</ion-option>
+          <ion-option value="female">Female</ion-option>
+        </ion-select>  -->
+        <!-- <ion-label floating>Select Gender</ion-label> -->
+        <select class="genderclass" formControlName="gender">
+          <option value="" disabled selected>Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </ion-item>
+
+      <ion-item style="display: none">
+      </ion-item>
+    </ion-list>
+    <button ion-button full (click)="done()">
+      <ion-icon ios="ios-checkmark" md="md-checkmark" style="font-size: 26px;"></ion-icon>
+    </button>
+  </form>
+</ion-content>

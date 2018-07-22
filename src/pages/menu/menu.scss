@@ -1,0 +1,47 @@
+page-menu {
+
+    ion-navbar.toolbar { 
+        color: white;
+    }
+
+    .toolbar-md { 
+        color: white;
+    }
+    
+    ion-content{
+        color: white !important;
+        // background-image: url('../assets/imgs/bgImg2.png');
+        background-color: #9073cd !important;
+    }
+    .profile-icon{
+        float: right;
+    }
+    ion-icon { 
+        font-size: 2em;
+    }
+    .header-md::after, .tabs-md[tabsPlacement="top"] > .tabbar::after, .footer-md::before, .tabs-md[tabsPlacement="bottom"] > .tabbar::before {
+        background-image: none !important;
+    }
+    .toolbar-background {
+        border-color: transparent;
+        background: none;
+    } 
+    ion-footer{
+        padding: 35px !important;
+    }
+    .bottom-icon{
+        padding-left: 16px !important;
+    }
+    .middle-btn{
+        margin-bottom: -15%;
+        margin-top: -15%;
+    }
+
+    @media only screen and (min-width: 768px) {
+        .middle-btn{
+            margin-bottom: -15%;
+            margin-top: -15%;
+        }
+    }
+ 
+}

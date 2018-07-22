@@ -1,0 +1,76 @@
+page-friends-list {
+    #header{
+        font-size:16px;
+    } 
+    .header_label{
+        margin-left: 10px;
+        margin-top: 4px;
+        margin-bottom: -13px;
+        color: white !important;
+    }
+    .profile_icon{
+        float: right;
+        font-size: 1.8em; 
+        color: white !important;
+        padding-top: 6px;
+    }
+    .toolbar-background-md { 
+        background: #2c9a65;
+    }
+
+
+    .card-md {
+padding: 0;
+    margin: 0;
+    width: 100%;
+    }
+.frdListPic{text-align:center;}
+    .traitnum{
+        border-right: 1px solid;
+    }
+
+    .num{
+        float: right;
+        margin-top: -5px;
+    }
+    .col2-num{
+        margin-top: 7px;
+    }
+    .col6{
+        float: right;
+        color: #2d9a64;
+        margin-top: 9px;
+    }
+    .logo-contact{
+        font-size: 2.5em;
+    }
+    .frdname{
+        float: left;
+        margin-top: 9px;
+        padding-left: 10px;
+    }
+    .share-card{
+        text-align: initial !important;
+        padding-top: 0px !important;
+        margin-top: 30px;
+    }
+    .share-logos{
+        text-align: center !important;
+    }
+    .whatapplogo{
+        color: green;
+        font-size: 2.2em !important;
+    }
+    .fblogo{
+        color: blue;
+        font-size: 2.2em !important;
+    }
+    .maillogo{
+        color: blue;
+        font-size: 2.2em !important;
+    }
+    .smslogo{
+        color: #106160;
+        font-size: 2.2em !important;
+    }
+}

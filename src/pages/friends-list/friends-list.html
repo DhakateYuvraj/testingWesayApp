@@ -1,0 +1,143 @@
+<ion-header>
+    <ion-navbar> 
+      <ion-row> 
+        <ion-col col-1>  
+          <ion-icon class="menu_icon" name="menu" (click)="toggleMenu()"></ion-icon>
+        </ion-col>
+        <ion-col col-9>
+          <ion-label class="header_label">My Contacts</ion-label> 
+        </ion-col> 
+        <ion-col col-2> 
+          <ion-icon class="profile_icon" name="contact" (click)="openProfilePage()"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content #contentRef fullscreen (ionScroll)="scrollingFun($event)">
+  <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
+  </ion-searchbar>
+<ion-list>
+  myRecievedfriendrequest
+    <ion-item-sliding  *ngFor="let friend of friendList.myRecievedfriendrequest ; let i=index">
+    <ion-item>
+    <ion-row>
+      <ion-col col-2 class="frdListPic">
+        <ion-icon class="logo-contact" name="contact"></ion-icon>
+      </ion-col>
+      <ion-col col-7 class="frdListInfo">
+        <div class="frdname">{{ friend.friendUser.fullname }}</div> 
+      </ion-col>	  
+      <ion-col col-3 class="frdListInfo" (click)="acceptFrdRequest(friend)">
+        <div class="frdname">Accept</div> 
+      </ion-col>	  
+    </ion-row>
+    </ion-item>
+    <ion-item-options side="right">
+      <button ion-button (click)="unread(item)">
+		<ion-icon name="thumbs-up"></ion-icon>
+		<div>Reject</div>
+	  </button>
+      <button ion-button (click)="unread(item)">
+		<ion-icon name="thumbs-up"></ion-icon>
+		<div>Ignore</div>
+	  </button>
+    </ion-item-options>
+  </ion-item-sliding>
+
+	<hr />
+	<hr />myfriends
+  <ion-item-sliding  *ngFor="let friend of friendList.myfriends ; let i=index">
+    <ion-item>
+    <ion-row>
+      <ion-col col-2 class="frdListPic" (click)="openFriendProfile(friend)">
+        <ion-icon class="logo-contact" name="contact"></ion-icon>
+      </ion-col>
+      <ion-col col-7 class="frdListInfo" (click)="openFriendProfile(friend)">
+        <div class="frdname">{{ friend.friendUser.fullname }}</div> 
+      </ion-col>	  
+    </ion-row>
+    </ion-item>
+    <ion-item-options side="right">
+      <button ion-button (click)="unread(item)">
+		<ion-icon name="thumbs-up"></ion-icon>
+		<div>Like</div>
+		<div>99+</div>
+	  </button>
+      <button ion-button (click)="unread(item)">
+		<ion-icon name="thumbs-up"></ion-icon>
+		</button>
+      <button ion-button (click)="unread(item)">
+		<ion-icon name="thumbs-up"></ion-icon>
+		</button>
+    </ion-item-options>
+  </ion-item-sliding>
+
+	<hr />
+	<hr />mySentfriendrequest
+    <ion-item-sliding  *ngFor="let friend of friendList.mySentfriendrequest ; let i=index">
+    <ion-item>
+    <ion-row>
+      <ion-col col-2 class="frdListPic">
+        <ion-icon class="logo-contact" name="contact"></ion-icon>
+      </ion-col>
+      <ion-col col-7 class="frdListInfo">
+        <div class="frdname">{{ friend.user.fullname }}</div> 
+      </ion-col>	  	  
+    </ion-row>
+    </ion-item>
+    <ion-item-options side="right">
+      <button ion-button (click)="unread(item)">
+		<ion-icon name="thumbs-up"></ion-icon>
+		<div>Reject</div>
+	  </button>
+      <button ion-button (click)="unread(item)">
+		<ion-icon name="thumbs-up"></ion-icon>
+		<div>Ignore</div>
+	  </button>
+    </ion-item-options>
+  </ion-item-sliding>
+	
+	<hr />
+	<hr />myContactList
+    <ion-item-sliding  *ngFor="let friend of friendList.myContactList ; let i=index">
+    <ion-item>
+    <ion-row>
+      <ion-col col-2 class="frdListPic">
+        <ion-icon class="logo-contact" name="contact"></ion-icon>
+      </ion-col>
+      <ion-col col-7 class="frdListInfo">
+        <div class="frdname">{{ friend.fullname }}</div> 
+      </ion-col>	  
+      <ion-col col-3 class="frdListInfo" (click)="sendFrdRequest(friend)">
+        <div class="frdname">Send Req</div> 
+      </ion-col>	  	  
+    </ion-row>
+    </ion-item>
+    <ion-item-options side="right">
+      <button ion-button (click)="unread(item)">
+		<ion-icon name="thumbs-up"></ion-icon>
+		<div>Reject</div>
+	  </button>
+      <button ion-button (click)="unread(item)">
+		<ion-icon name="thumbs-up"></ion-icon>
+		<div>Ignore</div>
+	  </button>
+    </ion-item-options>
+  </ion-item-sliding>
+	<hr />
+	<hr />
+  <ion-item-sliding>
+    <ion-item>
+    <ion-row>
+      <ion-col col-2 class="frdListPic">
+         <ion-icon md="md-share"></ion-icon>
+      </ion-col>
+      <ion-col col-10 class="frdListInfo">
+        <div class="frdname">Invite a friend</div> 
+      </ion-col>
+    </ion-row>
+    </ion-item>
+  </ion-item-sliding>
+</ion-list>
+</ion-content>

@@ -1,0 +1,87 @@
+import { Injectable } from '@angular/core';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/map';
+import { tokenNotExpired } from 'angular2-jwt';
+var rootApi = "http://ec2-18-219-80-120.us-east-2.compute.amazonaws.com:8080";
+var authToken = null;
+
+// import { environment } from '../../environments/environment';
+
+@Injectable()
+export class AuthService {
+	
+//   domain = environment.domain; // Production 
+  authToken;
+  employee; 
+  options;
+
+  constructor(
+    private http: Http
+	//public rootApi : "http://ec2-18-219-80-120.us-east-2.compute.amazonaws.com:8080"
+  )
+
+  // Function to create headers, add token, to be used in HTTP requests
+  createAuthenticationHeaders() {
+    // this.loadToken(); // Get token so it can be attached to headers
+    // Headers configuration options
+    this.options = new RequestOptions({
+      headers: new Headers({
+        'Content-Type': 'application/json', // Format set to JSON
+        'X-Authorization': this.authToken 	// Attach token
+      })
+    });
+  }
+
+
+  // Function to register user accounts
+  registerUser(user) {
+    return this.http.post(rootApi+'/api/emailregistration/', user, this.options).map(res => res.json());
+  } 
+  
+  valuateOtp(userOtp){
+    return this.http.post(rootApi+'/api/validateotpviaemail/', userOtp, this.options).map(res => res.json());
+  }
+  
+  // Function to login user
+  loginUser(user) {
+	 //alert(JSON.stringify(user));
+    return this.http.post(rootApi+'/api/loginviaemail/', user, this.options).map(res => res.json());
+  } 
+
+  // Function to register user accounts
+  loginEmployee(credentials) {
+    return this.http.post('employee/loginEmployee', credentials,this.options).map(res => res.json());
+  }
+  
+  // Function to get token from client local storage
+  loadToken() {
+    this.authToken = localStorage.getItem('token'); // Get token and asssign to variable to be used elsewhere
+  }
+  
+  // Function to get token from client local storage
+  saveToken(token) {
+    localStorage.setItem('token',token); // Get token and asssign to variable to be used elsewhere
+	//alert(localStorage.getItem('token'));
+  }
+
+  // Function to store user's data in client local storage
+  storeUserData(token, employee) {
+    localStorage.setItem('token', token); // Set token in local storage
+    localStorage.setItem('employee', JSON.stringify(employee)); // Set user in local storage as string 
+    this.authToken = token; // Assign token to be used elsewhere
+    this.employee = employee; // Set user to be used elsewhere 
+  } 
+
+  // Function to logout
+  logout() {
+    this.authToken = null; // Set token to null
+    this.employee = null; // Set user to null
+    localStorage.clear(); // Clear local storage
+  }
+
+  // Function to check if user is logged in
+  loggedIn() {
+    return tokenNotExpired();
+  }
+
+}

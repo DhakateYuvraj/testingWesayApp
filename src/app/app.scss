@@ -1,0 +1,66 @@
+.toolbar-background-md {background: #2c9a65;}
+.header-row{padding: 0px;}
+ion-header,ion-header  ion-icon,.toolbar-title-md{color:#fff}
+.menu_icon,.search_icon{
+	padding: 5px 10px;
+	font-size: 2em;
+	color: #fff;
+}
+.search_icon{
+	padding-left: 4px;
+	
+}
+.header_label{
+	font-size: 1.2em;padding-left: 6px;margin-top: 15px !important;
+	color: #fff;margin:4px !important;
+}
+
+
+
+
+	ion-header [col-1] {padding: 0px;}
+	
+	ion-fab[bottom][edge] {bottom: 0;}
+	
+	/*--------- STYLE FOR TRAIT ---------*/
+	.singleTraits .label-md {margin: 10px 5px !important;} 
+	.icon-style{color: #4ED1C1;font-size: 3em;}
+	.traitIcon{background: url(../assets/imgs/traitIcon1.png);height: 50px;width: 50px;margin: 0 auto;}
+	.checkedStyle .traitIcon{background-color: #e3fefa;}
+	.traitIcon_0{background-position: -10px -5px}
+	.traitIcon_1{background-position: -10px -70px}
+	.traitIcon_2{background-position: -10px -135px}
+	.traitIcon_3{background-position: -10px -195px}
+	.traitIcon_4{background-position: -10px -260px}
+	.traitIcon_5{background-position: -10px -325px}
+	.traitIcon_6{background-position: -10px -390px}
+	.traitIcon_7{background-position: -10px -455px}
+	.traitIcon_8{background-position: -10px -510px}
+	.traitIcon_9{background-position: -10px -575px}
+	.traitIcon_10{background-position: -10px -645px}
+	.traitIcon_11{background-position: -10px -5px}
+	.traitIcon_12{background-position: -10px -5px}
+	.traitIcon_13{background-position: -10px -5px}
+	.traitIcon_14{background-position: -10px -5px}
+	.traitIcon_15{background-position: -10px -5px}
+	.traitIcon_16{background-position: -10px -5px}
+	.traitIcon_17{background-position: -10px -5px}
+	.traitIcon_18{background-position: -10px -5px}
+	.traitIcon_19{background-position: -10px -5px}
+	.traitIcon_20{background-position: -10px -5px}
+	.content-md{background: url("../assets/imgs/bg_app.png") #e4e3e3;background-size: auto 100%;background-repeat: no-repeat;background-position: center; }
+	
+	.tabs-md .tab-button[aria-selected=true] .tab-button-icon,.singleTraits .item-md h3, .singleTraits .item-md h4, .singleTraits .item-md h5, .singleTraits .item-md h6,.tabs-md .tab-button[aria-selected=true],.singleTraits .traitName{color:#4c8879}
+	.singleTraits ion-col div {text-align: center;}
+	.item-md.item-block .item-inner{border:none}
+	.singleTraits{padding:3px}
+	.hidden-checkbox {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+.singleTraits .traitName{text-align:center;}
+.searchbar-md{padding:0px}

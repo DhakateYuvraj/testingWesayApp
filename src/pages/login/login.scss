@@ -1,0 +1,25 @@
+page-login {
+	.background {
+		background-image: url("../assets/imgs/bg_login.jpg");
+		background-size: auto 100%;
+		background-repeat: no-repeat;
+		background-position: center; 
+	}
+	
+	.scroll-content{
+		text-align: center;
+		color: #fff;
+	}
+	.scroll-content .log-Img{margin:50px}
+	
+	#list{position:absolute;bottom:0px;width:100%;margin:0;background:rgba(255,255,255,0.3);}
+	.item-md{background-color: transparent;}
+	#footer ion-label{text-align:center;padding:5px}
+	.button{background: #084242;border: none;border-radius: 23px;width: 80%;height: 45px;margin: 30px auto 0;line-height: 45px;font-size: 1.2em;}
+	#l1{font-size: 2em;margin: 0px;}
+	input{color:#fff}
+	
+}
+
+.loading-md .spinner-bubbles circle {fill: #2c9a65;}
+.loading-md .loading-wrapper{border-radius:50%}
