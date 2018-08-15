@@ -70,12 +70,12 @@ export class SignupPage {
 			if (this.form.value.emailaddress != '' && this.form.value.password != '' && this.form.value.retypepassword != '' && this.form.value.mobilenumber != '') {
 				this.loading.present();
 				this.authService.registerUser(this.form.value).subscribe(data => {
-					console.log(data); 
+					//alert(JSON.stringify(data); 
 					this.loading.dismiss();
 					if (data.status == 'success') {
 						this.form.reset();
-            this.presentSuccessToast('OTP sent!');
-            this.viewCtrl.dismiss().catch(() => { });
+						this.presentSuccessToast('Please check your email for OTP');
+						this.authService.saveToken(data.response.authtoken)
 						this.navCtrl.setRoot(OtpPage);
 					} else {
 						this.presentSuccessToast('Failed to Registered!');

@@ -45,7 +45,7 @@ export class ProfilePage {
     this.frdInfo = navParams.get('frdInfo');
 	if (this.frdInfo !== undefined) {
 		console.log(this.frdInfo);
-		this.frdId = this.frdInfo.friendUser.id;
+		this.frdId = this.frdInfo.id;
 		this.profileId = null;
 		this.frdProfile = false;
 		this.profileId = { id: this.frdId };
@@ -78,14 +78,14 @@ export class ProfilePage {
   getMasterTraitList() {
     var loader = this.loadingCtrl.create({ spinner: 'bubbles' });
     loader.present();
-    let x = localStorage.getItem('activeTraits');
-    let allTraitsData = JSON.parse(x);
+    let masterTraitsStr = localStorage.getItem('activeTraits');
+    let allTraitsData = JSON.parse(masterTraitsStr);
     if (allTraitsData != null && allTraitsData.length > 5) {
       this.master_list = allTraitsData;  
       loader.dismiss();
     } else {
       this.traitService.getAllTrais(this.authToken).subscribe(data => {
-        this.master_list = data;  
+        this.master_list = data.response;  
         loader.dismiss();
       });
     }

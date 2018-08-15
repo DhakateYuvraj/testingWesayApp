@@ -6,6 +6,7 @@ import { ProfilePage } from '../profile/profile';
 import { TraitService } from '../../services/traits.service';
 import { AddUserPage } from '../add-user/add-user';
 import { AuthService } from '../../services/auth.service';
+import { Contacts } from '@ionic-native/contacts';
 
 declare var $: any;
 
@@ -27,7 +28,7 @@ export class FriendsListPage {
   public loading;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private traitService: TraitService, private authService: AuthService, private loadingCtrl: LoadingController, public modalCtrl: ModalController,
-    private storage: Storage) {
+    private storage: Storage, private contacts: Contacts) {
     this.storage.get('token').then((token) => {
       this.authToken = token;
       this.getAllFriends(token);
@@ -57,18 +58,18 @@ export class FriendsListPage {
     var reqToSend = [{ 'friendsid': frdInfo.contactid }]
     this.presentLoadingDefault();
     this.authService.sendFrdReq(reqToSend, this.authToken).subscribe(data => {
-      console.log(data)
-      alert(JSON.stringify(data));
+      //console.log(data)
+      //alert(JSON.stringify(data));
       this.loading.dismiss();
 	  this.navCtrl.setRoot(this.navCtrl.getActive().component);
     });
   }
 
   acceptFrdRequest(frdInfo) {
-    var reqToRec = [{ 'id': frdInfo.id }]
+    var reqToRec = [{ 'id': frdInfo.friendsid }]
     this.presentLoadingDefault();
     this.authService.acceptInviation(reqToRec, this.authToken).subscribe(data => {
-      alert(JSON.stringify(data));
+      //alert(JSON.stringify(data));
       this.loading.dismiss();
       if (data.status == "success") {
         this.storage.get('token').then((token) => {
@@ -80,6 +81,24 @@ export class FriendsListPage {
     });
   }
 
+  syncContacts(){
+	var options = {
+      filter: "",
+      multiple: true,
+      hasPhoneNumber: true
+    };
+    this.contacts.find(['displayName', 'name', 'phoneNumbers', 'emails'], options).then((res) => {
+      this.traitService.addContacts(res, this.authToken).subscribe(data => {
+	  alert('sync complete');
+		this.navCtrl.setRoot(this.navCtrl.getActive().component);
+      });
+    }).catch((err) => {
+      alert(JSON.stringify(err));
+      console.log('err', err);
+    });
+  
+  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad FriendsListPage');
   }

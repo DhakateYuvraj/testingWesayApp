@@ -9,7 +9,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ProfilePage } from '../pages/profile/profile'; 
-import { LoginPage } from '../pages/login/login';
+import { LoginPage } from '../pages/login/login'; 
+import { OtpPage } from '../pages/otp/otp';
 import { FriendsListPage } from '../pages/friends-list/friends-list';
 import { AuthService } from '../services/auth.service';
 import { ConnectionService } from '../services/connection.service';
@@ -31,7 +32,8 @@ import { SlidesPage } from '../pages/slides/slides';
     ListPage,
 	AddUserPage,
 	SettingsPage,
-	SlidesPage
+	SlidesPage,
+	OtpPage
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { SlidesPage } from '../pages/slides/slides';
     ListPage,
 	AddUserPage,
 	SettingsPage,
-	SlidesPage
+	SlidesPage,
+	OtpPage
   ],
   providers: [
     StatusBar,

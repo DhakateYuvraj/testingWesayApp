@@ -43,7 +43,7 @@ export class HomePage {
     this.storage.get('token').then((token) => {
       this.authToken = token;
 
-      this.fetchDeviceContact();
+      //this.fetchDeviceContact();
 
       this.presentLoadingDefault();
       this.getPopularTraits(token);
@@ -70,7 +70,7 @@ export class HomePage {
       // console.log("contactlist >>>", res);
 
     }).catch((err) => {
-      alert('err')
+      //alert('err')
       alert(JSON.stringify(err));
       console.log('err', err);
     });

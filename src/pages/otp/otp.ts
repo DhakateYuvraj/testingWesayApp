@@ -25,6 +25,7 @@ export class OtpPage {
   valuateOtp(){
 	 if (this.form.value.otp != "") { 
 		this.authService.valuateOtp(this.form.value).subscribe(data => {
+		//alert(JSON.stringify(data))
 		if (data.status == 'success') {
 			this.form.reset();
 			this.presentSuccessToast('Welcome to weSay');
@@ -37,11 +38,6 @@ export class OtpPage {
     } else {
      this.presentSuccessToast('All Field Required');
     }
-  }
-  
-  resendOtp(){
-     this.presentSuccessToast('Resending OTP...');
-	  alert('TODO');
   }
 
   presentSuccessToast(msg) {

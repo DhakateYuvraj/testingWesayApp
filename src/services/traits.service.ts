@@ -75,6 +75,6 @@ export class TraitService {
 
   addContacts(list, token) {
     this.createAuthenticationHeaders(token);
-    return this.http.post(rootApi + '/userzone/addContact/', null, this.options).map(res => res.json());
+    return this.http.post(rootApi + '/userzone/uploadContact/', list, this.options).map(res => res.json());
   }
 }

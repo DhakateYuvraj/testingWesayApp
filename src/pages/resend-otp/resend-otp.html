@@ -1,23 +1,23 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Resend Otp</ion-title>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>email</ion-title>
+	</ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <form>
-    <ion-list>
-      <ion-item>
-        <ion-label floating>Email Id</ion-label>
-        <ion-input type="text" [(ngModel)]="email"></ion-input>
-      </ion-item>
+<ion-content>
+	<form [formGroup]="form">
+		<ion-list id="list">
+			<ion-item id="i1">
+				<ion-label floating class="input-label" style="color:#000000">email</ion-label>
+				<ion-input type="text" formControlName="email"></ion-input>
+			</ion-item>
 
-      <button ion-button full [disabled]="!email" (click)="resendOTP(email)">
-        <p>Send OTP</p>
-      </button>
-    </ion-list>
-  </form>
+			<button id="btn" ion-button full color="blue" (click)="submitEmail()">
+				<p>Submit</p>
+			</button>
+		</ion-list>
+	</form>
+
 </ion-content>
