@@ -8,7 +8,12 @@
           <ion-label class="header_label">My Contacts</ion-label> 
         </ion-col> 
         <ion-col col-2> 
-		<ion-icon ios="ios-refresh" md="md-refresh" (click)="syncContacts()" style="font-size:30px"></ion-icon>
+		<div *ngIf="!showSyncContact">
+			<ion-icon ios="ios-refresh" md="md-refresh" (click)="syncContacts()" style="font-size:30px;position:absolute;top:3px;right:32px;"></ion-icon>
+		</div>
+		<div *ngIf="showSyncContact">
+			<img src="../../assets/imgs/spinner.gif" style="height: 35px;position: absolute;top: 0;right: 25px;" />
+		</div>
         </ion-col>
       </ion-row>
     </ion-navbar>
@@ -17,6 +22,10 @@
 <ion-content #contentRef fullscreen (ionScroll)="scrollingFun($event)">
   <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
   </ion-searchbar>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
 <ion-list>
   Friend Requests Received
     <ion-item-sliding  *ngFor="let friend of friendList.myRecievedfriendrequest ; let i=index">

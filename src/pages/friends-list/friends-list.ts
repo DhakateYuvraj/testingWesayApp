@@ -24,7 +24,7 @@ export class FriendsListPage {
   friendList = [];
   public allContacts: any
   authToken;
-
+public showSyncContact = false;
   public loading;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private traitService: TraitService, private authService: AuthService, private loadingCtrl: LoadingController, public modalCtrl: ModalController,
@@ -82,19 +82,22 @@ export class FriendsListPage {
   }
 
   syncContacts(){
+  this.showSyncContact = true;
 	var options = {
       filter: "",
       multiple: true,
       hasPhoneNumber: true
     };
     this.contacts.find(['displayName', 'name', 'phoneNumbers', 'emails'], options).then((res) => {
-      this.traitService.addContacts(res, this.authToken).subscribe(data => {
-	  alert('sync complete');
+		this.traitService.addContacts(res, this.authToken).subscribe(data => {
+		alert('sync complete');
+		this.showSyncContact = false;
 		this.navCtrl.setRoot(this.navCtrl.getActive().component);
       });
     }).catch((err) => {
-      alert(JSON.stringify(err));
-      console.log('err', err);
+		this.showSyncContact = false;
+		alert(JSON.stringify(err));
+		console.log('err', err);
     });
   
   }
@@ -138,5 +141,13 @@ export class FriendsListPage {
   addNewUser() {
     this.navCtrl.push(AddUserPage);
   }
+	doRefresh(refresher) {
+	console.log('Begin async operation', refresher);
+
+	setTimeout(() => {
+	console.log('Async operation has ended');
+	refresher.complete();
+	}, 2000);
+	}
 
 }
