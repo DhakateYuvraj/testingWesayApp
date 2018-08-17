@@ -77,4 +77,36 @@ export class TraitService {
     this.createAuthenticationHeaders(token);
     return this.http.post(rootApi + '/userzone/uploadContact/', list, this.options).map(res => res.json());
   }
+
+  //input -> let traitdata = {traituniqueid: trait.trait_id,traitname: trait.traitname,traitgivenfor: '0'}
+  //output -> {avgScore:4,sliderValue:5,hideTrait:0,hideCount:0,comments:{from:"Yuvraj Dhakte",time:"11:50AM",date:"12/12/12",text:"dummy comment"}}
+  getTraitDetails(traitdata, token) {
+    this.createAuthenticationHeaders(token);
+    return this.http.post(rootApi + '/userzone/getTraitDetails/', traitdata, this.options).map(res => res.json());
+  }
+  
+  
+  //input -> let traitdata = {traituniqueid: trait.trait_id,traitname: trait.traitname,traitgivenfor: '0'}
+  //output -> success / error
+  hideTrait(traitdata, token) {
+    this.createAuthenticationHeaders(token);
+    return this.http.post(rootApi + '/userzone/hideTrait/', traitdata, this.options).map(res => res.json());
+  }
+  
+  //input -> let traitdata = {traituniqueid: trait.trait_id,traitname: trait.traitname,traitgivenfor: '0'}
+  //output -> success / error
+  hideTraitCount(traitdata, token) {
+    this.createAuthenticationHeaders(token);
+    return this.http.post(rootApi + '/userzone/hideTraitCount/', traitdata, this.options).map(res => res.json());
+  }
+  
+  
+	//traitdata = {traituniqueid: trait.trait_id,traitname: trait.traitname,traitgivenfor: '0',sliderValue: this.sliderValue,}
+	customPoints(traitdata, token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userzone/customPoints/', traitdata, this.options).map(res => res.json());
+	}
+  
+  
+  
 }

@@ -4,6 +4,7 @@ import { Storage } from "@ionic/storage";
 
 import { TraitService } from '../../services/traits.service';
 import { FormControl } from '@angular/forms';
+import { TraitDetailsPage } from '../trait-details/trait-details';
 
 declare var $: any;
 
@@ -166,6 +167,11 @@ export class ProfilePage {
         this.getLoginUserTraits(this.authToken);
       }
     })
+  }
+  openTraitDetails(trait){
+	this.navCtrl.push('TraitDetailsPage', {
+		trait: trait
+	});
   }
 
   filterTraits() { 

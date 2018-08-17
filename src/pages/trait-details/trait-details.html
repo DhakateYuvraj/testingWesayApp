@@ -15,4 +15,35 @@
 
 <ion-content padding>
 
+<ion-row>
+	<ion-col col-6 class="singleTraits {{trait.traituniqueid}} isMyConti_{{trait.mytraitcontibution}}">
+		<ion-item >
+			<div class="pos-number isMyContiPos_{{trait.mypositive}}" (click)="giveVoteToFriend(trait.traitname,0)">
+				<div class="tempClass">
+					{{trait.positive}}
+					<ion-icon name="arrow-dropup"></ion-icon>
+				</div>
+			</div>
+			<div class="neg-number isMyContiNeg_{{trait.mynegetive}}" (click)="giveVoteToFriend(trait.traitname,1)">
+				<div class="tempClass">
+					{{trait.negetive}}
+					<ion-icon name="arrow-dropdown"></ion-icon>
+				</div>
+			</div>
+			<div class="traitIcon traitIcon_{{i}}" name="happy" (click)="openTraitDetails(trait.traitname)"></div>
+			<div class="traitName"(click)="openTraitDetails(trait.traitname)">{{trait.traitname}}</div>
+		</ion-item>
+	</ion-col>
+	<ion-col col-6 class="singleTraits {{trait.traituniqueid}} isMyConti_{{trait.mytraitcontibution}}">
+		<ion-item >
+			<div class="traitAction  hideTrait_{{traitDetails ? traitDetails.hideTrait : 0}}" (click)="hideTrait(trait)">Hide trait <ion-icon ios="ios-eye-off" md="md-eye-off"></ion-icon></div>
+			<div class="traitAction hideCount_{{traitDetails ? traitDetails.hideCount : 0}}" (click)="hideCount(trait)">Hide Counts <ion-icon ios="ios-ribbon" md="md-ribbon"></ion-icon></div>
+			<div class="traitAction deleteTrait" (click)="deleteTrait(trait)">Delete trait <ion-icon ios="ios-trash" md="md-trash"></ion-icon></div>
+		</ion-item>
+	</ion-col>
+</ion-row>
+	<ion-item>
+	{{sliderValue}}
+	<ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="sliderValue"  (ionChange)="sliderChange(trait)"></ion-range>
+	</ion-item>
 </ion-content>

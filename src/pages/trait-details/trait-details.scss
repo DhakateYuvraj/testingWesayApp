@@ -1,3 +1,54 @@
 page-trait-details {
 
+
+	.singleTraits{
+		.item-md {
+			padding-left: 0 !important;
+			border: 1px solid #c5c5c5;
+		}
+		.close-icon{
+			color: #16a085;
+			position: absolute;
+			right: 0;
+			top: 0;
+			font-size: 1.3em;
+			padding: 5px 7px;
+		}
+		.pos-number,.neg-number {
+			width: 45px;
+			text-align: center;
+			padding: 2px;
+			position: absolute;
+			bottom: 0;
+			height: 100%;
+			padding-top:13%;
+			ion-icon{
+				display: block;
+				padding: 0;
+				margin: 0;
+				font-size: 2.5em;
+				line-height: 0.5em;
+			}
+		}
+		.pos-number{
+			left:0;
+			color:#00B32C
+		}
+		.neg-number {
+			right:0;
+			color:#DC3D2A;
+		}
+		.isMyContiNeg_y,.isMyContiPos_y,.isMyContiPos_Y,.isMyContiPos_Y{
+			.tempClass{
+			border:1px solid #ccc;
+			}
+		}
+	}
+	
+	
+	.traitAction{
+		position:relative;line-height:1.4em;
+		ion-icon{font-size:1.5em;position:absolute;top:0;right:0}
+	}
+	.hideTrait_1,hideCount_1{background:#16a085}
 }

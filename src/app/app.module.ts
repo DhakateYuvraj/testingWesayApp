@@ -20,7 +20,7 @@ import { AddUserPage } from '../pages/add-user/add-user';
 import { Contacts } from '@ionic-native/contacts';
 import { SettingsPage } from '../pages/settings/settings';
 import { SlidesPage } from '../pages/slides/slides';
-import { LongPressModule } from 'ionic-long-press';
+import { TraitDetailsPage } from '../pages/trait-details/trait-details'
 
 @NgModule({
   declarations: [
@@ -40,8 +40,7 @@ import { LongPressModule } from 'ionic-long-press';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    HttpModule,
-	LongPressModule
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
