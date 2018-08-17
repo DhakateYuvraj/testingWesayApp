@@ -56,11 +56,11 @@ export class TraitDetailsPage {
 		this.traitService.getTraitDetails(trait_data, this.authToken).subscribe(data => {
 			if (data.status == 'success') {
 				this.traitDetails = data.response
-				sliderValue = this.traitDetails.sliderValue
+				this.sliderValue = this.traitDetails.sliderValue
 			}else{
 				alert('Dummy Data');
 				this.traitDetails = {avgScore:4,sliderValue:5,hideTrait:0,hideCount:0,comments:{from:"Yuvraj Dhakte",time:"11:50AM",date:"12/12/12",text:"dummy comment"}}
-				sliderValue = this.traitDetails.sliderValue
+				this.sliderValue = this.traitDetails.sliderValue
 			}
 		});	
 	}

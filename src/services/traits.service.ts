@@ -102,6 +102,7 @@ export class TraitService {
   
   
 	//traitdata = {traituniqueid: trait.trait_id,traitname: trait.traitname,traitgivenfor: '0',sliderValue: this.sliderValue,}
+	//output -> success / error
 	customPoints(traitdata, token) {
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/userzone/customPoints/', traitdata, this.options).map(res => res.json());
