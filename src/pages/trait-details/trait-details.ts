@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { TraitService } from '../../services/traits.service';
 import { Storage } from "@ionic/storage";
 @IonicPage()
@@ -12,7 +12,9 @@ export class TraitDetailsPage {
 	public authToken;
 	public traitDetails;
 	public sliderValue = 5;
-	constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private traitService: TraitService,) {
+	public loading;
+  
+	constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private traitService: TraitService, private loadingCtrl: LoadingController) {
 		this.trait = navParams.get('trait');
 		if(!this.trait){
 		this.trait= {
@@ -36,8 +38,12 @@ export class TraitDetailsPage {
 			"myneutral": "n"
 		}
 		}
+    this.presentLoadingDefault();
 	}
 
+  presentLoadingDefault() {
+    this.loading = this.loadingCtrl.create({ spinner: 'bubbles' });
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad TraitDetailsPage');
   }
@@ -48,12 +54,15 @@ export class TraitDetailsPage {
     });
   }
 	getTraitDetails(trait,token){
+    //this.loading.present();
 		let trait_data = {
 			traituniqueid: trait.trait_id,
 			traitname: trait.traitname,
 			traitgivenfor: '0'
 		}
 		this.traitService.getTraitDetails(trait_data, this.authToken).subscribe(data => {
+			//this.loading.dismiss();
+			alert(JSON.stringify(data));
 			if (data.status == 'success') {
 				this.traitDetails = data.response
 				this.sliderValue = this.traitDetails.sliderValue
@@ -66,12 +75,14 @@ export class TraitDetailsPage {
 	}
 	
 	hideTrait(trait){
+    //this.loading.present();
 		let trait_data = {
 			traituniqueid: trait.trait_id,
 			traitname: trait.traitname,
 			traitgivenfor: '0'
 		}
 		this.traitService.hideTrait(trait_data, this.authToken).subscribe(data => {
+			//this.loading.dismiss();
 			if (data.status == 'success') {
 				this.getTraitDetails(trait,this.authToken);
 			}
@@ -79,12 +90,14 @@ export class TraitDetailsPage {
 	}
 
 	hideCount(trait){
+    //this.loading.present();
 		let trait_data = {
 			traituniqueid: trait.trait_id,
 			traitname: trait.traitname,
 			traitgivenfor: '0'
 		}
 		this.traitService.hideTraitCount(trait_data, this.authToken).subscribe(data => {
+			//this.loading.dismiss();
 			if (data.status == 'success') {
 				this.getTraitDetails(trait,this.authToken);
 			}
@@ -92,12 +105,14 @@ export class TraitDetailsPage {
 	}
 
 	deleteTrait(trait){
+    //this.loading.present();
 		let trait_data = {
 			traituniqueid: trait.trait_id,
 			traitname: trait.traitname,
 			traitgivenfor: '0'
 		}
 		this.traitService.deleteTrait(trait_data, this.authToken).subscribe(data => {
+			//this.loading.dismiss();
 			if (data.status == 'success') {
 				this.getTraitDetails(trait,this.authToken);
 			}

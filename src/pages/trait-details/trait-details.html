@@ -43,7 +43,10 @@
 	</ion-col>
 </ion-row>
 	<ion-item>
-	{{sliderValue}}
+	<div class="traitAction">slider value = {{sliderValue}}</div>
+	<div class="traitAction">Avgerage Score = {{traitDetails ? traitDetails.avgScore : 0}}</div>
+	</ion-item>
+	<ion-item>
 	<ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="sliderValue"  (ionChange)="sliderChange(trait)"></ion-range>
 	</ion-item>
 </ion-content>

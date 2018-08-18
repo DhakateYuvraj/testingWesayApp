@@ -18,6 +18,7 @@ import { TraitService } from '../services/traits.service';
 import { ListPage } from '../pages/list/list';
 import { AddUserPage } from '../pages/add-user/add-user';
 import { Contacts } from '@ionic-native/contacts';
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { SettingsPage } from '../pages/settings/settings';
 import { SlidesPage } from '../pages/slides/slides';
 import { TraitDetailsPage } from '../pages/trait-details/trait-details'
@@ -62,7 +63,8 @@ import { TraitDetailsPage } from '../pages/trait-details/trait-details'
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService, { provide: Http, useClass: ConnectionService },
     TraitService,
-	Contacts
+	Contacts,
+	SocialSharing
 	//{ provide: Contacts, useClass: ContactsMock }
   ]
 })
