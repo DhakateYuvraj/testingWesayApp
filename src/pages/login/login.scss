@@ -1,23 +1,48 @@
 page-login {
 	.background {
 		background-image: url("../assets/imgs/bg_login.jpg");
-		background-size: auto 100%;
+		background-size: 100% 100%;
 		background-repeat: no-repeat;
 		background-position: center; 
 	}
-	
-	.scroll-content{
+	.loginContainer{
 		text-align: center;
-		color: #fff;
+		background: #fff;
+		color: #000;
+		margin: 35px;
+		border-radius: 20px;
+		height: 90%;
+		box-shadow: 0px 0px 35px #999;
+	}		
+	.list-md .item-input:last-child{
+		border-bottom: 0px solid;
 	}
-	.scroll-content .log-Img{margin:50px}
+	.item-input{
+		box-shadow: 0px 0px 5px #ccc;
+		width: 70%;
+		margin: 0 auto;
+		border-radius: 5px;
+		padding: 0 10px;
+	}
 	
-	#list{position:absolute;bottom:0px;width:100%;margin:0;background:rgba(255,255,255,0.3);}
-	.item-md{background-color: transparent;}
-	#footer ion-label{text-align:center;padding:5px}
-	.button{background: #084242;border: none;border-radius: 23px;width: 80%;height: 45px;margin: 30px auto 0;line-height: 45px;font-size: 1.2em;}
-	#l1{font-size: 2em;margin: 0px;}
-	input{color:#fff}
+/*
+
+	.list-md .item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child, 
+	.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus):last-child {
+		border: 1px solid #bab0ef;
+		-webkit-box-shadow: inset 0 -1px 0 0 #bab0ef;
+		box-shadow: inset 0 -1px 0 0 #bab0ef;
+	}
+	
+	.list-md .item-input:focus {
+		border: 1px solid #FF0000;
+		-webkit-box-shadow: inset 0 -1px 0 0 #FF0000;
+		box-shadow: inset 0 -1px 0 0 #FF0000;
+	}
+
+*/
+	
+	
 	
 }
 

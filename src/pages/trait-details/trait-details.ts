@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, PopoverController } from 'ionic-angular';
 import { TraitService } from '../../services/traits.service';
 import { Storage } from "@ionic/storage";
 @IonicPage()
