@@ -1,6 +1,11 @@
 page-slides {
+	.background {
+		background-image: url("../assets/imgs/bg_login.jpg");
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		background-position: center; 
+	}
 	.slide-zoom{height:85%}
-	.card.card-md{height:100%;padding:20px;font-size:1.2em;}
+	.card.card-md{height:100%;padding:20px;font-size:1.2em;box-shadow:none}
     .card.card-md .title{color:#084242;font-size:1.5em;}
- 
 }

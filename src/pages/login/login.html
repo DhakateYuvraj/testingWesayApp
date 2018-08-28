@@ -1,38 +1,45 @@
 <ion-content class="background">
-	<div class="loginContainer">
+	<div class="roundedContainer loginContainer">
 		<ion-label>
 			<h1 class="">SIGN IN</h1>
 			<h6>Sing in using your email id.</h6>
 		</ion-label>
   
-		<form *ngIf="form" [formGroup]="form">
-			<ion-list id="list">
-				<ion-item>
-					<ion-input type="text" formControlName="emailaddress"></ion-input>
-				</ion-item>
-				<br />
-				<ion-item>
-					<ion-input id="pass" type="password" formControlName="password"> </ion-input>
-				</ion-item>
+		<form *ngIf="form" class="commomForm formLogin" [formGroup]="form">
+			<ion-list>
+				<div class="ion-item-wrapper">
+					<ion-item>
+						<ion-input type="text" formControlName="emailaddress" placeholder="Email ID"></ion-input>
+					</ion-item>
+					<ion-icon name="person"></ion-icon>
+				</div>
+				<div class="ion-item-wrapper">
+					<ion-item>
+						<ion-input id="pass" type="password" formControlName="password" placeholder="Password"> </ion-input>
+					</ion-item>
+					<ion-icon name="lock"></ion-icon>
+				</div>
 			</ion-list>
+			<button class="btn btn_login" ion-button block (click)="login()">
+			LOGIN
+			</button>
 		</form>
-	<!-- 
-
-				<button id="btn" ion-button full color="blue" (click)="login()">
-				<p>Sign In </p>
-				</button>
-				<ion-item id="footer">
-				<a (click)="navToSignup()" style="font-size: 14px;
-				color: #ffffff; 
-				text-align: justify;"> Don't have an account? Sign Up </a>
-				<br />
-				<br />
-				<a (click)="resendOTP()" style="font-size: 14px;
-				color: #ffffff; 
-				text-align: justify;"> Resend OTP </a>
-				</ion-item>
-			</ion-list>
-		</form>
-	-->
+		<div class="forgotPass" (click)="navToSignup()">
+			Don't have an account? Sign Up
+		</div>
+		<div class="forgotPass" (click)="resendOTP()">
+			Forgot Password ?
+		</div>
+		<div class="socialSignIn">
+			<div class="signInFacebook">
+				<div class="infoText">
+					Signin Using Facebook ID
+				</div>
+				<div (click)="facebookLogin()">
+					<ion-icon name="logo-facebook"></ion-icon>
+				</div>
+			</div>
+			{{users}}
+		</div>
 	</div>
 </ion-content>

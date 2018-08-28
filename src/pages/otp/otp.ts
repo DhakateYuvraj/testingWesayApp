@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController,ViewController } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
 
 @IonicPage()
@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class OtpPage {
   form: FormGroup;
 
-  constructor(private authService: AuthService, public navCtrl: NavController,private toastCtrl: ToastController, public navParams: NavParams,formBuilder: FormBuilder) {
+  constructor(private authService: AuthService, public navCtrl: NavController,private toastCtrl: ToastController, public navParams: NavParams,formBuilder: FormBuilder,public viewCtrl: ViewController) {
 	  	  this.form = formBuilder.group({
 			otp: [''],
 	  });
@@ -32,7 +32,7 @@ export class OtpPage {
 			//this.authService.saveToken(data.auth_token)
 			this.navCtrl.setRoot('SlidesPage'); 
 		} else {
-		this.presentSuccessToast('Failed to login!');
+		this.presentSuccessToast(data.message);
 		}
 		});
     } else {
@@ -44,9 +44,12 @@ export class OtpPage {
     let toast = this.toastCtrl.create({
       message: msg,
       duration: 2000,
-      position: 'middle'
+      position: 'top'
     });
     toast.present(); 
   }
 
+  cancel() {
+    this.viewCtrl.dismiss().catch(() => { }); 
+  }
 }

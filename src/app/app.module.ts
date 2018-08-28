@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule, Http } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home'; 
@@ -21,7 +22,8 @@ import { Contacts } from '@ionic-native/contacts';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SettingsPage } from '../pages/settings/settings';
 import { SlidesPage } from '../pages/slides/slides';
-import { TraitDetailsPage } from '../pages/trait-details/trait-details'
+import { TraitDetailsPage } from '../pages/trait-details/trait-details';
+import { Facebook } from '@ionic-native/facebook';
 
 @NgModule({
   declarations: [
@@ -33,9 +35,7 @@ import { TraitDetailsPage } from '../pages/trait-details/trait-details'
     TabsPage, 
     ListPage,
 	AddUserPage,
-	SettingsPage,
-	SlidesPage,
-	OtpPage
+	SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -53,9 +53,7 @@ import { TraitDetailsPage } from '../pages/trait-details/trait-details'
     FriendsListPage, 
     ListPage,
 	AddUserPage,
-	SettingsPage,
-	SlidesPage,
-	OtpPage
+	SettingsPage
   ],
   providers: [
     StatusBar,
@@ -64,7 +62,8 @@ import { TraitDetailsPage } from '../pages/trait-details/trait-details'
     AuthService, { provide: Http, useClass: ConnectionService },
     TraitService,
 	Contacts,
-	SocialSharing
+	SocialSharing,
+	Facebook
 	//{ provide: Contacts, useClass: ContactsMock }
   ]
 })

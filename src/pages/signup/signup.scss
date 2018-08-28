@@ -1,66 +1,12 @@
 page-signup {
-    .select_img{
-           background-image: url(../assets/imgs/bg_login.jpg);
-    height: 150px;
-    background-size: 100%;
-    } 
-    .list-md {
-        margin: 0;
-    }
-    .profile-image-wrapper {
-           text-align: center;
-    padding: 30px;
-    margin-top: -20px;
-
-    .profile-image {
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-
-        display: inline-block;
-
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-    }
-
-    .profile-image-placeholder {
-        display: inline-block;
-
-        background-color: white;
-        width: 90px;
-        height: 90px;
-        border-radius: 50%; 
-        font-size: 12px;
-
-        ion-icon {
-        font-size: 35px; 
-        margin-top: 28px;
-        }
-    }
-    }
-
- 
-    .genderclass{
-        width: 100%;
-        border: white;
-        background: white !important;
-        padding-top: 8px;
-    }
-
-    .birthday-label{
-        margin-left: 18px;
-        margin-bottom: 0px;
-        font-size: 15px;
-        font-weight: 100;
-    }
-	.button{    background: #084242;
-    border: none;
-    border-radius: 23px;
-    width: 80%;
-    height: 45px;
-    margin: 30px auto;
-    line-height: 45px;
-    font-size: 1.2em;}
+	.background {
+		background-image: url("../assets/imgs/bg_login.jpg");
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		background-position: center; 
+	}
+	.singupContainer{
+		min-height: 750px;
+	}
 
 }

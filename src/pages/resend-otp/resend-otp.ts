@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
 
 @IonicPage()
@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
 export class ResendOtpPage {
   form: FormGroup;
 
-  constructor(private authService: AuthService, public navCtrl: NavController,private toastCtrl: ToastController, public navParams: NavParams,formBuilder: FormBuilder) {
+  constructor(private authService: AuthService, public navCtrl: NavController,private toastCtrl: ToastController,public viewCtrl: ViewController, public navParams: NavParams,formBuilder: FormBuilder) {
 	  	  this.form = formBuilder.group({
 			email: [''],
 	  });
@@ -41,9 +41,13 @@ export class ResendOtpPage {
     let toast = this.toastCtrl.create({
       message: msg,
       duration: 2000,
-      position: 'middle'
+      position: 'top'
     });
     toast.present(); 
+  }
+  
+  cancel() {
+    this.viewCtrl.dismiss().catch(() => { }); 
   }
 
 }

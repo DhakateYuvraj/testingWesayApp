@@ -79,6 +79,7 @@ export class SignupPage {
 						this.navCtrl.setRoot(OtpPage);
 					} else {
 						this.presentSuccessToast('Failed to Registered!');
+						alert(JSON.stringify(data.response));
 					}
 				});
 		} else {
@@ -92,7 +93,7 @@ export class SignupPage {
     let toast = this.toastCtrl.create({
       message: msg,
       duration: 2000,
-      position: 'middle'
+      position: 'top'
     });
 
     toast.present(); 
