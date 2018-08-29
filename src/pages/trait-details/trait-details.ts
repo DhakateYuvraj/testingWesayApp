@@ -13,6 +13,7 @@ export class TraitDetailsPage {
 	public traitDetails;
 	public sliderValue = 5;
 	public loading;
+	public comments;
   
 	constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private traitService: TraitService, private loadingCtrl: LoadingController) {
 		this.trait = navParams.get('trait');
@@ -51,6 +52,7 @@ export class TraitDetailsPage {
     this.storage.get('token').then((token) => {
 		this.authToken = token;
 		this.getTraitDetails(this.trait,this.authToken);
+		this.getTraitComments(this.trait);
     });
   }
 	getTraitDetails(trait,token){
@@ -129,6 +131,34 @@ export class TraitDetailsPage {
 		this.traitService.customPoints(trait_data, this.authToken).subscribe(data => {
 			if (data.status == 'success') {
 				this.getTraitDetails(trait,this.authToken);
+			}
+		});
+	}
+	
+	getTraitComments(trait){
+		let trait_data = {
+			comment: "string",
+			commentId: 0,
+			parentCommentId: 0,
+			traitId: 405//trait.trait_id
+		}
+		this.traitService.commentList(trait_data, this.authToken).subscribe(data => {
+			if (data.status == 'success') {
+				console.log(data.response);
+				this.comments = data.response
+			}
+		});
+	}
+	commentLikeDislike(commentId,likeDislike){
+		console.log(commentId);
+		let trait_data = {
+			commentId: commentId,
+			like: likeDislike
+		}
+		this.traitService.commentLikeDislike(trait_data, this.authToken).subscribe(data => {
+			if (data.status == 'success') {
+				alert(JSON.stringify(data));
+				this.getTraitComments(this.trait)
 			}
 		});
 	}

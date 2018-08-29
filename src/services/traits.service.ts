@@ -38,76 +38,75 @@ export class TraitService {
 
 
   // Function to get list of all traits
-  getAllTrais(token) {
-    this.createAuthenticationHeaders(token);
-    return this.http.post(rootApi + '/traitapi/getActiveTraits/', null, this.options).map(res => res.json());
-  }
+	getAllTrais(token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/traitapi/getActiveTraits/', null, this.options).map(res => res.json());
+	}
 
-  getListOfPopularTraits(token) {
-    this.createAuthenticationHeaders(token);
-    return this.http.post(rootApi + '/traitapi/getListOfPoulerTraits/', {}, this.options).map(res => res.json());
-  }
+	getListOfPopularTraits(token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/traitapi/getListOfPoulerTraits/', {}, this.options).map(res => res.json());
+	}
 
-  addTraitToPage(traits, token) {
-    this.createAuthenticationHeaders(token);
-    return this.http.post(rootApi + '/traitapi/addTrait/', traits, this.options).map(res => res.json());
-  }
+	addTraitToPage(traits, token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/traitapi/addTrait/', traits, this.options).map(res => res.json());
+	}
 
-  getLoginUserTraits(token, profile) {
-    this.createAuthenticationHeaders(token);
-    return this.http.post(rootApi + '/userTraits/getMyTraits/', profile, this.options).map(res => res.json());
-  }
+	getLoginUserTraits(token, profile) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userTraits/getMyTraits/', profile, this.options).map(res => res.json());
+	}
 
-  deleteTrait(trait, token) {
-    this.createAuthenticationHeaders(token);
-    return this.http.post(rootApi + '/traitapi/deleteTrait/', trait, this.options).map(res => res.json());
-  }
+	deleteTrait(trait, token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/traitapi/deleteTrait/', trait, this.options).map(res => res.json());
+	}
 
-  getMyFriendList(token) {
-    this.createAuthenticationHeaders(token);
-    return this.http.post(rootApi + '/userzone/friendsZone/', null, this.options).map(res => res.json());
-  }
+	getMyFriendList(token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userzone/friendsZone/', null, this.options).map(res => res.json());
+	}
 
-  getSettings(token) {
-    this.createAuthenticationHeaders(token);
-    return this.http.post(rootApi + '/userzone/mysettings/', null, this.options).map(res => res.json());
-  }
+	getSettings(token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userzone/mysettings/', null, this.options).map(res => res.json());
+	}
 
-  addContacts(list, token) {
-    this.createAuthenticationHeaders(token);
-    return this.http.post(rootApi + '/userzone/uploadContact/', list, this.options).map(res => res.json());
-  }
+	addContacts(list, token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userzone/uploadContact/', list, this.options).map(res => res.json());
+	}
 
-  //input -> let traitdata = {traituniqueid: trait.trait_id,traitname: trait.traitname,traitgivenfor: '0'}
-  //output -> {avgScore:4,sliderValue:5,hideTrait:0,hideCount:0,comments:{from:"Yuvraj Dhakte",time:"11:50AM",date:"12/12/12",text:"dummy comment"}}
-  getTraitDetails(traitdata, token) {
-    this.createAuthenticationHeaders(token);
-    return this.http.post(rootApi + '/userzone/getTraitDetails/', traitdata, this.options).map(res => res.json());
-  }
-  
-  
-  //input -> let traitdata = {traituniqueid: trait.trait_id,traitname: trait.traitname,traitgivenfor: '0'}
-  //output -> success / error
-  hideTrait(traitdata, token) {
-    this.createAuthenticationHeaders(token);
-    return this.http.post(rootApi + '/userzone/hideTrait/', traitdata, this.options).map(res => res.json());
-  }
-  
-  //input -> let traitdata = {traituniqueid: trait.trait_id,traitname: trait.traitname,traitgivenfor: '0'}
-  //output -> success / error
-  hideTraitCount(traitdata, token) {
-    this.createAuthenticationHeaders(token);
-    return this.http.post(rootApi + '/userzone/hideTraitCount/', traitdata, this.options).map(res => res.json());
-  }
-  
-  
-	//traitdata = {traituniqueid: trait.trait_id,traitname: trait.traitname,traitgivenfor: '0',sliderValue: this.sliderValue,}
-	//output -> success / error
+	getTraitDetails(traitdata, token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userzone/getTraitDetails/', traitdata, this.options).map(res => res.json());
+	}
+
+	hideTrait(traitdata, token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userzone/hideTrait/', traitdata, this.options).map(res => res.json());
+	}
+
+	hideTraitCount(traitdata, token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userzone/hideTraitCount/', traitdata, this.options).map(res => res.json());
+	}
+	
 	customPoints(traitdata, token) {
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/userzone/customPoints/', traitdata, this.options).map(res => res.json());
 	}
-  
+	
+	commentList(traitdata, token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userzone/traits/comment/list', traitdata, this.options).map(res => res.json());
+	}
+	
+	commentLikeDislike(traitdata, token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userzone/traits/comment/like', traitdata, this.options).map(res => res.json());
+	}
   
   
 }
