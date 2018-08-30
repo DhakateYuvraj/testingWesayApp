@@ -107,6 +107,15 @@ export class TraitService {
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/userzone/traits/comment/like', traitdata, this.options).map(res => res.json());
 	}
-  
+	
+	commentAdd(traitdata, token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userzone/traits/comment', traitdata, this.options).map(res => res.json());
+	}
+	
+	commentReply(traitdata, token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userzone/traits/commentReply', traitdata, this.options).map(res => res.json());
+	}
   
 }

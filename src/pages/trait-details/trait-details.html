@@ -46,14 +46,42 @@
 	</ion-row>
 	<ion-row style="background:#fff;margin-top: 5px;">
 		<ion-col>
+		<div>
+			<textarea  [(ngModel)]="newComment" >
+			</textarea>
+			<button (click)="addNewComment()">Send</button>
+		</div>
+		<hr />
 			<div  *ngFor="let comment of comments" class="commentBox commentId-{{comment.commentId}}">
 				<div class="commentArea"><strong>{{comment.commentedBy}} : </strong>{{comment.commentsText}}</div>
 				<div class="commentOperations">
-					<span>Reply</span>
+					<span (click)="replyToComment(comment.commentId)">Reply</span>
 					<span (click)="commentLikeDislike(comment.commentId,1)">Like: {{comment.likeCount}}</span>
 					<span (click)="commentLikeDislike(comment.commentId,2)">Dislike: {{comment.disLikeCount}}</span>
 					<span>Date: {{comment.commentedDate}}</span>
 				</div>
+				<div [ngClass]="{'hide':replyTo != comment.commentId}">
+					<textarea [(ngModel)]="newReplyComment" >
+					</textarea>
+					<button (click)="addNewReplyComment(comment.commentId)" >Send</button>
+				</div>
+				
+				<div  *ngFor="let commentReply of comment.reply" class="commentBox commentId-{{commentReply.commentId}}">
+					<div class="commentArea"><strong>{{commentReply.commentedBy}} : </strong>{{commentReply.commentsText}}</div>
+					<div class="commentOperations">
+						<span (click)="replyToComment(commentReply.commentId)">Reply</span>
+						<span (click)="commentLikeDislike(commentReply.commentId,1)">Like: {{commentReply.likeCount}}</span>
+						<span (click)="commentLikeDislike(commentReply.commentId,2)">Dislike: {{commentReply.disLikeCount}}</span>
+						<span>Date: {{commentReply.commentedDate}}</span>
+					</div>
+					<div [ngClass]="{'hide':replyTo != commentReply.commentId}">
+						<textarea [(ngModel)]="newReplyComment" >
+						</textarea>
+						<button (click)="addNewReplyComment(commentReply.commentId)" >Send</button>
+					</div>
+				</div>
+				
+				
 			</div>
 		</ion-col>
 	</ion-row>

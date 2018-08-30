@@ -14,6 +14,9 @@ export class TraitDetailsPage {
 	public sliderValue = 5;
 	public loading;
 	public comments;
+	public newComment;
+	public newReplyComment = ""
+	public replyTo = 0
   
 	constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private traitService: TraitService, private loadingCtrl: LoadingController) {
 		this.trait = navParams.get('trait');
@@ -58,7 +61,7 @@ export class TraitDetailsPage {
 	getTraitDetails(trait,token){
     //this.loading.present();
 		let trait_data = {
-			traituniqueid: trait.trait_id,
+			traituniqueid: trait.traituniqueid,
 			traitname: trait.traitname,
 			traitgivenfor: '0'
 		}
@@ -79,7 +82,7 @@ export class TraitDetailsPage {
 	hideTrait(trait){
     //this.loading.present();
 		let trait_data = {
-			traituniqueid: trait.trait_id,
+			traituniqueid: trait.traituniqueid,
 			traitname: trait.traitname,
 			traitgivenfor: '0'
 		}
@@ -94,7 +97,7 @@ export class TraitDetailsPage {
 	hideCount(trait){
     //this.loading.present();
 		let trait_data = {
-			traituniqueid: trait.trait_id,
+			traituniqueid: trait.traituniqueid,
 			traitname: trait.traitname,
 			traitgivenfor: '0'
 		}
@@ -109,7 +112,7 @@ export class TraitDetailsPage {
 	deleteTrait(trait){
     //this.loading.present();
 		let trait_data = {
-			traituniqueid: trait.trait_id,
+			traituniqueid: trait.traituniqueid,
 			traitname: trait.traitname,
 			traitgivenfor: '0'
 		}
@@ -123,7 +126,7 @@ export class TraitDetailsPage {
 	
 	sliderChange(trait){
 		let trait_data = {
-			traituniqueid: trait.trait_id,
+			traituniqueid: trait.traituniqueid,
 			traitname: trait.traitname,
 			traitgivenfor: '0',
 			sliderValue: this.sliderValue,
@@ -140,7 +143,7 @@ export class TraitDetailsPage {
 			comment: "string",
 			commentId: 0,
 			parentCommentId: 0,
-			traitId: 405//trait.trait_id
+			traitId: 405//trait.traituniqueid
 		}
 		this.traitService.commentList(trait_data, this.authToken).subscribe(data => {
 			if (data.status == 'success') {
@@ -162,6 +165,37 @@ export class TraitDetailsPage {
 			}
 		});
 	}
+	addNewComment(){
+		let trait_data = {
+			comment: this.newComment,
+			traitId: 405//this.trait.traituniqueid
+		}
+		this.traitService.commentAdd(trait_data, this.authToken).subscribe(data => {
+		console.log(JSON.stringify(data));
+		alert(JSON.stringify(data));
+			if (data.status == 'success') {
+				alert(JSON.stringify(data));
+				this.getTraitComments(this.trait)
+			}
+		});
+	}
 	
+	replyToComment(commentId){
+		this.replyTo = commentId
+	}
+	
+	addNewReplyComment(commentId){
+		let trait_data = {
+			comment: this.newReplyComment,
+			traitId: commentId
+		}
+		this.traitService.commentReply(trait_data, this.authToken).subscribe(data => {
+			alert(JSON.stringify(data));
+			if (data.status == 'success') {
+				alert(JSON.stringify(data));
+				this.getTraitComments(this.trait)
+			}
+		});
+	}
 
 }
