@@ -25,12 +25,13 @@ export class LoginPage {
 	  private fb: Facebook
 	) {
 		this.form = formBuilder.group({
-			emailaddress: ['', Validators.required],
-			password: ['', Validators.required]
+			emailaddress: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(50), Validators.required])],
+			password: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(15), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])]
 		});
 
 		fb.getLoginStatus()
 		.then(res => {
+			alert("getLoginStatus----->"+JSON.stringify(res));
 			console.log(res.status);
 			if(res.status === "connect") {
 				this.isLoggedIn = true;
@@ -49,6 +50,7 @@ export class LoginPage {
 	facebookLogin() {
 		this.fb.login(['public_profile', 'user_friends', 'email'])
 		.then(res => {
+			alert('facebookLogin===>'+JSON.stringify(res))
 			if(res.status === "connected") {
 				this.isLoggedIn = true;
 				this.getUserDetail(res.authResponse.userID);
@@ -62,7 +64,7 @@ export class LoginPage {
 	getUserDetail(userid) {
 		this.fb.api("/"+userid+"/?fields=id,email,name,picture,gender",["public_profile"])
 		.then(res => {
-			alert(JSON.stringify(res));
+			alert('getUserDetail--->'+JSON.stringify(res));
 			this.users = res;
 		})
 		.catch(e => {
@@ -98,6 +100,9 @@ export class LoginPage {
     } else {
       this.presentSuccessToast('Failed to login !');
     }
+  }
+  onInputBlue(event){
+	  console.log(event);
   }
 
   presentSuccessToast(msg) {

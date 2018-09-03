@@ -45,13 +45,12 @@ export class ProfilePage {
 
     this.frdInfo = navParams.get('frdInfo');
 	if (this.frdInfo !== undefined) {
-		console.log(this.frdInfo);
 		this.frdId = this.frdInfo.id;
-		this.profileId = null;
-		this.frdProfile = false;
 		this.profileId = { id: this.frdId };
 		this.frdProfile = true;
     }else{
+		this.profileId = null;
+		this.frdProfile = false;
 		this.frdInfo = {fullname : "MyName Dont hv Data"}
 	}
 

@@ -9,15 +9,17 @@
 			<ion-list>
 				<div class="ion-item-wrapper">
 					<ion-item>
-						<ion-input type="text" formControlName="emailaddress" placeholder="Email ID"></ion-input>
+						<ion-input type="email" formControlName="emailaddress" placeholder="Email ID" (blur)="onInputBlue($event)"></ion-input>
 					</ion-item>
 					<ion-icon name="person"></ion-icon>
+					<div class="errorMsg">{{errorEmail}}</div>
 				</div>
 				<div class="ion-item-wrapper">
 					<ion-item>
 						<ion-input id="pass" type="password" formControlName="password" placeholder="Password"> </ion-input>
 					</ion-item>
 					<ion-icon name="lock"></ion-icon>
+					<div class="errorMsg">{{errorPassword}}</div>
 				</div>
 			</ion-list>
 			<button class="btn btn_login" ion-button block (click)="login()">
@@ -33,13 +35,13 @@
 		<div class="socialSignIn">
 			<div class="signInFacebook">
 				<div class="infoText">
-					Sign in Using Facebook ID
+					Signin Using Facebook ID
 				</div>
 				<div (click)="facebookLogin()">
 					<ion-icon name="logo-facebook"></ion-icon>
 				</div>
 			</div>
-			--{{users}}
+			{{users}}
 		</div>
 	</div>
 </ion-content>

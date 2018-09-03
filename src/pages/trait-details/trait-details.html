@@ -1,15 +1,18 @@
 <ion-header>
 	<ion-navbar>
 		<ion-title>Trait Details</ion-title>
-		<!-- <button ion-button icon-only (click)="presentPopover($event)">
+		<button ion-button icon-only (click)="presentPopover($event)">
 			<ion-icon name="more"></ion-icon>
-		</button> -->
+		</button>
 	</ion-navbar>
 </ion-header>
 
-<ion-content padding>
-	<ion-row>
-		<ion-col col-6 class="singleTraits {{trait.traituniqueid}} isMyConti_{{trait.mytraitcontibution}}">
+<ion-content #contentRef fullscreen>
+	<ion-row class="traitScore">
+		<ion-col offset-3 col-6 class="traitAvgScore">
+		{{traitDetails ? traitDetails.avgScore : 0}}
+		</ion-col>
+		<ion-col offset-3 col-6 class="singleTraits {{trait.traituniqueid}} isMyConti_{{trait.mytraitcontibution}}">
 			<ion-item >
 				<div class="pos-number isMyContiPos_{{trait.mypositive}}" (click)="giveVoteToFriend(trait.traitname,0)">
 					<div class="tempClass">
@@ -23,10 +26,107 @@
 						<ion-icon name="arrow-dropdown"></ion-icon>
 					</div>
 				</div>
-				<div class="traitIcon traitIcon_{{i}}" name="happy" (click)="openTraitDetails(trait.traitname)"></div>
-				<div class="traitName"(click)="openTraitDetails(trait.traitname)">{{trait.traitname}}</div>
+				<div class="traitIcon traitIcon_{{i}}" name="happy"></div>
+				<div class="traitName">{{trait.traitname}}</div>
 			</ion-item>
 		</ion-col>
+	</ion-row>
+	<ion-row class="traitRating">
+		<ion-col col-12 class="singleTraits {{trait.traituniqueid}} isMyConti_{{trait.mytraitcontibution}}">
+			<h5>Rating</h5>
+			<div class="ratingComponent">
+				<span class="traitRate traitRate_0" (click)="sliderChange(trait,0)">0</span>
+				<span class="traitRate traitRate_1" (click)="sliderChange(trait,1)">1</span>
+				<span class="traitRate traitRate_2" (click)="sliderChange(trait,2)">2</span>
+				<span class="traitRate traitRate_3" (click)="sliderChange(trait,3)">3</span>
+				<span class="traitRate traitRate_4" (click)="sliderChange(trait,4)">4</span>
+				<span class="traitRate traitRate_5" (click)="sliderChange(trait,5)">5</span>
+				<span class="traitRate traitRate_6" (click)="sliderChange(trait,6)">6</span>
+				<span class="traitRate traitRate_7" (click)="sliderChange(trait,7)">7</span>
+				<span class="traitRate traitRate_8" (click)="sliderChange(trait,8)">8</span>
+				<span class="traitRate traitRate_9" (click)="sliderChange(trait,9)">9</span>
+				<span class="traitRate traitRate_10" (click)="sliderChange(trait,10)">10</span>
+			</div>
+			<!-- <ion-item>
+			<ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="sliderValue"  (ionChange)="sliderChange(trait)"></ion-range>
+			</ion-item> -->
+		</ion-col>
+	</ion-row>
+	<ion-row class="traitComments">
+		<ion-col col-12>
+		<h5>Comments</h5>		
+			<div class="commentpost">
+				<textarea  [(ngModel)]="newComment" >
+				</textarea>
+				<button (click)="addNewComment()">
+					Send
+					<ion-icon name="send"></ion-icon>
+				</button>
+			</div>
+			<br />
+			<div *ngFor="let comment of comments" class="commentBox commentId-{{comment.commentId}}">
+				<div class="commentArea">
+					<div class="sectLeft">
+						<ion-icon name="person"></ion-icon>
+					</div>
+					<div class="sectRight">
+						<strong>{{comment.commentedBy}}</strong> @ {{comment.commentedDate}}				
+						<div>{{comment.commentsText}}</div>
+					</div>
+				</div>
+				<div class="commentOperations">
+					<span (click)="commentLikeDislike(comment.commentId,1)" class="actionBtn like">
+						<ion-icon name="thumbs-up"></ion-icon>Agree {{comment.likeCount}}
+					</span>
+					<span (click)="commentLikeDislike(comment.commentId,2)" class="actionBtn dislike">
+						<ion-icon name="thumbs-down"></ion-icon>Disagree {{comment.disLikeCount}}
+					</span>
+					<span (click)="replyToComment(comment.commentId)" class="actionBtn rely">
+						<ion-icon name="share-alt"></ion-icon>Reply
+					</span>					
+				</div>
+				<div [ngClass]="{'hide':replyTo != comment.commentId}">
+					<div class="commentpost">
+						<textarea [(ngModel)]="newReplyComment" >
+						</textarea>
+						<button (click)="addNewReplyComment(comment.commentId)" >
+							Send
+							<ion-icon name="send"></ion-icon>
+						</button>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+					
+				<div  *ngFor="let commentReply of comment.reply" class="commentBox commentId-{{commentReply.commentId}}">
+					<div class="commentArea"><strong>{{commentReply.commentedBy}} : </strong>{{commentReply.commentsText}}</div>
+					<div class="commentOperations">
+						<span (click)="replyToComment(commentReply.commentId)">Reply</span>
+						<span (click)="commentLikeDislike(commentReply.commentId,1)">Like: {{commentReply.likeCount}}</span>
+						<span (click)="commentLikeDislike(commentReply.commentId,2)">Dislike: {{commentReply.disLikeCount}}</span>
+						<span>Date: {{commentReply.commentedDate}}</span>
+					</div>
+					<div [ngClass]="{'hide':replyTo != commentReply.commentId}">1234
+						<div class="commentpost">
+							<textarea [(ngModel)]="newReplyComment" >
+							</textarea>
+							<button (click)="addNewReplyComment(commentReply.commentId)" >
+								Send
+								<ion-icon name="send"></ion-icon>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ion-col>
+	</ion-row>
+	
+<!-- 	<ion-row>
 		<ion-col col-6 class="singleTraits {{trait.traituniqueid}} isMyConti_{{trait.mytraitcontibution}}">
 			<ion-item >
 				<div class="traitAction  hideTrait_{{traitDetails ? traitDetails.hideTrait : 0}}" (click)="hideTrait(trait)">Hide trait <ion-icon ios="ios-eye-off" md="md-eye-off"></ion-icon></div>
@@ -34,8 +134,8 @@
 				<div class="traitAction deleteTrait" (click)="deleteTrait(trait)">Delete trait <ion-icon ios="ios-trash" md="md-trash"></ion-icon></div>
 			</ion-item>
 		</ion-col>
-	</ion-row>
-	<ion-row>
+	</ion-row> -->
+<!-- 	<ion-row>
 		<ion-item>
 			<div class="traitAction">slider value = {{sliderValue}}</div>
 			<div class="traitAction">Avgerage Score = {{traitDetails ? traitDetails.avgScore : 0}}</div>
@@ -43,8 +143,8 @@
 		<ion-item>
 			<ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="sliderValue"  (ionChange)="sliderChange(trait)"></ion-range>
 		</ion-item>
-	</ion-row>
-	<ion-row style="background:#fff;margin-top: 5px;">
+	</ion-row> -->
+<!-- 	<ion-row style="background:#fff;margin-top: 5px;">
 		<ion-col>
 		<div>
 			<textarea  [(ngModel)]="newComment" >
@@ -84,5 +184,5 @@
 				
 			</div>
 		</ion-col>
-	</ion-row>
+	</ion-row> -->
 </ion-content>

@@ -21,13 +21,12 @@ export class SignupPage {
     private authService: AuthService, private toastCtrl: ToastController,public modalCtrl: ModalController,private loadingCtrl: LoadingController) {
     this.form = formBuilder.group({
       profilePic: [''],
-      fullname: ['', Validators.required],
-      //lastname: ['', Validators.required],
-      emailaddress: ['', Validators.required],
-      password: ['', Validators.required],
-      retypepassword: ['', Validators.required],
+      fullname: ['', Validators.compose([Validators.minLength(3),Validators.maxLength(30), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
+      emailaddress: ['',  Validators.compose([Validators.minLength(8),Validators.maxLength(50), Validators.required])],
+      password: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(15), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
+      retypepassword: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(15), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       dateofbirth: ['', Validators.required],
-      mobilenumber: ['', Validators.required],
+      mobilenumber: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(12), Validators.required])],
       gender: ['', Validators.required],
       countrycode: ['', Validators.required]
 

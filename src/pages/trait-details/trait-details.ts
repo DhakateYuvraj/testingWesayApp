@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, PopoverController } from 'ionic-angular';
 import { TraitService } from '../../services/traits.service';
 import { Storage } from "@ionic/storage";
+
 @IonicPage()
 @Component({
   selector: 'page-trait-details',
@@ -17,32 +18,38 @@ export class TraitDetailsPage {
 	public newComment;
 	public newReplyComment = ""
 	public replyTo = 0
+	public profileId;
   
-	constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage, private traitService: TraitService, private loadingCtrl: LoadingController) {
+	constructor(public navCtrl: NavController, 
+				public navParams: NavParams, 
+				private storage: Storage, 
+				private traitService: TraitService, 
+				private loadingCtrl: LoadingController, 
+				public popoverCtrl: PopoverController){
 		this.trait = navParams.get('trait');
 		if(!this.trait){
-		this.trait= {
-			"traitid": null,
-			"traitname": "Extroverted",
-			"traituniqueid": "3bed0feaa5fd53b04f7c7fc50cf905e0e3f0d2fc",
-			"traitdescripion": null,
-			"traiticonpath": null,
-			"positive": 1,
-			"negetive": 0,
-			"nutral": 0,
-			"traittype": "predefined",
-			"isannonymous": 0,
-			"ishidden": 0,
-			"typeofvote": 0,
-			"fullname": null,
-			"creationdate": null,
-			"mytraitcontibution": 0,
-			"mypositive": "n",
-			"mynegetive": "n",
-			"myneutral": "n"
+			this.trait= {
+				"traitid": null,
+				"traitname": "Extroverted",
+				"traituniqueid": "3bed0feaa5fd53b04f7c7fc50cf905e0e3f0d2fc",
+				"traitdescripion": null,
+				"traiticonpath": null,
+				"positive": 1,
+				"negetive": 0,
+				"nutral": 0,
+				"traittype": "predefined",
+				"isannonymous": 0,
+				"ishidden": 0,
+				"typeofvote": 0,
+				"fullname": null,
+				"creationdate": null,
+				"mytraitcontibution": 0,
+				"mypositive": "n",
+				"mynegetive": "n",
+				"myneutral": "n"
+			}
 		}
-		}
-    this.presentLoadingDefault();
+		this.presentLoadingDefault();
 	}
 
   presentLoadingDefault() {
@@ -124,7 +131,8 @@ export class TraitDetailsPage {
 		});
 	}
 	
-	sliderChange(trait){
+	sliderChange(trait,scoreClicked){
+		this.sliderValue = scoreClicked
 		let trait_data = {
 			traituniqueid: trait.traituniqueid,
 			traitname: trait.traitname,
@@ -172,16 +180,20 @@ export class TraitDetailsPage {
 		}
 		this.traitService.commentAdd(trait_data, this.authToken).subscribe(data => {
 		console.log(JSON.stringify(data));
-		alert(JSON.stringify(data));
+		//alert(JSON.stringify(data));
 			if (data.status == 'success') {
-				alert(JSON.stringify(data));
+				//alert(JSON.stringify(data));
 				this.getTraitComments(this.trait)
 			}
 		});
 	}
 	
 	replyToComment(commentId){
-		this.replyTo = commentId
+		if(this.replyTo === commentId){
+			this.replyTo = 0;
+		}else{
+			this.replyTo = commentId
+		}
 	}
 	
 	addNewReplyComment(commentId){
@@ -197,5 +209,25 @@ export class TraitDetailsPage {
 			}
 		});
 	}
-
+	presentPopover(myEvent) {
+		let popover = this.popoverCtrl.create('TraitDetailsMenuPage');
+		popover.present({
+			ev: myEvent
+		});
+	}
+	
+	giveVoteToFriend(traitname, typeofvote) {
+		var id;
+		if (this.profileId == null || this.profileId == undefined) {
+		  id = 0;
+		} else {
+		  id = this.profileId.id;
+		}
+		var data = [{ traitname: traitname, traitgivenfor: id, typeofvote: typeofvote }];
+		this.traitService.addTraitToPage(data, this.authToken).subscribe(data => {
+		  if (data.status != "error") {
+			//this.getLoginUserTraits(this.authToken);
+		  }
+		})
+	}
 }

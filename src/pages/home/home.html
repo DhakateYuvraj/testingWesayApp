@@ -7,15 +7,15 @@
       <ion-col col-11>
         <ion-label class="header_label">What do you think about yourself?</ion-label>
       </ion-col>
+		<ion-searchbar [(ngModel)]="search_string" [showCancelButton]="shouldShowCancel" (ionInput)="filterTraits()" (ionCancel)="onCancel($event)"
+		placeholder="Search and add traits" #searchInput>
+		</ion-searchbar>
     </ion-row>
   </ion-navbar>
 </ion-header>
 <ion-content #contentRef (ionScroll)="scrollingFun($event)">
   <ion-grid>
     <ion-row class="searchResults">
-      <ion-searchbar [(ngModel)]="search_string" [showCancelButton]="shouldShowCancel" (ionInput)="filterTraits()" (ionCancel)="onCancel($event)"
-        placeholder="Search and add traits" #searchInput>
-      </ion-searchbar>
       <ion-list style="width: 100%;margin: 0px;">
         <ion-item *ngFor="let item of masterTraitsSearch" class="masterListStyle" [ngClass]="item.traituniqueid" (click)="updateCheckedOptions(item, $event)">
           <div style="padding-left: 40px;">
