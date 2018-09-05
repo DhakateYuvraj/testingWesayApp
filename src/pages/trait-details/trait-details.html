@@ -8,6 +8,24 @@
 </ion-header>
 
 <ion-content #contentRef fullscreen>
+	<ion-row class="userProfie">
+		<ion-col col-3 class="userPhoto">
+			<img src="assets/imgs/userIcon.png">
+		</ion-col>
+		<ion-col col-7 class="userInfo">
+			<div class="userName">
+			{{frdInfo.fullname}}
+			</div>
+			<div class="userAbout">
+				User status or little description of user 
+			</div>
+		</ion-col>
+		<ion-col col-2 class="userInfoLike">
+			 <ion-icon name="thumbs-up"></ion-icon>
+			 999
+		</ion-col>
+	</ion-row>
+	
 	<ion-row class="traitScore">
 		<ion-col offset-3 col-6 class="traitAvgScore">
 		{{traitDetails ? traitDetails.avgScore : 0}}

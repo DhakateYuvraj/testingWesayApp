@@ -19,6 +19,7 @@ export class TraitDetailsPage {
 	public newReplyComment = ""
 	public replyTo = 0
 	public profileId;
+	public frdInfo = {fullname : "MyName Dont hv Data"}
   
 	constructor(public navCtrl: NavController, 
 				public navParams: NavParams, 
@@ -86,51 +87,6 @@ export class TraitDetailsPage {
 		});	
 	}
 	
-	hideTrait(trait){
-    //this.loading.present();
-		let trait_data = {
-			traituniqueid: trait.traituniqueid,
-			traitname: trait.traitname,
-			traitgivenfor: '0'
-		}
-		this.traitService.hideTrait(trait_data, this.authToken).subscribe(data => {
-			//this.loading.dismiss();
-			if (data.status == 'success') {
-				this.getTraitDetails(trait,this.authToken);
-			}
-		});
-	}
-
-	hideCount(trait){
-    //this.loading.present();
-		let trait_data = {
-			traituniqueid: trait.traituniqueid,
-			traitname: trait.traitname,
-			traitgivenfor: '0'
-		}
-		this.traitService.hideTraitCount(trait_data, this.authToken).subscribe(data => {
-			//this.loading.dismiss();
-			if (data.status == 'success') {
-				this.getTraitDetails(trait,this.authToken);
-			}
-		});
-	}
-
-	deleteTrait(trait){
-    //this.loading.present();
-		let trait_data = {
-			traituniqueid: trait.traituniqueid,
-			traitname: trait.traitname,
-			traitgivenfor: '0'
-		}
-		this.traitService.deleteTrait(trait_data, this.authToken).subscribe(data => {
-			//this.loading.dismiss();
-			if (data.status == 'success') {
-				this.getTraitDetails(trait,this.authToken);
-			}
-		});
-	}
-	
 	sliderChange(trait,scoreClicked){
 		this.sliderValue = scoreClicked
 		let trait_data = {
@@ -151,7 +107,7 @@ export class TraitDetailsPage {
 			comment: "string",
 			commentId: 0,
 			parentCommentId: 0,
-			traitId: 405//trait.traituniqueid
+			traitId: trait.traituniqueid
 		}
 		this.traitService.commentList(trait_data, this.authToken).subscribe(data => {
 			if (data.status == 'success') {
@@ -176,7 +132,7 @@ export class TraitDetailsPage {
 	addNewComment(){
 		let trait_data = {
 			comment: this.newComment,
-			traitId: 405//this.trait.traituniqueid
+			traitId: this.trait.traituniqueid
 		}
 		this.traitService.commentAdd(trait_data, this.authToken).subscribe(data => {
 		console.log(JSON.stringify(data));
@@ -210,7 +166,7 @@ export class TraitDetailsPage {
 		});
 	}
 	presentPopover(myEvent) {
-		let popover = this.popoverCtrl.create('TraitDetailsMenuPage');
+		let popover = this.popoverCtrl.create('TraitDetailsMenuPage',{trait:this.trait,traitDetails:this.traitDetails});
 		popover.present({
 			ev: myEvent
 		});

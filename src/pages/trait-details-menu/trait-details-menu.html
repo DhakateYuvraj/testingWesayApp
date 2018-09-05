@@ -7,12 +7,16 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>TraitDetailsMenu</ion-title>
+    <ion-title>Trait options</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+	<ion-item >
+		<div class="traitAction  hideTrait_{{traitDetails ? traitDetails.hideTrait : 0}}" (click)="hideTrait(trait)">Hide trait <ion-icon ios="ios-eye-off" md="md-eye-off"></ion-icon></div>
+		<div class="traitAction hideCount_{{traitDetails ? traitDetails.hideCount : 0}}" (click)="hideCount(trait)">Hide Counts <ion-icon ios="ios-ribbon" md="md-ribbon"></ion-icon></div>
+		<div class="traitAction deleteTrait" (click)="deleteTrait(trait)">Delete trait <ion-icon ios="ios-trash" md="md-trash"></ion-icon></div>
+	</ion-item>
 </ion-content>

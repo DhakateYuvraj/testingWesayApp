@@ -251,9 +251,12 @@ page-profile {
 }
 
 	.singleTraits{
+		padding: 3px;
 		.item-md {
 			padding-left: 0 !important;
-			border: 1px solid #c5c5c5;
+			border:1px solid #c5c5c5;
+			box-shadow: 0px 3px 10px #aaa;
+			border-radius: 15px;
 		}
 		.close-icon{
 			color: #16a085;
@@ -319,6 +322,5 @@ page-profile {
 			}
 		}
 	}
-
-	   
+	
 }

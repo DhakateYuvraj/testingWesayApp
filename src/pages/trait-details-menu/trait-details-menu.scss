@@ -1,3 +1,6 @@
 page-trait-details-menu {
-
+	.traitAction{
+		position:relative;line-height:1.4em;
+		ion-icon{font-size:1.5em;position:absolute;top:0;right:0}
+	}
 }

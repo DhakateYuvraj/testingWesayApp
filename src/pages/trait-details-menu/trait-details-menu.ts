@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { TraitService } from '../../services/traits.service';
+import { Storage } from "@ionic/storage";
 
 /**
  * Generated class for the TraitDetailsMenuPage page.
@@ -14,12 +16,70 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'trait-details-menu.html',
 })
 export class TraitDetailsMenuPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+	public trait;
+	public traitDetails;
+	public authToken;
+	
+  constructor(public navCtrl: NavController, private traitService: TraitService, private storage: Storage,  public navParams: NavParams) {
+		this.trait = navParams.get('trait');
+		this.traitDetails = navParams.get('traitDetails');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TraitDetailsMenuPage');
   }
+   ionViewWillEnter() {
+    this.storage.get('token').then((token) => {
+		this.authToken = token;
+    });
+  }
+  
+	hideCount(trait){
+    //this.loading.present();
+		let trait_data = {
+			traituniqueid: trait.traituniqueid,
+			traitname: trait.traitname,
+			traitgivenfor: '0'
+		}
+		this.traitService.hideTraitCount(trait_data, this.authToken).subscribe(data => {
+			//this.loading.dismiss();
+			alert(JSON.stringify(data));
+			if (data.status == 'success') {
+				//this.getTraitDetails(trait,this.authToken);
+			}
+		});
+	}
 
+	deleteTrait(trait){
+    //this.loading.present();
+		let trait_data = {
+			traituniqueid: trait.traituniqueid,
+			traitname: trait.traitname,
+			traitgivenfor: '0'
+		}
+		this.traitService.deleteTrait(trait_data, this.authToken).subscribe(data => {
+			//this.loading.dismiss();
+			alert(JSON.stringify(data));
+			if (data.status == 'success') {
+				//this.getTraitDetails(trait,this.authToken);
+			}
+		});
+	}
+	
+	hideTrait(trait){
+    //this.loading.present();
+		let trait_data = {
+			traituniqueid: trait.traituniqueid,
+			traitname: trait.traitname,
+			traitgivenfor: '0'
+		}
+		this.traitService.hideTrait(trait_data, this.authToken).subscribe(data => {
+			//this.loading.dismiss();
+			alert(JSON.stringify(data));
+			if (data.status == 'success') {
+				//this.getTraitDetails(trait,this.authToken);
+			}
+		});
+	}
+	
 }
