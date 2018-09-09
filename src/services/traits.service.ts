@@ -52,7 +52,7 @@ export class TraitService {
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/traitapi/addTrait/', traits, this.options).map(res => res.json());
 	}
-
+	
 	getLoginUserTraits(token, profile) {
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/userTraits/getMyTraits/', profile, this.options).map(res => res.json());
@@ -80,7 +80,7 @@ export class TraitService {
 
 	getTraitDetails(traitdata, token) {
 		this.createAuthenticationHeaders(token);
-		return this.http.post(rootApi + '/userzone/getTraitDetails/', traitdata, this.options).map(res => res.json());
+		return this.http.post(rootApi + '/traits/details/', traitdata, this.options).map(res => res.json());
 	}
 
 	hideTrait(traitdata, token) {
@@ -95,7 +95,7 @@ export class TraitService {
 	
 	customPoints(traitdata, token) {
 		this.createAuthenticationHeaders(token);
-		return this.http.post(rootApi + '/userzone/customPoints/', traitdata, this.options).map(res => res.json());
+		return this.http.post(rootApi + '/userzone/traits/ratings', traitdata, this.options).map(res => res.json());
 	}
 	
 	commentList(traitdata, token) {
@@ -116,6 +116,16 @@ export class TraitService {
 	commentReply(traitdata, token) {
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/userzone/traits/commentReply', traitdata, this.options).map(res => res.json());
+	}
+	
+	giveVote(traitdata, token){
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userzone/traits/vote/submit', traitdata, this.options).map(res => res.json());
+	}
+	
+	getUserProfile(userdata, token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/api/user/details/', userdata, this.options).map(res => res.json());
 	}
   
 }

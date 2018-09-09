@@ -19,15 +19,21 @@ export class TraitDetailsPage {
 	public newReplyComment = ""
 	public replyTo = 0
 	public profileId;
-	public frdInfo = {fullname : "MyName Dont hv Data"}
-  
+	public frdInfo;
+	public newTrait = false;
+	public frdId;
+	public frdProfile ;
+	
 	constructor(public navCtrl: NavController, 
 				public navParams: NavParams, 
 				private storage: Storage, 
 				private traitService: TraitService, 
 				private loadingCtrl: LoadingController, 
 				public popoverCtrl: PopoverController){
+					
 		this.trait = navParams.get('trait');
+		this.frdInfo = navParams.get('frdInfo');
+		
 		if(!this.trait){
 			this.trait= {
 				"traitid": null,
@@ -50,8 +56,19 @@ export class TraitDetailsPage {
 				"myneutral": "n"
 			}
 		}
-		this.presentLoadingDefault();
-	}
+		
+		if (this.frdInfo !== undefined && this.frdInfo.id) {
+			this.frdId = this.frdInfo.id;
+			this.profileId = { id: this.frdId };
+			this.frdProfile = true;
+		}else{
+			this.frdId = 0;
+			this.profileId = null;
+			this.frdProfile = false;
+			this.frdInfo = {fullname : "MyName Dont hv Data"}
+		}
+		this.getUserProfile(this.frdId)
+	}	
 
   presentLoadingDefault() {
     this.loading = this.loadingCtrl.create({ spinner: 'bubbles' });
@@ -69,9 +86,10 @@ export class TraitDetailsPage {
 	getTraitDetails(trait,token){
     //this.loading.present();
 		let trait_data = {
-			traituniqueid: trait.traituniqueid,
-			traitname: trait.traitname,
-			traitgivenfor: '0'
+			//traitIdentifier: trait.traituniqueid,
+			//userTraitId: 
+			"userTraitId" : 414,
+			"traitIdentifier" : "3eec0d3324520fe5c4a760b1c9ea4d642c3aeb28",
 		}
 		this.traitService.getTraitDetails(trait_data, this.authToken).subscribe(data => {
 			//this.loading.dismiss();
@@ -90,12 +108,12 @@ export class TraitDetailsPage {
 	sliderChange(trait,scoreClicked){
 		this.sliderValue = scoreClicked
 		let trait_data = {
-			traituniqueid: trait.traituniqueid,
-			traitname: trait.traitname,
-			traitgivenfor: '0',
-			sliderValue: this.sliderValue,
+			userTraitId : trait.traitid,
+			traitIdentifier: trait.traituniqueid,
+			rating: this.sliderValue,
 		}
 		this.traitService.customPoints(trait_data, this.authToken).subscribe(data => {
+			alert(JSON.stringify(data));
 			if (data.status == 'success') {
 				this.getTraitDetails(trait,this.authToken);
 			}
@@ -105,9 +123,8 @@ export class TraitDetailsPage {
 	getTraitComments(trait){
 		let trait_data = {
 			comment: "string",
-			commentId: 0,
-			parentCommentId: 0,
-			traitId: trait.traituniqueid
+			traitId: trait.traitid,
+			traitIdentifier: trait.traituniqueid
 		}
 		this.traitService.commentList(trait_data, this.authToken).subscribe(data => {
 			if (data.status == 'success') {
@@ -132,13 +149,12 @@ export class TraitDetailsPage {
 	addNewComment(){
 		let trait_data = {
 			comment: this.newComment,
-			traitId: this.trait.traituniqueid
+			traitId: this.trait.traitid,
+			traitIdentifier: this.trait.traituniqueid
 		}
 		this.traitService.commentAdd(trait_data, this.authToken).subscribe(data => {
-		console.log(JSON.stringify(data));
-		//alert(JSON.stringify(data));
 			if (data.status == 'success') {
-				//alert(JSON.stringify(data));
+				this.newComment=null
 				this.getTraitComments(this.trait)
 			}
 		});
@@ -172,18 +188,39 @@ export class TraitDetailsPage {
 		});
 	}
 	
-	giveVoteToFriend(traitname, typeofvote) {
-		var id;
+	giveVoteToFriend(trait, typeofvote) {
+		let id;
 		if (this.profileId == null || this.profileId == undefined) {
-		  id = 0;
+			id = 0;
 		} else {
-		  id = this.profileId.id;
+			id = this.profileId.id;
 		}
-		var data = [{ traitname: traitname, traitgivenfor: id, typeofvote: typeofvote }];
-		this.traitService.addTraitToPage(data, this.authToken).subscribe(data => {
+		let data = {
+			traitIdentifier : trait.traituniqueid,
+			traitId : trait.traitid,
+			vote : typeofvote,
+			modeOfVote : 0 //[1 = Anonymous, 0 = Public ]
+		}	
+		this.traitService.giveVote(data, this.authToken).subscribe(data => {
+			if (data.status != "error") {
+				this.getTraitDetails(trait,this.authToken);
+			}
+		})
+	}
+	
+	getUserProfile(frdId){
+		let data = {
+			id:frdId
+		}
+		this.traitService.getUserProfile(data, this.authToken).subscribe(data => {
+		alert(JSON.stringify(data));
 		  if (data.status != "error") {
-			//this.getLoginUserTraits(this.authToken);
+			this.frdInfo = data.response
 		  }
 		})
+	}
+	
+	acceptTrait(status){
+		alert(status);
 	}
 }

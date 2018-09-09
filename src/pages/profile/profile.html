@@ -64,13 +64,13 @@
 				<ion-col col-6 *ngFor="let item of allTraits; let i = index" class="singleTraits {{item.traituniqueid}} isMyConti_{{item.mytraitcontibution}}">
 					<ion-item >
 						<!-- <ion-icon name="close" class="close-icon" *ngIf="!frdProfile" (click)="presentConfirm(item.traituniqueid)"></ion-icon> -->
-						<div class="pos-number isMyContiPos_{{item.mypositive}}" (click)="giveVoteToFriend(item.traitname,0)">
+						<div class="pos-number isMyContiPos_{{item.mypositive}}" (click)="giveVoteToFriend(item,0)">
 							<div class="tempClass">
 								{{item.positive}}
 								<ion-icon name="arrow-dropup"></ion-icon>
 							</div>
 						</div>
-						<div class="neg-number isMyContiNeg_{{item.mynegetive}}" (click)="giveVoteToFriend(item.traitname,1)">
+						<div class="neg-number isMyContiNeg_{{item.mynegetive}}" (click)="giveVoteToFriend(item,1)">
 							<div class="tempClass">
 								{{item.negetive}}
 								<ion-icon name="arrow-dropdown"></ion-icon>

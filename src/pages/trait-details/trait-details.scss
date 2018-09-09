@@ -13,10 +13,11 @@ page-trait-details {
 				color:#0396FF
 			}
 		}
+		.toolbar-title{
+			margin-top:5px;
+		}
 	}
-	.toolbar-title{
-		margin-top:5px;
-	}
+	
 	.traitScore{
 		background:#f1f1f1;
 		.singleTraits {
@@ -88,13 +89,14 @@ page-trait-details {
 			.traitRate{
 				border: 1px solid #ccc;
 				border-radius: 50%;
-				width: 30px;
-				height: 30px;
+				width: 25px;
+				height: 25px;
 				display: block;
 				text-align: center;
 				float: left;
-				padding: 6px;
+				padding: 5px 0px;
 				margin: 0 3px;
+				font-size: 12px;
 			}
 		}
 	}
@@ -122,43 +124,39 @@ page-trait-details {
 				top: 85px;
 			}
 		}
-	}
-	.commentBox{
-		width: 96%;
-		margin: 0 auto 10px auto;
-		.commentArea{
-			content: "";
-			clear: both;
-			display: table;
-			width:100%;
-			.sectLeft{
-				width:15%;
-				float:left;
-				font-size:2em
+		.commentBox{
+			width: 96%;
+			margin: 0 auto 10px auto;
+			.commentArea{
+				.sectLeft{
+					width:15%;
+					float:left;
+					font-size:2em
+				}
+				.sectRight{
+					
+				}
 			}
-			.sectRight{
-				
-			}
-		}
-		.commentOperations{
-			.actionBtn{
-				padding:2px 5px;
-				margin:0px;
-			}
-			.actionBtn .rely,.rely ion-icon::before{
-				color:#8cead3;
-				font-size:1.5em;
-				padding:0 7px;
-			}
-			.actionBtn .like,.like ion-icon::before{
-				color:#38af38;
-				font-size:1.5em;
-				padding:0 7px;
-			}
-			.actionBtn .dislike,.dislike ion-icon::before{
-				color:#e73838;
-				font-size:1.5em;
-				padding:0 7px;
+			.commentOperations{
+				.actionBtn{
+					padding:2px 5px;
+					margin:0px;
+				}
+				.actionBtn .rely,.rely ion-icon::before{
+					color:#8cead3;
+					font-size:1.5em;
+					padding:0 7px;
+				}
+				.actionBtn .like,.like ion-icon::before{
+					color:#38af38;
+					font-size:1.5em;
+					padding:0 7px;
+				}
+				.actionBtn .dislike,.dislike ion-icon::before{
+					color:#e73838;
+					font-size:1.5em;
+					padding:0 7px;
+				}
 			}
 		}
 	}
@@ -191,19 +189,28 @@ page-trait-details {
 		}
 	}
 
+	.traitAcceptanceOverlay{
+		.traitAcceptance{
+			background: #fff;
+			width: 50%;
+			margin: 70% auto;
+			padding: 5% 0;
+			.traitAction{
+				float:left;
+				text-align:center;
+				width:50%;
+				ion-icon{
+					display:block;
+					font-size:2.5em;
+				}
+			}
+			.agreeTrait{color:#38af38;}
+			.disagreeTrait{color:#e73838;}
+		}
+	}
 
 
 
-
-
-
-
-
-	
-
-	.hideTrait_1,hideCount_1{background:#16a085}
-	.range-md {padding:0}
-	.commentOperations span{margin-right:10px}
 	
 	
 }

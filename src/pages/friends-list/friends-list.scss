@@ -20,11 +20,11 @@ page-friends-list {
 
 
     .card-md {
-padding: 0;
-    margin: 0;
-    width: 100%;
+	padding: 0;
+	margin: 0;
+	width: 100%;
     }
-.frdListPic{text-align:center;}
+	.frdListPic{text-align:center;}
     .traitnum{
         border-right: 1px solid;
     }
@@ -73,4 +73,28 @@ padding: 0;
         color: #106160;
         font-size: 2.2em !important;
     }
+	ion-item-sliding{
+		.item-md{
+			padding:0px;
+			background:transparent;
+			.item-inner{
+				padding:0px !important;
+				.label-md{
+					margin:0 !important;
+				}
+			}
+		}
+	}
+	ion-item-sliding.frdRequestRecived{
+		background:#ccc;
+	}
+	ion-item-sliding.friends{
+		background:#ccc;
+	}
+	ion-item-sliding.frdRequestsSent{
+		background:#ccc;
+	}
+	ion-item-sliding.allOtherContacts{
+		background:#ccc;
+	}
 }

@@ -46,9 +46,6 @@ ion-fab[bottom][edge] {bottom: 0;}
 .traitIcon_19{background-position: -10px -5px}
 .traitIcon_20{background-position: -10px -5px}
 
-.traitIcon_0{
-	background-image: linear-gradient( 135deg, #FDEB71 10%, #F8D800 100%);
-}
 .content-md{background:#e4e3e3;background-size: auto 100%;background-repeat: no-repeat;background-position: center; }
 
 .tabs-md .tab-button[aria-selected=true] .tab-button-icon,.singleTraits .item-md h3, .singleTraits .item-md h4, .singleTraits .item-md h5, .singleTraits .item-md h6,.tabs-md .tab-button[aria-selected=true],.singleTraits .traitName{color:#4c8879}
@@ -161,4 +158,18 @@ page-tabs .tabbar.show-tabbar{
 	.tab-button-icon,ion-icon::before,.tab-button-text{
 		color:#fff;
 	}
+}
+.bgOverlay{
+	background:rgba(100, 100, 100, 0.85);
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+}
+.clearfix{
+	content: "";
+	clear: both;
+	display: table;
+	width:100%;
 }

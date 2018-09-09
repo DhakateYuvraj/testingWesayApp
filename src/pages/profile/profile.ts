@@ -49,10 +49,12 @@ export class ProfilePage {
 		this.profileId = { id: this.frdId };
 		this.frdProfile = true;
     }else{
+		this.frdId = 0;
 		this.profileId = null;
 		this.frdProfile = false;
 		this.frdInfo = {fullname : "MyName Dont hv Data"}
 	}
+	this.getUserProfile(this.frdId)
 
     this.searchControl = new FormControl(); 
   }
@@ -113,11 +115,13 @@ export class ProfilePage {
   }
 
   deleteTrait(trait_id) {
+    this.loading.present();
     let trait_data = {
       traituniqueid: trait_id,
       traitgivenfor: '0'
     }
     this.traitService.deleteTrait(trait_data, this.authToken).subscribe(data => {
+      this.loading.dismiss();
       // console.log(data)
       if (data.status == 'success') {
         this.getLoginUserTraits(this.authToken);
@@ -152,24 +156,34 @@ export class ProfilePage {
   }
 
 
-  giveVoteToFriend(traitname, typeofvote) {
+giveVoteToFriend(trait, typeofvote) {
+    this.presentLoadingDefault();
+    this.loading.present();
     var id;
     if (this.profileId == null || this.profileId == undefined) {
       id = 0;
     } else {
       id = this.profileId.id;
     }
-    var data = [{ traitname: traitname, traitgivenfor: id, typeofvote: typeofvote }];
-    this.traitService.addTraitToPage(data, this.authToken).subscribe(data => {
-      // console.log(data); 
-      if (data.status != "error") {
-        this.getLoginUserTraits(this.authToken);
-      }
-    })
-  }
+	let data = {
+		traitIdentifier : trait.traituniqueid,
+		traitId : trait.traitid,
+		vote : typeofvote,
+		modeOfVote : 0 //[1 = Anonymous, 0 = Public ]
+	}
+    //this.traitService.addTraitToPage(data, this.authToken).subscribe(data => {
+	this.traitService.giveVote(data, this.authToken).subscribe(data => {
+		this.loading.dismiss();
+		alert(JSON.stringify(data)); 
+		if (data.status != "error") {
+			this.getLoginUserTraits(this.authToken);
+		}
+	})
+}
   openTraitDetails(trait){
 	this.navCtrl.push('TraitDetailsPage', {
-		trait: trait
+		trait: trait,
+		frdInfo: this.frdInfo
 	});
   }
 
@@ -205,6 +219,18 @@ export class ProfilePage {
     });
   }
 
+	
+	getUserProfile(frdId){
+		let data = {
+			id:frdId
+		}
+		this.traitService.getUserProfile(data, this.authToken).subscribe(data => {
+		  if (data.status != "error") {
+			//this.getLoginUserTraits(this.authToken);
+		  }
+		})
+	}
+	
   cancelSearch(){
     this.traitsMasterList = [];
   }
