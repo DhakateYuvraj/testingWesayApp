@@ -152,10 +152,6 @@ page-profile {
             font-size: none !important;
             margin-top: 3px !important;
         }
-        .badge{
-            margin:0px;
-            padding:0px;
-        }
         .card-md {
              margin: 1px;
              width: calc(100% );
@@ -202,11 +198,6 @@ page-profile {
             padding:0px;
             margin:0px;
         }
-        .badge{
-            border: 1px solid #16a085;
-            padding:0px !important;
-            background: #fff;
-        }
      
         .button-md{
             border-radius: 120px;
@@ -221,16 +212,6 @@ page-profile {
             border-bottom: 1px solid #16a085;
 			background:#fff
         }
-        #eyeIcon{
-            margin-top:3px;
-            color:black;
-            background-color: inherit;
-        }
-       .badgeImage{
-       border-radius: 50%;
-       margin-left:54px;
-       margin-top:5px;
-       }
 
        .addtrticons{
         font-size: 49px;
@@ -320,6 +301,71 @@ page-profile {
 				display: block;
 				padding: 5px;
 			}
+		}
+	}
+	.badgeWrapper{
+		.bagdesToOthers{
+			margin:12px 0;
+			.badgeSection{
+				.badgeTitle{
+					text-align:center;
+				}
+				.badgeInfo{
+					width:123px;
+					margin:0 auto;
+				}
+				.addBadgeBtn{
+					color: #fff;
+					background: #03baef;
+					border-radius: 5px;
+					padding: 5px;
+					display: inline-block;
+					height: 25px;
+					width: 25px;
+					text-align: center;
+				}
+				.addBadgeIcons{
+					display:inline-block;
+					div{
+						display:inline-block;
+						margin-left: -22px;
+						height: 45px;
+						width: 45px;				
+					}
+				}
+			}
+			.badgesAvailable{
+				border-right:1px solid #ccc;
+				.addBadgeIcons{
+					float: right;
+					margin-right: 20px;
+					div{
+						float: right;
+					}
+				}
+				.addBadgeBtn{
+					margin-right: 9px;
+					margin-top: 10px;
+					float: right;
+				}
+			}
+			.badgesGiven{
+				border-left:1px solid #ccc;
+				.addBadgeIcons{
+					float: left;
+					margin-left: 20px;
+					div{
+						float: left;
+					}
+				}
+				.addBadgeBtn{
+					margin-left: -15px;
+					margin-top: 10px;
+				}
+			}
+		}
+		.bagdesToOwn{
+		
 		}
 	}
 	

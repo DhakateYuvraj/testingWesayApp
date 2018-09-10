@@ -38,8 +38,8 @@
         <ion-segment-button value="trait">
             <span class="tabs-font">Traits</span>
         </ion-segment-button>
-        <ion-segment-button value="stickers">
-            <span class="tabs-font">Badges</span>
+        <ion-segment-button value="badges">
+            <span class="tabs-font">badges</span>
         </ion-segment-button>
         <ion-segment-button value="testimonials">
             <span class="tabs-font">Testimonials</span>
@@ -235,144 +235,55 @@
                 </ion-col>
             </ion-row>
         </div>
-        <div *ngSwitchCase="'stickers'">
-            <div style="text-align: center">
-                <h2 style="padding-top: 1.2em; font-size: 1.4rem;margin-top: 0;">Collect Badges</h2>
-                <p style="font-size: 1rem; margin-top: -9px; margin-bottom: 12px">Invite 5 friends and get more badges</p>
-                <img src="assets/imgs/badge.png" style="width: 120px;height: 32px;margin-bottom:0px">
-                <br>
-                <button ion-button style="background-color: #0d9989">Send Invitation</button>
-            </div>
-            <br>
-            <ion-row>
-                <ion-col col-6>
-                    <ion-card class="badge">
-
-                        <ion-icon id="eyeIcon" name="eye-off" class="eye-icon"></ion-icon>
-                        <!-- <ion-avatar>
-                                <img src="assets/imgs/badge1.png">n
-                            </ion-avatar> -->
-                        <img class="badgeImage" src="assets/imgs/badge1.png" style="height: 57px; width: 57px;">
-
-                        <div style="margin-left: 10px;">
-                            <ion-icon name="contact" class="user-icon"></ion-icon>
-                            <span style="color:rgb(51, 160, 60);font-size: 10px">Marty McFly</span>
-                        </div>
-                        <div style="margin-bottom:10px;">
-                            <p style="text-align: center">
-                                The most popular industrial group ever, and largely
-                            </p>
-                        </div>
-                    </ion-card>
+        <div *ngSwitchCase="'badges'" class="badgeWrapper">
+            <ion-row class="bagdesToOthers">
+                <ion-col col-6 class="badgeSection badgesAvailable">
+					<div class="badgeTitle">
+						Available Badges
+					</div>
+					<div class="badgeInfo">
+						<div class="addBadgeIcons">
+							<div>
+								<img src="assets/imgs/badge_1.png">
+							</div>
+							<div>
+								<img src="assets/imgs/badge_2.png">
+							</div>
+							<div>
+								<img src="assets/imgs/badge_1.png">
+							</div>
+						</div>
+						<div class="addBadgeBtn">
+							<ion-icon name="add"></ion-icon>
+						</div>
+					</div>
                 </ion-col>
-                <ion-col col-6>
-                    <ion-card class="badge">
-
-                        <ion-icon id="eyeIcon" name="eye-off" class="eye-icon"></ion-icon>
-                        <!-- <ion-avatar>
-                            <img src="assets/imgs/badge1.png">n
-                        </ion-avatar> -->
-                        <img class="badgeImage" src="assets/imgs/badge1.png" style="height: 57px; width: 57px;">
-
-                        <div style="margin-left: 10px;">
-                            <ion-icon name="contact" class="user-icon"></ion-icon>
-                            <span style="color:rgb(51, 160, 60);font-size: 10px">Marty McFly</span>
-                        </div>
-                        <div style="margin-bottom:10px;">
-                            <p style="text-align: center">
-                                The most popular industrial group ever, and largely
-                            </p>
-                        </div>
-                    </ion-card>
+                <ion-col col-6 class="badgeSection badgesGiven">
+					<div class="badgeTitle">
+						Badges Given
+					</div>
+					<div class="badgeInfo">
+						<div class="addBadgeBtn">
+							<ion-icon name="more"></ion-icon>
+						</div>
+						<div class="addBadgeIcons">
+							<div>
+								<img src="assets/imgs/badge_1.png">
+							</div>
+							<div>
+								<img src="assets/imgs/badge_2.png">
+							</div>
+							<div>
+								<img src="assets/imgs/badge_1.png">
+							</div>
+						</div>
+					</div>
                 </ion-col>
             </ion-row>
-
-            <ion-row>
-                <ion-col col-6>
-                    <ion-card class="badge">
-
-                        <ion-icon id="eyeIcon" name="eye-off" class="eye-icon"></ion-icon>
-                        <!-- <ion-avatar>
-                                    <img src="assets/imgs/badge1.png">n
-                                </ion-avatar> -->
-                        <img class="badgeImage" src="assets/imgs/badge1.png" style="height: 57px; width: 57px;">
-
-                        <div style="margin-left: 10px;">
-                            <ion-icon name="contact" class="user-icon"></ion-icon>
-                            <span style="color:rgb(51, 160, 60);font-size: 10px">Marty McFly</span>
-                        </div>
-                        <div style="margin-bottom:10px;">
-                            <p style="text-align: center">
-                                The most popular industrial group ever, and largely
-                            </p>
-                        </div>
-                    </ion-card>
-                </ion-col>
-                <ion-col col-6>
-                    <ion-card class="badge">
-
-                        <ion-icon id="eyeIcon" name="eye-off" class="eye-icon"></ion-icon>
-                        <!-- <ion-avatar>
-                                <img src="assets/imgs/badge1.png">n
-                            </ion-avatar> -->
-                        <img class="badgeImage" src="assets/imgs/badge1.png" style="height: 57px; width: 57px;">
-
-                        <div style="margin-left: 10px;">
-                            <ion-icon name="contact" class="user-icon"></ion-icon>
-                            <span style="color:rgb(51, 160, 60);font-size: 10px">Marty McFly</span>
-                        </div>
-                        <div style="margin-bottom:10px;">
-                            <p style="text-align: center">
-                                The most popular industrial group ever, and largely
-                            </p>
-                        </div>
-                    </ion-card>
-                </ion-col>
-            </ion-row>
-
-            <ion-row>
-                <ion-col col-6>
-                    <ion-card class="badge">
-
-                        <ion-icon id="eyeIcon" name="eye-off" class="eye-icon"></ion-icon>
-                        <!-- <ion-avatar>
-                            <img src="assets/imgs/badge1.png">n
-                        </ion-avatar> -->
-                        <img class="badgeImage" src="assets/imgs/badge2.png" style="height: 57px; width: 57px;">
-
-                        <div style="margin-left: 10px;">
-                            <ion-icon name="contact" class="user-icon"></ion-icon>
-                            <span style="color:rgb(51, 160, 60);font-size: 10px">Marty McFly</span>
-                        </div>
-                        <div style="margin-bottom:10px;">
-                            <p style="text-align: center">
-                                The most popular industrial group ever, and largely
-                            </p>
-                        </div>
-                    </ion-card>
-                </ion-col>
-                <ion-col col-6>
-                    <ion-card class="badge">
-
-                        <ion-icon id="eyeIcon" name="eye-off" class="eye-icon"></ion-icon>
-                        <!-- <ion-avatar>
-                            <img src="assets/imgs/badge1.png">n
-                        </ion-avatar> -->
-                        <img class="badgeImage" src="assets/imgs/badge1.png" style="height: 57px; width: 57px;">
-
-                        <div style="margin-left: 10px;">
-                            <ion-icon name="contact" class="user-icon"></ion-icon>
-                            <span style="color:rgb(51, 160, 60);font-size: 10px">Marty McFly</span>
-                        </div>
-                        <div style="margin-bottom:10px;">
-                            <p style="text-align: center">
-                                The most popular industrial group ever, and largely
-                            </p>
-                        </div>
-                    </ion-card>
-                </ion-col>
-            </ion-row>
-
+			<ion-row class="bagdesToOwn">
+			
+			
+			</ion-row>
         </div>
     </div>
     <!-- <ion-fab bottom right edge (click)="openTraitsList()">
