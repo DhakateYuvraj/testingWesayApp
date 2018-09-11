@@ -5,6 +5,7 @@ import { Storage } from "@ionic/storage";
 import { TraitService } from '../../services/traits.service';
 import { FormControl } from '@angular/forms';
 import { TraitDetailsPage } from '../trait-details/trait-details';
+import { BadgesAvailablePage } from '../badges-available/badges-available';
 
 declare var $: any;
 
@@ -231,28 +232,39 @@ giveVoteToFriend(trait, typeofvote) {
 		})
 	}
 	
-  cancelSearch(){
-    this.traitsMasterList = [];
-  }
-
-  scrollingFun(e) {
-    if (e.scrollTop > this.scrollHt) {
-      $(".tabbar").css("display", "none");
-      if (this.topOrBottom == "top") {
-        this.contentBox.marginTop = 0;
-      } else if (this.topOrBottom == "bottom") {
-        this.contentBox.marginBottom = 0;
-      }
-    } else {
-      $(".tabbar").css("display", "flex");
-      // document.querySelector(".tabbar")['style'].display = 'flex';
-      if (this.topOrBottom == "top") {
-        this.contentBox.marginTop = this.tabBarHeight;
-      } else if (this.topOrBottom == "bottom") {
-        this.contentBox.marginBottom = this.tabBarHeight;
-      }
-    }
-    this.scrollHt = e.scrollTop;
-  }
+	cancelSearch(){
+		this.traitsMasterList = [];
+	}
+  
+	openBadgesFor(pageName){
+		this.navCtrl.push('BadgeDetailsPage', {
+			pageFor: pageName
+		});
+	}
+	myAction(){		
+		alert(2);		
+	}
+	myAction1(){		
+		alert(1);		
+	}
+	
+	scrollingFun(e) {
+		if (e.scrollTop > this.scrollHt) {
+			$(".tabbar").css("display", "none");
+			if (this.topOrBottom == "top") {
+				this.contentBox.marginTop = 0;
+			} else if (this.topOrBottom == "bottom") {
+				this.contentBox.marginBottom = 0;
+			}
+		} else {
+			$(".tabbar").css("display", "flex");
+			if (this.topOrBottom == "top") {
+				this.contentBox.marginTop = this.tabBarHeight;
+			} else if (this.topOrBottom == "bottom") {
+				this.contentBox.marginBottom = this.tabBarHeight;
+			}
+		}
+		this.scrollHt = e.scrollTop;
+	}
 
 }

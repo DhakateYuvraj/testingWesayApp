@@ -23,6 +23,8 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { SettingsPage } from '../pages/settings/settings';
 import { SlidesPage } from '../pages/slides/slides';
 import { TraitDetailsPage } from '../pages/trait-details/trait-details';
+import { BadgesListPage } from '../pages/badges-list/badges-list';
+import { BadgeDetailsPage } from '../pages/badges-details/badges-details';
 import { Facebook } from '@ionic-native/facebook';
 
 @NgModule({

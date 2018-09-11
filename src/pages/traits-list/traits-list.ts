@@ -130,7 +130,9 @@ export class TraitsListPage {
       });
       let customTrait = { traitname: str, traitdescription: null, traiticonpath: null, traituniqueid: str + "_NewCustom" } 
       this.traitsMasterList.push(customTrait);
-    }
+    }else{
+		this.traitsMasterList = this.allTraitsData;
+	}
   }
 
 }

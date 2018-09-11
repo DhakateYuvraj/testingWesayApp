@@ -277,32 +277,6 @@ page-profile {
 			}
 		}
 	}
-	.userProfie{
-		background: rgba(255,255,255,0.8);padding: 10px 0;
-		.userPhoto{
-			text-align:center;
-			img{
-				width:60px;
-				/*border:1px solid #16a085; */
-				border-radius:50%
-			}
-		}
-		ion-col{
-			padding:0
-		}
-		.userName{font-size: 1.2em;}
-		.userAbout{padding:2px 5px 2px 0px;color:#999}
-		.userInfoLike{
-			padding: 0;
-			text-align:center;
-			color:#00c5cd;
-			ion-icon{
-				font-size: 2em;
-				display: block;
-				padding: 5px;
-			}
-		}
-	}
 	.badgeWrapper{
 		.bagdesToOthers{
 			margin:12px 0;
@@ -355,7 +329,7 @@ page-profile {
 					float: left;
 					margin-left: 20px;
 					div{
-						float: left;
+						float:left;
 					}
 				}
 				.addBadgeBtn{
@@ -365,7 +339,63 @@ page-profile {
 			}
 		}
 		.bagdesToOwn{
-		
+			.singleBadge:nth-child(odd) {
+				padding:0px 10px 10px 20px;
+				.badgeIcon{
+					left: 15px;
+				}
+				.badgeInfo{
+					float:right;
+					.badgeCount{
+						right: 0;
+					}
+				}				
+			}
+			.singleBadge:nth-child(even) {
+				padding:0px 20px 10px 10px;
+				.badgeIcon{
+					right: 15px;
+				}
+				.badgeInfo{
+					float:left;
+					.badgeCount{
+						left: 0;
+					}
+				}				
+			}
+			.singleBadge{
+				position:relative;
+				.badgeIcon{
+					position:absolute;
+					top: 0;
+					z-index: 1;
+				}
+				.badgeInfo{
+					position:relative;
+					width:85%;
+					height:100%;
+					background:#fff;
+					display:inline-block;
+					border-radius: 5px;
+					z-index: 0;
+					.badgeCaption{
+						padding:20px 25px;
+						line-height: 16px;						
+					}
+					.badgeCount{
+						position:absolute;
+						top: 0;
+						color: #fff;
+						background: #03baef;
+						border-radius: 5px;
+						padding: 2px;
+						height: 20px;
+						width: 25px;
+						text-align: center;
+					}
+				}
+			}
+			
 		}
 	}
 	

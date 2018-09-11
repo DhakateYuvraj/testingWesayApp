@@ -162,32 +162,6 @@ page-trait-details {
 	}
 
 
-	.userProfie{
-		background: rgba(255,255,255,0.8);padding: 10px 0;
-		.userPhoto{
-			text-align:center;
-			img{
-				width:60px;
-				/*border:1px solid #16a085; */
-				border-radius:50%
-			}
-		}
-		ion-col{
-			padding:0
-		}
-		.userName{font-size: 1.2em;}
-		.userAbout{padding:2px 5px 2px 0px;color:#999}
-		.userInfoLike{
-			padding: 0;
-			text-align:center;
-			color:#00c5cd;
-			ion-icon{
-				font-size: 2em;
-				display: block;
-				padding: 5px;
-			}
-		}
-	}
 
 	.traitAcceptanceOverlay{
 		.traitAcceptance{
