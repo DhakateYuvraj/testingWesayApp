@@ -32,10 +32,8 @@ export class ProfilePage {
 	master_list;
 	search_string;
 	anonymousMode;
-
-    items: any = [];
-    itemExpandHeight: number = 200;
-	
+	information: any[];
+	  
 	constructor(
 	public navCtrl: NavController, 
 	public modalCtrl: ModalController,
@@ -57,26 +55,21 @@ export class ProfilePage {
 		}
 		this.getUserProfile(this.frdId)
 		this.searchControl = new FormControl(); 
-        this.items = [
-            {expanded: false, id: 1, title: "What is your first impression of Yuvraj"},
-            {expanded: false, id: 2, title: "What's the nicest thing about Yuvraj"},
-            {expanded: false, id: 3, title: "What would you like to thank Yuvraj for"},
-            {expanded: false, id: 4, title: "What have you learn from Yuvraj"},
-            {expanded: false, id: 5, title: "Whats the one thing Yuvraj needs to improve upon?"},
-            {expanded: false, id: 6, title: "Say something privately to Yuvraj"}
-        ];
+		
+		this.information = [{"name":"What is your first impression of Yuvraj","children":[{"name":"Special Academy Pizza","information":"Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.","price":"$25"}]},{"name":"What's the nicest thing about Yuvraj","children":[{"name":"Special Academy Pizza","information":"Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.","price":"$25"}]},{"name":"What would you like to thank Yuvraj for","children":[{"name":"Special Academy Pizza","information":"Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.","price":"$25"}]},{"name":"What have you learn from Yuvraj","children":[{"name":"Special Academy Pizza","information":"Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.","price":"$25"}]},{"name":"Whats the one thing Yuvraj needs to improve upon?","children":[{"name":"Special Academy Pizza","information":"Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.","price":"$25"}]},{"name":"Say something privately to Yuvraj","children":[{"name":"Special Academy Pizza","information":"Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.","price":"$25"}]}];
+		
+	}
+	
+	
+	
+	toggleSection(i) {
+		this.information[i].open = !this.information[i].open;
 	}
 
-    expandItem(item){
-         this.items.map((listItem) => {
-             if(item == listItem){
-                listItem.expanded = !listItem.expanded;
-            } else {
-                listItem.expanded = false;
-            }
-             return listItem;
-         }); 
-    }
+	toggleItem(i, j) {
+		this.information[i].children[j].open = !this.information[i].children[j].open;
+	}
+  
 	
 	ionViewWillEnter() {
 		this.storage.get('token').then((token) => {
@@ -240,4 +233,22 @@ giveVoteToFriend(trait, typeofvote) {
 		this.anonymousMode = !this.anonymousMode;
 	}
 
+	scrollingFun(e) {
+		if (e.scrollTop > this.scrollHt) {
+			$(".tabbar").css("display", "none");
+			if (this.topOrBottom == "top") {
+				this.contentBox.marginTop = 0;
+			} else if (this.topOrBottom == "bottom") {
+				this.contentBox.marginBottom = 0;
+			}
+		} else {
+			$(".tabbar").css("display", "flex");
+			if (this.topOrBottom == "top") {
+				this.contentBox.marginTop = this.tabBarHeight;
+			} else if (this.topOrBottom == "bottom") {
+				this.contentBox.marginBottom = this.tabBarHeight;
+			}
+		}
+		this.scrollHt = e.scrollTop;
+	}
 }
