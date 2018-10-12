@@ -2,7 +2,7 @@
     <ion-navbar> 
       <ion-row> 
         <ion-col col-1>  
-          <ion-icon class="menu_icon" name="menu" (click)="toggleMenu()"></ion-icon>
+          <ion-icon class="menu_icon" name="menu" (click)="traitService.toggleMenu()"></ion-icon>
         </ion-col>
         <ion-col col-9>
           <ion-label class="header_label">My Contacts</ion-label> 
@@ -19,7 +19,7 @@
     </ion-navbar>
   </ion-header>
 
-<ion-content #contentRef fullscreen (ionScroll)="scrollingFun($event)">
+<ion-content #contentRef fullscreen (ionScroll)="traitService.scrollingFun($event)">
   <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
   </ion-searchbar>
   <ion-refresher (ionRefresh)="doRefresh($event)">

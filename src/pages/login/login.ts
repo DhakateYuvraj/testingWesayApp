@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
 import { SlidesPage } from '../slides/slides';
 import { AuthService } from '../../services/auth.service';
+import { TraitService } from '../../services/traits.service';
 import { Facebook } from '@ionic-native/facebook';
 
 @Component({
@@ -17,6 +18,7 @@ export class LoginPage {
 
   constructor(
 	  private authService: AuthService, 
+	  private traitService: TraitService, 
 	  private toastCtrl: ToastController, 
 	  public navCtrl: NavController, 
 	  public navParams: NavParams, 
@@ -84,33 +86,27 @@ export class LoginPage {
     this.navCtrl.push('ResendOtpPage');
   }
 
-  login() {
-    if (this.form.value.emailaddress != "" || this.form.value.password != "") {
-      this.authService.loginUser(this.form.value).subscribe(data => {
-        //console.log(data);
-        if (data.status == 'success') {
-          this.form.reset();
-          this.presentSuccessToast('login Successfully !');
-          this.authService.saveToken(data.auth_token)
-          this.navCtrl.setRoot(SlidesPage);
-        } else {
-          this.presentSuccessToast(data.message);
-        }
-      });
-    } else {
-      this.presentSuccessToast('Failed to login !');
-    }
-  }
+	login() {
+		this.traitService.loading.present();
+		if (this.form.value.emailaddress != "" || this.form.value.password != "") {
+			this.authService.loginUser(this.form.value).subscribe(data => {
+				this.traitService.loading.dismiss();
+				if (data.status == 'success') {
+					this.form.reset();
+					this.traitService.presentSuccessToast('login Successfully !');
+					this.authService.saveToken(data.auth_token)
+					this.navCtrl.setRoot(SlidesPage);
+				} else {
+					this.traitService.presentSuccessToast(data.email);
+					this.traitService.presentSuccessToast(data.passowrd);
+				}
+			});
+		} else {
+			this.traitService.presentSuccessToast('Failed to login !');
+		}
+	}
   onInputBlue(event){
 	  console.log(event);
   }
 
-  presentSuccessToast(msg) {
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 2000,
-      position: 'top'
-    });
-    toast.present();
-  }
 }

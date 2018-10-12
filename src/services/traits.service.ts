@@ -2,39 +2,77 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Storage } from "@ionic/storage";
+import { LoadingController, ModalController, ToastController } from 'ionic-angular';
 
 var rootApi = "http://ec2-18-219-80-120.us-east-2.compute.amazonaws.com:8080";
 
 @Injectable()
 export class TraitService {
-  authToken;
-  options;
+	public authToken;
+	public options;
+	public loading;
+	
+	constructor(
+	private http: Http, 
+	private storage: Storage,
+	public modalCtrl: ModalController,
+	private loadingCtrl: LoadingController, 
+	private toastCtrl: ToastController
+	){ 
+		this.presentLoadingDefault();
+	}
 
-  constructor(
-    private http: Http, private storage: Storage
-  ) { }
+	presentLoadingDefault() {
+		this.loading = this.loadingCtrl.create({ spinner: 'bubbles' });
+	}
 
-  // Function to get token from client local storage
-  loadToken() {
+	showLoading(){
+		//if(!this.loading){
+			this.presentLoadingDefault();
+			this.loading.present();
+		//}
+	}
+	hideLoading(){
+		if(this.loading){
+			this.loading.dismiss();
+		}
+	}
+	
+	presentSuccessToast(msg) {
+		let toast = this.toastCtrl.create({
+			message: msg,
+			duration: 200000,
+			position: 'top'
+		});
+		toast.present(); 
+	}
+	toggleMenu() {
+		let addModal = this.modalCtrl.create('MenuPage');
+		addModal.onDidDismiss(() => {
+			return false;
+		});
+		addModal.present();
+	}
+	
+	// Function to get token from client local storage
+	loadToken() {
+		this.authToken = localStorage.getItem('token');
+		this.storage.get('token').then((token) => {
+			this.authToken = token;
+			console.log(this.authToken);
+			return token
+		});
+	}
 
-    this.authToken = localStorage.getItem('token');
 
-    this.storage.get('token').then((token) => {
-      this.authToken = token;
-      console.log(this.authToken);
-      return token
-    });
-  }
-
-
-  createAuthenticationHeaders(token) {
-    this.options = new RequestOptions({
-      headers: new Headers({
-        "Content-Type": "application/json",
-        "X-Authorization": token
-      })
-    });
-  }
+	createAuthenticationHeaders(token) {
+		this.options = new RequestOptions({
+			headers: new Headers({
+				"Content-Type": "application/json",
+				"X-Authorization": token
+			})
+		});
+	}
 
 
   // Function to get list of all traits

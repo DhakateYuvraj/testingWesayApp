@@ -14,7 +14,7 @@ export class BadgeDetailsPage {
 	}
 
 	ionViewDidLoad() {
-	console.log('ionViewDidLoad BadgesAvailablePage');
+	console.log('ionViewDidLoad Badges');
 	}
 
 	openBadgesMasterList(){

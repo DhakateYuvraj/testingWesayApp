@@ -1,129 +1,124 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, ModalController, LoadingController, NavParams, Content, AlertController } from 'ionic-angular';
+import { NavController, ModalController, NavParams, Content, AlertController } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
-
-import { TraitService } from '../../services/traits.service';
 import { FormControl } from '@angular/forms';
 import { TraitDetailsPage } from '../trait-details/trait-details';
-import { BadgesAvailablePage } from '../badges-available/badges-available';
+import { TraitService } from '../../services/traits.service';
 
 declare var $: any;
 
 @Component({
-  selector: 'page-profile',
-  templateUrl: 'profile.html'
+	selector: 'page-profile',
+	templateUrl: 'profile.html'
 })
 export class ProfilePage {
-  @ViewChild("contentRef") contentHandle: Content;
-  @ViewChild('searchInput') myInput;
-  searchControl: FormControl;
+	@ViewChild("contentRef") contentHandle: Content;
+	@ViewChild('searchInput') myInput;
+	searchControl: FormControl;
+	scrollHt: number = 0;
+	topOrBottom;
+	contentBox;
+	tabBarHeight;
+	section = 'trait';
+	allTraits = [];
+	frdInfo;
+	noTrait: Boolean = false;
+	authToken;
+	frdId;
+	profileId;
+	frdProfile;
+	alert;
+	traitsMasterList;
+	master_list;
+	search_string;
+	anonymousMode;
 
-  scrollHt: number = 0;
-  topOrBottom;
-  contentBox;
-  tabBarHeight;
-
-  section = 'trait';
-  allTraits = [];
-  public loading;
-  frdInfo;
-
-  noTrait: Boolean = false;
-  authToken;
-
-  frdId;
-  profileId;
-  frdProfile;
-  alert;
-
-  traitsMasterList;
-  master_list;
-  search_string;
-
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController,
-    private traitService: TraitService, private loadingCtrl: LoadingController,
-    private storage: Storage, private alertCtrl: AlertController, public navParams: NavParams) {
-
-    this.frdInfo = navParams.get('frdInfo');
-	if (this.frdInfo !== undefined) {
-		this.frdId = this.frdInfo.id;
-		this.profileId = { id: this.frdId };
-		this.frdProfile = true;
-    }else{
-		this.frdId = 0;
-		this.profileId = null;
-		this.frdProfile = false;
-		this.frdInfo = {fullname : "MyName Dont hv Data"}
+    items: any = [];
+    itemExpandHeight: number = 200;
+	
+	constructor(
+	public navCtrl: NavController, 
+	public modalCtrl: ModalController,
+	private traitService: TraitService,
+	private storage: Storage, 
+	private alertCtrl: AlertController, 
+	public navParams: NavParams
+	) {
+		this.frdInfo = navParams.get('frdInfo');
+		if (this.frdInfo !== undefined) {
+			this.frdId = this.frdInfo.id;
+			this.profileId = { id: this.frdId };
+			this.frdProfile = true;
+		}else{
+			this.frdId = 0;
+			this.profileId = null;
+			this.frdProfile = false;
+			this.frdInfo = {fullname : "MyName Dont hv Data"}
+		}
+		this.getUserProfile(this.frdId)
+		this.searchControl = new FormControl(); 
+        this.items = [
+            {expanded: false, id: 1, title: "What is your first impression of Yuvraj"},
+            {expanded: false, id: 2, title: "What's the nicest thing about Yuvraj"},
+            {expanded: false, id: 3, title: "What would you like to thank Yuvraj for"},
+            {expanded: false, id: 4, title: "What have you learn from Yuvraj"},
+            {expanded: false, id: 5, title: "Whats the one thing Yuvraj needs to improve upon?"},
+            {expanded: false, id: 6, title: "Say something privately to Yuvraj"}
+        ];
 	}
-	this.getUserProfile(this.frdId)
 
-    this.searchControl = new FormControl(); 
-  }
-
-  ionViewWillEnter() {
-    this.storage.get('token').then((token) => {
-      this.authToken = token;
-      this.getLoginUserTraits(token);
-      this.getMasterTraitList();
-    });
-  }
-
-  ionviewDidLoad() {
-    //this.searchControl.valueChanges.debounceTime(300).subscribe(search => {
-    //  this.filterTraits();
-    //});  
-  }
-
-  presentLoadingDefault() {
-    this.loading = this.loadingCtrl.create({ spinner: 'bubbles' });
-  }
-
-  getMasterTraitList() {
-    var loader = this.loadingCtrl.create({ spinner: 'bubbles' });
-    loader.present();
-    let masterTraitsStr = localStorage.getItem('activeTraits');
-    let allTraitsData = JSON.parse(masterTraitsStr);
-    if (allTraitsData != null && allTraitsData.length > 5) {
-      this.master_list = allTraitsData;  
-      loader.dismiss();
-    } else {
-      this.traitService.getAllTrais(this.authToken).subscribe(data => {
-        this.master_list = data.response;  
-        loader.dismiss();
-      });
+    expandItem(item){
+         this.items.map((listItem) => {
+             if(item == listItem){
+                listItem.expanded = !listItem.expanded;
+            } else {
+                listItem.expanded = false;
+            }
+             return listItem;
+         }); 
     }
-  }
+	
+	ionViewWillEnter() {
+		this.storage.get('token').then((token) => {
+			this.traitService.showLoading();
+			this.authToken = token;
+			this.getLoginUserTraits(token);
+			this.getMasterTraitList();
+		});
+		
+	}
 
-  getLoginUserTraits(token) {
-    this.presentLoadingDefault();
-    this.loading.present();
-    this.traitService.getLoginUserTraits(token, this.profileId).subscribe(data => {
-      // console.log(data);
-      this.allTraits = data.response;
-      this.loading.dismiss();
-      if (this.allTraits.length == 0) {
-        this.noTrait = true;
-      }
-    });
-  }
+	getMasterTraitList() {
+		let masterTraitsStr = localStorage.getItem('activeTraits');
+		let allTraitsData = JSON.parse(masterTraitsStr);
+		if (allTraitsData != null && allTraitsData.length > 5) {
+			this.master_list = allTraitsData;  
+		} else {
+			this.traitService.getAllTrais(this.authToken).subscribe(data => {
+				this.master_list = data.response;
+			});
+		}
+	}
+	
 
-  toggleMenu() {
-    let addModal = this.modalCtrl.create('MenuPage');
-    addModal.onDidDismiss(() => {
-      return false;
-    });
-    addModal.present();
-  }
+	getLoginUserTraits(token) {
+		this.traitService.getLoginUserTraits(token, this.profileId).subscribe(data => {
+			this.allTraits = data.response;
+			this.traitService.hideLoading();
+			if (this.allTraits.length == 0) {
+				this.noTrait = true;
+			}
+		});
+	}
 
   deleteTrait(trait_id) {
-    this.loading.present();
+    this.traitService.showLoading();
     let trait_data = {
       traituniqueid: trait_id,
       traitgivenfor: '0'
     }
     this.traitService.deleteTrait(trait_data, this.authToken).subscribe(data => {
-      this.loading.dismiss();
-      // console.log(data)
+      this.traitService.hideLoading();
       if (data.status == 'success') {
         this.getLoginUserTraits(this.authToken);
       }
@@ -158,8 +153,7 @@ export class ProfilePage {
 
 
 giveVoteToFriend(trait, typeofvote) {
-    this.presentLoadingDefault();
-    this.loading.present();
+    this.traitService.showLoading();
     var id;
     if (this.profileId == null || this.profileId == undefined) {
       id = 0;
@@ -170,11 +164,11 @@ giveVoteToFriend(trait, typeofvote) {
 		traitIdentifier : trait.traituniqueid,
 		traitId : trait.traitid,
 		vote : typeofvote,
-		modeOfVote : 0 //[1 = Anonymous, 0 = Public ]
+		modeOfVote :  this.anonymousMode ? 1 : 0 //[1 = Anonymous, 0 = Public ]
 	}
     //this.traitService.addTraitToPage(data, this.authToken).subscribe(data => {
 	this.traitService.giveVote(data, this.authToken).subscribe(data => {
-		this.loading.dismiss();
+		this.traitService.hideLoading();
 		alert(JSON.stringify(data)); 
 		if (data.status != "error") {
 			this.getLoginUserTraits(this.authToken);
@@ -241,30 +235,9 @@ giveVoteToFriend(trait, typeofvote) {
 			pageFor: pageName
 		});
 	}
-	myAction(){		
-		alert(2);		
-	}
-	myAction1(){		
-		alert(1);		
-	}
 	
-	scrollingFun(e) {
-		if (e.scrollTop > this.scrollHt) {
-			$(".tabbar").css("display", "none");
-			if (this.topOrBottom == "top") {
-				this.contentBox.marginTop = 0;
-			} else if (this.topOrBottom == "bottom") {
-				this.contentBox.marginBottom = 0;
-			}
-		} else {
-			$(".tabbar").css("display", "flex");
-			if (this.topOrBottom == "top") {
-				this.contentBox.marginTop = this.tabBarHeight;
-			} else if (this.topOrBottom == "bottom") {
-				this.contentBox.marginBottom = this.tabBarHeight;
-			}
-		}
-		this.scrollHt = e.scrollTop;
+	changeVisibilityMode(){
+		this.anonymousMode = !this.anonymousMode;
 	}
 
 }

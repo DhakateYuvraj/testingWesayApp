@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { TraitService } from '../../services/traits.service';
 import { Storage } from "@ionic/storage";
 
@@ -13,7 +13,6 @@ export class TraitDetailsPage {
 	public authToken;
 	public traitDetails;
 	public sliderValue = 5;
-	public loading;
 	public comments;
 	public newComment;
 	public newReplyComment = ""
@@ -28,7 +27,6 @@ export class TraitDetailsPage {
 				public navParams: NavParams, 
 				private storage: Storage, 
 				private traitService: TraitService, 
-				private loadingCtrl: LoadingController, 
 				public popoverCtrl: PopoverController){
 					
 		this.trait = navParams.get('trait');
@@ -70,9 +68,7 @@ export class TraitDetailsPage {
 		this.getUserProfile(this.frdId)
 	}	
 
-  presentLoadingDefault() {
-    this.loading = this.loadingCtrl.create({ spinner: 'bubbles' });
-  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad TraitDetailsPage');
   }
@@ -84,15 +80,11 @@ export class TraitDetailsPage {
     });
   }
 	getTraitDetails(trait,token){
-    //this.loading.present();
 		let trait_data = {
-			//traitIdentifier: trait.traituniqueid,
-			//userTraitId: 
 			"userTraitId" : 414,
 			"traitIdentifier" : "3eec0d3324520fe5c4a760b1c9ea4d642c3aeb28",
 		}
 		this.traitService.getTraitDetails(trait_data, this.authToken).subscribe(data => {
-			//this.loading.dismiss();
 			alert(JSON.stringify(data));
 			if (data.status == 'success') {
 				this.traitDetails = data.response

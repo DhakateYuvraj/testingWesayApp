@@ -2,7 +2,7 @@
   <ion-navbar *ngIf="!showSearchBar">
     <ion-row class="header-row">
       <ion-col col-1>
-        <ion-icon class="menu_icon" name="menu" (click)="toggleMenu()"></ion-icon>
+        <ion-icon class="menu_icon" name="menu" (click)="traitService.toggleMenu()"></ion-icon>
       </ion-col>
       <ion-col col-11>
         <ion-label class="header_label">What do you think about yourself?</ion-label>
@@ -28,7 +28,7 @@
       <ion-col col-6 *ngFor="let item of checkedTraits; let i = index" class="singleTraits {{item.traituniqueid}}" (click)="updateCheckedOptions(item, $event)">
         <ion-item>
 			<div class="traitIconBg traitIconBg_{{i}}">
-				<div class="traitIcon traitIcon_{{i}}"></div>
+				<div class="traitIcon traitIcon_{{item.traitname | lowercase}}"></div>
 			</div>
 			<div class="traitName">{{item.traitname}}</div>
         </ion-item>
@@ -38,7 +38,7 @@
         <ion-item>
           <div>
 			<div class="traitIconBg traitIconBg_{{i}}">
-				<div class="traitIcon traitIcon_{{i}}"></div>
+				<div class="traitIcon traitIcon_{{item.traitname | lowercase}}"></div>
 			</div>
             <div class="traitName">{{item.traitname}}</div>
           </div>
@@ -46,8 +46,10 @@
       </ion-col>
       <ion-col col-6 (click)="openTraitsList()" class="singleTraits findMoreTrait">
         <ion-item>
-          <div class="traitIcon traitIcon_{{i}}"></div>
-          <div class="traitName">Find more traits...</div>
+		<div class="traitIconBg traitIconBg_dummy">
+			<div class="traitIcon traitIcon_dummy"></div>
+		</div>
+		<div class="traitName">Find more traits...</div>
         </ion-item>
       </ion-col>
     </ion-row>

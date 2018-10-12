@@ -35,14 +35,14 @@ export class TraitDetailsMenuPage {
   }
   
 	hideCount(trait){
-    //this.loading.present();
+    //this.traitService.loading.present();
 		let trait_data = {
 			traituniqueid: trait.traituniqueid,
 			traitname: trait.traitname,
 			traitgivenfor: '0'
 		}
 		this.traitService.hideTraitCount(trait_data, this.authToken).subscribe(data => {
-			//this.loading.dismiss();
+			//this.traitService.loading.dismiss();
 			alert(JSON.stringify(data));
 			if (data.status == 'success') {
 				//this.getTraitDetails(trait,this.authToken);
@@ -51,14 +51,14 @@ export class TraitDetailsMenuPage {
 	}
 
 	deleteTrait(trait){
-    //this.loading.present();
+    //this.traitService.loading.present();
 		let trait_data = {
 			traituniqueid: trait.traituniqueid,
 			traitname: trait.traitname,
 			traitgivenfor: '0'
 		}
 		this.traitService.deleteTrait(trait_data, this.authToken).subscribe(data => {
-			//this.loading.dismiss();
+			//this.traitService.loading.dismiss();
 			alert(JSON.stringify(data));
 			if (data.status == 'success') {
 				//this.getTraitDetails(trait,this.authToken);
@@ -67,14 +67,14 @@ export class TraitDetailsMenuPage {
 	}
 	
 	hideTrait(trait){
-    //this.loading.present();
+    //this.traitService.loading.present();
 		let trait_data = {
 			traituniqueid: trait.traituniqueid,
 			traitname: trait.traitname,
 			traitgivenfor: '0'
 		}
 		this.traitService.hideTrait(trait_data, this.authToken).subscribe(data => {
-			//this.loading.dismiss();
+			//this.traitService.loading.dismiss();
 			alert(JSON.stringify(data));
 			if (data.status == 'success') {
 				//this.getTraitDetails(trait,this.authToken);

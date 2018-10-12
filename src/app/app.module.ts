@@ -24,49 +24,49 @@ import { SettingsPage } from '../pages/settings/settings';
 import { SlidesPage } from '../pages/slides/slides';
 import { TraitDetailsPage } from '../pages/trait-details/trait-details';
 import { BadgesListPage } from '../pages/badges-list/badges-list';
-import { BadgeDetailsPage } from '../pages/badges-details/badges-details';
 import { Facebook } from '@ionic-native/facebook';
+import { ExpandableComponent } from '../components/expandable/expandable'
 
 @NgModule({
-  declarations: [
-    MyApp,
-    LoginPage, 
-    HomePage, 
-    ProfilePage, 
-    FriendsListPage,
-    TabsPage, 
-    ListPage,
-	AddUserPage,
-	SettingsPage
-  ],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot(),
-    HttpModule
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    LoginPage,
-    HomePage, 
-    TabsPage,
-    ProfilePage, 
-    FriendsListPage, 
-    ListPage,
-	AddUserPage,
-	SettingsPage
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthService, { provide: Http, useClass: ConnectionService },
-    TraitService,
-	Contacts,
-	SocialSharing,
-	Facebook
-	//{ provide: Contacts, useClass: ContactsMock }
-  ]
+	declarations: [
+		MyApp,
+		LoginPage, 
+		HomePage, 
+		ProfilePage, 
+		FriendsListPage,
+		TabsPage, 
+		ListPage,
+		AddUserPage,
+		SettingsPage,
+		ExpandableComponent
+	],
+	imports: [
+		BrowserModule,
+		IonicModule.forRoot(MyApp),
+		IonicStorageModule.forRoot(),
+		HttpModule
+	],
+	bootstrap: [IonicApp],
+	entryComponents: [
+		MyApp,
+		LoginPage,
+		HomePage, 
+		TabsPage,
+		ProfilePage, 
+		FriendsListPage, 
+		ListPage,
+		AddUserPage,
+		SettingsPage
+	],
+	providers: [
+		StatusBar,
+		SplashScreen,
+		{provide: ErrorHandler, useClass: IonicErrorHandler},
+		AuthService, { provide: Http, useClass: ConnectionService },
+		TraitService,
+		Contacts,
+		SocialSharing,
+		Facebook
+	]
 })
 export class AppModule {}

@@ -76,13 +76,14 @@ ion-header,.toolbar-background-md{
 	}
 }
 
-.singleTrait{
+.singleTraits{
 	padding:8px 5px;
 	.label-md {
 		margin: 10px 5px !important;
 	}
 	.traitName{
 		text-align:center;
+		font-size:0.9em;
 	}
 	ion-col div {
 		text-align: center;
@@ -131,31 +132,31 @@ ion-header,.toolbar-background-md{
 		}
 	}
 	
-	.traitIcon{ display: inline-block; background: url('../assets/imgs/traitIcons.png') no-repeat; overflow: hidden; text-indent: -9999px; margin: 7px; width: 50px; height: 50px;background-position: -10px -1200px;}
-	.traitIcon_trustworthy{background-position:-11px 6px;}
-	.traitIcon_friendly{background-position: -11px -45px}
-	.traitIcon_good.looking{background-position: -11px -101px;}
-	.traitIcon_humorous{background-position: -10px -160px;}
-	.traitIcon_knowledgeable{background-position: -10px -217px;}
-	.traitIcon_truthful{background-position: -10px -274px;}
+	.traitIcon{ display: inline-block; background: url('../assets/imgs/traitIcons1.png') no-repeat; overflow: hidden; text-indent: -9999px; margin: 7px; width: 40px; height: 40px;background-position: -10px -1200px;}
+	.traitIcon_trustworthy{background-position:-11px 4px;}
+	.traitIcon_friendly{background-position: -11px -40px}
+	.traitIcon_good.looking{background-position: -12px -88px}
+	.traitIcon_humorous{background-position:-10px -138px}
+	.traitIcon_knowledgeable{background-position:-10px -187px}
+	.traitIcon_truthful{background-position:-10px -233px}
 	.traitIcon_introverted{ background-position: -10px -325px;}
-	.traitIcon_attractive{background-position: -9px -379px;}
-	.traitIcon_cool{background-position: -10px -432px;}
-	.traitIcon_hardworking{background-position: -10px -486px;}
-	.traitIcon_quiet{background-position: -10px -540px;}
-	.traitIcon_smart{background-position: -10px -596px;}
+	.traitIcon_attractive{background-position: -9px -326px}
+	.traitIcon_cool{background-position: -9px -373px;}
+	.traitIcon_hardworking{background-position: -9px -418px}
+	.traitIcon_quiet{background-position:-7px -560px}
+	.traitIcon_smart{background-position:-10px -609px}
 	.traitIcon_talkative{background-position: -10px -652px;}
-	.traitIcon_intelligent{background-position: -10px -706px;}
-	.traitIcon_successful{background-position: -10px -763px;}
-	.traitIcon_strong-headed,.traitIcon_strong.headed{background-position: -10px -820px;}
-	.traitIcon_extroverted{background-position: -10px -877px;}
-	.traitIcon_respected{background-position: -10px -934px;}
-	.traitIcon_confident{background-position: -4px -992px}
-	.traitIcon_helpful{background-position: -5px -1048px;}
-	.traitIcon_dummy{background-position:1px -1105px;}
+	.traitIcon_intelligent{background-position: -10px -704px;}
+	.traitIcon_successful{background-position:-9px -655px}
+	.traitIcon_strong-headed,.traitIcon_strong.headed{background-position:-10px -705px}
+	.traitIcon_extroverted{background-position:-8px -560px}
+	.traitIcon_respected{background-position:-10px -802px}
+	.traitIcon_confident{background-position: -4px -851px}
+	.traitIcon_helpful{background-position: -5px -901px}
+	.traitIcon_dummy{background-position:1px -952px}
 	
 	
-	.traitIconBg{height:60px;width:60px;margin:0 auto;border-radius: 5px;}
+	.traitIconBg{height:50px;width:50px;margin:0 auto;border-radius: 5px;}
 	.traitIconBg_0{background-image: linear-gradient( 135deg, #FCCF31 10%, #F55555 100%);}
 	.traitIconBg_1{background-image: linear-gradient( 135deg, #FEB692 10%, #EA5455 100%);}
 	.traitIconBg_2{background-image: linear-gradient( 135deg, #F05F57 10%, #360940 100%);}
@@ -206,13 +207,38 @@ ion-header,.toolbar-background-md{
 	}
 }
 
-
+.userProfie{
+	background: rgba(255,255,255,0.8);padding: 10px 0;
+	.userPhoto{
+		text-align:center;
+		img{
+			width:60px;
+			/*border:1px solid #16a085; */
+			border-radius:50%
+		}
+	}
+	ion-col{
+		padding:0
+	}
+	.userName{font-size: 1.2em;}
+	.userAbout{padding:2px 5px 2px 0px;color:#999}
+	.userInfoLike{
+		padding: 0;
+		text-align:center;
+		color:#00c5cd;
+		ion-icon{
+			font-size: 2em;
+			display: block;
+			padding: 5px;
+		}
+	}
+}
 
 
 .content-md{background:#e4e3e3;background-size: auto 100%;background-repeat: no-repeat;background-position: center;}
 
-.tabs-md .tab-button[aria-selected=true] .tab-button-icon,.singleTrait .item-md h3, .singleTrait .item-md h4, .singleTrait .item-md h5, .singleTrait .item-md h6,.tabs-md .tab-button[aria-selected=true],.singleTrait .traitName{color:#4c8879}
-.singleTrait 
+.tabs-md .tab-button[aria-selected=true] .tab-button-icon,.singleTraits .item-md h3, .singleTraits .item-md h4, .singleTraits .item-md h5, .singleTraits .item-md h6,.tabs-md .tab-button[aria-selected=true],.singleTraits .traitName{color:#4c8879;}
+.singleTraits 
 .item-md.item-block .item-inner{border:none}
 
 .hidden-checkbox {

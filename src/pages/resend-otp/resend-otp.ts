@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
+import { TraitService } from '../../services/traits.service';
 
 @IonicPage()
 @Component({
@@ -11,7 +12,14 @@ import { AuthService } from '../../services/auth.service';
 export class ResendOtpPage {
   form: FormGroup;
 
-  constructor(private authService: AuthService, public navCtrl: NavController,private toastCtrl: ToastController,public viewCtrl: ViewController, public navParams: NavParams,formBuilder: FormBuilder) {
+  constructor(
+  private authService: AuthService, 
+  private traitService: TraitService, 
+  public navCtrl: NavController,
+  private toastCtrl: ToastController,
+  public viewCtrl: ViewController, 
+  public navParams: NavParams,
+  formBuilder: FormBuilder) {
 	  	  this.form = formBuilder.group({
 			email: [''],
 	  });
@@ -27,23 +35,14 @@ export class ResendOtpPage {
 		//alert(JSON.stringify(data))
 		if (data.status == 'success') {
 			this.form.reset();
-			this.presentSuccessToast('OTP sent to your email');
+			this.traitService.presentSuccessToast('OTP sent to your email');
 		} else {
-		this.presentSuccessToast('Failed to generate OTP!');
+		this.traitService.presentSuccessToast('Failed to generate OTP!');
 		}
 		});
     } else {
-     this.presentSuccessToast('All Field Required');
+     this.traitService.presentSuccessToast('All Field Required');
     }
-  }
-
-  presentSuccessToast(msg) {
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 2000,
-      position: 'top'
-    });
-    toast.present(); 
   }
   
   cancel() {

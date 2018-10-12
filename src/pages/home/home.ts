@@ -1,9 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, ModalController, LoadingController, Content } from 'ionic-angular';
+import { NavController, ModalController, Content } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
 import { Storage } from "@ionic/storage";
 import { Contacts } from '@ionic-native/contacts';
-
 import { TraitService } from '../../services/traits.service';
 
 declare var $: any;
@@ -14,78 +13,63 @@ declare var $: any;
 })
 
 export class HomePage {
-  @ViewChild("contentRef") contentHandle: Content;
-  @ViewChild('searchInput') myInput;
-  searchControl: FormControl;
+	@ViewChild("contentRef") contentHandle: Content;
+	@ViewChild('searchInput') myInput;
+	searchControl: FormControl;
 
-  public search_string;
-  public loading;
-  popularTraits = [];
-  masterTraits = [];
-  checkedTraits = [];
-  checkedTraitsTemp = [];
-  scrollHt: number = 0;
-  topOrBottom;
-  contentBox;
-  tabBarHeight;
-  master_list;
-  authToken;
-  public allContacts: any;
-  masterTraitsSearch = [];
+	public search_string;
+	popularTraits = [];
+	masterTraits = [];
+	checkedTraits = [];
+	checkedTraitsTemp = [];
+	scrollHt: number = 0;
+	topOrBottom;
+	contentBox;
+	tabBarHeight;
+	master_list;
+	authToken;
+	public allContacts: any;
+	masterTraitsSearch = [];
+	contacttobefound = '';
+	contactsfound = [];
+	search = false; 
 
+	constructor(
+	public navCtrl: NavController, 
+	public modalCtrl: ModalController, 
+	private traitService: TraitService,
+	private storage: Storage, 
+	private contacts: Contacts){
+		this.storage.get('token').then((token) => {
+			this.authToken = token;			
+			this.getPopularTraits(token);
+			this.getMasterTraitList();
+			this.searchControl = new FormControl();
+		});
+	}
 
-  contacttobefound = '';
-  contactsfound = [];
-  search = false; 
+	fetchDeviceContact() {
+		let options = {
+			filter: "",
+			multiple: true,
+			hasPhoneNumber: true
+		};
+		this.contacts.find(["*"], options).then((res) => {
+			this.traitService.addContacts(res, this.authToken).subscribe(data => {
+				console.log(data)
+			});
+		}).catch((err) => {
+			console.log('err', err);
+		});
+	}
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, private traitService: TraitService,
-    private loadingCtrl: LoadingController, private storage: Storage, private contacts: Contacts) {
-    this.storage.get('token').then((token) => {
-      this.authToken = token;
-
-      //this.fetchDeviceContact();
-
-      this.presentLoadingDefault();
-      this.getPopularTraits(token);
-      this.getMasterTraitList();
-      this.searchControl = new FormControl();
-      //this.findfn();
-    });
-
-  }
-
-  fetchDeviceContact() {
-    var options = {
-      filter: "",
-      multiple: true,
-      hasPhoneNumber: true
-    };
-
-    // alert(JSON.stringify(this.contacts));
-    this.contacts.find(["*"], options).then((res) => {
-      this.traitService.addContacts(res, this.authToken).subscribe(data => {
-        console.log(data)
-      });
-      // alert(JSON.stringify(res));
-      // console.log("contactlist >>>", res);
-
-    }).catch((err) => {
-      //alert('err')
-      alert(JSON.stringify(err));
-      console.log('err', err);
-    });
-
-  }
-
-  presentLoadingDefault() {
-    this.loading = this.loadingCtrl.create({ spinner: 'bubbles' });
-  }
 
   getPopularTraits(token) {
-    this.loading.present();
+    this.traitService.presentLoadingDefault();
+    this.traitService.loading.present();
     this.traitService.getListOfPopularTraits(token).subscribe(data => {
       this.popularTraits = data.response;
-      this.loading.dismiss();
+      this.traitService.loading.dismiss();
     })
   }
 
@@ -132,14 +116,6 @@ export class HomePage {
       this.masterTraitsSearch.push(customTrait);
       this.masterListAddSelectClass();
     }
-  }
-
-  toggleMenu() {
-    let addModal = this.modalCtrl.create('MenuPage');
-    addModal.onDidDismiss(() => {
-      return false;
-    });
-    addModal.present();
   }
 
   openProfilePage() {
