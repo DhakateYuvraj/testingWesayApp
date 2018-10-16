@@ -23,18 +23,18 @@
 				</div>
 				<div class="ion-item-wrapper">
 					<ion-item>
-						<ion-input type="password" formControlName="password" placeholder="Password"> </ion-input>
+						<ion-input type="password" formControlName="password" placeholder="Password" (ionChange)="updatePass()"> </ion-input>
 					</ion-item>
 					<ion-icon name="lock"></ion-icon>
 				</div>
-				<div class="errorMsg">{{errorPassword}}</div>
+				<div class="errorMsg">{{passwordComplexity}}</div>
 				<div class="ion-item-wrapper">
 					<ion-item>
-						<ion-input type="password" formControlName="retypepassword" placeholder="Re-Enter Password"> </ion-input>
+						<ion-input type="password" formControlName="retypepassword" placeholder="Re-Enter Password" (ionChange)="updateRetypePass()"> </ion-input>
 					</ion-item>
 					<ion-icon name="lock"></ion-icon>
 				</div>
-				<div class="errorMsg">{{errorPassword}}</div>
+				<div class="errorMsg">{{retypePasswordMatch}}</div>
 				<div class="ion-item-wrapper">
 					<ion-item>
 						<ion-input type="date" formControlName="dateofbirth" placeholder="Date of Birth"> </ion-input>

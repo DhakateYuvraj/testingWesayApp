@@ -16,6 +16,9 @@ export class SignupPage {
 	isReadyToSave: boolean;
 	item: any;
 	form: FormGroup;
+	
+	passwordComplexity : string;
+	retypePasswordMatch : string;
 
 	constructor(
 	public navCtrl: NavController, 
@@ -85,5 +88,26 @@ export class SignupPage {
 			this.traitService.presentSuccessToast('All Field Required');
 		}
 	}
+	
+	updatePass(){
+		let format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+		//console.log(this.form.value.password);
+		this.passwordComplexity = "Invalid";
+		let str = this.form.value.password
+		if(str.length > 6 && str.match(/[a-z]/) && str.match(/[A-Z]/) && str.match(format)){
+			this.passwordComplexity = "Valid password";
+		}
+		console.log(this.passwordComplexity);
+	}
+	
+	updateRetypePass(){
+		//console.log(this.form.value.retypepassword);
+		this.retypePasswordMatch = "Didn't match";
+		if(this.form.value.password === this.form.value.retypepassword){
+			this.retypePasswordMatch = "password matched";
+		}
+		console.log(this.retypePasswordMatch);
+	}
+	
 }
 
