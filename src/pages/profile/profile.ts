@@ -33,6 +33,8 @@ export class ProfilePage {
 	search_string;
 	anonymousMode;
 	information: any[];
+	availableBadges;
+	availableBadgesCnt;
 	  
 	constructor(
 	public navCtrl: NavController, 
@@ -102,6 +104,17 @@ export class ProfilePage {
 				this.noTrait = true;
 			}
 		});
+		
+		
+this.traitService.getAvailableBadges(this.authToken).subscribe(data => {
+alert(JSON.stringify(data))
+this.availableBadges = data
+})
+this.traitService.getAvailableBadgesCnt(this.authToken).subscribe(data => {
+alert(JSON.stringify(data))
+this.availableBadgesCnt = data
+})
+		
 	}
 
   deleteTrait(trait_id) {

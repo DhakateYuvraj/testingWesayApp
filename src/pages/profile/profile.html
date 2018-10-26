@@ -19,7 +19,7 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content #contentRef (ionScroll)="scrollingFun($event)">
+<ion-content #contentRef (ionScroll)="scrollingFun($event)"  [ngClass]="anonymousMode ? 'anonymousMode' : 'privateMode'">
 	<ion-row class="userProfie">
 		<ion-col col-3 class="userPhoto">
 			<img src="assets/imgs/userIcon.png">

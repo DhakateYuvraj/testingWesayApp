@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IonicPage, NavController, ViewController, ModalController, ToastController, LoadingController } from 'ionic-angular';
 import { OtpPage } from '../otp/otp';
+import { NewOtpPage } from '../new-otp/new-otp';
+
 import { AuthService } from '../../services/auth.service';
 import { TraitService } from '../../services/traits.service';
 

@@ -442,7 +442,18 @@ page-profile {
 	
 	
 	
-	
+ion-content.anonymousMode{
+		border-bottom: 0px;
+		border-top: 0px;
+		border-right: 2px solid #f00;
+		border-left: 2px solid #f00;
+		.userProfie{
+		border-top: 2px solid #f00;
+		}
+		.fixed-content{
+		border-bottom: 2px solid #f00;
+		}
+	}
 	
 	
 }

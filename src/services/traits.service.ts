@@ -165,5 +165,15 @@ export class TraitService {
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/api/user/details/', userdata, this.options).map(res => res.json());
 	}
+	
+	getAvailableBadges(token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.get(rootApi + '/badge/availableBadges/', this.options).map(res => res.json());
+	}
+	
+	getAvailableBadgesCnt(token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.get(rootApi + '/badge/availableBadgeCount/', this.options).map(res => res.json());
+	}
   
 }
