@@ -94,8 +94,8 @@ export class LoginPage {
 				if (data.status == 'success') {
 					this.form.reset();
 					this.traitService.presentSuccessToast('login Successfully !');
-					this.authService.saveToken(data.auth_token)
-					this.navCtrl.setRoot(SlidesPage);
+					this.authService.saveToken(data.auth_token);
+					this.navCtrl.setRoot('SlidesPage');
 				} else {
 					this.traitService.presentSuccessToast(data.email);
 					this.traitService.presentSuccessToast(data.passowrd);

@@ -2,8 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IonicPage, NavController, ViewController, ModalController, ToastController, LoadingController } from 'ionic-angular';
 import { OtpPage } from '../otp/otp';
-import { NewOtpPage } from '../new-otp/new-otp';
-
 import { AuthService } from '../../services/auth.service';
 import { TraitService } from '../../services/traits.service';
 
@@ -73,6 +71,7 @@ export class SignupPage {
 	done() {
 		this.form.value.dateofbirth = '22/02/2017';
 			if (this.form.value.emailaddress != '' && this.form.value.password != '' && this.form.value.retypepassword != '' && this.form.value.mobilenumber != '') {
+				this.presentLoadingDefault();
 				this.traitService.loading.present();
 				this.authService.registerUser(this.form.value).subscribe(data => {
 					this.traitService.loading.dismiss();
@@ -80,7 +79,7 @@ export class SignupPage {
 						this.form.reset();
 						this.traitService.presentSuccessToast('Please check your email for OTP');
 						this.authService.saveToken(data.response.authtoken)
-						this.navCtrl.setRoot(OtpPage);
+						this.navCtrl.push('OtpPage');
 					} else {
 						this.traitService.presentSuccessToast('Failed to Registered!');
 						alert(JSON.stringify(data.response));

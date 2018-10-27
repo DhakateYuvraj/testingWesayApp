@@ -41,7 +41,7 @@ export class TraitService {
 	presentSuccessToast(msg) {
 		let toast = this.toastCtrl.create({
 			message: msg,
-			duration: 200000,
+			duration: 2000,
 			position: 'top'
 		});
 		toast.present(); 

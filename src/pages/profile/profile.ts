@@ -244,6 +244,11 @@ giveVoteToFriend(trait, typeofvote) {
 	
 	changeVisibilityMode(){
 		this.anonymousMode = !this.anonymousMode;
+		if(this.anonymousMode){
+			this.traitService.presentSuccessToast('Anonymous Mode');
+		}else{
+			this.traitService.presentSuccessToast('Private Mode');
+		}
 	}
 
 	scrollingFun(e) {

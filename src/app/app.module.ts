@@ -21,7 +21,6 @@ import { AddUserPage } from '../pages/add-user/add-user';
 import { Contacts } from '@ionic-native/contacts';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SettingsPage } from '../pages/settings/settings';
-import { SlidesPage } from '../pages/slides/slides';
 import { TraitDetailsPage } from '../pages/trait-details/trait-details';
 import { BadgesListPage } from '../pages/badges-list/badges-list';
 import { Facebook } from '@ionic-native/facebook';
