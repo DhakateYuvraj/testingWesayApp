@@ -95,7 +95,7 @@ export class SignupPage {
 		//console.log(this.form.value.password);
 		this.passwordComplexity = "Invalid";
 		let str = this.form.value.password
-		if(str.length > 6 && str.match(/[a-z]/) && str.match(/[A-Z]/) && str.match(format)){
+		if(str.length > 6 && str.match(/[a-z]/) && str.match(/[A-Z]/) && str.match(/[0-9]/) && str.match(format)){
 			this.passwordComplexity = "Valid password";
 		}
 		console.log(this.passwordComplexity);

@@ -228,6 +228,7 @@ page-profile {
 				.badgeInfo{
 					width:123px;
 					margin:0 auto;
+					position:relative;
 				}
 				.addBadgeBtn{
 					color: #fff;
@@ -249,6 +250,12 @@ page-profile {
 					}
 				}
 			}
+			
+				.badgeCnt{
+					position:absolute;
+					right:5px;
+					top:0;
+				}
 			.badgesAvailable{
 				border-right:1px solid #ccc;
 				.addBadgeIcons{
@@ -287,6 +294,7 @@ page-profile {
 				}
 				.badgeInfo{
 					float:right;
+					position:relative;
 					.badgeCount{
 						right: 0;
 					}
@@ -299,6 +307,7 @@ page-profile {
 				}
 				.badgeInfo{
 					float:left;
+					position:relative;
 					.badgeCount{
 						left: 0;
 					}

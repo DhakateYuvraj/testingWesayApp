@@ -18,23 +18,22 @@
 			</div>
 		</ion-col>
 		<ion-col col-2 class="userInfoLike">
-			 <ion-icon name="thumbs-up"></ion-icon>
-			 999
+		
 		</ion-col>
 	</ion-row>
 	<div *ngIf="pageFor == 'availableBadges'">
 		<h4>Choose Badges</h4>
 		<ion-row class="bagdesToOwn">
-			<ion-col col-6 class="singleBadge clearfix" *ngFor="let item of [1,2]">
+			<ion-col col-6 class="singleBadge clearfix" *ngFor="let avlbBadge of availableBadgesObj">
 				<div class="badgeIcon">
 					<img src="assets/imgs/badge_1.png">
 				</div>
 				<div class="badgeInfo">
 					<div class="badgeCaption">
-						Badge Caption
+						{{avlbBadge.badgeName}}
 					</div>
 					<div class="badgeCount">
-						99
+						{{avlbBadge.badgeCount}}
 					</div>
 				</div>
 			</ion-col>

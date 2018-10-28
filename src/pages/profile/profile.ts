@@ -79,6 +79,7 @@ export class ProfilePage {
 			this.authToken = token;
 			this.getLoginUserTraits(token);
 			this.getMasterTraitList();
+			this.getUserProfile(this.frdId);
 		});
 		
 	}
@@ -105,13 +106,14 @@ export class ProfilePage {
 			}
 		});
 		
-		
+/*		
 this.traitService.getAvailableBadges(this.authToken).subscribe(data => {
 alert(JSON.stringify(data))
 this.availableBadges = data
 })
+*/
 this.traitService.getAvailableBadgesCnt(this.authToken).subscribe(data => {
-alert(JSON.stringify(data))
+//alert(JSON.stringify(data))
 this.availableBadgesCnt = data
 })
 		
@@ -226,9 +228,7 @@ giveVoteToFriend(trait, typeofvote) {
 			id:frdId
 		}
 		this.traitService.getUserProfile(data, this.authToken).subscribe(data => {
-		  if (data.status != "error") {
-			//this.getLoginUserTraits(this.authToken);
-		  }
+			this.frdInfo = data.response;
 		})
 	}
 	

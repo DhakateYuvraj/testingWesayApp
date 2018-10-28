@@ -35,11 +35,11 @@
 		<ion-col col-2 class="userInfoLike" (click)="changeVisibilityMode()">
 			 <div *ngIf="!anonymousMode" >
 				 <ion-icon name="eye"></ion-icon>
-				 <div>Public mode</div>
+				 <!-- <div>Public mode</div> -->
 			 </div>
 			 <div *ngIf="anonymousMode" >
 				 <ion-icon name="eye-off"></ion-icon>
-				 <div>Anonymous mode</div>
+				 <!-- <div>Anonymous mode</div> -->
 			 </div>
 		</ion-col>
 	</ion-row>
@@ -262,6 +262,7 @@
 								<img src="assets/imgs/badge_1.png">
 							</div>
 						</div>
+						<div class="badgeCnt">{{availableBadgesCnt || '0' }}</div>
 						<div class="addBadgeBtn">
 							<ion-icon name="add"></ion-icon>
 						</div>

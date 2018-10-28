@@ -60,7 +60,7 @@ export class LoginPage {
 				this.isLoggedIn = false;
 			}
 		})
-		.catch(e => console.log('Error logging into Facebook', e));
+		.catch(e => alert(e));
 	}
 
 	getUserDetail(userid) {
