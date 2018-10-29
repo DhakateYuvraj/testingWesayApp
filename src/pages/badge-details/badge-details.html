@@ -11,7 +11,7 @@
 		</ion-col>
 		<ion-col col-7 class="userInfo">
 			<div class="userName">
-			frdInfo.fullname
+			{{frdInfo.fullname}}
 			</div>
 			<div class="userAbout">
 				User status or little description of user 
@@ -51,7 +51,20 @@
 	</div>
 	<div *ngIf="pageFor == 'givenBadges'">
 		<h4>Given Badges</h4>
-		<ion-row>
+		<ion-row class="bagdesToOwn">
+			<ion-col col-6 class="singleBadge clearfix" *ngFor="let gvnBadge of givenBadgesObj">
+				<div class="badgeIcon">
+					<img src="assets/imgs/badge_1.png">
+				</div>
+				<div class="badgeInfo">
+					<div class="badgeCaption">
+						{{gvnBadge.badgeName}}
+					</div>
+					<div class="badgeCount">
+						{{gvnBadge.badgeCount}}
+					</div>
+				</div>
+			</ion-col>
 		</ion-row>
 	</div>
 </ion-content>

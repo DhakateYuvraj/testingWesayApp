@@ -166,14 +166,29 @@ export class TraitService {
 		return this.http.post(rootApi + '/api/user/details/', userdata, this.options).map(res => res.json());
 	}
 	
+	getAvailableBadgesCnt(token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.get(rootApi + '/badge/availableBadgeCount/', this.options).map(res => res.json());
+	}
+	
 	getAvailableBadges(token) {
 		this.createAuthenticationHeaders(token);
 		return this.http.get(rootApi + '/badge/availableBadges/', this.options).map(res => res.json());
 	}
 	
-	getAvailableBadgesCnt(token) {
+	getReceivedBadges(token) {
 		this.createAuthenticationHeaders(token);
-		return this.http.get(rootApi + '/badge/availableBadgeCount/', this.options).map(res => res.json());
+		return this.http.get(rootApi + '/badge/receivedBadges/', this.options).map(res => res.json());
+	}
+	
+	getGivenBadges(token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.get(rootApi + '/badge/givenBadges/', this.options).map(res => res.json());
+	}
+	
+	getGivenBadgesCnt(token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.get(rootApi + '/badge/givenBadgesCount/', this.options).map(res => res.json());
 	}
   
 }

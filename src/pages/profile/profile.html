@@ -73,13 +73,13 @@
 				<ion-col col-6 *ngFor="let item of allTraits; let i = index" class="singleTraits {{item.traituniqueid}} isMyConti_{{item.mytraitcontibution}}">
 					<ion-item >
 						<!-- <ion-icon name="close" class="close-icon" *ngIf="!frdProfile" (click)="presentConfirm(item.traituniqueid)"></ion-icon> -->
-						<div class="pos-number isMyContiPos_{{item.mypositive}}" (click)="giveVoteToFriend(item,0)">
+						<div class="pos-number isMyContiPos_{{item.mypositive}}" (click)="giveVoteToFriend(item,1)">
 							<div class="tempClass">
 								{{item.positive}}
 								<ion-icon name="arrow-dropup"></ion-icon>
 							</div>
 						</div>
-						<div class="neg-number isMyContiNeg_{{item.mynegetive}}" (click)="giveVoteToFriend(item,1)">
+						<div class="neg-number isMyContiNeg_{{item.mynegetive}}" (click)="giveVoteToFriend(item,0)">
 							<div class="tempClass">
 								{{item.negetive}}
 								<ion-icon name="arrow-dropdown"></ion-icon>
@@ -276,6 +276,7 @@
 						<div class="addBadgeBtn">
 							<ion-icon name="more"></ion-icon>
 						</div>
+						<div class="badgeCnt">{{givenBadgesCnt || '0' }}</div>
 						<div class="addBadgeIcons">
 							<div>
 								<img src="assets/imgs/badge_1.png">
@@ -291,16 +292,16 @@
                 </ion-col>
             </ion-row>
 			<ion-row class="bagdesToOwn">
-                <ion-col col-6 class="singleBadge clearfix" *ngFor="let item of [1,2,3,4,5,6,7,8,9,10]">
+                <ion-col col-6 class="singleBadge clearfix" *ngFor="let recBadge of receivedBadgesObj">
 					<div class="badgeIcon">
 						<img src="assets/imgs/badge_1.png">
 					</div>
 					<div class="badgeInfo">
 						<div class="badgeCaption">
-							Badge Caption
+							{{recBadge.badgeName}}
 						</div>
 						<div class="badgeCount">
-							99
+							{{recBadge.badgeCount}}
 						</div>
 					</div>
 				</ion-col>

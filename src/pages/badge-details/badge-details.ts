@@ -13,11 +13,15 @@ import { TraitService } from '../../services/traits.service';
 export class BadgeDetailsPage {
 	public pageFor = 'availableBadges';
 	public availableBadgesObj;
+	public givenBadgesObj;
+	public frdInfo;
+	
 	constructor(
 	public navCtrl: NavController, 
 	public navParams: NavParams, 
 	private storage: Storage,
 	private traitService: TraitService) {
+		this.frdInfo = navParams.get('frdInfo');
 		this.pageFor = navParams.get('pageFor');	//availableBadges  --or--  givenBadges
 	}
 
@@ -34,11 +38,20 @@ export class BadgeDetailsPage {
 	}
 
 	getBadgeInfo(token){
-		this.traitService.getAvailableBadges(token).subscribe(data => {
-			this.traitService.hideLoading();	
-			console.log(JSON.stringify(data))
-			this.availableBadgesObj = data.userBadgeList;
-		})
+	
+		if(this.pageFor == "availableBadges"){
+			this.traitService.getAvailableBadges(token).subscribe(data => {
+				this.traitService.hideLoading();	
+				console.log(JSON.stringify(data))
+				this.availableBadgesObj = data.userBadgeList;
+			})
+		}else if (this.pageFor == "givenBadges"){
+			this.traitService.getGivenBadges(token).subscribe(data => {
+				this.traitService.hideLoading();	
+				console.log(JSON.stringify(data))
+				this.givenBadgesObj = data.userBadgeList;
+			})
+		}
 	}
 	
 	openBadgesMasterList(){

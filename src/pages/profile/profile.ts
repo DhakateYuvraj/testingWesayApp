@@ -35,6 +35,7 @@ export class ProfilePage {
 	information: any[];
 	availableBadges;
 	availableBadgesCnt;
+	receivedBadgesObj;
 	  
 	constructor(
 	public navCtrl: NavController, 
@@ -53,7 +54,7 @@ export class ProfilePage {
 			this.frdId = 0;
 			this.profileId = null;
 			this.frdProfile = false;
-			this.frdInfo = {fullname : "MyName Dont hv Data"}
+			this.frdInfo = {fullname : " "}
 		}
 		this.getUserProfile(this.frdId)
 		this.searchControl = new FormControl(); 
@@ -105,17 +106,19 @@ export class ProfilePage {
 				this.noTrait = true;
 			}
 		});
-		
-/*		
-this.traitService.getAvailableBadges(this.authToken).subscribe(data => {
-alert(JSON.stringify(data))
-this.availableBadges = data
-})
-*/
-this.traitService.getAvailableBadgesCnt(this.authToken).subscribe(data => {
-//alert(JSON.stringify(data))
-this.availableBadgesCnt = data
-})
+
+	this.traitService.getAvailableBadgesCnt(this.authToken).subscribe(data => {
+		this.availableBadgesCnt = data
+	})
+
+	this.traitService.getGivenBadgesCnt(this.authToken).subscribe(data => {
+		this.givenBadgesCnt = data
+	})
+	this.traitService.getReceivedBadges(this.authToken).subscribe(data => {
+		this.receivedBadgesObj = data.userBadgeList;
+	})
+
+
 		
 	}
 
@@ -171,8 +174,8 @@ giveVoteToFriend(trait, typeofvote) {
 	let data = {
 		traitIdentifier : trait.traituniqueid,
 		traitId : trait.traitid,
-		vote : typeofvote,
-		modeOfVote :  this.anonymousMode ? 1 : 0 //[1 = Anonymous, 0 = Public ]
+		voteType : typeofvote,
+		isAnonymous :  this.anonymousMode ? 1 : 0 //[1 = Anonymous, 0 = Public ]
 	}
     //this.traitService.addTraitToPage(data, this.authToken).subscribe(data => {
 	this.traitService.giveVote(data, this.authToken).subscribe(data => {
@@ -238,7 +241,8 @@ giveVoteToFriend(trait, typeofvote) {
   
 	openBadgesFor(pageName){
 		this.navCtrl.push('BadgeDetailsPage', {
-			pageFor: pageName
+			pageFor: pageName,
+			frdInfo : this.frdInfo
 		});
 	}
 	
