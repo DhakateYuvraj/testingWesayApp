@@ -1,8 +1,9 @@
 {
   "name": "weSay",
-  "app_id": "",
-  "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "type": "ionic-angular",
+  "typescript": true,
+  "v2": true
 }

@@ -1,0 +1,33 @@
+page-badges-list {
+    .searchbar-has-value.searchbar-has-focus .searchbar-clear-icon { display: none !important; } 
+    .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
+        color: white;
+    }
+    .toolbar-title-md { 
+        color: white;
+    } 
+    button{
+        float:right;
+    }
+    .segment-md .segment-button { 
+        line-height: 4rem;
+    }
+    .button-md { 
+        height: 2.5rem;
+    }
+    .addPageBtn {
+        font-size: 13px !important;
+        color: white !important;
+        font-weight: normal !important;
+    }
+    .button {
+        background: #084242;
+        border: none;
+        border-radius: 23px;
+        width: 60%;
+        height: 34px;
+        margin: 10px auto;
+        margin-right: 20%;
+        line-height: 24px;
+    }
+}

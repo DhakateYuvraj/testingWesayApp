@@ -1,39 +1,47 @@
 <ion-content class="background">
-  <ion-label class="log-Img">
-    <!-- <ion-label class="log-Img" style="width: 100%;margin-top: 0;"> -->
-    <img src="assets/imgs/logoLogin.png" width=250>
-  </ion-label>
-  <ion-label>
-    <p id="l1">Get Started!</p>
-  </ion-label>
-
-  <form *ngIf="form" [formGroup]="form">
-    <ion-list id="list">
-      <ion-item id="i1">
-        <ion-label floating class="input-label" style="color:#ffffff">Username</ion-label>
-        <ion-input type="text" formControlName="emailaddress"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating class="input-label" style="color:#ffffff">Password
-          <!-- <ion-icon float-right name="eye"></ion-icon> -->
-        </ion-label>
-        <ion-input id="pass" type="password" formControlName="password"> </ion-input>
-      </ion-item>
-
-      <button id="btn" ion-button full color="blue" (click)="login()">
-        <p>Sign In </p>
-      </button>
-      <ion-item id="footer">
-        <a (click)="navToSignup()" style="font-size: 14px;
-      color: #ffffff; 
-      text-align: justify;"> Don't have an account? Sign Up </a>
-        <br />
-        <br />
-        <a (click)="resendOTP()" style="font-size: 14px;
-      color: #ffffff; 
-      text-align: justify;"> Resend OTP </a>
-      </ion-item>
-    </ion-list>
-  </form>
+	<div class="roundedContainer loginContainer">
+		<ion-label>
+			<h1 class="">SIGN IN</h1>
+			<h6>Sign in using your email id.</h6>
+		</ion-label>
+  
+		<form *ngIf="form" class="commomForm formLogin" [formGroup]="form">
+			<ion-list>
+				<div class="ion-item-wrapper">
+					<ion-item>
+						<ion-input type="email" formControlName="emailaddress" placeholder="Email ID" (blur)="onInputBlue($event)"></ion-input>
+					</ion-item>
+					<ion-icon name="person"></ion-icon>
+					<div class="errorMsg">{{errorEmail}}</div>
+				</div>
+				<div class="ion-item-wrapper">
+					<ion-item>
+						<ion-input id="pass" type="password" formControlName="password" placeholder="Password"> </ion-input>
+					</ion-item>
+					<ion-icon name="lock"></ion-icon>
+					<div class="errorMsg">{{errorPassword}}</div>
+				</div>
+			</ion-list>
+			<button class="btn btn_login" ion-button block (click)="login()">
+			LOGIN
+			</button>
+		</form>
+		<div class="forgotPass" (click)="navToSignup()">
+			Don't have an account? Sign Up
+		</div>
+		<div class="forgotPass" (click)="resendOTP()">
+			Forgot Password ?
+		</div>
+		<div class="socialSignIn">
+			<div class="signInFacebook">
+				<div class="infoText">
+					Signin Using Facebook ID
+				</div>
+				<div (click)="facebookLogin()">
+					<ion-icon name="logo-facebook"></ion-icon>
+				</div>
+			</div>
+			{{users}}
+		</div>
+	</div>
 </ion-content>

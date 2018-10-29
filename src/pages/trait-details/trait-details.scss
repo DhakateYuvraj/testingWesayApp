@@ -1,0 +1,190 @@
+page-trait-details {
+	ion-header{
+		.button-md{
+			background:transparent;
+			box-shadow: none;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+		.button-md:hover:not(.disable-hover){
+			background:transparent;
+			ion-icon::before{
+				color:#0396FF
+			}
+		}
+		.toolbar-title{
+			margin-top:5px;
+		}
+	}
+	
+	.traitScore{
+		background:#f1f1f1;
+		.singleTraits {
+			margin-top:12px;
+			.close-icon{
+				color: #16a085;
+				position: absolute;
+				right: 0;
+				top: 0;
+				font-size: 1.3em;
+				padding: 5px 7px;
+			}
+			.pos-number,.neg-number {
+				width: 45px;
+				text-align: center;
+				padding: 2px;
+				position: absolute;
+				bottom: 0;
+				height: 100%;
+				padding-top:13%;
+				ion-icon{
+					display: block;
+					padding: 0;
+					margin: 0;
+					font-size: 2.5em;
+					line-height: 0.5em;
+				}
+			}
+			.pos-number{
+				left:0;
+				color:#00B32C
+			}
+			.neg-number {
+				right:0;
+				color:#DC3D2A;
+			}
+			.isMyContiNeg_y,.isMyContiPos_y,.isMyContiPos_Y,.isMyContiPos_Y{
+				.tempClass{
+					border:1px solid #ccc;
+				}
+			}
+			.item-md{
+				padding:0px;
+				border:none;
+				padding-left: 0 !important;
+				border: none;
+				background:#f1f1f1;
+			}
+		};
+		.traitAvgScore{
+			position: absolute;
+			width: 100%;
+			text-align: center;
+			font-size: 1.5em;
+			z-index: 1;
+		}
+	};
+		
+	.traitRating{
+		background:#fff;
+		/* .range-md-secondary .range-bar-active, .range-md-secondary .range-knob, .range-md-secondary .range-pin, .range-md-secondary .range-pin::before{
+		background-image: linear-gradient( 135deg, #FDD819 10%, #E80505 100%);
+		
+		} */
+		.ratingComponent{
+			min-width:400px;
+			width:80%;
+			margin:0 auto;
+			.traitRate{
+				border: 1px solid #ccc;
+				border-radius: 50%;
+				width: 25px;
+				height: 25px;
+				display: block;
+				text-align: center;
+				float: left;
+				padding: 5px 0px;
+				margin: 0 3px;
+				font-size: 12px;
+			}
+		}
+	}
+
+
+	.traitComments{
+		background:#fff;
+		.commentpost{
+			position:relative;
+			textarea{	
+				width: 100%;
+				border: 1px solid #ccc;
+				border-radius: 5px 5px 0 5px;
+				height: 50px;
+				margin-bottom: 35px;
+			}
+			button{
+				position: absolute;
+				margin-top: -35px;
+				padding: 10px 19px;
+				font-size: 15px;
+				background: #8cead3;
+				color:#fff;
+				right: 0px;
+				top: 85px;
+			}
+		}
+		.commentBox{
+			width: 96%;
+			margin: 0 auto 10px auto;
+			.commentArea{
+				.sectLeft{
+					width:15%;
+					float:left;
+					font-size:2em
+				}
+				.sectRight{
+					
+				}
+			}
+			.commentOperations{
+				.actionBtn{
+					padding:2px 5px;
+					margin:0px;
+				}
+				.actionBtn .rely,.rely ion-icon::before{
+					color:#8cead3;
+					font-size:1.5em;
+					padding:0 7px;
+				}
+				.actionBtn .like,.like ion-icon::before{
+					color:#38af38;
+					font-size:1.5em;
+					padding:0 7px;
+				}
+				.actionBtn .dislike,.dislike ion-icon::before{
+					color:#e73838;
+					font-size:1.5em;
+					padding:0 7px;
+				}
+			}
+		}
+	}
+
+
+
+	.traitAcceptanceOverlay{
+		.traitAcceptance{
+			background: #fff;
+			width: 50%;
+			margin: 70% auto;
+			padding: 5% 0;
+			.traitAction{
+				float:left;
+				text-align:center;
+				width:50%;
+				ion-icon{
+					display:block;
+					font-size:2.5em;
+				}
+			}
+			.agreeTrait{color:#38af38;}
+			.disagreeTrait{color:#e73838;}
+		}
+	}
+
+
+
+	
+	
+}

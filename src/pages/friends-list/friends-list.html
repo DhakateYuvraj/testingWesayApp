@@ -2,31 +2,40 @@
     <ion-navbar> 
       <ion-row> 
         <ion-col col-1>  
-          <ion-icon class="menu_icon" name="menu" (click)="toggleMenu()"></ion-icon>
+          <ion-icon class="menu_icon" name="menu" (click)="traitService.toggleMenu()"></ion-icon>
         </ion-col>
         <ion-col col-9>
           <ion-label class="header_label">My Contacts</ion-label> 
         </ion-col> 
         <ion-col col-2> 
-          <ion-icon class="profile_icon" name="contact" (click)="openProfilePage()"></ion-icon>
+		<div *ngIf="!showSyncContact">
+			<ion-icon ios="ios-refresh" md="md-refresh" (click)="syncContacts()" style="font-size:30px;position:absolute;top:3px;right:32px;"></ion-icon>
+		</div>
+		<div *ngIf="showSyncContact">
+			<ion-spinner name="bubbles" style="font-size:30px;position:absolute;top:3px;right:32px;color:#f00" ></ion-spinner>
+		</div>
         </ion-col>
       </ion-row>
     </ion-navbar>
   </ion-header>
 
-<ion-content #contentRef fullscreen (ionScroll)="scrollingFun($event)">
+<ion-content #contentRef fullscreen (ionScroll)="traitService.scrollingFun($event)">
   <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
   </ion-searchbar>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
 <ion-list>
-  myRecievedfriendrequest
-    <ion-item-sliding  *ngFor="let friend of friendList.myRecievedfriendrequest ; let i=index">
+
+    <ion-item-sliding class="frdRequestRecived"  *ngFor="let friend of friendList.myRecievedfriendrequest ; let i=index">
     <ion-item>
     <ion-row>
       <ion-col col-2 class="frdListPic">
         <ion-icon class="logo-contact" name="contact"></ion-icon>
       </ion-col>
       <ion-col col-7 class="frdListInfo">
-        <div class="frdname">{{ friend.friendUser.fullname }}</div> 
+        <div class="frdname">{{ friend.fullname }}</div> 
       </ion-col>	  
       <ion-col col-3 class="frdListInfo" (click)="acceptFrdRequest(friend)">
         <div class="frdname">Accept</div> 
@@ -44,17 +53,15 @@
 	  </button>
     </ion-item-options>
   </ion-item-sliding>
-
-	<hr />
-	<hr />myfriends
-  <ion-item-sliding  *ngFor="let friend of friendList.myfriends ; let i=index">
+  
+  <ion-item-sliding  class="friends" *ngFor="let friend of friendList.myfriends ; let i=index">
     <ion-item>
     <ion-row>
       <ion-col col-2 class="frdListPic" (click)="openFriendProfile(friend)">
         <ion-icon class="logo-contact" name="contact"></ion-icon>
       </ion-col>
       <ion-col col-7 class="frdListInfo" (click)="openFriendProfile(friend)">
-        <div class="frdname">{{ friend.friendUser.fullname }}</div> 
+        <div class="frdname">{{ friend.fullname }}</div> 
       </ion-col>	  
     </ion-row>
     </ion-item>
@@ -73,16 +80,16 @@
     </ion-item-options>
   </ion-item-sliding>
 
-	<hr />
-	<hr />mySentfriendrequest
-    <ion-item-sliding  *ngFor="let friend of friendList.mySentfriendrequest ; let i=index">
+
+	<hr />Friend Requests Sent
+    <ion-item-sliding class="frdRequestsSent"  *ngFor="let friend of friendList.mySentfriendrequest ; let i=index">
     <ion-item>
     <ion-row>
       <ion-col col-2 class="frdListPic">
         <ion-icon class="logo-contact" name="contact"></ion-icon>
       </ion-col>
       <ion-col col-7 class="frdListInfo">
-        <div class="frdname">{{ friend.user.fullname }}</div> 
+        <div class="frdname">{{ friend.fullname }}</div> 
       </ion-col>	  	  
     </ion-row>
     </ion-item>
@@ -98,9 +105,9 @@
     </ion-item-options>
   </ion-item-sliding>
 	
+
 	<hr />
-	<hr />myContactList
-    <ion-item-sliding  *ngFor="let friend of friendList.myContactList ; let i=index">
+    <ion-item-sliding class="allOtherContacts" *ngFor="let friend of friendList.myContactList ; let i=index">
     <ion-item>
     <ion-row>
       <ion-col col-2 class="frdListPic">
@@ -126,10 +133,9 @@
     </ion-item-options>
   </ion-item-sliding>
 	<hr />
-	<hr />
   <ion-item-sliding>
     <ion-item>
-    <ion-row>
+    <ion-row (click)="inviteFriend()">
       <ion-col col-2 class="frdListPic">
          <ion-icon md="md-share"></ion-icon>
       </ion-col>

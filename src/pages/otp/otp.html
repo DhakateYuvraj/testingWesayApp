@@ -1,31 +1,26 @@
-<!--
-  Generated template for the OtpPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-	<ion-navbar>
-		<ion-title>OTP</ion-title>
-	</ion-navbar>
-
-</ion-header>
-
-
-<ion-content>
-	<form [formGroup]="form">
-		<ion-list id="list">
-			<ion-item id="i1">
-				<ion-label floating class="input-label" style="color:#000000">OTP</ion-label>
-				<ion-input type="text" formControlName="otp"></ion-input>
-			</ion-item>
-
-			<button id="btn" ion-button full color="blue" (click)="valuateOtp()">
+<ion-content class="background">
+	<button class="transparentBackButton" ion-button navPop icon-only (click)="cancel()">
+		<ion-icon name="arrow-round-back" ></ion-icon>
+	</button>
+	<div class="roundedContainer otpContainer">
+		<ion-label>
+			<h1>Verification code</h1>
+			<h6>Please type verification code sent</h6>
+			<h6>to your registered email ID.</h6>
+		</ion-label>
+		<form *ngIf="form" class="commomForm formRegister" [formGroup]="form">
+			<ion-list>
+				<div class="ion-item-wrapper">
+					<ion-item>
+						<ion-input type="text" formControlName="otp" placeholder="OTP"></ion-input>
+					</ion-item>
+					<ion-icon name="person"></ion-icon>
+				</div>
+			</ion-list>
+			<br />		
+			<button class="btn btn_reg" ion-button block (click)="valuateOtp()">
 				<p>Submit</p>
 			</button>
-			<div class="resendOtp" (click)="resendOtp()">Resend OTP </div>
-		</ion-list>
-	</form>
-
+		</form>
+	</div>
 </ion-content>

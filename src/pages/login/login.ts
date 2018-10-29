@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
 import { SlidesPage } from '../slides/slides';
 import { AuthService } from '../../services/auth.service';
+import { TraitService } from '../../services/traits.service';
+import { Facebook } from '@ionic-native/facebook';
 
 @Component({
   selector: 'page-login',
@@ -10,20 +12,67 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginPage {
 
-  form: FormGroup;
-  //private contactlist: any[]; 
+	form: FormGroup;
+	private isLoggedIn:boolean = false;
+	private users: any;
 
-  constructor(private authService: AuthService, private toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, formBuilder: FormBuilder, public modalCtrl: ModalController) {
-    this.form = formBuilder.group({
-      emailaddress: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-  }
+  constructor(
+	  private authService: AuthService, 
+	  private traitService: TraitService, 
+	  private toastCtrl: ToastController, 
+	  public navCtrl: NavController, 
+	  public navParams: NavParams, 
+	  public formBuilder: FormBuilder, 
+	  public modalCtrl: ModalController,
+	  private fb: Facebook
+	) {
+		this.form = formBuilder.group({
+			emailaddress: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(50), Validators.required])],
+			password: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(15), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])]
+		});
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
+		fb.getLoginStatus()
+		.then(res => {
+			alert("getLoginStatus----->"+JSON.stringify(res));
+			console.log(res.status);
+			if(res.status === "connect") {
+				this.isLoggedIn = true;
+			} else {
+				this.isLoggedIn = false;
+			}
+		})
+		.catch(e => console.log(e));
+	}
 
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad LoginPage');
+		//.loginContainer console.log(window.screen.height*0.9);
+	}
+  
+	facebookLogin() {
+		this.fb.login(['public_profile', 'user_friends', 'email'])
+		.then(res => {
+			alert('facebookLogin===>'+JSON.stringify(res))
+			if(res.status === "connected") {
+				this.isLoggedIn = true;
+				this.getUserDetail(res.authResponse.userID);
+			} else {
+				this.isLoggedIn = false;
+			}
+		})
+		.catch(e => alert(e));
+	}
+
+	getUserDetail(userid) {
+		this.fb.api("/"+userid+"/?fields=id,email,name,picture,gender",["public_profile"])
+		.then(res => {
+			alert('getUserDetail--->'+JSON.stringify(res));
+			this.users = res;
+		})
+		.catch(e => {
+			console.log(e);
+		});
+	}
 
   navToSignup() {
     let addModal = this.modalCtrl.create('SignupPage');
@@ -37,31 +86,27 @@ export class LoginPage {
     this.navCtrl.push('ResendOtpPage');
   }
 
-  login() {
-    if (this.form.value.emailaddress != "" || this.form.value.password != "") {
-      this.authService.loginUser(this.form.value).subscribe(data => {
-        //console.log(data);
-        if (data.status == 'success') {
-          this.form.reset();
-          this.presentSuccessToast('login Successfully !');
-          this.authService.saveToken(data.auth_token)
-          this.navCtrl.setRoot(SlidesPage);
-        } else {
-          this.presentSuccessToast('Failed to login !');
-        }
-      });
-    } else {
-      this.presentSuccessToast('Username and Password Required');
-    }
-
+	login() {
+		this.traitService.loading.present();
+		if (this.form.value.emailaddress != "" || this.form.value.password != "") {
+			this.authService.loginUser(this.form.value).subscribe(data => {
+				this.traitService.loading.dismiss();
+				if (data.status == 'success') {
+					this.form.reset();
+					this.traitService.presentSuccessToast('login Successfully !');
+					this.authService.saveToken(data.auth_token);
+					this.navCtrl.setRoot('SlidesPage');
+				} else {
+					this.traitService.presentSuccessToast(data.email);
+					this.traitService.presentSuccessToast(data.passowrd);
+				}
+			});
+		} else {
+			this.traitService.presentSuccessToast('Failed to login !');
+		}
+	}
+  onInputBlue(event){
+	  console.log(event);
   }
 
-  presentSuccessToast(msg) {
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 2000,
-      position: 'middle'
-    });
-    toast.present();
-  }
 }

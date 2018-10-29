@@ -3,10 +3,6 @@ page-profile {
     .custom-input-style {margin-left:5px;width:78%;padding:5px;padding-left:10px;}
     .addCustomTraitBtn {border: 1px solid #2d9a64;background: #95d8e2;color: white;}
     .search-trait-style { padding: 0px;}
-
-    .menu_icon{
-        padding: 10px !important;
-    }
     [col-4] {
         padding: 2px;
     }
@@ -125,11 +121,7 @@ page-profile {
     ion-fab[bottom][edge] {
         bottom: 0;
         } 
-        .header_label{   
-            margin: 0 !important;
-            margin-left: 4px !important;
-            margin-top: 4px !important;
-        }
+
         .profile_icon{
             float: right;
             font-size: 1.8em; 
@@ -151,10 +143,6 @@ page-profile {
             color: white;
             font-size: none !important;
             margin-top: 3px !important;
-        }
-        .badge{
-            margin:0px;
-            padding:0px;
         }
         .card-md {
              margin: 1px;
@@ -193,19 +181,9 @@ page-profile {
             height: 67px;
             margin-left: 20px;
         }
-      .label-md {
-        // margin-top: 2px;
-        padding: inherit; 
-        }
-
         .input-wrapper{
             padding:0px;
             margin:0px;
-        }
-        .badge{
-            border: 1px solid #16a085;
-            padding:0px !important;
-            background: #fff;
         }
      
         .button-md{
@@ -221,16 +199,6 @@ page-profile {
             border-bottom: 1px solid #16a085;
 			background:#fff
         }
-        #eyeIcon{
-            margin-top:3px;
-            color:black;
-            background-color: inherit;
-        }
-       .badgeImage{
-       border-radius: 50%;
-       margin-left:54px;
-       margin-top:5px;
-       }
 
        .addtrticons{
         font-size: 49px;
@@ -250,75 +218,248 @@ page-profile {
 	}
 }
 
-	.singleTraits{
-		.item-md {
-			padding-left: 0 !important;
-			border: 1px solid #c5c5c5;
-		}
-		.close-icon{
-			color: #16a085;
-			position: absolute;
-			right: 0;
-			top: 0;
-			font-size: 1.3em;
-			padding: 5px 7px;
-		}
-		.pos-number,.neg-number {
-			width: 45px;
-			text-align: center;
-			padding: 2px;
-			position: absolute;
-			bottom: 0;
-			height: 100%;
-			padding-top:13%;
-			ion-icon{
-				display: block;
-				padding: 0;
-				margin: 0;
-				font-size: 2.5em;
-				line-height: 0.5em;
+	.badgeWrapper{
+		.bagdesToOthers{
+			margin:12px 0;
+			.badgeSection{
+				.badgeTitle{
+					text-align:center;
+				}
+				.badgeInfo{
+					width:123px;
+					margin:0 auto;
+					position:relative;
+				}
+				.addBadgeBtn{
+					color: #fff;
+					background: #03baef;
+					border-radius: 5px;
+					padding: 5px;
+					display: inline-block;
+					height: 25px;
+					width: 25px;
+					text-align: center;
+				}
+				.addBadgeIcons{
+					display:inline-block;
+					div{
+						display:inline-block;
+						margin-left: -22px;
+						height: 45px;
+						width: 45px;				
+					}
+				}
+			}
+			
+				.badgeCnt{
+					position:absolute;
+					right:5px;
+					top:0;
+				}
+			.badgesAvailable{
+				border-right:1px solid #ccc;
+				.addBadgeIcons{
+					float: right;
+					margin-right: 20px;
+					div{
+						float: right;
+					}
+				}
+				.addBadgeBtn{
+					margin-right: 9px;
+					margin-top: 10px;
+					float: right;
+				}
+			}
+			.badgesGiven{
+				border-left:1px solid #ccc;
+				.addBadgeIcons{
+					float: left;
+					margin-left: 20px;
+					div{
+						float:left;
+					}
+				}
+				.addBadgeBtn{
+					margin-left: -15px;
+					margin-top: 10px;
+				}
 			}
 		}
-		.pos-number{
-			left:0;
-			color:#00B32C
+		.bagdesToOwn{
+			.singleBadge:nth-child(odd) {
+				padding:0px 10px 10px 20px;
+				.badgeIcon{
+					left: 15px;
+				}
+				.badgeInfo{
+					float:right;
+					position:relative;
+					.badgeCount{
+						right: 0;
+					}
+				}				
+			}
+			.singleBadge:nth-child(even) {
+				padding:0px 20px 10px 10px;
+				.badgeIcon{
+					right: 15px;
+				}
+				.badgeInfo{
+					float:left;
+					position:relative;
+					.badgeCount{
+						left: 0;
+					}
+				}				
+			}
+			.singleBadge{
+				position:relative;
+				.badgeIcon{
+					position:absolute;
+					top: 0;
+					z-index: 1;
+				}
+				.badgeInfo{
+					position:relative;
+					width:85%;
+					height:100%;
+					background:#fff;
+					display:inline-block;
+					border-radius: 5px;
+					z-index: 0;
+					.badgeCaption{
+						padding:20px 25px;
+						line-height: 16px;						
+					}
+					.badgeCount{
+						position:absolute;
+						top: 0;
+						color: #fff;
+						background: #03baef;
+						border-radius: 5px;
+						padding: 2px;
+						height: 20px;
+						width: 25px;
+						text-align: center;
+					}
+				}
+			}
+			
 		}
-		.neg-number {
-			right:0;
-			color:#DC3D2A;
+	}
+	
+	
+	
+    .accordion-list {
+        background: color($colors, light);
+        height: 100%;
+    }
+    .section {
+        background: #fff;
+        color: #000;
+        margin-bottom: 4px;
+    }
+    .section-active {
+        background: #ffc400;
+        color: #fff;
+    }
+ 
+    .child {
+        background: #e8e7e6;
+        color: #000;
+        margin-bottom: 4px;
+    }
+    .child-item {
+        background: #f3f2f1;
+        padding: 10px;
+    }
+    .label {
+        margin: 0px;
+    }
+    .list {
+        margin-bottom: 4px;
+    }
+	.accordionSection{
+		height:150px;
+		overflow:auto;
+	
+	}
+	.traitComments{
+		background:#ddd;
+		margin-top:10px;
+		.commentpost{
+			position:relative;
+			textarea{	
+				width: 100%;
+				border: 1px solid #ccc;
+				border-radius: 5px 5px 0 5px;
+				height: 50px;
+				margin-bottom: 35px;
+			}
+			button{
+				position: absolute;
+				margin-top: -35px;
+				padding: 10px 19px;
+				font-size: 15px;
+				background: #8cead3;
+				color:#fff;
+				right: 0px;
+				top: 85px;
+			}
 		}
-		.isMyContiNeg_y,.isMyContiPos_y,.isMyContiPos_Y,.isMyContiPos_Y{
-			.tempClass{
-			border:1px solid #ccc;
+		.commentBox{
+			width: 96%;
+			margin: 0 auto 10px auto;
+			.commentArea{
+				.sectLeft{
+					width:15%;
+					float:left;
+					font-size:2em
+				}
+				.sectRight{
+					
+				}
+			}
+			.commentOperations{
+				.actionBtn{
+					padding:2px 5px;
+					margin:0px;
+				}
+				.actionBtn .rely,.rely ion-icon::before{
+					color:#8cead3;
+					font-size:1.5em;
+					padding:0 7px;
+				}
+				.actionBtn .like,.like ion-icon::before{
+					color:#38af38;
+					font-size:1.5em;
+					padding:0 7px;
+				}
+				.actionBtn .dislike,.dislike ion-icon::before{
+					color:#e73838;
+					font-size:1.5em;
+					padding:0 7px;
+				}
 			}
 		}
 	}
-	.userProfie{
-		background: rgba(255,255,255,0.8);padding: 10px 0;
-		.userPhoto{
-			text-align:center;
-			img{
-				width:60px;
-				/*border:1px solid #16a085; */
-				border-radius:50%
-			}
-		}
-		ion-col{
-			padding:0
-		}
-		.userName{font-size: 1.2em;}
-		.userAbout{padding:2px 5px 2px 0px;color:#999}
-		.userInfoLike{
-			padding: 0;
-			text-align:center;
-			color:#00c5cd;
-			ion-icon{
-				font-size: 2em;
-				display: block;
-				padding: 5px;
-			}
+	
+	
+	
+	
+	
+	
+	
+ion-content.anonymousMode{
+		border-bottom: 0px;
+		border-top: 0px;
+		border-right: 4px solid #f00;
+		border-left: 4px solid #f00;
+		.userProfie{
+		border-top: 4px solid #f00;
 		}
 	}
-
-	   
+	
+	
 }

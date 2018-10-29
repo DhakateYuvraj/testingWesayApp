@@ -1,0 +1,57 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title *ngIf="pageFor == 'availableBadges'">Badges Available</ion-title>
+		<ion-title *ngIf="pageFor == 'givenBadges'">Badges Given</ion-title>
+	</ion-navbar>
+</ion-header>
+<ion-content #contentRef fullscreen>
+	<ion-row class="userProfie">
+		<ion-col col-3 class="userPhoto">
+			<img src="assets/imgs/userIcon.png">
+		</ion-col>
+		<ion-col col-7 class="userInfo">
+			<div class="userName">
+			frdInfo.fullname
+			</div>
+			<div class="userAbout">
+				User status or little description of user 
+			</div>
+		</ion-col>
+		<ion-col col-2 class="userInfoLike">
+		
+		</ion-col>
+	</ion-row>
+	<div *ngIf="pageFor == 'availableBadges'">
+		<h4>Choose Badges</h4>
+		<ion-row class="bagdesToOwn">
+			<ion-col col-6 class="singleBadge clearfix" *ngFor="let avlbBadge of availableBadgesObj">
+				<div class="badgeIcon">
+					<img src="assets/imgs/badge_1.png">
+				</div>
+				<div class="badgeInfo">
+					<div class="badgeCaption">
+						{{avlbBadge.badgeName}}
+					</div>
+					<div class="badgeCount">
+						{{avlbBadge.badgeCount}}
+					</div>
+				</div>
+			</ion-col>
+			<ion-col col-6 class="singleBadge clearfix" (click)="openBadgesMasterList()">
+				<div class="badgeIcon">
+					<img src="assets/imgs/badge_2.png">
+				</div>
+				<div class="badgeInfo">
+					<div class="badgeCaption">
+						Add new badge
+					</div>
+				</div>
+			</ion-col>
+		</ion-row>
+	</div>
+	<div *ngIf="pageFor == 'givenBadges'">
+		<h4>Given Badges</h4>
+		<ion-row>
+		</ion-row>
+	</div>
+</ion-content>

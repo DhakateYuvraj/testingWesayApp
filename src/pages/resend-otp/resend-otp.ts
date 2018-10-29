@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { IonicPage, NavController, NavParams, ToastController, ViewController } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
+import { TraitService } from '../../services/traits.service';
 
 @IonicPage()
 @Component({
@@ -9,24 +10,43 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: 'resend-otp.html',
 })
 export class ResendOtpPage {
+  form: FormGroup;
 
-  public email;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private authService: AuthService) {
+  constructor(
+  private authService: AuthService, 
+  private traitService: TraitService, 
+  public navCtrl: NavController,
+  private toastCtrl: ToastController,
+  public viewCtrl: ViewController, 
+  public navParams: NavParams,
+  formBuilder: FormBuilder) {
+	  	  this.form = formBuilder.group({
+			email: [''],
+	  });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ResendOtpPage');
+    console.log('ionViewDidLoad OtpPage');
   }
-
-  resendOTP(email) {
-    this.authService.resendOTP(email).subscribe(data => {
-      if (data.status == 'success') {
-        this.navCtrl.push('OtpPage');
-      } else {
-        alert(JSON.stringify(data));
-      }
-    });
+  
+  submitEmail(){
+	 if (this.form.value.email != "") { 
+		this.authService.resendOTP(this.form.value).subscribe(data => {
+		//alert(JSON.stringify(data))
+		if (data.status == 'success') {
+			this.form.reset();
+			this.traitService.presentSuccessToast('OTP sent to your email');
+		} else {
+		this.traitService.presentSuccessToast('Failed to generate OTP!');
+		}
+		});
+    } else {
+     this.traitService.presentSuccessToast('All Field Required');
+    }
+  }
+  
+  cancel() {
+    this.viewCtrl.dismiss().catch(() => { }); 
   }
 
 }

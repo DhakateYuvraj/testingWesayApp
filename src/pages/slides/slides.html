@@ -1,48 +1,28 @@
-<ion-header>
-  <ion-navbar>
-    <ion-row>
-      <ion-col col-10>
-        <ion-title>Walkthrough</ion-title>
-      </ion-col>
-	  <!-- <ion-col col-2 style="text-align:right;" (click)="skip()">
-		<span class="pull-right">Skip</span>
-      </ion-col> -->
-     <!--  <ion-col col-2>
-        <ion-label style="color:blue" (click)="skip()">Skip</ion-label>
-      </ion-col> -->
-    </ion-row>
-  </ion-navbar>
-</ion-header>
-
-
-<ion-content><!-- autoplay="3000" loop -->
-  <ion-slides speed="1000" pager="true" spaceBetween="0"   (ionSlideWillChange)="slideChanged()">
-    <ion-slide>
-      <ion-card [ngClass]="{box1: currentIndex == 0}">
-        <p> <span class="title">Welcome to Wesay!</span>
-          <br>
-          <br> Wesay is a platform to help you understand 'What Everybody Says About You (WESAY)'.
-          <br>
-          <br> All feedback is completely anonymous so that you get to hear real feedback. If a friend wishes to disclose his
-          identity he may choose to do so.
-          <br>
-          <br> Lets start by identifying a few traits for you ...</p> <br><br>
-          <button end ion-button outline (click)="continue()">Next &nbsp;&nbsp;
-            <ion-icon name="ios-arrow-round-forward-outline"></ion-icon>
-          </button>
-      </ion-card>
-    </ion-slide>
-<!--     <ion-slide>
-      <ion-card [ngClass]="{box1: currentIndex == 2}">
-        <p><span class="title">Great! </span><br><br> Now let's add some friends to your WeSay circle. From your contacts below, invite the people who you would
-          like to hear feedback from. Remember, this is about the perception you create in society so even people who may
-          just have met you a few times can still give you valuable feedback. In short, the more people in your circle the
-          merrier ... <br><br>
-          <button end ion-button outline (click)="continue()">Next &nbsp;&nbsp;
-            <ion-icon name="ios-arrow-round-forward-outline"></ion-icon>
-          </button>
-        </p>
-      </ion-card>
-    </ion-slide> -->
-  </ion-slides>
+<ion-content class="background">
+	<div class="roundedContainer loginContainer">
+		<ion-slides speed="1000" pager="true" spaceBetween="0" (ionSlideWillChange)="slideChanged()">
+			<ion-slide>
+				<ion-card [ngClass]="{box1: currentIndex == 0}">
+					<span>
+						<h1 class="">WELCOME</h1>
+						<h5>Get to know us better.</h5>
+						<h5>
+							<br />
+							<br /> Wesay is a platform to help you understand 'What Everybody Says About You (WESAY).
+							<br />
+							<br /> All feedback is completely anonymous so that you get to hear real feedback. If a friend wishes to disclose his
+							identity he may choose to do so.
+							<br />
+							<br> Lets start by identifying a few traits for you ...
+						</h5>
+					</span>
+					<br />
+					<br />
+					<button end ion-button outline (click)="continue()">Next &nbsp;&nbsp;
+						<ion-icon name="ios-arrow-round-forward-outline"></ion-icon>
+					</button>
+				</ion-card>
+			</ion-slide>
+		</ion-slides>
+	</div>
 </ion-content>

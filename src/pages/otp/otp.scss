@@ -1,17 +1,11 @@
 page-otp {
-	.button{    background: #084242;
-    border: none;
-    border-radius: 23px;
-    width: 80%;
-    height: 45px;
-    margin: 30px auto;
-    line-height: 45px;
-    font-size: 1.2em;}
-	
-	.resendOtp{    padding: 5px;
-    margin: 0 auto;
-    display: block;
-    text-align: center;}
-	
-	
+	.background {
+		background-image: url("../assets/imgs/bg_login.jpg");
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		background-position: center; 
+	}
+	.otpContainer{
+		min-height: 350px;
+	}
 }
