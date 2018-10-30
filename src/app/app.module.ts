@@ -25,6 +25,7 @@ import { TraitDetailsPage } from '../pages/trait-details/trait-details';
 import { BadgesListPage } from '../pages/badges-list/badges-list';
 import { Facebook } from '@ionic-native/facebook';
 import { ExpandableComponent } from '../components/expandable/expandable'
+import { Push } from '@ionic-native/push';
 
 @NgModule({
 	declarations: [
@@ -65,7 +66,8 @@ import { ExpandableComponent } from '../components/expandable/expandable'
 		TraitService,
 		Contacts,
 		SocialSharing,
-		Facebook
+		Facebook,
+		Push
 	]
 })
 export class AppModule {}
