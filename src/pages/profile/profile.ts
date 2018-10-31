@@ -36,6 +36,7 @@ export class ProfilePage {
 	availableBadges;
 	availableBadgesCnt;
 	receivedBadgesObj;
+	givenBadgesCnt;
 	  
 	constructor(
 	public navCtrl: NavController, 
