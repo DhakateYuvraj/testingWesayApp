@@ -22,7 +22,7 @@ export class TraitDetailsPage {
 	public newTrait = false;
 	public frdId;
 	public frdProfile ;
-	
+	isAnonymous
 	constructor(public navCtrl: NavController, 
 				public navParams: NavParams, 
 				private storage: Storage, 
@@ -31,6 +31,8 @@ export class TraitDetailsPage {
 					
 		this.trait = navParams.get('trait');
 		this.frdInfo = navParams.get('frdInfo');
+		this.isAnonymous = navParams.get('isAnonymous');
+		this.isAnonymous = navParams.get('isAnonymous');
 		
 		if(!this.trait){
 			this.trait= {
@@ -84,10 +86,10 @@ export class TraitDetailsPage {
 			"userTraitId" : trait.usertraitid
 		}
 		this.traitService.getTraitDetails(trait_data, this.authToken).subscribe(data => {
-			alert(JSON.stringify(data));
+			//alert(JSON.stringify(data));
 			if (data.status == 'success') {
-				this.traitDetails = data.response
-				this.sliderValue = this.traitDetails.sliderValue
+				this.traitDetails = data.response;
+				this.sliderValue = this.traitDetails.sliderValue;
 			}else{
 				alert('Dummy Data');
 				this.traitDetails = {avgScore:4,sliderValue:5,hideTrait:0,hideCount:0,comments:{from:"Yuvraj Dhakte",time:"11:50AM",date:"12/12/12",text:"dummy comment"}}
@@ -186,11 +188,11 @@ export class TraitDetailsPage {
 		} else {
 			id = this.profileId.id;
 		}
-		let data = {
-			traitIdentifier : trait.traituniqueid,
-			traitId : trait.traitid,
-			vote : typeofvote,
-			modeOfVote : 0 //[1 = Anonymous, 0 = Public ]
+		let data = {			
+			isAnonymous: this.isAnonymous ? 1 : 0,
+			traitIdentifier: trait.traituniqueid,
+			userTraitId: trait.usertraitid,
+			voteType: typeofvote			
 		}	
 		this.traitService.giveVote(data, this.authToken).subscribe(data => {
 			if (data.status != "error") {

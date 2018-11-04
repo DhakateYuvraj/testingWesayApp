@@ -31,15 +31,15 @@
 		</ion-col>
 		<ion-col offset-3 col-6 class="singleTraits {{trait.traituniqueid}} isMyConti_{{trait.mytraitcontibution}}">
 			<ion-item >
-				<div class="pos-number isMyContiPos_{{trait.mypositive}}" (click)="giveVoteToFriend(trait,0)">
+				<div class="pos-number isMyContiPos_{{trait.mypositive}}" (click)="giveVoteToFriend(trait,1)">
 					<div class="tempClass">
 						{{trait.positive}}
 						<ion-icon name="arrow-dropup"></ion-icon>
 					</div>
 				</div>
-				<div class="neg-number isMyContiNeg_{{trait.mynegetive}}" (click)="giveVoteToFriend(trait,1)">
+				<div class="neg-number isMyContiNeg_{{trait.mynegative}}" (click)="giveVoteToFriend(trait,0)">
 					<div class="tempClass">
-						{{trait.negetive}}
+						{{trait.negative}}
 						<ion-icon name="arrow-dropdown"></ion-icon>
 					</div>
 				</div>
