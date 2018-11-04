@@ -38,10 +38,10 @@ export class AddUserPage {
 
 	addUser(){
 		if (this.form.value.emailaddress != '' && this.form.value.fullname != '' && this.form.value.mobilenumber != '') {
-			this.traitService.loading.present();
+			this.traitService.showLoading();
 			this.authService.addUser([this.form.value]).subscribe(data => {
 				console.log(data); 
-				this.traitService.loading.dismiss();
+				this.traitService.hideLoading();
 				if (data.status == 'success') {
 					this.form.reset();
 					this.traitService.presentSuccessToast('user added');

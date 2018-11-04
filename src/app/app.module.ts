@@ -25,6 +25,8 @@ import { TraitDetailsPage } from '../pages/trait-details/trait-details';
 import { BadgesListPage } from '../pages/badges-list/badges-list';
 import { Facebook } from '@ionic-native/facebook';
 import { ExpandableComponent } from '../components/expandable/expandable'
+import { LongPressModule } from 'ionic-long-press';
+import { ActionSheet } from '@ionic-native/action-sheet';
 
 @NgModule({
 	declarations: [
@@ -43,7 +45,8 @@ import { ExpandableComponent } from '../components/expandable/expandable'
 		BrowserModule,
 		IonicModule.forRoot(MyApp),
 		IonicStorageModule.forRoot(),
-		HttpModule
+		HttpModule,
+		LongPressModule
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
@@ -65,7 +68,8 @@ import { ExpandableComponent } from '../components/expandable/expandable'
 		TraitService,
 		Contacts,
 		SocialSharing,
-		Facebook
+		Facebook,
+		ActionSheet
 	]
 })
 export class AppModule {}

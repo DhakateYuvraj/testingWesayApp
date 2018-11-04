@@ -87,10 +87,10 @@ export class LoginPage {
   }
 
 	login() {
-		this.traitService.loading.present();
+		this.traitService.showLoading;
 		if (this.form.value.emailaddress != "" || this.form.value.password != "") {
 			this.authService.loginUser(this.form.value).subscribe(data => {
-				this.traitService.loading.dismiss();
+				this.traitService.hideLoading();
 				if (data.status == 'success') {
 					this.form.reset();
 					this.traitService.presentSuccessToast('login Successfully !');

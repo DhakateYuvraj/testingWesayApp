@@ -43,7 +43,12 @@
 			 </div>
 		</ion-col>
 	</ion-row>
-    <ion-segment [(ngModel)]="section">
+	
+	<!--
+	<button ion-button ion-long-press [interval]="400" (onPressStart)="openActionSheet()" (onPressing)="active()" (onPressEnd)="released()">test</button>
+	-->	
+	
+	<ion-segment [(ngModel)]="section">
         <ion-segment-button value="trait">
             <span class="tabs-font">Traits</span>
         </ion-segment-button>
@@ -245,12 +250,12 @@
 
 </div>
         <div *ngSwitchCase="'badges'" class="badgeWrapper">
-            <ion-row class="bagdesToOthers">
+            <ion-row class="bagdesToOthers" *ngIf="!frdProfile" >
                 <ion-col col-6 class="badgeSection badgesAvailable">
 					<div class="badgeTitle">
 						Available Badges
 					</div>
-					<div class="badgeInfo clearfix" (click)="openBadgesFor('availableBadges')">
+					<div class="badgeInfo clearfix" (click)="openBadgesFor('availableBadges','view')">
 						<div class="addBadgeIcons">
 							<div>
 								<img src="assets/imgs/badge_1.png">
@@ -292,6 +297,14 @@
                 </ion-col>
             </ion-row>
 			<ion-row class="bagdesToOwn">
+			<br/>
+                <ion-col col-6 class="singleBadge clearfix" *ngIf="frdProfile" (click)="openBadgesFor('availableBadges','give')">
+					<div class="badgeInfo">
+						<div class="badgeCaption">
+							Give a Badge
+						</div>
+					</div>
+				</ion-col>
                 <ion-col col-6 class="singleBadge clearfix" *ngFor="let recBadge of receivedBadgesObj">
 					<div class="badgeIcon">
 						<img src="assets/imgs/badge_1.png">

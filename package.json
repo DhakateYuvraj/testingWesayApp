@@ -21,6 +21,7 @@
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
     "@ionic-native-mocks/contacts": "^2.0.12",
+    "@ionic-native/action-sheet": "^4.17.0",
     "@ionic-native/camera-preview": "^4.10.0",
     "@ionic-native/contacts": "^4.10.0",
     "@ionic-native/core": "~4.10.0",

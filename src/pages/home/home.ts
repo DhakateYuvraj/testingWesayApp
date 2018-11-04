@@ -65,11 +65,10 @@ export class HomePage {
 
 
   getPopularTraits(token) {
-    this.traitService.presentLoadingDefault();
-    this.traitService.loading.present();
+    this.traitService.showLoading;
     this.traitService.getListOfPopularTraits(token).subscribe(data => {
       this.popularTraits = data.response;
-      this.traitService.loading.dismiss();
+      this.traitService.hideLoading();
     })
   }
 

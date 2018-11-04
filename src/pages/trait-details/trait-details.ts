@@ -36,7 +36,7 @@ export class TraitDetailsPage {
 			this.trait= {
 				"traitid": null,
 				"traitname": "Extroverted",
-				"traituniqueid": "3bed0feaa5fd53b04f7c7fc50cf905e0e3f0d2fc",
+				"traituniqueid": "0",
 				"traitdescripion": null,
 				"traiticonpath": null,
 				"positive": 1,
@@ -81,8 +81,7 @@ export class TraitDetailsPage {
   }
 	getTraitDetails(trait,token){
 		let trait_data = {
-			"userTraitId" : 414,
-			"traitIdentifier" : "3eec0d3324520fe5c4a760b1c9ea4d642c3aeb28",
+			"userTraitId" : trait.usertraitid
 		}
 		this.traitService.getTraitDetails(trait_data, this.authToken).subscribe(data => {
 			alert(JSON.stringify(data));
@@ -205,7 +204,7 @@ export class TraitDetailsPage {
 			id:frdId
 		}
 		this.traitService.getUserProfile(data, this.authToken).subscribe(data => {
-		alert(JSON.stringify(data));
+		//alert(JSON.stringify(data));
 		  if (data.status != "error") {
 			this.frdInfo = data.response
 		  }

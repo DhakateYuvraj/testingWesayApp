@@ -44,11 +44,7 @@ export class SignupPage {
 		this.form.valueChanges.subscribe((v) => {
 			this.isReadyToSave = this.form.valid;
 		});
-		this.presentLoadingDefault();
-	}
-
-	presentLoadingDefault() {
-		this.loading = this.loadingCtrl.create({spinner: 'bubbles'}); 
+		//this.presentLoadingDefault();
 	}
 
 	processWebImage(event) {
@@ -71,10 +67,9 @@ export class SignupPage {
 	done() {
 		this.form.value.dateofbirth = '22/02/2017';
 			if (this.form.value.emailaddress != '' && this.form.value.password != '' && this.form.value.retypepassword != '' && this.form.value.mobilenumber != '') {
-				this.presentLoadingDefault();
-				this.traitService.loading.present();
+				this.traitService.showLoading();
 				this.authService.registerUser(this.form.value).subscribe(data => {
-					this.traitService.loading.dismiss();
+					this.traitService.hideLoading();
 					if (data.status == 'success') {
 						this.form.reset();
 						this.traitService.presentSuccessToast('Please check your email for OTP');

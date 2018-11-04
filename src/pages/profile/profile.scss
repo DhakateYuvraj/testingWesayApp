@@ -219,8 +219,11 @@ page-profile {
 }
 
 	.badgeWrapper{
+		.bagdesToOwn{
+			margin:12px 0 0;
+		}
 		.bagdesToOthers{
-			margin:12px 0;
+			margin:12px 0 0;
 			.badgeSection{
 				.badgeTitle{
 					text-align:center;

@@ -69,7 +69,7 @@ export class TraitsListPage {
 
   presentLoadingDefault() {
     this.loading = this.loadingCtrl.create({ spinner: 'bubbles' });
-    this.traitService.loading.present();
+    this.traitService.showLoading();
   }
 
   loadNewTraits() {
@@ -90,14 +90,15 @@ export class TraitsListPage {
 
   getAllTraits(token) {
     if (this.loadNewTraits()) {
-      this.presentLoadingDefault();
+      //this.presentLoadingDefault();
+	  this.traitService.showLoading()
       this.traitService.getAllTrais(token).subscribe(data => {
         // console.log(data);
         this.allTraitsData = data.response;
         this.traitsMasterList = data.response;
         localStorage.setItem('activeTraits', JSON.stringify(this.allTraitsData))
         this.traitsMasterList = this.allTraitsData;
-        this.traitService.loading.dismiss();
+        this.traitService.hideLoading();
       });
     } else {
       let x = localStorage.getItem('activeTraits') ? localStorage.getItem('activeTraits') : '[]'

@@ -118,7 +118,7 @@ export class TraitService {
 
 	getTraitDetails(traitdata, token) {
 		this.createAuthenticationHeaders(token);
-		return this.http.post(rootApi + '/traits/details/', traitdata, this.options).map(res => res.json());
+		return this.http.post(rootApi + '/userTraits/details', traitdata, this.options).map(res => res.json());
 	}
 
 	hideTrait(traitdata, token) {
@@ -176,9 +176,9 @@ export class TraitService {
 		return this.http.get(rootApi + '/badge/availableBadges/', this.options).map(res => res.json());
 	}
 	
-	getReceivedBadges(token) {
+	getReceivedBadges(token,userId) {
 		this.createAuthenticationHeaders(token);
-		return this.http.get(rootApi + '/badge/receivedBadges/', this.options).map(res => res.json());
+		return this.http.get(rootApi + '/badge/receivedBadges/?userid='+userId, this.options).map(res => res.json());
 	}
 	
 	getGivenBadges(token) {
@@ -188,7 +188,12 @@ export class TraitService {
 	
 	getGivenBadgesCnt(token) {
 		this.createAuthenticationHeaders(token);
-		return this.http.get(rootApi + '/badge/givenBadgesCount/', this.options).map(res => res.json());
+		return this.http.get(rootApi + '/badge/givenBadgeCount/', this.options).map(res => res.json());
+	}
+	
+	giveBadgeToFriend(token,badgeInfo){
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/badge/giveBadge/', badgeInfo, this.options).map(res => res.json());
 	}
   
 }

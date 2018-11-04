@@ -4,6 +4,7 @@ import { Storage } from "@ionic/storage";
 import { FormControl } from '@angular/forms';
 import { TraitDetailsPage } from '../trait-details/trait-details';
 import { TraitService } from '../../services/traits.service';
+import { ActionSheet, ActionSheetOptions } from '@ionic-native/action-sheet';
 
 declare var $: any;
 
@@ -37,14 +38,16 @@ export class ProfilePage {
 	availableBadgesCnt;
 	receivedBadgesObj;
 	givenBadgesCnt;
-	  
+	
+	
 	constructor(
 	public navCtrl: NavController, 
 	public modalCtrl: ModalController,
 	private traitService: TraitService,
 	private storage: Storage, 
 	private alertCtrl: AlertController, 
-	public navParams: NavParams
+	public navParams: NavParams,
+	private actionSheet: ActionSheet
 	) {
 		this.frdInfo = navParams.get('frdInfo');
 		if (this.frdInfo !== undefined) {
@@ -115,7 +118,7 @@ export class ProfilePage {
 	this.traitService.getGivenBadgesCnt(this.authToken).subscribe(data => {
 		this.givenBadgesCnt = data
 	})
-	this.traitService.getReceivedBadges(this.authToken).subscribe(data => {
+	this.traitService.getReceivedBadges(this.authToken,this.frdId).subscribe(data => {
 		this.receivedBadgesObj = data.userBadgeList;
 	})
 
@@ -175,13 +178,14 @@ giveVoteToFriend(trait, typeofvote) {
 	let data = {
 		traitIdentifier : trait.traituniqueid,
 		traitId : trait.traitid,
+		userTraitId : trait.usertraitid,
 		voteType : typeofvote,
 		isAnonymous :  this.anonymousMode ? 1 : 0 //[1 = Anonymous, 0 = Public ]
 	}
     //this.traitService.addTraitToPage(data, this.authToken).subscribe(data => {
 	this.traitService.giveVote(data, this.authToken).subscribe(data => {
 		this.traitService.hideLoading();
-		alert(JSON.stringify(data)); 
+		//alert(JSON.stringify(data)); 
 		if (data.status != "error") {
 			this.getLoginUserTraits(this.authToken);
 		}
@@ -207,7 +211,7 @@ giveVoteToFriend(trait, typeofvote) {
     }
   }
 
-  addCustomTrait(traitname){ 
+  addCustomTrait(traitname){
     var id;
     if (this.profileId == null || this.profileId == undefined) { 
       id = 0;
@@ -240,10 +244,12 @@ giveVoteToFriend(trait, typeofvote) {
 		this.traitsMasterList = [];
 	}
   
-	openBadgesFor(pageName){
+	openBadgesFor(pageName,mode){
 		this.navCtrl.push('BadgeDetailsPage', {
 			pageFor: pageName,
-			frdInfo : this.frdInfo
+			frdInfo : this.frdInfo,
+			pageMode : mode,
+			isAnonymous :  this.anonymousMode ? 1 : 0 
 		});
 	}
 	
@@ -255,6 +261,38 @@ giveVoteToFriend(trait, typeofvote) {
 			this.traitService.presentSuccessToast('Private Mode');
 		}
 	}
+	
+	giveBadge(){
+	
+	}
+	
+	released(){
+	//alert('released');
+	}
+	active(){
+	//alert('active');
+	}
+	pressed(){
+	alert('pressed');
+	}
+	
+	
+openActionSheet(){
+let buttonLabels = ['Button 0', 'Button 1'];
+
+const options: ActionSheetOptions = {
+title: 'Action Sheet Title',
+subtitle: 'Choose an action',
+buttonLabels: buttonLabels,
+addCancelButtonWithLabel: 'Cancel',
+addDestructiveButtonWithLabel: 'Delete',
+destructiveButtonLast: true
+};
+
+this.actionSheet.show(options).then((buttonIndex: number) => {
+console.log('Button pressed: ' + buttonIndex);
+});
+}
 
 	scrollingFun(e) {
 		if (e.scrollTop > this.scrollHt) {
