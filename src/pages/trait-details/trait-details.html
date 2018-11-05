@@ -21,48 +21,47 @@
 			</div>
 		</ion-col>
 		<ion-col col-2 class="userInfoLike">
-			 <ion-icon name="thumbs-up"></ion-icon>
-			 999
+			
 		</ion-col>
 	</ion-row>
-	<ion-row class="traitScore">
+	<ion-row class="traitScore" *ngIf="traitDetails">
 		<ion-col offset-3 col-6 class="traitAvgScore">
-		{{traitDetails ? traitDetails.avgScore : 0}}
+		{{traitDetails ? traitDetails.totalRating : 0}}
 		</ion-col>
-		<ion-col offset-3 col-6 class="singleTraits {{trait.traituniqueid}} isMyConti_{{trait.mytraitcontibution}}">
+		<ion-col offset-3 col-6 class="singleTraits {{traitDetails.traitUniqueid}} isMyConti_{{traitDetails.mytraitcontibution}}">
 			<ion-item >
-				<div class="pos-number isMyContiPos_{{trait.mypositive}}" (click)="giveVoteToFriend(trait,1)">
+				<div class="pos-number isMyContiPos_{{traitDetails.myPositive}}" (click)="giveVoteToFriend(traitDetails,1)">
 					<div class="tempClass">
-						{{trait.positive}}
+						{{traitDetails.positiveCount}}
 						<ion-icon name="arrow-dropup"></ion-icon>
 					</div>
 				</div>
-				<div class="neg-number isMyContiNeg_{{trait.mynegative}}" (click)="giveVoteToFriend(trait,0)">
+				<div class="neg-number isMyContiNeg_{{traitDetails.myNegative}}" (click)="giveVoteToFriend(traitDetails,0)">
 					<div class="tempClass">
-						{{trait.negative}}
+						{{traitDetails.negativeCount}}
 						<ion-icon name="arrow-dropdown"></ion-icon>
 					</div>
 				</div>
-				<div class="traitIcon traitIcon_{{i}}" name="happy"></div>
-				<div class="traitName">{{trait.traitname}}</div>
+				<div class="traitIcon traitIcon_{{traitDetails.traitName | lowercase}}"></div>
+				<div class="traitName">{{traitDetails.traitName}}</div>
 			</ion-item>
 		</ion-col>
 	</ion-row>
-	<ion-row class="traitRating">
-		<ion-col col-12 class="singleTraits {{trait.traituniqueid}} isMyConti_{{trait.mytraitcontibution}}">
+	<ion-row class="traitRating" *ngIf="traitDetails">
+		<ion-col col-12 class="singleTraits {{traitDetails.traitUniqueid}} isMyConti_{{traitDetails.mytraitcontibution}}">
 			<h5>Rating</h5>
 			<div class="ratingComponent">
-				<span class="traitRate traitRate_0" (click)="sliderChange(trait,0)">0</span>
-				<span class="traitRate traitRate_1" (click)="sliderChange(trait,1)">1</span>
-				<span class="traitRate traitRate_2" (click)="sliderChange(trait,2)">2</span>
-				<span class="traitRate traitRate_3" (click)="sliderChange(trait,3)">3</span>
-				<span class="traitRate traitRate_4" (click)="sliderChange(trait,4)">4</span>
-				<span class="traitRate traitRate_5" (click)="sliderChange(trait,5)">5</span>
-				<span class="traitRate traitRate_6" (click)="sliderChange(trait,6)">6</span>
-				<span class="traitRate traitRate_7" (click)="sliderChange(trait,7)">7</span>
-				<span class="traitRate traitRate_8" (click)="sliderChange(trait,8)">8</span>
-				<span class="traitRate traitRate_9" (click)="sliderChange(trait,9)">9</span>
-				<span class="traitRate traitRate_10" (click)="sliderChange(trait,10)">10</span>
+				<span class="traitRate traitRate_0" [ngClass]="{'active': totalRatingRound === 0}" (click)="sliderChange(traitDetails,0)">0</span>
+				<span class="traitRate traitRate_1" [ngClass]="{'active': totalRatingRound === 1}" (click)="sliderChange(traitDetails,1)">1</span>
+				<span class="traitRate traitRate_2" [ngClass]="{'active': totalRatingRound === 2}" (click)="sliderChange(traitDetails,2)">2</span>
+				<span class="traitRate traitRate_3" [ngClass]="{'active': totalRatingRound === 3}" (click)="sliderChange(traitDetails,3)">3</span>
+				<span class="traitRate traitRate_4" [ngClass]="{'active': totalRatingRound === 4}" (click)="sliderChange(traitDetails,4)">4</span>
+				<span class="traitRate traitRate_5" [ngClass]="{'active': totalRatingRound === 5}" (click)="sliderChange(traitDetails,5)">5</span>
+				<span class="traitRate traitRate_6" [ngClass]="{'active': totalRatingRound === 6}" (click)="sliderChange(traitDetails,6)">6</span>
+				<span class="traitRate traitRate_7" [ngClass]="{'active': totalRatingRound === 7}" (click)="sliderChange(traitDetails,7)">7</span>
+				<span class="traitRate traitRate_8" [ngClass]="{'active': totalRatingRound === 8}" (click)="sliderChange(traitDetails,8)">8</span>
+				<span class="traitRate traitRate_9" [ngClass]="{'active': totalRatingRound === 9}" (click)="sliderChange(traitDetails,9)">9</span>
+				<span class="traitRate traitRate_10" [ngClass]="{'active': totalRatingRound === 10}" (click)="sliderChange(traitDetails,10)">10</span>
 			</div>
 			<!-- <ion-item>
 			<ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="sliderValue"  (ionChange)="sliderChange(trait)"></ion-range>

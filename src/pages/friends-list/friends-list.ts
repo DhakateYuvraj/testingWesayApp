@@ -28,6 +28,7 @@ export class FriendsListPage {
 	public selectFrd = false;
 	public badgeId;
 	public isAnonymous;
+	public token;
 	
 	constructor(
 	public navCtrl: NavController, 
@@ -46,6 +47,7 @@ export class FriendsListPage {
 		this.storage.get('token').then((token) => {
 			this.authToken = token;
 			this.getAllFriends(token);
+			this.token = token;
 		});
 	}
 

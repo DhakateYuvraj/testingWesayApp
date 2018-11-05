@@ -9,8 +9,8 @@ import { Storage } from "@ionic/storage";
   templateUrl: 'trait-details.html',
 })
 export class TraitDetailsPage {
-	public trait;
 	public authToken;
+	public publicVotes
 	public traitDetails;
 	public sliderValue = 5;
 	public comments;
@@ -22,40 +22,18 @@ export class TraitDetailsPage {
 	public newTrait = false;
 	public frdId;
 	public frdProfile ;
-	isAnonymous
+	public isAnonymous;
+	public totalRatingRound;
+	
 	constructor(public navCtrl: NavController, 
 				public navParams: NavParams, 
 				private storage: Storage, 
 				private traitService: TraitService, 
 				public popoverCtrl: PopoverController){
 					
-		this.trait = navParams.get('trait');
+		this.traitDetails = navParams.get('trait');
 		this.frdInfo = navParams.get('frdInfo');
 		this.isAnonymous = navParams.get('isAnonymous');
-		this.isAnonymous = navParams.get('isAnonymous');
-		
-		if(!this.trait){
-			this.trait= {
-				"traitid": null,
-				"traitname": "Extroverted",
-				"traituniqueid": "0",
-				"traitdescripion": null,
-				"traiticonpath": null,
-				"positive": 1,
-				"negetive": 0,
-				"nutral": 0,
-				"traittype": "predefined",
-				"isannonymous": 0,
-				"ishidden": 0,
-				"typeofvote": 0,
-				"fullname": null,
-				"creationdate": null,
-				"mytraitcontibution": 0,
-				"mypositive": "n",
-				"mynegetive": "n",
-				"myneutral": "n"
-			}
-		}
 		
 		if (this.frdInfo !== undefined && this.frdInfo.id) {
 			this.frdId = this.frdInfo.id;
@@ -74,28 +52,43 @@ export class TraitDetailsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad TraitDetailsPage');
   }
-  ionViewWillEnter() {
-    this.storage.get('token').then((token) => {
-		this.authToken = token;
-		this.getTraitDetails(this.trait,this.authToken);
-		this.getTraitComments(this.trait);
-    });
-  }
+  
+	ionViewWillEnter() {
+		this.storage.get('token').then((token) => {
+			this.authToken = token;
+			this.getTraitDetails(this.traitDetails,this.authToken);
+			this.getTraitComments(this.traitDetails);
+		});
+	}
+	
 	getTraitDetails(trait,token){
+		let taitId = trait.usertraitid ? trait.usertraitid : trait.userTraitId;
 		let trait_data = {
-			"userTraitId" : trait.usertraitid
+			"userTraitId" : taitId
 		}
 		this.traitService.getTraitDetails(trait_data, this.authToken).subscribe(data => {
-			//alert(JSON.stringify(data));
+			console.log(JSON.stringify(data.response));
 			if (data.status == 'success') {
-				this.traitDetails = data.response;
-				this.sliderValue = this.traitDetails.sliderValue;
+				this.traitDetails = data.response.userTraitDetailsResponsePojo;
+				this.totalRatingRound = Math.round(this.traitDetails.totalRating);
+				this.publicVotes = data.response.publicVotes;
 			}else{
-				alert('Dummy Data');
-				this.traitDetails = {avgScore:4,sliderValue:5,hideTrait:0,hideCount:0,comments:{from:"Yuvraj Dhakte",time:"11:50AM",date:"12/12/12",text:"dummy comment"}}
-				this.sliderValue = this.traitDetails.sliderValue
+				alert('Error');
 			}
 		});	
+	}
+	getTraitComments(trait){
+		let trait_data = {
+			comment: "string",
+			traitId: trait.traitid,
+			traitIdentifier: trait.traituniqueid
+		}
+		this.traitService.commentList(trait_data, this.authToken).subscribe(data => {
+			if (data.status == 'success') {
+				console.log(data.response);
+				this.comments = data.response
+			}
+		});
 	}
 	
 	sliderChange(trait,scoreClicked){
@@ -113,19 +106,6 @@ export class TraitDetailsPage {
 		});
 	}
 	
-	getTraitComments(trait){
-		let trait_data = {
-			comment: "string",
-			traitId: trait.traitid,
-			traitIdentifier: trait.traituniqueid
-		}
-		this.traitService.commentList(trait_data, this.authToken).subscribe(data => {
-			if (data.status == 'success') {
-				console.log(data.response);
-				this.comments = data.response
-			}
-		});
-	}
 	commentLikeDislike(commentId,likeDislike){
 		console.log(commentId);
 		let trait_data = {
@@ -142,13 +122,13 @@ export class TraitDetailsPage {
 	addNewComment(){
 		let trait_data = {
 			comment: this.newComment,
-			traitId: this.trait.traitid,
-			traitIdentifier: this.trait.traituniqueid
+			traitId: this.traitDetails.userTraitId,
+			traitIdentifier: this.traitDetails.traitUniqueid
 		}
 		this.traitService.commentAdd(trait_data, this.authToken).subscribe(data => {
 			if (data.status == 'success') {
 				this.newComment=null
-				this.getTraitComments(this.trait)
+				this.getTraitComments(this.traitDetails)
 			}
 		});
 	}
@@ -182,16 +162,10 @@ export class TraitDetailsPage {
 	}
 	
 	giveVoteToFriend(trait, typeofvote) {
-		let id;
-		if (this.profileId == null || this.profileId == undefined) {
-			id = 0;
-		} else {
-			id = this.profileId.id;
-		}
 		let data = {			
 			isAnonymous: this.isAnonymous ? 1 : 0,
-			traitIdentifier: trait.traituniqueid,
-			userTraitId: trait.usertraitid,
+			traitIdentifier: trait.traitUniqueid,
+			userTraitId: trait.userTraitId,
 			voteType: typeofvote			
 		}	
 		this.traitService.giveVote(data, this.authToken).subscribe(data => {
