@@ -1,0 +1,58 @@
+badge{
+	:nth-child(odd) {
+		padding:0px 10px 10px 20px;
+		.badgeIcon{
+			left: 15px;
+		}
+		.badgeInfo{
+			float:right;
+			position:relative;
+			.badgeCount{
+				right: 0;
+			}
+		}				
+	}
+	:nth-child(even) {
+		padding:0px 20px 10px 10px;
+		.badgeIcon{
+			right: 15px;
+		}
+		.badgeInfo{
+			float:left;
+			position:relative;
+			.badgeCount{
+				left: 0;
+			}
+		}				
+	}
+	.badgeIcon{
+		position:absolute;
+		top: 0;
+		z-index: 1;
+	}
+	.badgeInfo{
+		position:relative;
+		width:85%;
+		height:100%;
+		background:#fff;
+		display:inline-block;
+		border-radius: 5px;
+		z-index: 0;
+		.badgeCaption{
+			padding:20px 25px;
+			line-height: 16px;						
+		}
+		.badgeCount{
+			position:absolute;
+			top: 0;
+			color: #fff;
+			background: #03baef;
+			border-radius: 5px;
+			padding: 2px;
+			height: 20px;
+			width: 25px;
+			text-align: center;
+		}
+	}	
+	
+}

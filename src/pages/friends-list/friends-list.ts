@@ -17,15 +17,18 @@ declare var $: any;
 
 export class FriendsListPage {
 	@ViewChild("contentRef") contentHandle: Content;
-	scrollHt: number = 0;
-	topOrBottom;
-	contentBox;
-	tabBarHeight;
-	friendList = [];
+	public scrollHt: number = 0;
+	public topOrBottom;
+	public contentBox;
+	public tabBarHeight;
+	public friendList = [];
 	public allContacts: any
-	authToken;
+	public authToken;
 	public showSyncContact = false;
-
+	public selectFrd = false;
+	public badgeId;
+	public isAnonymous;
+	
 	constructor(
 	public navCtrl: NavController, 
 	public navParams: NavParams, 
@@ -36,6 +39,10 @@ export class FriendsListPage {
 	private contacts: Contacts, 
 	private socialSharing: SocialSharing
 	){
+		this.selectFrd = navParams.get('selectFrdMode') ? true : false;
+		this.badgeId = navParams.get('badgeId');
+		this.isAnonymous = navParams.get('isAnonymous');
+		
 		this.storage.get('token').then((token) => {
 			this.authToken = token;
 			this.getAllFriends(token);
@@ -51,9 +58,23 @@ export class FriendsListPage {
 	}
 	
 	openFriendProfile(frdInfo) {
-		this.navCtrl.push(ProfilePage, {
-			frdInfo: frdInfo
-		});
+		if(this.selectFrd){
+			this.traitService.showLoading();
+			let badgeInfo = {
+				badgeId:this.badgeId,
+				badgegivenfor:frdInfo.id,
+				isAnonymous :  this.isAnonymous ? 1 : 0 
+			}
+			this.traitService.giveBadgeToFriend(this.token,badgeInfo).subscribe(data => {
+				this.traitService.hideLoading();
+				this.navCtrl.pop();
+				this.traitService.presentSuccessToast('Badge given to '+this.frdInfo.fullname);
+			})
+		}else{
+			this.navCtrl.push(ProfilePage, {
+				frdInfo: frdInfo
+			});
+		}
 	}
 
 	sendFrdRequest(frdInfo) {

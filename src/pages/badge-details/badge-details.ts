@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { BadgesListPage } from '../badges-list/badges-list';
 import { Storage } from "@ionic/storage";
 import { TraitService } from '../../services/traits.service';
+import { FriendsListPage } from '../friends-list/friends-list';
 
 
 @IonicPage()
@@ -75,18 +76,31 @@ export class BadgeDetailsPage {
 		this.navCtrl.push('BadgesListPage');
 	}
 	
-	actionOnBadge(){
+	actionOnBadge(badge){
 		this.traitService.showLoading();
+
 		if(this.pageMode == 'view'){
 			this.traitService.hideLoading();
-		}else if(this.pageMode == 'give'){
-		let badgeInfo = {
-			badgeId:2,
-			badgegivenfor:5,
-			isAnonymous :  this.isAnonymous ? 1 : 0 
-		}
+			this.navCtrl.push(FriendsListPage, {
+				selectFrdMode: true,
+				badgeId:badge.badgeId,
+				isAnonymous :  this.isAnonymous ? 1 : 0 
+			});
+			
+		}else if(this.pageMode == 'give' && badge == 'newBadge'){	
+			this.openBadgesMasterList();
+		}else if(this.pageMode == 'give' && badge != 'newBadge'){
+			let badgeInfo = {
+				badgeId:badge.badgeId,
+				badgegivenfor:this.frdInfo.id,
+				isAnonymous :  this.isAnonymous ? 1 : 0 
+			}
 			this.traitService.giveBadgeToFriend(this.token,badgeInfo).subscribe(data => {
 				this.traitService.hideLoading();	
+				//if(data.response == 'success'){
+					this.traitService.presentSuccessToast('Badge given to '+this.frdInfo.fullname);
+					this.getBadgeInfo(this.token);
+				//}
 				console.log(JSON.stringify(data));
 			})
 		}

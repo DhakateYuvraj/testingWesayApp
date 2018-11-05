@@ -1,0 +1,31 @@
+<!-- 
+<div class="badgeIcon">
+	<img src="assets/imgs/badge_1.png">
+</div>
+<div class="badgeInfo">
+	<div class="badgeCaption">
+		Badge Caption
+	</div>
+	<div class="badgeCount">
+		99
+	</div>
+</div>
+-->
+<ion-row class="bagdesToOwn">
+	<ion-col col-6 class="singleBadge clearfix" *ngFor="let recBadge of receivedBadgesObj">
+		<!--
+		<div class="badgeIcon">
+			<img src="assets/imgs/badge_1.png">
+		</div>
+		<div class="badgeInfo">
+			<div class="badgeCaption">
+				{{recBadge.badgeName}}
+			</div>
+			<div class="badgeCount">
+				{{recBadge.badgeCount}}
+			</div>
+		</div>
+		-->
+		<badge></badge>
+	</ion-col>
+</ion-row>
