@@ -69,12 +69,17 @@ export class FriendsListPage {
 			}
 			this.traitService.giveBadgeToFriend(this.token,badgeInfo).subscribe(data => {
 				this.traitService.hideLoading();
-				this.navCtrl.pop();
-				this.traitService.presentSuccessToast('Badge given to '+this.frdInfo.fullname);
+				//this.navCtrl.pop();
+				this.traitService.presentSuccessToast('Badge given to '+frdInfo.fullname);				
+				this.navCtrl.push(ProfilePage, {
+					frdInfo: frdInfo,
+					tabOpen: 'badges'
+				});
 			})
 		}else{
 			this.navCtrl.push(ProfilePage, {
-				frdInfo: frdInfo
+				frdInfo: frdInfo,
+				tabOpen: 'trait'
 			});
 		}
 	}

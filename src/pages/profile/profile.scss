@@ -119,7 +119,7 @@ page-profile {
         background-color: #16a085 !important;
     }
     ion-fab[bottom][edge] {
-        bottom: 0;
+        bottom: 100px;
         } 
 
         .profile_icon{
@@ -128,9 +128,6 @@ page-profile {
             color: white !important;
             padding-top: 6px;
             padding-right: 8px;
-        }
-        ion-fab[bottom][edge] {
-            bottom: 0;
         }
         ion-fab[right] {
             right: 0px;

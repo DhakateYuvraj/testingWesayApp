@@ -15,6 +15,7 @@ export class LoginPage {
 	form: FormGroup;
 	private isLoggedIn:boolean = false;
 	private users: any;
+	public loading;
 
   constructor(
 	  private authService: AuthService, 
@@ -33,8 +34,6 @@ export class LoginPage {
 
 		fb.getLoginStatus()
 		.then(res => {
-			alert("getLoginStatus----->"+JSON.stringify(res));
-			console.log(res.status);
 			if(res.status === "connect") {
 				this.isLoggedIn = true;
 			} else {
@@ -42,6 +41,11 @@ export class LoginPage {
 			}
 		})
 		.catch(e => console.log(e));
+		this.presentLoadingDefault();
+	}
+
+	presentLoadingDefault() {
+		this.loading = this.loadingCtrl.create({ spinner: 'bubbles' });
 	}
 
 	ionViewDidLoad() {
@@ -87,23 +91,41 @@ export class LoginPage {
   }
 
 	login() {
-		this.traitService.showLoading;
+	alert(0);
+		//this.traitService.showLoading;
+			this.presentLoadingDefault();
+			this.loading.present();
+	alert(1);
+	alert(this.form.value.emailaddress);
+	alert(this.form.value.password);
 		if (this.form.value.emailaddress != "" || this.form.value.password != "") {
+	alert(2);
+	alert(JSON.stringify(this.form.value));
 			this.authService.loginUser(this.form.value).subscribe(data => {
-				this.traitService.hideLoading();
+	alert(3);
+				//this.traitService.hideLoading();
+			//this.loading.dismiss();
+	alert(4);
 				if (data.status == 'success') {
-					this.form.reset();
+	alert(5);
+					//this.form.reset();
 					this.traitService.presentSuccessToast('login Successfully !');
-					this.authService.saveToken(data.auth_token);
-					this.navCtrl.setRoot('SlidesPage');
+			
+	alert(6);		this.authService.saveToken(data.auth_token);
+			
+	alert(7);		//this.navCtrl.setRoot('SlidesPage');
 				} else {
+				
+	alert(8);
 					this.traitService.presentSuccessToast(data.email);
 					this.traitService.presentSuccessToast(data.passowrd);
 				}
 			});
 		} else {
+		alert(9);
 			this.traitService.presentSuccessToast('Failed to login !');
 		}
+		alert(10);
 	}
   onInputBlue(event){
 	  console.log(event);

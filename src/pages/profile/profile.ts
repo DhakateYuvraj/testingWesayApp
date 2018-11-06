@@ -50,6 +50,8 @@ export class ProfilePage {
 	private actionSheet: ActionSheet
 	) {
 		this.frdInfo = navParams.get('frdInfo');
+		let tabOpen = navParams.get('tabOpen') ? navParams.get('tabOpen') : 'trait';
+		this.section = tabOpen;
 		if (this.frdInfo !== undefined) {
 			this.frdId = this.frdInfo.id;
 			this.profileId = { id: this.frdId };

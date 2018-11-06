@@ -23,7 +23,7 @@ export class TraitDetailsPage {
 	public frdId;
 	public frdProfile ;
 	public isAnonymous;
-	public totalRatingRound;
+	public myRatingRound;
 	
 	constructor(public navCtrl: NavController, 
 				public navParams: NavParams, 
@@ -70,7 +70,7 @@ export class TraitDetailsPage {
 			console.log(JSON.stringify(data.response));
 			if (data.status == 'success') {
 				this.traitDetails = data.response.userTraitDetailsResponsePojo;
-				this.totalRatingRound = Math.round(this.traitDetails.totalRating);
+				this.myRatingRound = this.traitDetails.rating;
 				this.publicVotes = data.response.publicVotes;
 			}else{
 				alert('Error');
@@ -115,7 +115,7 @@ export class TraitDetailsPage {
 		this.traitService.commentLikeDislike(trait_data, this.authToken).subscribe(data => {
 			if (data.status == 'success') {
 				alert(JSON.stringify(data));
-				this.getTraitComments(this.trait)
+				this.getTraitComments(this.traitDetails)
 			}
 		});
 	}
@@ -150,12 +150,12 @@ export class TraitDetailsPage {
 			alert(JSON.stringify(data));
 			if (data.status == 'success') {
 				alert(JSON.stringify(data));
-				this.getTraitComments(this.trait)
+				this.getTraitComments(this.traitDetails)
 			}
 		});
 	}
 	presentPopover(myEvent) {
-		let popover = this.popoverCtrl.create('TraitDetailsMenuPage',{trait:this.trait,traitDetails:this.traitDetails});
+		let popover = this.popoverCtrl.create('TraitDetailsMenuPage',{trait:this.traitDetails,traitDetails:this.traitDetails});
 		popover.present({
 			ev: myEvent
 		});

@@ -22,6 +22,9 @@ page-trait-details {
 		background:#f1f1f1;
 		.singleTraits {
 			margin-top:12px;
+			.label-md{
+				text-align:center;
+			}
 			.close-icon{
 				color: #16a085;
 				position: absolute;
@@ -97,14 +100,46 @@ page-trait-details {
 				padding: 5px 0px;
 				margin: 0 3px;
 				font-size: 12px;
-				
+			}
+			.traitRate_0{
+				background:#FF0000;
+			}
+			.traitRate_1{
+				background:#FF3400;
+			}
+			.traitRate_2{
+				background:#FF6900;
+			}
+			.traitRate_3{
+				background:#FF9E00;
+			}
+			.traitRate_4{
+				background:#FFD300;
+			}
+			.traitRate_5{
+				background:#F7FF00;
+			}
+			.traitRate_6{
+				background:#C2FF00;
+			}
+			.traitRate_7{
+				background:#8DFF00;
+			}
+			.traitRate_8{
+				background:#58FF00;
+			}
+			.traitRate_9{
+				background:#24FF00;
+			}
+			.traitRate_10{
+				background:#00FF00;
 			}
 		}
 	}
 	.traitRate.active{
-		background:#f88;
+		border: 2px solid #00f !important;
+		font-weight: bold;
 	}
-
 
 	.traitComments{
 		background:#fff;
