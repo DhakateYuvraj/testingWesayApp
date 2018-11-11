@@ -27,6 +27,10 @@ page-badge-details {
 				}
 			}				
 		}
+		.singleBadge.selected .badgeInfo{
+			background:#ccc;
+			border:1px solid #888;
+		}
 		.singleBadge{
 			position:relative;
 			.badgeIcon{

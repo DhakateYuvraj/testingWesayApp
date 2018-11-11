@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavController, NavParams, ModalController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, ToastController, LoadingController } from 'ionic-angular';
 import { SlidesPage } from '../slides/slides';
 import { AuthService } from '../../services/auth.service';
 import { TraitService } from '../../services/traits.service';
@@ -25,6 +25,7 @@ export class LoginPage {
 	  public navParams: NavParams, 
 	  public formBuilder: FormBuilder, 
 	  public modalCtrl: ModalController,
+	  private loadingCtrl: LoadingController, 
 	  private fb: Facebook
 	) {
 		this.form = formBuilder.group({
@@ -91,41 +92,37 @@ export class LoginPage {
   }
 
 	login() {
-	alert(0);
-		//this.traitService.showLoading;
+	//alert(0);
+		this.traitService.showLoading;
 			this.presentLoadingDefault();
 			this.loading.present();
-	alert(1);
-	alert(this.form.value.emailaddress);
-	alert(this.form.value.password);
+	//alert(1);
+	//alert(this.form.value.emailaddress);
+	//alert(this.form.value.password);
 		if (this.form.value.emailaddress != "" || this.form.value.password != "") {
-	alert(2);
-	alert(JSON.stringify(this.form.value));
+	//alert(2);
+	//alert(JSON.stringify(this.form.value));
 			this.authService.loginUser(this.form.value).subscribe(data => {
-	alert(3);
-				//this.traitService.hideLoading();
-			//this.loading.dismiss();
-	alert(4);
+
+				this.traitService.hideLoading();
+			this.loading.dismiss();
+
 				if (data.status == 'success') {
-	alert(5);
-					//this.form.reset();
-					this.traitService.presentSuccessToast('login Successfully !');
-			
-	alert(6);		this.authService.saveToken(data.auth_token);
-			
-	alert(7);		//this.navCtrl.setRoot('SlidesPage');
+			this.traitService.presentSuccessToast('login Successfully !');
+			this.authService.saveToken(data.auth_token);
+			this.navCtrl.setRoot('SlidesPage');
 				} else {
 				
-	alert(8);
+	//alert(8);
 					this.traitService.presentSuccessToast(data.email);
 					this.traitService.presentSuccessToast(data.passowrd);
 				}
 			});
 		} else {
-		alert(9);
+		//alert(9);
 			this.traitService.presentSuccessToast('Failed to login !');
 		}
-		alert(10);
+		//alert(10);
 	}
   onInputBlue(event){
 	  console.log(event);

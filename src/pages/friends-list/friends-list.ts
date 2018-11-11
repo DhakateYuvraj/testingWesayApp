@@ -63,7 +63,7 @@ export class FriendsListPage {
 		if(this.selectFrd){
 			this.traitService.showLoading();
 			let badgeInfo = {
-				badgeId:this.badgeId,
+				badgeid:[this.badgeId],
 				badgegivenfor:frdInfo.id,
 				isAnonymous :  this.isAnonymous ? 1 : 0 
 			}

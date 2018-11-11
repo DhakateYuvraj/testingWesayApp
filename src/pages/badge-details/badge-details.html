@@ -24,7 +24,7 @@
 	<div *ngIf="pageFor == 'availableBadges'">
 		<h4>Choose Badges</h4>
 		<ion-row class="bagdesToOwn">
-			<ion-col col-6 class="singleBadge clearfix" *ngFor="let avlbBadge of availableBadgesObj" (click)="actionOnBadge(avlbBadge)">
+			<ion-col col-6 class="singleBadge clearfix" *ngFor="let avlbBadge of availableBadgesObj" [ngClass]="{'selected': (selectedBadges.indexOf(avlbBadge.badgeId) > -1) }"  (click)="actionOnBadge(avlbBadge)">
 				<div class="badgeIcon">
 					<img src="assets/imgs/badge_1.png">
 				</div>
@@ -48,6 +48,7 @@
 				</div>
 			</ion-col>
 		</ion-row>
+		<button class="addPageBtn" ion-button full (click)="giveBadge()" *ngIf="frdInfo.id != 0" [disabled]="!(selectedBadges && selectedBadges.length != 0)" style="background:#006D6A">Give a Badge</button>
 	</div>
 	<div *ngIf="pageFor == 'givenBadges'">
 		<h4>Given Badges</h4>

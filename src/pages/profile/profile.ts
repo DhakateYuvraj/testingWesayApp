@@ -239,6 +239,7 @@ giveVoteToFriend(trait, typeofvote) {
 		}
 		this.traitService.getUserProfile(data, this.authToken).subscribe(data => {
 			this.frdInfo = data.response;
+			this.frdInfo.id = frdId;
 		})
 	}
 	

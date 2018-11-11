@@ -1,7 +1,7 @@
 <ion-header>
 	<ion-navbar>
 		<ion-title>Trait Details</ion-title>
-		<button ion-button icon-only (click)="presentPopover($event)">
+		<button ion-button icon-only *ngIf="!frdProfile" (click)="presentPopover($event)">
 			<ion-icon name="more"></ion-icon>
 		</button>
 	</ion-navbar>
@@ -17,7 +17,11 @@
 			{{frdInfo.fullname}}
 			</div>
 			<div class="userAbout">
-				User status or little description of user 
+				<span *ngIf="traitDetails.isHidden">Trait Hiddden</span>
+				<span *ngIf="!traitDetails.isHidden">Trait Visible</span>
+				|
+				<span *ngIf="traitDetails.isTraitCountHidden">Count Hiddden</span>
+				<span *ngIf="!traitDetails.isTraitCountHidden">Count Visible</span>
 			</div>
 		</ion-col>
 		<ion-col col-2 class="userInfoLike">
@@ -25,20 +29,20 @@
 		</ion-col>
 	</ion-row>
 	<ion-row class="traitScore" *ngIf="traitDetails">
-		<ion-col offset-3 col-6 class="traitAvgScore">
+		<ion-col offset-3 col-6 class="traitAvgScore" *ngIf="showCount">
 		{{traitDetails ? traitDetails.totalRating : 0}}
 		</ion-col>
 		<ion-col offset-3 col-6 class="singleTraits {{traitDetails.traitUniqueid}} isMyConti_{{traitDetails.mytraitcontibution}}">
 			<ion-item >
 				<div class="pos-number isMyContiPos_{{traitDetails.myPositive}}" (click)="giveVoteToFriend(traitDetails,1)">
 					<div class="tempClass">
-						{{traitDetails.positiveCount}}
+						<span *ngIf="showCount">{{traitDetails.positiveCount}}</span>
 						<ion-icon name="arrow-dropup"></ion-icon>
 					</div>
 				</div>
 				<div class="neg-number isMyContiNeg_{{traitDetails.myNegative}}" (click)="giveVoteToFriend(traitDetails,0)">
 					<div class="tempClass">
-						{{traitDetails.negativeCount}}
+						<span *ngIf="showCount">{{traitDetails.negativeCount}}</span>
 						<ion-icon name="arrow-dropdown"></ion-icon>
 					</div>
 				</div>

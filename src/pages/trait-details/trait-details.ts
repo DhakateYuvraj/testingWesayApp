@@ -24,6 +24,7 @@ export class TraitDetailsPage {
 	public frdProfile ;
 	public isAnonymous;
 	public myRatingRound;
+	public showCount = true;
 	
 	constructor(public navCtrl: NavController, 
 				public navParams: NavParams, 
@@ -45,7 +46,7 @@ export class TraitDetailsPage {
 			this.frdProfile = false;
 			this.frdInfo = {fullname : "MyName Dont hv Data"}
 		}
-		this.getUserProfile(this.frdId)
+		//this.getUserProfile(this.frdId)
 	}	
 
 
@@ -58,6 +59,7 @@ export class TraitDetailsPage {
 			this.authToken = token;
 			this.getTraitDetails(this.traitDetails,this.authToken);
 			this.getTraitComments(this.traitDetails);
+			this.getUserProfile(this.frdId)
 		});
 	}
 	
@@ -72,10 +74,16 @@ export class TraitDetailsPage {
 				this.traitDetails = data.response.userTraitDetailsResponsePojo;
 				this.myRatingRound = this.traitDetails.rating;
 				this.publicVotes = data.response.publicVotes;
+				if(this.frdProfile && this.traitDetails.isTraitCountHidden){
+					this.showCount = false
+				}
 			}else{
 				alert('Error');
 			}
 		});	
+	}
+	getTraitData(){
+		this.getTraitDetails(this.traitDetails,this.authToken)
 	}
 	getTraitComments(trait){
 		let trait_data = {
@@ -94,8 +102,8 @@ export class TraitDetailsPage {
 	sliderChange(trait,scoreClicked){
 		this.sliderValue = scoreClicked
 		let trait_data = {
-			userTraitId : trait.traitid,
-			traitIdentifier: trait.traituniqueid,
+			userTraitId : trait.usertraitid ? trait.usertraitid : trait.userTraitId,
+			traitIdentifier: trait.traituniqueid ? trait.traituniqueid : trait.traitUniqueid,
 			rating: this.sliderValue,
 		}
 		this.traitService.customPoints(trait_data, this.authToken).subscribe(data => {
@@ -155,7 +163,7 @@ export class TraitDetailsPage {
 		});
 	}
 	presentPopover(myEvent) {
-		let popover = this.popoverCtrl.create('TraitDetailsMenuPage',{trait:this.traitDetails,traitDetails:this.traitDetails});
+		let popover = this.popoverCtrl.create('TraitDetailsMenuPage',{traitDetails:this.traitDetails,homeRef: this});
 		popover.present({
 			ev: myEvent
 		});
@@ -182,7 +190,9 @@ export class TraitDetailsPage {
 		this.traitService.getUserProfile(data, this.authToken).subscribe(data => {
 		//alert(JSON.stringify(data));
 		  if (data.status != "error") {
-			this.frdInfo = data.response
+			this.frdInfo = data.response;
+			this.frdInfo.frdId = 0;
+			this.frdId = 0;
 		  }
 		})
 	}

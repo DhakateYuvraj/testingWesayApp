@@ -27,6 +27,7 @@ export class TraitService {
 	}
 
 	showLoading(){
+		this.presentLoadingDefault();
 		//if(!this.loading){
 			this.presentLoadingDefault();
 			this.loading.present();
@@ -123,12 +124,12 @@ export class TraitService {
 
 	hideTrait(traitdata, token) {
 		this.createAuthenticationHeaders(token);
-		return this.http.post(rootApi + '/userzone/hideTrait/', traitdata, this.options).map(res => res.json());
+		return this.http.post(rootApi + '/traitapi/hideUnhideTraitForUser/', traitdata, this.options).map(res => res.json());
 	}
 
 	hideTraitCount(traitdata, token) {
 		this.createAuthenticationHeaders(token);
-		return this.http.post(rootApi + '/userzone/hideTraitCount/', traitdata, this.options).map(res => res.json());
+		return this.http.post(rootApi + '/traitapi/traits/hideUnhideCount/', traitdata, this.options).map(res => res.json());
 	}
 	
 	customPoints(traitdata, token) {

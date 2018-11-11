@@ -21,6 +21,7 @@ export class BadgeDetailsPage {
 	public token;
 	public isAddNewBadge = false;
 	public availableBadgesCnt;
+	public selectedBadges = [];
 	
 	constructor(
 	public navCtrl: NavController, 
@@ -77,7 +78,7 @@ export class BadgeDetailsPage {
 	}
 	
 	actionOnBadge(badge){
-		this.traitService.showLoading();
+		//this.traitService.showLoading();
 
 		if(this.pageMode == 'view'){
 			this.traitService.hideLoading();
@@ -90,22 +91,31 @@ export class BadgeDetailsPage {
 		}else if(this.pageMode == 'give' && badge == 'newBadge'){	
 			this.openBadgesMasterList();
 		}else if(this.pageMode == 'give' && badge != 'newBadge'){
+			if(this.selectedBadges.indexOf(badge.badgeId) > -1){
+				this.selectedBadges.splice(this.selectedBadges.indexOf(badge.badgeId),1);
+			}else{
+				this.selectedBadges.push(badge.badgeId);
+			}
+			console.log(this.selectedBadges);
+		}
+	}
+	
+	giveBadge(){
+		if(this.selectedBadges.length > 0){
+			this.traitService.showLoading();
 			let badgeInfo = {
-				badgeId:badge.badgeId,
+				badgeid:this.selectedBadges,
 				badgegivenfor:this.frdInfo.id,
 				isAnonymous :  this.isAnonymous ? 1 : 0 
 			}
 			this.traitService.giveBadgeToFriend(this.token,badgeInfo).subscribe(data => {
-				this.traitService.hideLoading();	
-				//if(data.response == 'success'){
-					this.traitService.presentSuccessToast('Badge given to '+this.frdInfo.fullname);
-					this.getBadgeInfo(this.token);
-				//}
-				console.log(JSON.stringify(data));
+				this.traitService.hideLoading();
+				this.traitService.presentSuccessToast('Badge given to '+this.frdInfo.fullname);
+				//this.getBadgeInfo(this.token);
+				this.navCtrl.pop();
 			})
 		}
 	}
-	
 	
 	
 	

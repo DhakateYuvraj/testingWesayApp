@@ -1,4 +1,5 @@
 page-profile {
+	.hideTrait{display:none;}
     .scroll-content { height: 100%; }
     .custom-input-style {margin-left:5px;width:78%;padding:5px;padding-left:10px;}
     .addCustomTraitBtn {border: 1px solid #2d9a64;background: #95d8e2;color: white;}
@@ -107,7 +108,7 @@ page-profile {
         float: right;
         font-size: 16px;
         color: #FFF;
-        background: #16a085;
+        background: #006D6A;
         position: absolute;
         top: 5px;
         right: 6px;
@@ -116,7 +117,7 @@ page-profile {
     }
     .fab-md {
         color: #FFF !important;
-        background-color: #16a085 !important;
+        background-color: #006D6A !important;
     }
     ion-fab[bottom][edge] {
         bottom: 100px;

@@ -56,6 +56,8 @@ export class AuthService {
 
 	// Function to login user
 	loginUser(user) {
+	//alert(1231);
+	//alert(JSON.stringify(user));
 		return this.http.post(rootApi + '/api/loginviaemail/', user, this.options).map(res => res.json());
 	}
 
