@@ -135,7 +135,7 @@ export class TraitDetailsPage {
 	addNewComment(parentCommentId){
 		this.replyTo = parentCommentId ? parentCommentId : 0;
 		let trait_data = {
-			comment: this.newComment,
+			comment: this.newComment ? this.newComment : this.newReplyComment,
 			userTraitId: this.traitDetails.usertraitid ? this.traitDetails.usertraitid : this.traitDetails.userTraitId,
 			parentCommentId: this.replyTo,
 			traitIdentifier: this.traitDetails.traituniqueid ? this.traitDetails.traituniqueid : this.traitDetails.traitUniqueid

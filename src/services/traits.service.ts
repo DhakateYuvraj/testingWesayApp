@@ -178,7 +178,7 @@ export class TraitService {
 	
 	getBadgesMasterList(token) {
 		this.createAuthenticationHeaders(token);
-		return this.http.get(rootApi + '/badge/getBadgeGallary/', this.options).map(res => res.json());
+		return this.http.get(rootApi + '/badge/getBadgeGallery/', this.options).map(res => res.json());
 	}
 	
 	getAvailableBadgesCnt(token) {

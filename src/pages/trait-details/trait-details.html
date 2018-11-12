@@ -105,7 +105,7 @@
 						<ion-icon name="share-alt"></ion-icon>Reply
 					</span>					
 				</div>
-				<div [ngClass]="{'hide':replyTo != comment.commentId}">
+				<div [ngClass]="{'hide':replyTo != comment.commentId}" style="margin-left:20px;">
 					<div class="commentpost">
 						<textarea [(ngModel)]="newReplyComment" >
 						</textarea>
@@ -123,7 +123,7 @@
 						<span (click)="commentLikeDislike(commentReply.commentId,2)">Dislike: {{commentReply.disLikeCount}}</span>
 						<span>Date: {{commentReply.commentDate}}</span>
 					</div>
-					<div [ngClass]="{'hide':replyTo != commentReply.commentId}">1234
+					<div [ngClass]="{'hide':replyTo != commentReply.commentId}">
 						<div class="commentpost">
 							<textarea [(ngModel)]="newReplyComment" >
 							</textarea>
@@ -134,6 +134,17 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</ion-col>
+	</ion-row>
+	<ion-row class="traitPublicVoting" *ngIf="publicVotes">
+		<ion-col col-12 class="singleTraits">
+			<h5>Public Votes</h5>
+			<div *ngFor="let vote of publicVotes">
+				<div><strong>Voter name</strong> --> <span>{{vote.votersName}}</span></div>
+				<div><strong>Agree Or Disagree</strong> --> <span>{{vote.agreeOrDisagree}}</span></div>
+				<div><strong>Rating</strong> --> <span>{{vote.rating}}</span></div>
+				<br />
 			</div>
 		</ion-col>
 	</ion-row>

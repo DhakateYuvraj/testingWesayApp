@@ -49,7 +49,7 @@ export class BadgesListPage {
 	
 	getBadgesMasterList(){
 		this.traitService.getBadgesMasterList(this.token).subscribe(data => {
-console.log(data);
+		console.log(data);
 		})
 	}
 	
