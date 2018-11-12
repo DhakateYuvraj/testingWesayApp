@@ -93,7 +93,7 @@ export class HomePage {
 
 
   masterListAddSelectClass() {
-    let TIME_IN_MS = 10;
+    let TIME_IN_MS = 5;
     setTimeout(() => {
       $('.singleTraits').removeClass('checkedStyle');
       $('.masterListStyle').removeClass('checkedStyle');

@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Storage } from "@ionic/storage";
+import { TraitService } from '../../services/traits.service';
 
 /**
  * Generated class for the BadgesListPage page.
@@ -19,18 +21,40 @@ export class BadgesListPage {
 	searchControl: FormControl; 
 	search_string;
 	selectedBadges = [];
+	token;
+	
+	
 	
 	public badgeMasterList = [{badgename:'badge name'},{badgename:'badge name 1'},{badgename:'badge name 2'},{badgename:'badge name 3'}];
 	public allBadgesData = [{badgename:'badge name'},{badgename:'badge name 1'},{badgename:'badge name 2'},{badgename:'badge name 3'}];
 	
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
-		this.searchControl = new FormControl();		
-	}
+	constructor(public navCtrl: NavController, 
+		public navParams: NavParams,
+		private storage: Storage,
+		private traitService: TraitService) {
+			this.searchControl = new FormControl();		
+		}
 
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad BadgesListPage');
+		console.log('ionViewDidLoad Badges');	
 	}
-
+	
+	
+	ionViewWillEnter() {
+		this.storage.get('token').then((token) => {
+			this.token = token;
+			this.getBadgesMasterList(token);
+		});	
+	}
+	
+	getBadgesMasterList(){
+		this.traitService.getBadgesMasterList(this.token).subscribe(data => {
+console.log(data);
+		})
+	}
+	
+	
+	
 	filterBadges() {
 		let str = this.search_string;
 		if (str && str.trim() != '') {

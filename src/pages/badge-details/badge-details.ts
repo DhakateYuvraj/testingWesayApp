@@ -80,17 +80,18 @@ export class BadgeDetailsPage {
 	actionOnBadge(badge){
 		//this.traitService.showLoading();
 
-		if(this.pageMode == 'view'){
+		if(this.pageMode == 'view' && badge == 'newBadge'){
+			this.openBadgesMasterList();
+		} else if(this.pageMode == 'view' && badge != 'newBadge'){
 			this.traitService.hideLoading();
 			this.navCtrl.push(FriendsListPage, {
 				selectFrdMode: true,
 				badgeId:badge.badgeId,
 				isAnonymous :  this.isAnonymous ? 1 : 0 
-			});
-			
-		}else if(this.pageMode == 'give' && badge == 'newBadge'){	
+			});		
+		} else if(this.pageMode == 'give' && badge == 'newBadge'){	
 			this.openBadgesMasterList();
-		}else if(this.pageMode == 'give' && badge != 'newBadge'){
+		} else if(this.pageMode == 'give' && badge != 'newBadge'){
 			if(this.selectedBadges.indexOf(badge.badgeId) > -1){
 				this.selectedBadges.splice(this.selectedBadges.indexOf(badge.badgeId),1);
 			}else{

@@ -97,10 +97,10 @@ export class TraitService {
 		return this.http.post(rootApi + '/userTraits/getMyTraits/', profile, this.options).map(res => res.json());
 	}
 
-	deleteTrait(trait, token) {
+	/* deleteTrait(trait, token) {
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/traitapi/deleteTrait/', trait, this.options).map(res => res.json());
-	}
+	} */
 
 	getMyFriendList(token) {
 		this.createAuthenticationHeaders(token);
@@ -172,6 +172,15 @@ export class TraitService {
 		return this.http.post(rootApi + '/api/user/details/', userdata, this.options).map(res => res.json());
 	}
 	
+	
+	
+	
+	
+	getBadgesMasterList(token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.get(rootApi + '/badge/getBadgeGallary/', this.options).map(res => res.json());
+	}
+	
 	getAvailableBadgesCnt(token) {
 		this.createAuthenticationHeaders(token);
 		return this.http.get(rootApi + '/badge/availableBadgeCount/', this.options).map(res => res.json());
@@ -201,5 +210,10 @@ export class TraitService {
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/badge/giveBadge/', badgeInfo, this.options).map(res => res.json());
 	}
+	
+	
+	
+	
+	
   
 }
