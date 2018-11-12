@@ -50,7 +50,7 @@ export class TraitDetailsMenuPage {
 		});
 	}
   
-	hideUnhideCount(trait){
+	hideUnhideCount(){
     //this.traitService.loading.present();
 		let trait_data = {
 			userTraitId: this.traitDetails.userTraitId,
@@ -67,22 +67,19 @@ export class TraitDetailsMenuPage {
 		});
 	}
 
-	deleteTrait(trait){
-    /*
-	//this.traitService.loading.present();
+	deleteTrait(){
 		let trait_data = {
-			traituniqueid: trait.traituniqueid,
-			traitname: trait.traitname,
-			traitgivenfor: '0'
+			userTraitId: this.traitDetails.userTraitId
 		}
 		this.traitService.deleteTrait(trait_data, this.authToken).subscribe(data => {
-			//this.traitService.loading.dismiss();
-			alert(JSON.stringify(data));
-			if (data.status == 'success') {
-				//this.getTraitDetails(trait,this.authToken);
-			}
+			this.viewCtrl.dismiss();
+			this.homeRef.getTraitData("back");
+			console.log(this.navCtrl)
+			//setTimeout(() => {
+			//	this.navCtrl.pop();
+			//}, 5000);
+			
 		});
-		*/
 	}
 	
 }

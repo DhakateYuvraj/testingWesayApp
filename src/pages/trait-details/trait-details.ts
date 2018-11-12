@@ -82,14 +82,17 @@ export class TraitDetailsPage {
 			}
 		});	
 	}
-	getTraitData(){
+	getTraitData(param){
 		this.getTraitDetails(this.traitDetails,this.authToken)
+		if(param && param == "back"){
+			this.navCtrl.pop();
+		}
 	}
 	getTraitComments(trait){
 		let trait_data = {
-			comment: "string",
-			traitId: trait.traitid,
-			traitIdentifier: trait.traituniqueid
+			//comment: "string",
+			//traitIdentifier: trait.traituniqueid,
+			userTraitId : trait.usertraitid ? trait.usertraitid : trait.userTraitId
 		}
 		this.traitService.commentList(trait_data, this.authToken).subscribe(data => {
 			if (data.status == 'success') {
@@ -118,7 +121,9 @@ export class TraitDetailsPage {
 		console.log(commentId);
 		let trait_data = {
 			commentId: commentId,
-			like: likeDislike
+			like: likeDislike,			
+			userTraitId : this.traitDetails.usertraitid ? this.traitDetails.usertraitid : this.traitDetails.userTraitId,
+			traitIdentifier: this.traitDetails.traituniqueid ? this.traitDetails.traituniqueid : this.traitDetails.traitUniqueid,
 		}
 		this.traitService.commentLikeDislike(trait_data, this.authToken).subscribe(data => {
 			if (data.status == 'success') {
@@ -127,11 +132,13 @@ export class TraitDetailsPage {
 			}
 		});
 	}
-	addNewComment(){
+	addNewComment(parentCommentId){
+		this.replyTo = parentCommentId ? parentCommentId : 0;
 		let trait_data = {
 			comment: this.newComment,
-			traitId: this.traitDetails.userTraitId,
-			traitIdentifier: this.traitDetails.traitUniqueid
+			userTraitId: this.traitDetails.usertraitid ? this.traitDetails.usertraitid : this.traitDetails.userTraitId,
+			parentCommentId: this.replyTo,
+			traitIdentifier: this.traitDetails.traituniqueid ? this.traitDetails.traituniqueid : this.traitDetails.traitUniqueid
 		}
 		this.traitService.commentAdd(trait_data, this.authToken).subscribe(data => {
 			if (data.status == 'success') {
@@ -149,7 +156,7 @@ export class TraitDetailsPage {
 		}
 	}
 	
-	addNewReplyComment(commentId){
+	/* addNewReplyComment(commentId){
 		let trait_data = {
 			comment: this.newReplyComment,
 			traitId: commentId
@@ -161,7 +168,7 @@ export class TraitDetailsPage {
 				this.getTraitComments(this.traitDetails)
 			}
 		});
-	}
+	} */
 	presentPopover(myEvent) {
 		let popover = this.popoverCtrl.create('TraitDetailsMenuPage',{traitDetails:this.traitDetails,homeRef: this});
 		popover.present({

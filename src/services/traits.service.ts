@@ -131,6 +131,11 @@ export class TraitService {
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/traitapi/traits/hideUnhideCount/', traitdata, this.options).map(res => res.json());
 	}
+
+	deleteTrait(traitdata, token) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/traitapi/deleteUserTrait/', traitdata, this.options).map(res => res.json());
+	}
 	
 	customPoints(traitdata, token) {
 		this.createAuthenticationHeaders(token);
