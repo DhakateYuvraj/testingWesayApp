@@ -19,7 +19,7 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content #contentRef (ionScroll)="scrollingFun($event)"  [ngClass]="anonymousMode ? 'anonymousMode' : 'privateMode'">
+<ion-content #contentRef (ionScroll)="traitService.scrollingFun($event)" [ngClass]="traitService.isAnonymousMode() ? 'anonymousMode' : 'privateMode'">
 	<ion-row class="userProfie">
 		<ion-col col-3 class="userPhoto">
 			<img src="assets/imgs/userIcon.png">
@@ -32,14 +32,12 @@
 				User status or little description of user 
 			</div>
 		</ion-col>
-		<ion-col col-2 class="userInfoLike" (click)="changeVisibilityMode()">
-			 <div *ngIf="!anonymousMode" >
+		<ion-col col-2 class="userInfoLike" (click)="traitService.changeVisibilityMode()">
+			 <div *ngIf="!traitService.isAnonymousMode()" >
 				 <ion-icon name="eye"></ion-icon>
-				 <!-- <div>Public mode</div> -->
 			 </div>
-			 <div *ngIf="anonymousMode" >
+			 <div *ngIf="traitService.isAnonymousMode()" >
 				 <ion-icon name="eye-off"></ion-icon>
-				 <!-- <div>Anonymous mode</div> -->
 			 </div>
 		</ion-col>
 	</ion-row>

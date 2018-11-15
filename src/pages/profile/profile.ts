@@ -32,7 +32,6 @@ export class ProfilePage {
 	traitsMasterList;
 	master_list;
 	search_string;
-	anonymousMode;
 	information: any[];
 	availableBadges;
 	availableBadgesCnt;
@@ -182,7 +181,7 @@ giveVoteToFriend(trait, typeofvote) {
 		traitId : trait.traitid,
 		userTraitId : trait.usertraitid,
 		voteType : typeofvote,
-		isAnonymous :  this.anonymousMode ? 1 : 0 //[1 = Anonymous, 0 = Public ]
+		isAnonymous :  this.traitService.isAnonymousMode() ? 1 : 0 //[1 = Anonymous, 0 = Public ]
 	}
     //this.traitService.addTraitToPage(data, this.authToken).subscribe(data => {
 	this.traitService.giveVote(data, this.authToken).subscribe(data => {
@@ -252,17 +251,8 @@ giveVoteToFriend(trait, typeofvote) {
 			pageFor: pageName,
 			frdInfo : this.frdInfo,
 			pageMode : mode,
-			isAnonymous :  this.anonymousMode ? 1 : 0 
+			isAnonymous :  this.traitService.getVisibilityMode() ? 1 : 0 
 		});
-	}
-	
-	changeVisibilityMode(){
-		this.anonymousMode = !this.anonymousMode;
-		if(this.anonymousMode){
-			this.traitService.presentSuccessToast('Anonymous Mode');
-		}else{
-			this.traitService.presentSuccessToast('Private Mode');
-		}
 	}
 	
 	giveBadge(){
@@ -297,22 +287,5 @@ console.log('Button pressed: ' + buttonIndex);
 });
 }
 
-	scrollingFun(e) {
-		if (e.scrollTop > this.scrollHt) {
-			$(".tabbar").css("display", "none");
-			if (this.topOrBottom == "top") {
-				this.contentBox.marginTop = 0;
-			} else if (this.topOrBottom == "bottom") {
-				this.contentBox.marginBottom = 0;
-			}
-		} else {
-			$(".tabbar").css("display", "flex");
-			if (this.topOrBottom == "top") {
-				this.contentBox.marginTop = this.tabBarHeight;
-			} else if (this.topOrBottom == "bottom") {
-				this.contentBox.marginBottom = this.tabBarHeight;
-			}
-		}
-		this.scrollHt = e.scrollTop;
-	}
+	
 }

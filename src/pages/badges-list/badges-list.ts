@@ -43,7 +43,7 @@ export class BadgesListPage {
 	ionViewWillEnter() {
 		this.storage.get('token').then((token) => {
 			this.token = token;
-			this.getBadgesMasterList(token);
+			this.getBadgesMasterList();
 		});	
 	}
 	

@@ -19,7 +19,7 @@ page-trait-details {
 	}
 	
 	.traitScore{
-		background:#f1f1f1;
+		/*background:#f1f1f1;*/
 		.singleTraits {
 			margin-top:12px;
 			.label-md{
@@ -78,7 +78,8 @@ page-trait-details {
 			z-index: 1;
 		}
 	};
-		
+	.contentMainPanel {
+		padding: 0 10px;
 	.traitRating{
 		background:#fff;
 		/* .range-md-secondary .range-bar-active, .range-md-secondary .range-knob, .range-md-secondary .range-pin, .range-md-secondary .range-pin::before{
@@ -86,7 +87,7 @@ page-trait-details {
 		
 		} */
 		.ratingComponent{
-			min-width:400px;
+			min-width:300px;
 			width:80%;
 			margin:0 auto;
 			.traitRate{
@@ -98,7 +99,7 @@ page-trait-details {
 				text-align: center;
 				float: left;
 				padding: 5px 0px;
-				margin: 0 3px;
+				margin: 3px;
 				font-size: 12px;
 			}
 			.traitRate_0{
@@ -157,7 +158,7 @@ page-trait-details {
 				margin-top: -35px;
 				padding: 10px 19px;
 				font-size: 15px;
-				background: #8cead3;
+				background: #00c5cd;
 				color:#fff;
 				right: 0px;
 				top: 85px;
@@ -168,39 +169,67 @@ page-trait-details {
 			margin: 0 auto 10px auto;
 			.commentArea{
 				.sectLeft{
-					width:15%;
+					width:40px;
 					float:left;
 					font-size:2em
 				}
 				.sectRight{
-					
+					margin-left:40px;
+					.commentDate{
+						font-size:0.8em;
+						color:#999;
+					}
 				}
 			}
 			.commentOperations{
+				margin-left:40px;
 				.actionBtn{
-					padding:2px 5px;
-					margin:0px;
+					padding: 4px 5px 4px 0px;
+					margin: 0px;
+					height: 30px;
+					display: inline-block;
 				}
-				.actionBtn .rely,.rely ion-icon::before{
-					color:#8cead3;
-					font-size:1.5em;
+				.actionBtn ion-icon::before{
+					font-size:1.2em;
 					padding:0 7px;
 				}
-				.actionBtn .like,.like ion-icon::before{
+				.actionBtn.reply{
+					color:#00c5cd;
+				}
+				.actionBtn.like{
 					color:#38af38;
-					font-size:1.5em;
-					padding:0 7px;
 				}
-				.actionBtn .dislike,.dislike ion-icon::before{
+				.actionBtn.dislike{
 					color:#e73838;
-					font-size:1.5em;
-					padding:0 7px;
+				}
+				.actionBtn span{
+					font-size:1.3em;
 				}
 			}
 		}
 	}
 
-
+	
+	
+	.panelHeader{
+		font-size: 1.3em;
+		padding: 5px;
+		background: #ddd;
+		border-radius: 5px;
+		padding-left: 15px;
+	}
+	.panelContent{
+		padding: 10px 5px;
+		border-bottom: 1px solid #000;	
+	}
+	
+	
+	
+	.traitPublicVoting {
+		background:#fff;
+		
+	}
+}
 
 	.traitAcceptanceOverlay{
 		.traitAcceptance{

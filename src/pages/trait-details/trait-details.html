@@ -7,7 +7,7 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content #contentRef fullscreen>
+<ion-content #contentRef (ionScroll)="traitService.scrollingFun($event)" [ngClass]="traitService.isAnonymousMode() ? 'anonymousMode' : 'privateMode'">
 	<ion-row class="userProfie">
 		<ion-col col-3 class="userPhoto">
 			<img src="assets/imgs/userIcon.png">
@@ -16,7 +16,7 @@
 			<div class="userName">
 			{{frdInfo.fullname}}
 			</div>
-			<div class="userAbout">
+			<div class="userAbout" *ngIf="traitDetails">
 				<span *ngIf="traitDetails.isHidden">Trait Hiddden</span>
 				<span *ngIf="!traitDetails.isHidden">Trait Visible</span>
 				|
@@ -24,8 +24,14 @@
 				<span *ngIf="!traitDetails.isTraitCountHidden">Count Visible</span>
 			</div>
 		</ion-col>
-		<ion-col col-2 class="userInfoLike">
-			
+		
+		<ion-col col-2 class="userInfoLike" (click)="traitService.changeVisibilityMode()">
+			 <div *ngIf="!traitService.isAnonymousMode()" >
+				 <ion-icon name="eye"></ion-icon>
+			 </div>
+			 <div *ngIf="traitService.isAnonymousMode()" >
+				 <ion-icon name="eye-off"></ion-icon>
+			 </div>
 		</ion-col>
 	</ion-row>
 	<ion-row class="traitScore" *ngIf="traitDetails">
@@ -51,10 +57,14 @@
 			</ion-item>
 		</ion-col>
 	</ion-row>
+	<div class="contentMainPanel">
 	<ion-row class="traitRating" *ngIf="traitDetails">
-		<ion-col col-12 class="singleTraits {{traitDetails.traitUniqueid}} isMyConti_{{traitDetails.mytraitcontibution}}">
-			<h5>Rating</h5>
-			<div class="ratingComponent">
+		<ion-col col-12>
+		<div class="panelHeader" (click)="traitService.togglePanel('rating')" [ngClass]="{active: traitService.isPanelShow('rating')}">
+			<span>Rating</span>
+		</div>
+		<div class="panelContent" [ngClass]="{hidePanel: traitService.isPanelShow('rating')}">
+			<div class="ratingComponent clearfix">
 				<span class="traitRate traitRate_0" [ngClass]="{'active': myRatingRound === 0}" (click)="sliderChange(traitDetails,0)">0</span>
 				<span class="traitRate traitRate_1" [ngClass]="{'active': myRatingRound === 1}" (click)="sliderChange(traitDetails,1)">1</span>
 				<span class="traitRate traitRate_2" [ngClass]="{'active': myRatingRound === 2}" (click)="sliderChange(traitDetails,2)">2</span>
@@ -67,6 +77,7 @@
 				<span class="traitRate traitRate_9" [ngClass]="{'active': myRatingRound === 9}" (click)="sliderChange(traitDetails,9)">9</span>
 				<span class="traitRate traitRate_10" [ngClass]="{'active': myRatingRound === 10}" (click)="sliderChange(traitDetails,10)">10</span>
 			</div>
+		</div>
 			<!-- <ion-item>
 			<ion-range min="0" max="10" step="1" snaps="true" color="secondary" [(ngModel)]="sliderValue"  (ionChange)="sliderChange(trait)"></ion-range>
 			</ion-item> -->
@@ -74,46 +85,40 @@
 	</ion-row>
 	<ion-row class="traitComments">
 		<ion-col col-12>
-		<h5>Comments</h5>		
+		<div class="panelHeader" (click)="traitService.togglePanel('comment')" [ngClass]="{active: traitService.isPanelShow('comment')}">
+			<i class="icon" ng-class="traitService.isPanelShow('comment') ? 'ion-minus' : 'ion-plus'"></i>
+			<span>
+				Comments
+			</span>
+		</div>
+		<div class="panelContent" [hidden]="traitService.isPanelShow('comment')" [ngClass]="{hidePanel: traitService.isPanelShow('comment')}">		
 			<div class="commentpost">
 				<textarea  [(ngModel)]="newComment" >
 				</textarea>
 				<button (click)="addNewComment()">
-					Send
 					<ion-icon name="send"></ion-icon>
 				</button>
 			</div>
-			<br />
 			<div *ngFor="let comment of comments" class="commentBox commentId-{{comment.commentId}}">
 				<div class="commentArea clearfix">
 					<div class="sectLeft">
 						<ion-icon name="person"></ion-icon>
 					</div>
 					<div class="sectRight">
-						<strong>{{comment.commentBy}}</strong> @ {{comment.commentDate}}				
-						<div>{{comment.commentText}}</div>
+						<strong class="commentBy">{{comment.commentBy}}</strong> <span class="commentDate">@ {{comment.commentDate}}</span>
+						<div class="commentText">{{comment.commentText}}</div>
 					</div>
 				</div>
 				<div class="commentOperations">
 					<span (click)="commentLikeDislike(comment.commentId,1)" class="actionBtn like">
-						<ion-icon name="thumbs-up"></ion-icon>Agree {{comment.likeCount}}
+						<ion-icon name="thumbs-up"></ion-icon><span>{{comment.likeCount}}</span>
 					</span>
 					<span (click)="commentLikeDislike(comment.commentId,2)" class="actionBtn dislike">
-						<ion-icon name="thumbs-down"></ion-icon>Disagree {{comment.disLikeCount}}
+						<ion-icon name="thumbs-down"></ion-icon><span>{{comment.disLikeCount}}</span>
 					</span>
-					<span (click)="replyToComment(comment.commentId)" class="actionBtn rely">
-						<ion-icon name="share-alt"></ion-icon>Reply
+					<span (click)="replyToComment(comment.commentId)" class="actionBtn reply">
+						<ion-icon name="share-alt"></ion-icon>
 					</span>					
-				</div>
-				<div [ngClass]="{'hide':replyTo != comment.commentId}" style="margin-left:20px;">
-					<div class="commentpost">
-						<textarea [(ngModel)]="newReplyComment" >
-						</textarea>
-						<button (click)="addNewComment(comment.commentId)" >
-							Send
-							<ion-icon name="send"></ion-icon>
-						</button>
-					</div>
 				</div>
 				<div  *ngFor="let commentReply of comment.reply" class="commentBox commentId-{{commentReply.commentId}}">
 					<div class="commentArea"><strong>{{commentReply.commentBy}} : </strong>{{commentReply.commentText}}</div>
@@ -134,21 +139,36 @@
 						</div>
 					</div>
 				</div>
+				<div [ngClass]="{'hide':replyTo != comment.commentId}" style="margin-left:40px;">
+					<div class="commentpost">
+						<textarea [(ngModel)]="newReplyComment" >
+						</textarea>
+						<button (click)="addNewComment(comment.commentId)" >
+							<ion-icon name="send"></ion-icon>
+						</button>
+					</div>
+				</div>
 			</div>
+		</div>
 		</ion-col>
 	</ion-row>
 	<ion-row class="traitPublicVoting" *ngIf="publicVotes">
-		<ion-col col-12 class="singleTraits">
-			<h5>Public Votes</h5>
-			<div *ngFor="let vote of publicVotes">
-				<div><strong>Voter name</strong> --> <span>{{vote.votersName}}</span></div>
-				<div><strong>Agree Or Disagree</strong> --> <span>{{vote.agreeOrDisagree}}</span></div>
-				<div><strong>Rating</strong> --> <span>{{vote.rating}}</span></div>
-				<br />
+		<ion-col col-12>
+			<div class="panelHeader" (click)="traitService.togglePanel('voting')" [ngClass]="{active: traitService.isPanelShow('voting')}">
+				<span>Public Votes</span>
+			</div>
+			<div class="panelContent" [ngClass]="{hidePanel: traitService.isPanelShow('voting')}">
+				<div *ngFor="let vote of publicVotes">
+					<div><strong>Voter name</strong> --> <span>{{vote.votersName}}</span></div>
+					<div><strong>Agree Or Disagree</strong> --> <span>{{vote.agreeOrDisagree}}</span></div>
+					<div><strong>Rating</strong> --> <span>{{vote.rating}}</span></div>
+					{{isAnonymous ? 'Anonymous' : 'Public'}}
+					<br />
+				</div>
 			</div>
 		</ion-col>
 	</ion-row>
-
+	</div>
 	<div class="traitAcceptanceOverlay bgOverlay" *ngIf="newTrait">
 		<div class="traitAcceptance clearfix">
 			<div class="agreeTrait traitAction" (click)="acceptTrait('Accept')">

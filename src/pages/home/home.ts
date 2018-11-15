@@ -182,7 +182,7 @@ export class HomePage {
     }
   }
 
-  scrollingFun(e) {
+ /*  scrollingFun(e) {
     if (e.scrollTop > this.scrollHt) {
       $(".tabbar").css("display", "none");
       if (this.topOrBottom == "top") {
@@ -199,7 +199,7 @@ export class HomePage {
       }
     }
     this.scrollHt = e.scrollTop;
-  }
+  } */
 
 
 }

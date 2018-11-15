@@ -3,6 +3,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Storage } from "@ionic/storage";
 import { LoadingController, ModalController, ToastController } from 'ionic-angular';
+import moment from 'moment';
 
 var rootApi = "http://ec2-18-219-80-120.us-east-2.compute.amazonaws.com:8080";
 
@@ -11,7 +12,12 @@ export class TraitService {
 	public authToken;
 	public options;
 	public loading;
-	
+	public anonymousMode;
+	public togglePanelObj={
+		rating : false,
+		comments : false,
+		voting : false
+	};
 	constructor(
 	private http: Http, 
 	private storage: Storage,
@@ -75,7 +81,63 @@ export class TraitService {
 		});
 	}
 
-
+	calcuateTime(ipDate){
+		return(moment(moment.utc(ipDate).local().format()).fromNow())
+	}
+	
+	
+	/* --------------- toggle card, collapsible --------------- */
+	changeVisibilityMode(){
+		this.anonymousMode = !this.anonymousMode;
+		if(this.anonymousMode){
+			this.presentSuccessToast('Anonymous Mode');
+		}else{
+			this.presentSuccessToast('Private Mode');
+		}
+	}	
+	isAnonymousMode(){
+		return this.anonymousMode;
+	}
+	/* --------------- toggle card, collapsible end --------------- */
+	/* ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  --------------- */
+	
+	
+	/* --------------- toggle card, collapsible --------------- */
+	togglePanel(paneName) {
+		this.togglePanelObj[paneName] = !this.togglePanelObj[paneName];
+	};
+	isPanelShow(paneName) {
+		return this.togglePanelObj[paneName];
+	}; 
+	showPanel(paneName,visibility) {
+		this.togglePanelObj[paneName] = visibility;
+	};
+	/* --------------- toggle card, collapsible end --------------- */
+	/* ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  ---------------  --------------- */
+	
+	
+	
+	scrollingFun(e) {
+		if (e.scrollTop > this.scrollHt) {
+			$(".tabbar").css("display", "none");
+			if (this.topOrBottom == "top") {
+				this.contentBox.marginTop = 0;
+			} else if (this.topOrBottom == "bottom") {
+				this.contentBox.marginBottom = 0;
+			}
+		} else {
+			$(".tabbar").css("display", "flex");
+			if (this.topOrBottom == "top") {
+				this.contentBox.marginTop = this.tabBarHeight;
+			} else if (this.topOrBottom == "bottom") {
+				this.contentBox.marginBottom = this.tabBarHeight;
+			}
+		}
+		this.scrollHt = e.scrollTop;
+	}
+	
+	
+	
   // Function to get list of all traits
 	getAllTrais(token) {
 		this.createAuthenticationHeaders(token);
@@ -171,10 +233,6 @@ export class TraitService {
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/api/user/details/', userdata, this.options).map(res => res.json());
 	}
-	
-	
-	
-	
 	
 	getBadgesMasterList(token) {
 		this.createAuthenticationHeaders(token);

@@ -409,41 +409,6 @@ page-profile {
 				top: 85px;
 			}
 		}
-		.commentBox{
-			width: 96%;
-			margin: 0 auto 10px auto;
-			.commentArea{
-				.sectLeft{
-					width:15%;
-					float:left;
-					font-size:2em
-				}
-				.sectRight{
-					
-				}
-			}
-			.commentOperations{
-				.actionBtn{
-					padding:2px 5px;
-					margin:0px;
-				}
-				.actionBtn .rely,.rely ion-icon::before{
-					color:#8cead3;
-					font-size:1.5em;
-					padding:0 7px;
-				}
-				.actionBtn .like,.like ion-icon::before{
-					color:#38af38;
-					font-size:1.5em;
-					padding:0 7px;
-				}
-				.actionBtn .dislike,.dislike ion-icon::before{
-					color:#e73838;
-					font-size:1.5em;
-					padding:0 7px;
-				}
-			}
-		}
 	}
 	
 	
@@ -452,15 +417,7 @@ page-profile {
 	
 	
 	
-ion-content.anonymousMode{
-		border-bottom: 0px;
-		border-top: 0px;
-		border-right: 4px solid #f00;
-		border-left: 4px solid #f00;
-		.userProfie{
-		border-top: 4px solid #f00;
-		}
-	}
+
 	
 	
 }

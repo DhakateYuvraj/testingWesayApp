@@ -13,7 +13,7 @@
     </ion-row>
   </ion-navbar>
 </ion-header>
-<ion-content #contentRef (ionScroll)="scrollingFun($event)">
+<ion-content #contentRef (ionScroll)="traitService.scrollingFun($event)">
   <ion-grid>
     <ion-row class="searchResults">
       <ion-list style="width: 100%;margin: 0px;">
