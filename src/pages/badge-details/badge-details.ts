@@ -107,7 +107,8 @@ export class BadgeDetailsPage {
 			let badgeInfo = {
 				badgeid:this.selectedBadges,
 				badgegivenfor:this.frdInfo.id,
-				isAnonymous :  this.isAnonymous ? 1 : 0 
+				isAnonymous :  this.isAnonymous ? 1 : 0,
+				badgeVisibility : 1
 			}
 			this.traitService.giveBadgeToFriend(this.token,badgeInfo).subscribe(data => {
 				this.traitService.hideLoading();

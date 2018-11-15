@@ -1,0 +1,18 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{(badgeInfo && badgeInfo.badgeName) ? badgeInfo.badgeName : "Badge Info"}}</ion-title>
+		<button ion-button icon-only *ngIf="!frdProfile" (click)="presentPopover($event)">
+			<ion-icon name="more"></ion-icon>
+		</button>
+	</ion-navbar>
+</ion-header>
+
+<ion-content #contentRef (ionScroll)="traitService.scrollingFun($event)" [ngClass]="traitService.isAnonymousMode() ? 'anonymousMode' : 'privateMode'" *ngIf="badgeInfo">
+	<div *ngFor="let badge of badgeInfo.badgeGivenInfoList">
+		<div> badgeGivenby: {{badge.badgeGivenby}}</div>
+		<div> givenDate: {{badge.givenDate}}</div>
+		<div> userBadgeCountid: {{badge.userBadgeCountid}}</div>
+		<div> userBadgeid: {{badge.userBadgeid}}</div>
+		<br />
+	</div>
+</ion-content>

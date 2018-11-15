@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { TraitDetailsPage } from '../trait-details/trait-details';
 import { TraitService } from '../../services/traits.service';
 import { ActionSheet, ActionSheetOptions } from '@ionic-native/action-sheet';
+import { BadgeInfoPage } from '../badge-info/badge-info';
 
 declare var $: any;
 
@@ -112,16 +113,16 @@ export class ProfilePage {
 			}
 		});
 
-	this.traitService.getAvailableBadgesCnt(this.authToken).subscribe(data => {
-		this.availableBadgesCnt = data
-	})
+		this.traitService.getAvailableBadgesCnt(this.authToken).subscribe(data => {
+			this.availableBadgesCnt = data
+		})
 
-	this.traitService.getGivenBadgesCnt(this.authToken).subscribe(data => {
-		this.givenBadgesCnt = data
-	})
-	this.traitService.getReceivedBadges(this.authToken,this.frdId).subscribe(data => {
-		this.receivedBadgesObj = data.userBadgeList;
-	})
+		this.traitService.getGivenBadgesCnt(this.authToken).subscribe(data => {
+			this.givenBadgesCnt = data
+		})
+		this.traitService.getReceivedBadges(this.authToken,this.frdId).subscribe(data => {
+			this.receivedBadgesObj = data.badgeReceivedList;
+		})
 
 
 		
@@ -258,6 +259,17 @@ giveVoteToFriend(trait, typeofvote) {
 	giveBadge(){
 	
 	}
+	
+	openBadgeInfo(badgeInfo){	
+		this.navCtrl.push('BadgeInfoPage', {
+			badgeInfo: badgeInfo
+		});
+	}
+	
+	
+	
+	
+	
 	
 	released(){
 	//alert('released');

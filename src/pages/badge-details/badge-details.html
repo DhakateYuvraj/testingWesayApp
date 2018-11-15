@@ -4,7 +4,7 @@
 		<ion-title *ngIf="pageFor == 'givenBadges'">Badges Given</ion-title>
 	</ion-navbar>
 </ion-header>
-<ion-content #contentRef fullscreen>
+<ion-content #contentRef (ionScroll)="traitService.scrollingFun($event)" [ngClass]="traitService.isAnonymousMode() ? 'anonymousMode' : 'privateMode'">
 	<ion-row class="userProfie">
 		<ion-col col-3 class="userPhoto">
 			<img src="assets/imgs/userIcon.png">
