@@ -251,7 +251,7 @@ giveVoteToFriend(trait, typeofvote) {
 			pageFor: pageName,
 			frdInfo : this.frdInfo,
 			pageMode : mode,
-			isAnonymous :  this.traitService.getVisibilityMode() ? 1 : 0 
+			isAnonymous :  this.traitService.isAnonymousMode() ? 1 : 0 
 		});
 	}
 	

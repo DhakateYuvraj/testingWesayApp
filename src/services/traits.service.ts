@@ -13,11 +13,14 @@ export class TraitService {
 	public options;
 	public loading;
 	public anonymousMode;
+	public scrollHt: number = 0;
+	public topOrBottom;
 	public togglePanelObj={
 		rating : false,
 		comments : false,
 		voting : false
 	};
+	
 	constructor(
 	private http: Http, 
 	private storage: Storage,
