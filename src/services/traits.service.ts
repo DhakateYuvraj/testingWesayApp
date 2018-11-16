@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import { Storage } from "@ionic/storage";
 import { LoadingController, ModalController, ToastController } from 'ionic-angular';
 import moment from 'moment';
+import jQuery from "jquery";
 
 var rootApi = "http://ec2-18-219-80-120.us-east-2.compute.amazonaws.com:8080";
 
@@ -15,6 +16,8 @@ export class TraitService {
 	public anonymousMode;
 	public scrollHt: number = 0;
 	public topOrBottom;
+	public contentBox;
+	public tabBarHeight;
 	public togglePanelObj={
 		rating : false,
 		comments : false,
@@ -122,14 +125,16 @@ export class TraitService {
 	
 	scrollingFun(e) {
 		if (e.scrollTop > this.scrollHt) {
-			$(".tabbar").css("display", "none");
+			jQuery(".tabbar").css("display", "none");
+			jQuery(".scroll-content").css("margin-bottom", "0");
 			if (this.topOrBottom == "top") {
 				this.contentBox.marginTop = 0;
 			} else if (this.topOrBottom == "bottom") {
 				this.contentBox.marginBottom = 0;
 			}
 		} else {
-			$(".tabbar").css("display", "flex");
+			jQuery(".tabbar").css("display", "flex");
+			jQuery(".scroll-content").css("margin-bottom", "56px");
 			if (this.topOrBottom == "top") {
 				this.contentBox.marginTop = this.tabBarHeight;
 			} else if (this.topOrBottom == "bottom") {
@@ -272,6 +277,20 @@ export class TraitService {
 		return this.http.post(rootApi + '/badge/giveBadge/', badgeInfo, this.options).map(res => res.json());
 	}
 	
+	getBadgeDetails(token,badgeInfo){
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/badge/details/', badgeInfo, this.options).map(res => res.json());		
+	}
+	
+	deleteBadge(token,badgeInfo){
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/badge/deleteBadge/', badgeInfo, this.options).map(res => res.json());		
+	}
+	
+	hideUnhideBadge(token,badgeInfo){
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/badge/hideBadge/', badgeInfo, this.options).map(res => res.json());		
+	}
 	
 	
 	

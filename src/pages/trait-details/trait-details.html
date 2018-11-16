@@ -62,6 +62,12 @@
 		<ion-col col-12>
 		<div class="panelHeader" (click)="traitService.togglePanel('rating')" [ngClass]="{active: traitService.isPanelShow('rating')}">
 			<span>Rating</span>
+			<div *ngIf="traitService.isPanelShow('rating')" >
+				<ion-icon name="arrow-forward"></ion-icon>
+			</div>
+			<div *ngIf="!traitService.isPanelShow('rating')" >
+				<ion-icon name="arrow-down"></ion-icon>
+			</div>
 		</div>
 		<div class="panelContent" [ngClass]="{hidePanel: traitService.isPanelShow('rating')}">
 			<div class="ratingComponent clearfix">
@@ -86,10 +92,15 @@
 	<ion-row class="traitComments">
 		<ion-col col-12>
 		<div class="panelHeader" (click)="traitService.togglePanel('comment')" [ngClass]="{active: traitService.isPanelShow('comment')}">
-			<i class="icon" ng-class="traitService.isPanelShow('comment') ? 'ion-minus' : 'ion-plus'"></i>
 			<span>
 				Comments
 			</span>
+			<div *ngIf="traitService.isPanelShow('comment')" >
+				<ion-icon name="arrow-forward"></ion-icon>
+			</div>
+			<div *ngIf="!traitService.isPanelShow('comment')" >
+				<ion-icon name="arrow-down"></ion-icon>
+			</div>
 		</div>
 		<div class="panelContent" [hidden]="traitService.isPanelShow('comment')" [ngClass]="{hidePanel: traitService.isPanelShow('comment')}">		
 			<div class="commentpost">
@@ -156,6 +167,12 @@
 		<ion-col col-12>
 			<div class="panelHeader" (click)="traitService.togglePanel('voting')" [ngClass]="{active: traitService.isPanelShow('voting')}">
 				<span>Public Votes</span>
+				<div *ngIf="traitService.isPanelShow('voting')" >
+					<ion-icon name="arrow-forward"></ion-icon>
+				</div>
+				<div *ngIf="!traitService.isPanelShow('voting')" >
+					<ion-icon name="arrow-down"></ion-icon>
+				</div>
 			</div>
 			<div class="panelContent" [ngClass]="{hidePanel: traitService.isPanelShow('voting')}">
 				<div *ngFor="let vote of publicVotes">

@@ -3,14 +3,14 @@
         <ion-title>Master List of Badges</ion-title>
     </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content (ionScroll)="traitService.scrollingFun($event)">
     <ion-searchbar [(ngModel)]="search_string" [formControl]="searchControl" str (ionInput)="filterBadges()" placeholder="Search Badges . . ." #searchInput>
     </ion-searchbar>
     <div>
         <ion-list>
-            <div *ngFor="let item of badgeMasterList ; let i=index">
+            <div *ngFor="let item of badgeMasterList ; let i=index" class="badgeID_{{item.badgeId}}">
                 <ion-item>
-                    <ion-label> {{ item.badgename }}</ion-label>
+                    <ion-label> {{ item.badgeName }}</ion-label>
                     <ion-checkbox (ionChange)="addSelected(item)"></ion-checkbox>
                 </ion-item>
             </div>

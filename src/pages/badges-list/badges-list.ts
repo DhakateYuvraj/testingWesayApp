@@ -25,8 +25,8 @@ export class BadgesListPage {
 	
 	
 	
-	public badgeMasterList = [{badgename:'badge name'},{badgename:'badge name 1'},{badgename:'badge name 2'},{badgename:'badge name 3'}];
-	public allBadgesData = [{badgename:'badge name'},{badgename:'badge name 1'},{badgename:'badge name 2'},{badgename:'badge name 3'}];
+	public badgeMasterList = [{badgeName:'badge name'}];
+	public allBadgesData = [{badgeName:'badge name'},{badgeName:'badge name 1'},{badgeName:'badge name 2'},{badgeName:'badge name 3'}];
 	
 	constructor(public navCtrl: NavController, 
 		public navParams: NavParams,
@@ -49,7 +49,7 @@ export class BadgesListPage {
 	
 	getBadgesMasterList(){
 		this.traitService.getBadgesMasterList(this.token).subscribe(data => {
-		console.log(data);
+		this.badgeMasterList = data.userBadgeList
 		})
 	}
 	

@@ -8,4 +8,26 @@ page-badge-info {
 		top: 0;
 		right: 0;
 	}
+	h5{
+		text-align:center;
+	}
+	.badgeDonner{
+		position:relative;
+		padding:0 10px;
+		border-bottom: 1px solid #ccc;
+		.badgeInfo{
+			padding:5px 100px 5px 0px;
+			.username{
+				font-size:1.2em;			
+			}
+			.date{
+				font-size:0.8em;
+				color:#999;
+			}
+		}
+		.btnAction{position:absolute;top:0;font-size:2em;text-align:center;width:55px;height:45px;}
+		.badgeHide{right:55px}
+		.badgeDelete{right:0px}
+	
+	}
 }
