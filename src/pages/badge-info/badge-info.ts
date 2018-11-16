@@ -14,6 +14,10 @@ export class BadgeInfoPage {
 	public badgeInfo;
 	public isAnonymous;
 	public frdProfile = false;
+	public badgeId;
+	public authToken;
+	public frdInfo;
+	public badgeObj;
 
 
 	constructor(
@@ -24,18 +28,21 @@ export class BadgeInfoPage {
 	public popoverCtrl: PopoverController,
 	public alertCtrl : AlertController
 	) {
-		this.badgeInfo = navParams.get('badgeInfo');
-		this.badgeId = this.badgeInfo.badgeId ? this.badgeInfo.badgeId : 0;
+		this.badgeObj = navParams.get('badgeInfo');
+		this.frdInfo = navParams.get('frdInfo');
+		console.log(this.frdInfo);
+		this.badgeId = this.badgeObj.badgeId ? this.badgeObj.badgeId : 0;
 		this.isAnonymous = this.traitService.isAnonymousMode() ? 1 : 0;	
 	}
 
 	ionViewDidLoad() {
-	console.log('ionViewDidLoad BadgeInfoPage');
+		console.log('ionViewDidLoad BadgeInfoPage');
 	}
 	
 	ionViewWillEnter() {
 		this.storage.get('token').then((token) => {
 			this.authToken = token;
+			this.getBadgeInfo();
 		});
 		
 	}
@@ -55,7 +62,7 @@ export class BadgeInfoPage {
 		  {
 			text: 'Confirm',
 			handler: () => {
-			  deleteBadgeConfirmed(badgeId)
+			  this.deleteBadgeConfirmed(badgeId)
 			}
 		  }
 		]
@@ -66,10 +73,12 @@ export class BadgeInfoPage {
 	
 	getBadgeInfo(){
 		let badgeData = {
-			badgeId: this.badgeId
+			badgeId: this.badgeId,
+			userId: this.frdInfo.id
 		}
 		this.traitService.getBadgeDetails(this.authToken, badgeData).subscribe(data => {
-			console.log(data)
+			console.log(data.badgeReceivedList);
+			this.badgeInfo = data.badgeReceivedList.length > 0 ? data.badgeReceivedList[0] : this.badgeObj
 		});
 	}
 	

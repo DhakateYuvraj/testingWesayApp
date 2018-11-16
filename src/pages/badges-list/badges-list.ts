@@ -25,8 +25,8 @@ export class BadgesListPage {
 	
 	
 	
-	public badgeMasterList = [{badgeName:'badge name'}];
-	public allBadgesData = [{badgeName:'badge name'},{badgeName:'badge name 1'},{badgeName:'badge name 2'},{badgeName:'badge name 3'}];
+	public badgeMasterList = [{badgename:'badge name'}];
+	public allBadgesData = [{badgename:'badge name'},{badgename:'badge name 1'},{badgename:'badge name 2'},{badgename:'badge name 3'}];
 	
 	constructor(public navCtrl: NavController, 
 		public navParams: NavParams,

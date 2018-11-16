@@ -262,7 +262,8 @@ giveVoteToFriend(trait, typeofvote) {
 	
 	openBadgeInfo(badgeInfo){	
 		this.navCtrl.push('BadgeInfoPage', {
-			badgeInfo: badgeInfo
+			badgeInfo: badgeInfo,
+			frdInfo : this.frdInfo
 		});
 	}
 	
