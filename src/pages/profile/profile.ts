@@ -184,7 +184,6 @@ giveVoteToFriend(trait, typeofvote) {
 		voteType : typeofvote,
 		isAnonymous :  this.traitService.isAnonymousMode() ? 1 : 0 //[1 = Anonymous, 0 = Public ]
 	}
-    //this.traitService.addTraitToPage(data, this.authToken).subscribe(data => {
 	this.traitService.giveVote(data, this.authToken).subscribe(data => {
 		this.traitService.hideLoading();
 		//alert(JSON.stringify(data)); 
@@ -220,7 +219,12 @@ giveVoteToFriend(trait, typeofvote) {
     } else {
       id = this.profileId.id;
     }
-    let custom_Trait = [{ traitname: traitname, traitgivenfor: id, typeofvote: 0 }];
+    let custom_Trait = [{ 
+		traitname: traitname, 
+		traitgivenfor: id, 
+		typeofvote: 0,
+		isAnonymous : this.traitService.isAnonymousMode() ? 1 : 0 
+	}];
 
     this.traitService.addTraitToPage(custom_Trait, this.authToken).subscribe(data => {
       console.log(data);

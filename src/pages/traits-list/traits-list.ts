@@ -109,7 +109,12 @@ export class TraitsListPage {
   }
 
   addSelected(trait) {
-    this.selectedTraits.push({ traitname: trait.traitname, traitgivenfor: this.userId, typeofvote: 0 });
+    this.selectedTraits.push({ 
+		traitname: trait.traitname, 
+		traitgivenfor: this.userId, 
+		typeofvote: 0,
+		isAnonymous :  this.traitService.isAnonymousMode() ? 1 : 0
+	});
   }
 
   addToPage() {

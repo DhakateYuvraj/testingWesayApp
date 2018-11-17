@@ -77,8 +77,10 @@ export class BadgeInfoPage {
 			userId: this.frdInfo.id
 		}
 		this.traitService.getBadgeDetails(this.authToken, badgeData).subscribe(data => {
-			console.log(data.badgeReceivedList);
-			this.badgeInfo = data.badgeReceivedList.length > 0 ? data.badgeReceivedList[0] : this.badgeObj
+			this.badgeInfo = data.badgeReceivedList[0];
+			if(data.badgeReceivedList.length > 0){
+				this.navCtrl.pop();
+			}
 		});
 	}
 	

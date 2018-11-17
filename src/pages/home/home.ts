@@ -139,7 +139,8 @@ export class HomePage {
     let traitData = {
       traitname: traitObj.traitname,
       traituniqueid: traitObj.traituniqueid,
-      traitgivenfor: "0"
+      traitgivenfor: "0",
+	  isAnonymous : 0
     }
     if (!$("." + traitObj.traituniqueid).hasClass("checkedStyle")) {
       if (this.checkedTraitsTemp.indexOf(traitObj.traituniqueid) == -1) {
@@ -181,25 +182,5 @@ export class HomePage {
       this.tabBarHeight = this.contentBox.marginBottom;
     }
   }
-
- /*  scrollingFun(e) {
-    if (e.scrollTop > this.scrollHt) {
-      $(".tabbar").css("display", "none");
-      if (this.topOrBottom == "top") {
-        this.contentBox.marginTop = 0;
-      } else if (this.topOrBottom == "bottom") {
-        this.contentBox.marginBottom = 0;
-      }
-    } else {
-      $(".tabbar").css("display", "flex");
-      if (this.topOrBottom == "top") {
-        this.contentBox.marginTop = this.tabBarHeight;
-      } else if (this.topOrBottom == "bottom") {
-        this.contentBox.marginBottom = this.tabBarHeight;
-      }
-    }
-    this.scrollHt = e.scrollTop;
-  } */
-
 
 }
