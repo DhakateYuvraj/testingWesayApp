@@ -18,66 +18,7 @@ page-trait-details {
 		}
 	}
 	
-	.traitScore{
-		/*background:#f1f1f1;*/
-		.singleTraits {
-			margin-top:25px;
-			.label-md{
-				text-align:center;
-			}
-			.close-icon{
-				color: #16a085;
-				position: absolute;
-				right: 0;
-				top: 0;
-				font-size: 1.3em;
-				padding: 5px 7px;
-			}
-			.pos-number,.neg-number {
-				width: 45px;
-				text-align: center;
-				padding: 2px;
-				position: absolute;
-				bottom: 0;
-				height: 100%;
-				padding-top:13%;
-				ion-icon{
-					display: block;
-					padding: 0;
-					margin: 0;
-					font-size: 2.5em;
-					line-height: 0.5em;
-				}
-			}
-			.pos-number{
-				left:0;
-				color:#00B32C
-			}
-			.neg-number {
-				right:0;
-				color:#DC3D2A;
-			}
-			.isMyContiNeg_y,.isMyContiPos_y,.isMyContiPos_Y,.isMyContiPos_Y{
-				.tempClass{
-					border:1px solid #ccc;
-				}
-			}
-			.item-md{
-				padding:0px;
-				border:none;
-				padding-left: 0 !important;
-				border: none;
-				background:#f1f1f1;
-			}
-		};
-		.traitAvgScore{
-			position: absolute;
-			width: 100%;
-			text-align: center;
-			font-size: 1.5em;
-			z-index: 1;
-		}
-	};
+	
 	.contentMainPanel {
 		padding: 0 10px;
 	.traitRating{
@@ -88,17 +29,17 @@ page-trait-details {
 		} */
 		.ratingComponent{
 			min-width:300px;
-			width:80%;
+			width:100px;
 			margin:0 auto;
 			.traitRate{
 				border: 1px solid #ccc;
 				border-radius: 50%;
-				width: 25px;
-				height: 25px;
+				width: 20px;
+				height: 20px;
 				display: block;
 				text-align: center;
 				float: left;
-				padding: 5px 0px;
+				padding: 2px 0px;
 				margin: 3px;
 				font-size: 12px;
 			}
@@ -150,8 +91,9 @@ page-trait-details {
 				width: 100%;
 				border: 1px solid #ccc;
 				border-radius: 5px 5px 0 5px;
-				height: 50px;
-				margin-bottom: 35px;
+				height: 40px;
+				margin-bottom: 0;
+				padding-right: 50px;
 			}
 			button{
 				position: absolute;
@@ -161,7 +103,7 @@ page-trait-details {
 				background: #00c5cd;
 				color:#fff;
 				right: 0px;
-				top: 85px;
+				top: 35px;
 			}
 		}
 		.commentBox{
@@ -180,6 +122,9 @@ page-trait-details {
 						color:#999;
 					}
 				}
+			}
+			.childComments{
+				margin-left:40px;
 			}
 			.commentOperations{
 				margin-left:40px;
@@ -223,6 +168,7 @@ page-trait-details {
 			right: 5px;
 			top: 0px;
 			padding: 6px;
+			color:#888888;
 		}
 	}
 	.panelContent{
@@ -258,8 +204,85 @@ page-trait-details {
 		}
 	}
 
+.singleVote{
+	position: relative;
+	.voteArrow{
+		font-size:2.5em;
+		line-height:0.5em
+	}
+	.pos-number{
+		color:#00B32C
+	}
+	.neg-number {
+		color:#DC3D2A;
+	}
+	.voteUsername{
+		position: relative;
+		top: -12px;
+	}
+	.voteRating{    position: absolute;
+    top: 12px;
+    right: 10px;
+    display: inline-block;
+    text-align: right;}
+}
 
 
-	
+
+.traitScore.singleTraits{
+	background: rgba(255, 255, 255, 0.8);
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+	.traitInfoContainer{
+		border-right:1px solid #ccc;
+		border-left:1px solid #ccc;
+	}
+	.traitIconContainer{
+		text-align:center;
+	}
+	.traitScoreContainer{
+		.moreOptions{
+			position: absolute;
+			top: 0;
+			right: 0;
+			background: transparent;
+			color: #000;
+			box-shadow: none;
+		}
+		.traitScore{
+			font-size: 2.5em;
+			text-align: center;
+			padding: 4px;
+		}
+		.traitScore.hidden{
+			font-size: 1em;
+		}
+	}
+	.traitInfoContainer{
+		.traitName{
+			position: relative;
+			top: -10px;
+			font-size: 1.4em;
+			color: #000;
+		}
+		.pos-number,.neg-number{
+			width: 100px;
+			.tempClass{
+				margin: 0 10px;
+				font-size: 1.3em;
+				ion-icon{
+					display: inline;
+					position: relative;
+					top: 6px;
+				}
+				span{
+					position: relative;
+					top: -3px;
+				}
+			}
+		}		
+	}	
+}
 	
 }

@@ -78,7 +78,7 @@ export class BadgeInfoPage {
 		}
 		this.traitService.getBadgeDetails(this.authToken, badgeData).subscribe(data => {
 			this.badgeInfo = data.badgeReceivedList[0];
-			if(data.badgeReceivedList.length > 0){
+			if(data.badgeReceivedList.length == 0){
 				this.navCtrl.pop();
 			}
 		});

@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Storage } from "@ionic/storage";
 import { Contacts } from '@ionic-native/contacts';
 import { TraitService } from '../../services/traits.service';
+import jQuery from "jquery";
 
 declare var $: any;
 
@@ -95,11 +96,11 @@ export class HomePage {
   masterListAddSelectClass() {
     let TIME_IN_MS = 5;
     setTimeout(() => {
-      $('.singleTraits').removeClass('checkedStyle');
-      $('.masterListStyle').removeClass('checkedStyle');
+      jQuery('.singleTraits').removeClass('checkedStyle');
+      jQuery('.masterListStyle').removeClass('checkedStyle');
       for (var i = 0; i < this.checkedTraits.length; i++) {
-        $('.singleTraits.' + this.checkedTraits[i].traituniqueid).addClass('checkedStyle');
-        $('.masterListStyle.' + this.checkedTraits[i].traituniqueid).addClass('checkedStyle');
+        jQuery('.singleTraits.' + this.checkedTraits[i].traituniqueid).addClass('checkedStyle');
+        jQuery('.masterListStyle.' + this.checkedTraits[i].traituniqueid).addClass('checkedStyle');
       }
     }, TIME_IN_MS);
   }
@@ -142,7 +143,7 @@ export class HomePage {
       traitgivenfor: "0",
 	  isAnonymous : 0
     }
-    if (!$("." + traitObj.traituniqueid).hasClass("checkedStyle")) {
+    if (!jQuery("." + traitObj.traituniqueid).hasClass("checkedStyle")) {
       if (this.checkedTraitsTemp.indexOf(traitObj.traituniqueid) == -1) {
         this.checkedTraits.push(traitData);
         this.checkedTraitsTemp.push(traitObj.traituniqueid);

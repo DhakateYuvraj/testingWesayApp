@@ -19,10 +19,12 @@ export class TraitDetailsMenuPage {
 	public traitDetails;
 	public authToken;
 	public homeRef;
+	public readOnly = true;
 	
   constructor(public viewCtrl: ViewController,public navCtrl: NavController, private traitService: TraitService, private storage: Storage,  public navParams: NavParams) {
 		this.traitDetails = navParams.get('traitDetails');
 		this.homeRef = navParams.get('homeRef');
+		this.readOnly = navParams.get('readOnly');		
 		console.log(this.traitDetails);
   }
 

@@ -412,8 +412,22 @@ page-profile {
 	}
 	
 	
-	
-	
+.singleTraits.isHidden_true.singleTraits.isFrd_false{
+	.traitIconBg{
+		background:#ccc
+	}
+	.traitName,.pos-number,.neg-number {
+		color:#ccc
+	}
+}
+.singleTraits.isCntHidden_true.singleTraits.isFrd_false{
+	.pos-number,.neg-number{
+		color:#ccc;		
+	}
+}
+.singleTraits.isWaiting_true{
+}
+
 	
 	
 	

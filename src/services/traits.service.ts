@@ -90,6 +90,9 @@ export class TraitService {
 	calcuateTime(ipDate){
 		return(moment(moment.utc(ipDate).local().format()).fromNow())
 	}
+	formatTime(ipDate){
+		return(moment(moment.utc(ipDate).local().format()))
+	}
 	
 	
 	/* --------------- toggle card, collapsible --------------- */
@@ -98,7 +101,7 @@ export class TraitService {
 		if(this.anonymousMode){
 			this.presentSuccessToast('Anonymous Mode');
 		}else{
-			this.presentSuccessToast('Private Mode');
+			this.presentSuccessToast('Public Mode');
 		}
 	}	
 	isAnonymousMode(){
@@ -154,7 +157,7 @@ export class TraitService {
 
 	getListOfPopularTraits(token) {
 		this.createAuthenticationHeaders(token);
-		return this.http.post(rootApi + '/traitapi/getListOfPoulerTraits/', {}, this.options).map(res => res.json());
+		return this.http.post(rootApi + '/traitapi/getListOfPopularTraits/', {}, this.options).map(res => res.json());
 	}
 
 	addTraitToPage(traits, token) {

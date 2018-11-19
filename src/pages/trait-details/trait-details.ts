@@ -67,7 +67,8 @@ export class TraitDetailsPage {
 		if(trait){
 			let taitId = trait.usertraitid ? trait.usertraitid : trait.userTraitId;
 			let trait_data = {
-				"userTraitId" : taitId
+				"userTraitId" : taitId,
+				"userId":this.frdId
 			}
 			this.traitService.getTraitDetails(trait_data, this.authToken).subscribe(data => {
 				console.log(JSON.stringify(data.response));
@@ -101,12 +102,14 @@ export class TraitDetailsPage {
 			this.traitService.commentList(trait_data, this.authToken).subscribe(data => {
 				if (data.status == 'success') {
 					//console.log(data.response);
+					/*
 					data.response.map(singleComment => {
 						console.log(singleComment);
 						singleComment.commentDate = this.traitService.calcuateTime(singleComment.commentDate)
 						this.comments.push(singleComment)
 					})
-					//this.comments = data.response
+					*/
+					this.comments = data.response
 				}
 			});
 		}
@@ -155,8 +158,9 @@ export class TraitDetailsPage {
 		}
 		this.traitService.commentAdd(trait_data, this.authToken).subscribe(data => {
 			if (data.status == 'success') {
-				this.newComment=null
-				this.getTraitComments(this.traitDetails)
+				this.newComment="";
+				this.newReplyComment="";
+				this.getTraitComments(this.traitDetails);
 			}
 		});
 	}
@@ -168,22 +172,15 @@ export class TraitDetailsPage {
 			this.replyTo = commentId
 		}
 	}
-	
-	/* addNewReplyComment(commentId){
-		let trait_data = {
-			comment: this.newReplyComment,
-			traitId: commentId
-		}
-		this.traitService.commentReply(trait_data, this.authToken).subscribe(data => {
-			alert(JSON.stringify(data));
-			if (data.status == 'success') {
-				alert(JSON.stringify(data));
-				this.getTraitComments(this.traitDetails)
-			}
-		});
-	} */
+
 	presentPopover(myEvent) {
-		let popover = this.popoverCtrl.create('TraitDetailsMenuPage',{traitDetails:this.traitDetails,homeRef: this});
+		let popover = this.popoverCtrl.create('TraitDetailsMenuPage',{traitDetails:this.traitDetails,homeRef: this,readOnly:false});
+		popover.present({
+			ev: myEvent
+		});
+	}
+	infoPopover(myEvent) {
+		let popover = this.popoverCtrl.create('TraitDetailsMenuPage',{traitDetails:this.traitDetails,homeRef: this,readOnly:true});
 		popover.present({
 			ev: myEvent
 		});

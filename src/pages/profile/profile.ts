@@ -87,8 +87,7 @@ export class ProfilePage {
 			this.getLoginUserTraits(token);
 			this.getMasterTraitList();
 			this.getUserProfile(this.frdId);
-		});
-		
+		});		
 	}
 
 	getMasterTraitList() {

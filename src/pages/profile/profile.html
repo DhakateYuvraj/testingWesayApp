@@ -73,7 +73,13 @@
                 </ion-list>
             </ion-row>
             <ion-row>
-				<ion-col col-6 *ngFor="let item of allTraits; let i = index" class="singleTraits {{item.traituniqueid}} isMyConti_{{item.mytraitcontibution}} isHidden_{{frdProfile}}_{{item.isHidden ? true : false}}" [ngClass]="{'hideTrait':item.isHidden && frdProfile}">
+				<ion-col col-6 *ngFor="let item of allTraits; let i = index" class="singleTraits {{item.traituniqueid}} 
+				isMyConti_{{item.mytraitcontibution}} 
+				isHidden_{{item.isHidden ? true : false}}
+				isCntHidden_{{item.isTraitCountHidden ? true : false}}
+				isWaiting_{{item.isWaitingForApproval ? true : false}}
+				isFrd_{{frdProfile ? true : false}}" 
+				[ngClass]="{'hideTrait':item.isHidden && frdProfile}">
 					<ion-item >
 						<!-- <ion-icon name="close" class="close-icon" *ngIf="!frdProfile" (click)="presentConfirm(item.traituniqueid)"></ion-icon> -->
 						<div class="pos-number isMyContiPos_{{item.mypositive}}" (click)="giveVoteToFriend(item,1)">

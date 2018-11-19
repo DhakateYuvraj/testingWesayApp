@@ -10,7 +10,7 @@
 	<div *ngFor="let badge of badgeInfo.badgeGivenInfoList">
 		<div class="badgeDonner">
 			<div class="badgeInfo">
-				<div class="username">{{badge.badgeGivenby ? badge.badgeGivenby : 'Anonymously'}}</div>
+				<div class="username">{{badge.badgeGivenby ? badge.badgeGivenby : 'Anonymous'}}</div>
 				<div class="date">{{traitService.calcuateTime(badge.givenDate)}}</div>
 			</div>
 			<div *ngIf="!frdInfo.id">
