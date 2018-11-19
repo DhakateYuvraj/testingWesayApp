@@ -291,5 +291,23 @@ page-trait-details {
 		}		
 	}	
 }
+
+
+
+.traitDetailWrapper.isHidden_true.traitDetailWrapper.isFrd_false{
+	.traitScore.singleTraits{
+		background:#ddd;
+	}
+}
+.traitDetailWrapper.isCntHidden_true.traitDetailWrapper.isFrd_false{
+	.pos-number,.neg-number{
+		color:#ccc;		
+	}
+	.traitScoreInfo{
+		color:#ccc;		
+	}
+}
+
+
 	
 }

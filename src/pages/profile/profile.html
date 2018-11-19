@@ -58,7 +58,7 @@
         </ion-segment-button>
     </ion-segment>
     <div [ngSwitch]="section">
-        <div *ngSwitchCase="'trait'" class="sectionTrait">
+        <div *ngSwitchCase="'trait'" class="sectionTrait" (swipeleft)="changeTab('badges')">
             <ion-row>
 				<ion-searchbar [(ngModel)]="search_string" [formControl]="searchControl" (ionInput)="filterTraits()" (ionClear)="cancelSearch()" placeholder="Search and add traits"
 					#searchInput class="search-trait-style">
@@ -108,152 +108,152 @@
             </ion-row>
 
         </div>
-<div *ngSwitchCase="'testimonials'" class="testimonials">
-<ion-list class="accordion-list">
-<!-- First Level -->
-<ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
-<!-- Toggle Button -->
-<button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
-<ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
-<ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
-{{ item.name }}
-</button>
+		<div *ngSwitchCase="'testimonials'" class="testimonials" (swiperight)="changeTab('badges')">
+		<ion-list class="accordion-list">
+		<!-- First Level -->
+		<ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
+		<!-- Toggle Button -->
+		<button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
+		<ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
+		<ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
+		{{ item.name }}
+		</button>
 
-<ion-list *ngIf="item.children && item.open" no-lines class="accordionSection">
-<div *ngIf="i == 0 ">
-<ion-row>
-<ion-col col-6 class="singleTrait">
-<ion-item>
-<div class="pos-number">
-<div class="tempClass">
-0
-<ion-icon name="arrow-dropup"></ion-icon>
-</div>
-</div>
-<div class="neg-number">
-<div class="tempClass">
-0
-<ion-icon name="arrow-dropdown"></ion-icon>
-</div>
-</div>
-<div class="traitIconBg traitIconBg_0">
-<div class="traitIcon traitIcon_cool"></div>
-</div>
-<div class="traitName">Cool</div>
-</ion-item>
-</ion-col>
-<ion-col col-6 class="singleTrait">
-<ion-item>
-<div class="pos-number">
-<div class="tempClass">
-0
-<ion-icon name="arrow-dropup"></ion-icon>
-</div>
-</div>
-<div class="neg-number">
-<div class="tempClass">
-0
-<ion-icon name="arrow-dropdown"></ion-icon>
-</div>
-</div>
-<div class="traitIconBg traitIconBg_0">
-<div class="traitIcon traitIcon_confident"></div>
-</div>
-<div class="traitName">Confident</div>
-</ion-item>
-</ion-col>
-</ion-row>
-</div>
-<div *ngIf="i == 1 ">			
-<div class="traitComments">
-<div class="commentBox commentId-0">
-<div class="commentArea clearfix">
-<div class="sectLeft">
-<ion-icon name="person"></ion-icon>
-</div>
-<div class="sectRight">
-<strong>Yuvraj</strong> 
-<div>Dummy text Dummy text Dummy text </div>
-</div>
-</div>
-</div>
-</div>
-<div class="traitComments">
-<div class="commentBox commentId-1">
-<div class="commentArea clearfix">
-<div class="sectLeft">
-<ion-icon name="person"></ion-icon>
-</div>
-<div class="sectRight">
-<strong>Radha</strong>
-<div>Another comment another comment </div>
-</div>
-</div>
-</div>
-</div>
-<div class="traitComments">
-<div class="commentBox commentId-0">
-<div class="commentArea clearfix">
-<div class="sectLeft">
-<ion-icon name="person"></ion-icon>
-</div>
-<div class="sectRight">
-<strong>Yuvraj</strong>	
-<div>Dummy text Dummy text Dummy text </div>
-</div>
-</div>
-</div>
-</div>
-<div class="traitComments">
-<div class="commentBox commentId-1">
-<div class="commentArea clearfix">
-<div class="sectLeft">
-<ion-icon name="person"></ion-icon>
-</div>
-<div class="sectRight">
-<strong>Radha</strong>	
-<div>Another comment another comment </div>
-</div>
-</div>
-</div>
-</div>
-<div class="traitComments">
-<div class="commentBox commentId-0">
-<div class="commentArea clearfix">
-<div class="sectLeft">
-<ion-icon name="person"></ion-icon>
-</div>
-<div class="sectRight">
-<strong>Yuvraj</strong>	
-<div>Dummy text Dummy text Dummy text </div>
-</div>
-</div>
-</div>
-</div>
-<div class="traitComments">
-<div class="commentBox commentId-1">
-<div class="commentArea clearfix">
-<div class="sectLeft">
-<ion-icon name="person"></ion-icon>
-</div>
-<div class="sectRight">
-<strong>Radha</strong>
-<div>Another comment another comment </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</ion-list>
+		<ion-list *ngIf="item.children && item.open" no-lines class="accordionSection">
+		<div *ngIf="i == 0 ">
+		<ion-row>
+		<ion-col col-6 class="singleTrait">
+		<ion-item>
+		<div class="pos-number">
+		<div class="tempClass">
+		0
+		<ion-icon name="arrow-dropup"></ion-icon>
+		</div>
+		</div>
+		<div class="neg-number">
+		<div class="tempClass">
+		0
+		<ion-icon name="arrow-dropdown"></ion-icon>
+		</div>
+		</div>
+		<div class="traitIconBg traitIconBg_0">
+		<div class="traitIcon traitIcon_cool"></div>
+		</div>
+		<div class="traitName">Cool</div>
+		</ion-item>
+		</ion-col>
+		<ion-col col-6 class="singleTrait">
+		<ion-item>
+		<div class="pos-number">
+		<div class="tempClass">
+		0
+		<ion-icon name="arrow-dropup"></ion-icon>
+		</div>
+		</div>
+		<div class="neg-number">
+		<div class="tempClass">
+		0
+		<ion-icon name="arrow-dropdown"></ion-icon>
+		</div>
+		</div>
+		<div class="traitIconBg traitIconBg_0">
+		<div class="traitIcon traitIcon_confident"></div>
+		</div>
+		<div class="traitName">Confident</div>
+		</ion-item>
+		</ion-col>
+		</ion-row>
+		</div>
+		<div *ngIf="i == 1 ">			
+		<div class="traitComments">
+		<div class="commentBox commentId-0">
+		<div class="commentArea clearfix">
+		<div class="sectLeft">
+		<ion-icon name="person"></ion-icon>
+		</div>
+		<div class="sectRight">
+		<strong>Yuvraj</strong> 
+		<div>Dummy text Dummy text Dummy text </div>
+		</div>
+		</div>
+		</div>
+		</div>
+		<div class="traitComments">
+		<div class="commentBox commentId-1">
+		<div class="commentArea clearfix">
+		<div class="sectLeft">
+		<ion-icon name="person"></ion-icon>
+		</div>
+		<div class="sectRight">
+		<strong>Radha</strong>
+		<div>Another comment another comment </div>
+		</div>
+		</div>
+		</div>
+		</div>
+		<div class="traitComments">
+		<div class="commentBox commentId-0">
+		<div class="commentArea clearfix">
+		<div class="sectLeft">
+		<ion-icon name="person"></ion-icon>
+		</div>
+		<div class="sectRight">
+		<strong>Yuvraj</strong>	
+		<div>Dummy text Dummy text Dummy text </div>
+		</div>
+		</div>
+		</div>
+		</div>
+		<div class="traitComments">
+		<div class="commentBox commentId-1">
+		<div class="commentArea clearfix">
+		<div class="sectLeft">
+		<ion-icon name="person"></ion-icon>
+		</div>
+		<div class="sectRight">
+		<strong>Radha</strong>	
+		<div>Another comment another comment </div>
+		</div>
+		</div>
+		</div>
+		</div>
+		<div class="traitComments">
+		<div class="commentBox commentId-0">
+		<div class="commentArea clearfix">
+		<div class="sectLeft">
+		<ion-icon name="person"></ion-icon>
+		</div>
+		<div class="sectRight">
+		<strong>Yuvraj</strong>	
+		<div>Dummy text Dummy text Dummy text </div>
+		</div>
+		</div>
+		</div>
+		</div>
+		<div class="traitComments">
+		<div class="commentBox commentId-1">
+		<div class="commentArea clearfix">
+		<div class="sectLeft">
+		<ion-icon name="person"></ion-icon>
+		</div>
+		<div class="sectRight">
+		<strong>Radha</strong>
+		<div>Another comment another comment </div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+		</ion-list>
 
-</ion-list-header>
-</ion-list>
-
-
+		</ion-list-header>
+		</ion-list>
 
 
-</div>
-        <div *ngSwitchCase="'badges'" class="badgeWrapper">
+
+
+		</div>
+        <div *ngSwitchCase="'badges'" class="badgeWrapper" (swipeleft)="changeTab('testimonials')" (swiperight)="changeTab('trait')">
             <ion-row class="bagdesToOthers" *ngIf="!frdProfile" >
                 <ion-col col-6 class="badgeSection badgesAvailable">
 					<div class="badgeTitle">

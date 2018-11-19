@@ -25,6 +25,7 @@ export class TraitDetailsPage {
 	public isAnonymous;
 	public myRatingRound;
 	public showCount = true;
+	public myTraitsArray;
 	
 	constructor(public navCtrl: NavController, 
 				public navParams: NavParams, 
@@ -66,6 +67,7 @@ export class TraitDetailsPage {
 	
 	getTraitDetails(trait,token){
 		if(trait){
+			this.traitService.showLoading();
 			let taitId = trait.usertraitid ? trait.usertraitid : trait.userTraitId;
 			let trait_data = {
 				"userTraitId" : taitId,
@@ -83,6 +85,7 @@ export class TraitDetailsPage {
 				}else{
 					alert('Error');
 				}
+				this.traitService.hideLoading();
 			});	
 		}
 	}
@@ -234,7 +237,6 @@ export class TraitDetailsPage {
 		let getDataFor = this.traitDetails.userTraitId;
 		let currPosition = this.myTraitsArray.indexOf(getDataFor);
 		if(param == 'next'){
-			getDataFor = 
 			this.getTraitDetails({usertraitid:this.myTraitsArray[currPosition+1]},this.authToken)
 		}else if(param == 'prev'){
 			this.getTraitDetails({usertraitid:this.myTraitsArray[currPosition-1]},this.authToken)

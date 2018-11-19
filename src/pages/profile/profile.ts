@@ -278,37 +278,25 @@ giveVoteToFriend(trait, typeofvote) {
 		});
 	}
 	
-	
-	
-	
-	
-	
-	released(){
-	//alert('released');
+	changeTab(tabName){
+		this.section = tabName; 
 	}
-	active(){
-	//alert('active');
-	}
-	pressed(){
-	alert('pressed');
-	}
-	
 	
 openActionSheet(){
-let buttonLabels = ['Button 0', 'Button 1'];
+	let buttonLabels = ['Button 0', 'Button 1'];
 
-const options: ActionSheetOptions = {
-title: 'Action Sheet Title',
-subtitle: 'Choose an action',
-buttonLabels: buttonLabels,
-addCancelButtonWithLabel: 'Cancel',
-addDestructiveButtonWithLabel: 'Delete',
-destructiveButtonLast: true
-};
+	const options: ActionSheetOptions = {
+	title: 'Action Sheet Title',
+	subtitle: 'Choose an action',
+	buttonLabels: buttonLabels,
+	addCancelButtonWithLabel: 'Cancel',
+	addDestructiveButtonWithLabel: 'Delete',
+	destructiveButtonLast: true
+	};
 
-this.actionSheet.show(options).then((buttonIndex: number) => {
-console.log('Button pressed: ' + buttonIndex);
-});
+	this.actionSheet.show(options).then((buttonIndex: number) => {
+	console.log('Button pressed: ' + buttonIndex);
+	});
 }
 
 	

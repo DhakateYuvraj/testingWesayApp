@@ -8,7 +8,12 @@
 </ion-header>
 
 <ion-content #contentRef (ionScroll)="traitService.scrollingFun($event)" [ngClass]="traitService.isAnonymousMode() ? 'anonymousMode' : 'privateMode'">
-	<div (swipeleft)="changeTrait('next')" (swiperight)="changeTrait('prev')">
+	<div (swipeleft)="changeTrait('next')" (swiperight)="changeTrait('prev')"
+		class="traitDetailWrapper isMyConti_{{traitDetails.mytraitcontibution}} 
+			isHidden_{{traitDetails.isHidden ? true : false}}
+			isCntHidden_{{traitDetails.isTraitCountHidden ? true : false}}
+			isWaiting_{{traitDetails.isWaitingForApproval ? true : false}}
+			isFrd_{{frdProfile ? true : false}}">
 		<ion-row class="userProfie" >
 			<ion-col col-3 class="userPhoto">
 				<img src="assets/imgs/userIcon.png">
