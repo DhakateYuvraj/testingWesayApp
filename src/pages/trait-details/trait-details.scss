@@ -188,7 +188,7 @@ page-trait-details {
 		.traitAcceptance{
 			background: #fff;
 			width: 50%;
-			margin: 70% auto;
+			margin: 45% auto;
 			padding: 5% 0;
 			.traitAction{
 				float:left;
@@ -201,6 +201,12 @@ page-trait-details {
 			}
 			.agreeTrait{color:#38af38;}
 			.disagreeTrait{color:#e73838;}
+			.traitDetail{
+				text-align:center;
+				margin-bottom:7px;
+				border-bottom: 1px solid #ccc;
+				padding-bottom: 7px;
+			}
 		}
 	}
 
@@ -250,13 +256,14 @@ page-trait-details {
 			color: #000;
 			box-shadow: none;
 		}
-		.traitScore{
+		.traitScoreInfo{
 			font-size: 2.5em;
 			text-align: center;
 			padding: 4px;
 		}
-		.traitScore.hidden{
+		.traitScoreInfo.hidden{
 			font-size: 1em;
+			margin-top:14px;
 		}
 	}
 	.traitInfoContainer{

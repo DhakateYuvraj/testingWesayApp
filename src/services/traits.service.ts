@@ -230,14 +230,19 @@ export class TraitService {
 		return this.http.post(rootApi + '/userzone/traits/comment', traitdata, this.options).map(res => res.json());
 	}
 	
-	commentReply(traitdata, token) {
-		this.createAuthenticationHeaders(token);
-		return this.http.post(rootApi + '/userzone/traits/commentReply', traitdata, this.options).map(res => res.json());
-	}
-	
 	giveVote(traitdata, token){
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/userzone/traits/vote/submit', traitdata, this.options).map(res => res.json());
+	}
+	
+	rejectUserTrait(traitdata, token){
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/traitapi/rejectUserTrait/', traitdata, this.options).map(res => res.json());
+	}
+	
+	acceptUserTrait(traitdata, token){
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/traitapi/acceptUserTrait/', traitdata, this.options).map(res => res.json());
 	}
 	
 	getUserProfile(userdata, token) {

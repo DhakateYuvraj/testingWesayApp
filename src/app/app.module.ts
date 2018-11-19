@@ -27,6 +27,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { ExpandableComponent } from '../components/expandable/expandable'
 import { LongPressModule } from 'ionic-long-press';
 import { ActionSheet } from '@ionic-native/action-sheet';
+import { IonicSwipeAllModule } from 'ionic-swipe-all';
 
 @NgModule({
 	declarations: [
@@ -46,6 +47,7 @@ import { ActionSheet } from '@ionic-native/action-sheet';
 		IonicModule.forRoot(MyApp),
 		IonicStorageModule.forRoot(),
 		HttpModule,
+		IonicSwipeAllModule,
 		LongPressModule
 	],
 	bootstrap: [IonicApp],

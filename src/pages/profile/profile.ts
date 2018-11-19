@@ -38,6 +38,7 @@ export class ProfilePage {
 	availableBadgesCnt;
 	receivedBadgesObj;
 	givenBadgesCnt;
+	public myTraitsArray: any[];
 	
 	
 	constructor(
@@ -104,8 +105,14 @@ export class ProfilePage {
 	
 
 	getLoginUserTraits(token) {
+		this.myTraitsArray = [];
 		this.traitService.getLoginUserTraits(token, this.profileId).subscribe(data => {
-			this.allTraits = data.response;
+			this.allTraits = data.response;			
+			if(data.response){
+				data.response.map(singleTrait => {
+					this.myTraitsArray.push(singleTrait.usertraitid)
+				})
+			}
 			this.traitService.hideLoading();
 			if (this.allTraits.length == 0) {
 				this.noTrait = true;
@@ -194,7 +201,8 @@ giveVoteToFriend(trait, typeofvote) {
   openTraitDetails(trait){
 	this.navCtrl.push('TraitDetailsPage', {
 		trait: trait,
-		frdInfo: this.frdInfo
+		frdInfo: this.frdInfo,
+		myTraitsArray:this.myTraitsArray
 	});
   }
 

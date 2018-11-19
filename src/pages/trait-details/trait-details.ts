@@ -35,6 +35,7 @@ export class TraitDetailsPage {
 		this.traitDetails = navParams.get('trait');
 		this.frdInfo = navParams.get('frdInfo');
 		this.isAnonymous = navParams.get('isAnonymous');
+		this.myTraitsArray = navParams.get('myTraitsArray');
 		
 		if (this.frdInfo !== undefined && this.frdInfo.id) {
 			this.frdId = this.frdInfo.id;
@@ -51,7 +52,7 @@ export class TraitDetailsPage {
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TraitDetailsPage');
+    //console.log('ionViewDidLoad TraitDetailsPage');
   }
   
 	ionViewWillEnter() {
@@ -71,7 +72,7 @@ export class TraitDetailsPage {
 				"userId":this.frdId
 			}
 			this.traitService.getTraitDetails(trait_data, this.authToken).subscribe(data => {
-				console.log(JSON.stringify(data.response));
+				//console.log(JSON.stringify(data.response));
 				if (data.status == 'success') {
 					this.traitDetails = data.response.userTraitDetailsResponsePojo;
 					this.myRatingRound = this.traitDetails.rating;
@@ -134,7 +135,7 @@ export class TraitDetailsPage {
 	}
 	
 	commentLikeDislike(commentId,likeDislike){
-		console.log(commentId);
+		//console.log(commentId);
 		let trait_data = {
 			commentId: commentId,
 			like: likeDislike,			
@@ -154,6 +155,7 @@ export class TraitDetailsPage {
 			comment: this.newComment ? this.newComment : this.newReplyComment,
 			userTraitId: this.traitDetails.usertraitid ? this.traitDetails.usertraitid : this.traitDetails.userTraitId,
 			parentCommentId: this.replyTo,
+			isAnonymous: this.traitService.isAnonymousMode() ? 1 : 0,
 			traitIdentifier: this.traitDetails.traituniqueid ? this.traitDetails.traituniqueid : this.traitDetails.traitUniqueid
 		}
 		this.traitService.commentAdd(trait_data, this.authToken).subscribe(data => {
@@ -214,7 +216,28 @@ export class TraitDetailsPage {
 		})
 	}
 	
-	acceptTrait(status){
-		alert(status);
+	acceptTrait(param){
+		let taitId = this.traitDetails.usertraitid ? this.traitDetails.usertraitid : this.traitDetails.userTraitId;
+		let data = {userTraitId : taitId}
+		if(param == 'accept'){
+			this.traitService.acceptUserTrait(data, this.authToken).subscribe(data => {
+				this.getTraitDetails(this.traitDetails,this.authToken);			
+			})
+		}else if( param == 'reject'){
+			this.traitService.rejectUserTrait(data, this.authToken).subscribe(data => {
+				this.navCtrl.pop();	
+			})			
+		}
+	}
+	
+	changeTrait(param){
+		let getDataFor = this.traitDetails.userTraitId;
+		let currPosition = this.myTraitsArray.indexOf(getDataFor);
+		if(param == 'next'){
+			getDataFor = 
+			this.getTraitDetails({usertraitid:this.myTraitsArray[currPosition+1]},this.authToken)
+		}else if(param == 'prev'){
+			this.getTraitDetails({usertraitid:this.myTraitsArray[currPosition-1]},this.authToken)
+		}
 	}
 }

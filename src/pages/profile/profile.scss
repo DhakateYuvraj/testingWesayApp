@@ -20,21 +20,6 @@ page-profile {
         background-color: white;
         padding: 15px !important;
     }
-   /* .pos-number{
-        background: lightgray;
-        border-radius: 50px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        margin: 2px;
-    }
-    .neg-number{
-        background: lightgray;
-        border-radius: 50px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-        margin: 2px;
-    }*/
-
     #header{
         font-size:16px;
     }
@@ -198,23 +183,23 @@ page-profile {
 			background:#fff
         }
 
-       .addtrticons{
-        font-size: 49px;
-        margin-left: -10px;
-        margin-top: -5px;
-        color: #2ea08b;
-       }
-
-       .contact-icon{
-        font-size: 1.8em;
-       }
-.sectionTrait {
-	margin-bottom:100px;
-	ion-list{
-		width:100%;
-		margin:2px;
+	.addtrticons{
+		font-size: 49px;
+		margin-left: -10px;
+		margin-top: -5px;
+		color: #2ea08b;
 	}
-}
+
+	.contact-icon{
+		font-size: 1.8em;
+	}
+	.sectionTrait {
+		margin-bottom:100px;
+		ion-list{
+			width:100%;
+			margin:2px;
+		}
+	}
 
 	.badgeWrapper{
 		.bagdesToOwn{
@@ -350,8 +335,6 @@ page-profile {
 		}
 	}
 	
-	
-	
     .accordion-list {
         background: color($colors, light);
         height: 100%;
@@ -384,7 +367,6 @@ page-profile {
 	.accordionSection{
 		height:150px;
 		overflow:auto;
-	
 	}
 	.traitComments{
 		background:#ddd;
@@ -411,27 +393,26 @@ page-profile {
 		}
 	}
 	
-	
-.singleTraits.isHidden_true.singleTraits.isFrd_false{
-	.traitIconBg{
-		background:#ccc
+	.singleTraits.isHidden_true.singleTraits.isFrd_false{
+		.traitIconBg{
+			background:#ccc
+		}
+		.traitName,.pos-number,.neg-number {
+			color:#ccc
+		}
 	}
-	.traitName,.pos-number,.neg-number {
-		color:#ccc
+	.singleTraits.isCntHidden_true.singleTraits.isFrd_false{
+		.pos-number,.neg-number{
+			color:#ccc;		
+		}
 	}
-}
-.singleTraits.isCntHidden_true.singleTraits.isFrd_false{
-	.pos-number,.neg-number{
-		color:#ccc;		
+	.singleTraits.isWaiting_true{
+		.item-md{
+			background:rgba(136,216,176,0.8)
+		}
 	}
-}
-.singleTraits.isWaiting_true{
-}
-
 	
 	
-	
-
 	
 	
 }
