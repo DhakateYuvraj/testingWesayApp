@@ -213,7 +213,7 @@
 		</div>
 		<div class="traitAcceptanceOverlay bgOverlay" *ngIf="traitDetails.isWaitingForApproval">
 			<div class="traitAcceptance clearfix">
-				<div class="traitDetail"><strong>{{traitDetails.traitName}}</strong><br />is given by  <br />{{frdInfo.fullname}}</div>
+				<div class="traitDetail"><strong>{{traitDetails.traitName}}</strong><br />is given by  <br />{{traitDetails.traitGivenBy ? traitDetails.traitGivenBy : "Anonymous"}}</div>
 				<div class="agreeTrait traitAction" (click)="acceptTrait('accept')">
 					<ion-icon name="checkmark"></ion-icon>
 					Accept

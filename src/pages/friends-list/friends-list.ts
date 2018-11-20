@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, ModalController, Content } from 'ionic-angular';
+import { NavController, NavParams, ModalController, Content, LoadingController } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { ProfilePage } from '../profile/profile';
 import { AddUserPage } from '../add-user/add-user';
@@ -38,6 +38,7 @@ export class FriendsListPage {
 	public modalCtrl: ModalController,
 	private storage: Storage, 
 	private contacts: Contacts, 
+	private loadingCtrl: LoadingController, 
 	private socialSharing: SocialSharing
 	){
 		this.selectFrd = navParams.get('selectFrdMode') ? true : false;
@@ -49,19 +50,36 @@ export class FriendsListPage {
 			this.getAllFriends(token);
 			this.token = token;
 		});
+		this.presentLoadingDefault();
+	}
+	presentLoadingDefault() {
+		this.loading = this.loadingCtrl.create({ spinner: 'bubbles' });
+	}
+
+	showLoading(){
+		this.presentLoadingDefault();
+		//if(!this.loading){
+			this.presentLoadingDefault();
+			this.loading.present();
+		//}
+	}
+	hideLoading(){
+		//if(this.loading){
+			this.loading.dismiss();
+		//}
 	}
 
 	getAllFriends(token) {
-		this.traitService.showLoading();
+		this.showLoading();
 		this.traitService.getMyFriendList(token).subscribe(data => {
 			this.friendList = data.response;
-			this.traitService.hideLoading();
+			this.hideLoading();
 		});
 	}
 	
 	openFriendProfile(frdInfo) {
 		if(this.selectFrd){
-			this.traitService.showLoading();
+			this.showLoading();
 			let badgeInfo = {
 				badgeid:[this.badgeId],
 				badgegivenfor:frdInfo.id,
@@ -69,7 +87,7 @@ export class FriendsListPage {
 				badgeVisibility : 1
 			}
 			this.traitService.giveBadgeToFriend(this.token,badgeInfo).subscribe(data => {
-				this.traitService.hideLoading();
+				this.hideLoading();
 				//this.navCtrl.pop();
 				this.traitService.presentSuccessToast('Badge given to '+frdInfo.fullname);				
 				this.navCtrl.push(ProfilePage, {
@@ -86,19 +104,19 @@ export class FriendsListPage {
 	}
 
 	sendFrdRequest(frdInfo) {
-		this.traitService.showLoading();
+		this.showLoading();
 		var reqToSend = [{ 'friendsid': frdInfo.contactid }]
 		this.authService.sendFrdReq(reqToSend, this.authToken).subscribe(data => {
-			this.traitService.hideLoading();
+			this.hideLoading();
 			this.navCtrl.setRoot(this.navCtrl.getActive().component);
 		});
 	}
 
 	acceptFrdRequest(frdInfo) {
-		this.traitService.showLoading();
+		this.showLoading();
 		var reqToRec = [{ 'id': frdInfo.friendsid }]
 		this.authService.acceptInviation(reqToRec, this.authToken).subscribe(data => {
-			this.traitService.hideLoading();
+			this.hideLoading();
 			if (data.status == "success") {
 				this.storage.get('token').then((token) => {
 					this.authToken = token;

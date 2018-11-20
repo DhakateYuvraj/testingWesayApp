@@ -287,7 +287,8 @@ export class TraitService {
 	
 	getBadgeDetails(token,badgeInfo){
 		this.createAuthenticationHeaders(token);
-		return this.http.get(rootApi + '/badge/badgeDetail/?userId='+badgeInfo.userId+'&badgeId='+badgeInfo.badgeId, this.options).map(res => res.json());	
+		return this.http.post(rootApi + '/badge/badgeDetail/', badgeInfo, this.options).map(res => res.json());	
+		//return this.http.get(rootApi + '/badge/badgeDetail/?userId='+badgeInfo.userId+'&badgeId='+badgeInfo.badgeId, this.options).map(res => res.json());	
 	}
 	
 	deleteBadge(token,badgeInfo){
