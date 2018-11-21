@@ -76,7 +76,7 @@
 		<ion-row class="traitRating" *ngIf="traitDetails">
 			<ion-col col-12>
 			<div class="panelHeader" (click)="traitService.togglePanel('rating')" [ngClass]="{active: traitService.isPanelShow('rating')}">
-				<span>Rating</span>
+				<span>My Rating</span>
 				<div *ngIf="traitService.isPanelShow('rating')" >
 					<ion-icon name="ios-arrow-down-outline"></ion-icon>
 				</div>
@@ -182,7 +182,7 @@
 			</div>
 			</ion-col>
 		</ion-row>
-		<ion-row class="traitPublicVoting" *ngIf="publicVotes">
+		<ion-row class="traitPublicVoting" *ngIf="publicVotes && showCount">
 			<ion-col col-12>
 				<div class="panelHeader" (click)="traitService.togglePanel('voting')" [ngClass]="{active: traitService.isPanelShow('voting')}">
 					<span>Public Votes</span>

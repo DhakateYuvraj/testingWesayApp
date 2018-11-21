@@ -29,6 +29,7 @@ export class FriendsListPage {
 	public badgeId;
 	public isAnonymous;
 	public token;
+	public loading;
 	
 	constructor(
 	public navCtrl: NavController, 
