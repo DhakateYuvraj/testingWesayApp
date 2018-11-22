@@ -271,10 +271,11 @@ giveVoteToFriend(trait, typeofvote) {
 	
 	}
 	
-	openBadgeInfo(badgeInfo){	
+	openBadgeInfo(badgeInfo){
 		this.navCtrl.push('BadgeInfoPage', {
 			badgeInfo: badgeInfo,
-			frdInfo : this.frdInfo
+			frdInfo : this.frdInfo,
+			forPage : 'myBadge'
 		});
 	}
 	

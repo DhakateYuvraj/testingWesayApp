@@ -67,7 +67,7 @@ export class BadgeDetailsPage {
 		}else if (this.pageFor == "givenBadges"){
 			this.traitService.getGivenBadges(token).subscribe(data => {
 				this.traitService.hideLoading();	
-				console.log(JSON.stringify(data))
+				//console.log(JSON.stringify(data))
 				this.givenBadgesObj = data.userBadgeList;
 			})
 		}
@@ -119,7 +119,13 @@ export class BadgeDetailsPage {
 		}
 	}
 	
-	
+	openGivenBadgeInfo(gvnBadge){		
+		this.navCtrl.push('BadgeInfoPage', {
+			badgeInfo: gvnBadge,
+			frdInfo : this.frdInfo,
+			forPage : 'givenBadge'
+		});
+	}
 	
 	
 	

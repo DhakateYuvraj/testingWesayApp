@@ -300,6 +300,10 @@ export class TraitService {
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/badge/hideBadge/', badgeInfo, this.options).map(res => res.json());		
 	}
+	acknowledgeBadge(token,badgeInfo){
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/badge/acknowledgeBadge/', badgeInfo, this.options).map(res => res.json());		
+	}
 	
 	
 	

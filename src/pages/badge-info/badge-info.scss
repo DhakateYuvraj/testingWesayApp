@@ -28,6 +28,31 @@ page-badge-info {
 		.btnAction{position:absolute;top:0;font-size:2em;text-align:center;width:55px;height:45px;}
 		.badgeHide{right:55px}
 		.badgeDelete{right:0px}
+		.badgeAck{right:110px}
 	
+	}
+	.hidePanel{
+		display:none;
+	}
+	.commentpost {
+		position: relative;
+		textarea {
+			width: 100%;
+			border: 1px solid #ccc;
+			border-radius: 5px 5px 0 5px;
+			height: 40px;
+			margin-bottom: 0;
+			padding-right: 50px;
+		}
+		button {
+			position: absolute;
+			margin-top: -35px;
+			padding: 10px 19px;
+			font-size: 15px;
+			background: #00c5cd;
+			color: #fff;
+			right: 0px;
+			top: 35px;
+		}
 	}
 }
