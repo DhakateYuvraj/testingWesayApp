@@ -28,6 +28,12 @@ import { ExpandableComponent } from '../components/expandable/expandable'
 import { LongPressModule } from 'ionic-long-press';
 import { ActionSheet } from '@ionic-native/action-sheet';
 import { IonicSwipeAllModule } from 'ionic-swipe-all';
+//import { FMC } from '@ionic-native/fcm';
+
+import { Firebase } from '@ionic-native/firebase';
+import { AngularFireModule } from 'angularfire2';
+//import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { FcmProvider } from '../providers/fcm/fcm';
 
 @NgModule({
 	declarations: [
@@ -48,7 +54,9 @@ import { IonicSwipeAllModule } from 'ionic-swipe-all';
 		IonicStorageModule.forRoot(),
 		HttpModule,
 		IonicSwipeAllModule,
-		LongPressModule
+		LongPressModule,
+		    AngularFireModule.initializeApp(Firebase), 
+    //AngularFirestoreModule,
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
@@ -71,7 +79,11 @@ import { IonicSwipeAllModule } from 'ionic-swipe-all';
 		Contacts,
 		SocialSharing,
 		Facebook,
-		ActionSheet
+		ActionSheet,
+		
+		    Firebase,
+    FcmProvider,
+    FcmProvider
 	]
 })
 export class AppModule {}

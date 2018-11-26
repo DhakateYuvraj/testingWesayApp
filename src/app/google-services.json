@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "374837237806",
+    "firebase_url": "https://wesay-yuvi.firebaseio.com",
+    "project_id": "wesay-yuvi",
+    "storage_bucket": "wesay-yuvi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374837237806:android:37d088e7a7ad7fc8",
+        "android_client_info": {
+          "package_name": "com.wesay.wesayApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374837237806-9cglrtd17cvhclpp1p4oc6o8al9jpo3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyvMnRQ-d8-6Bx3LJ8mrirKm04-tYAgZ8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

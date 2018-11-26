@@ -127,7 +127,16 @@ export class ProfilePage {
 			this.givenBadgesCnt = data
 		})
 		this.traitService.getReceivedBadges(this.authToken,this.frdId).subscribe(data => {
+				data.badgeReceivedList.map(singleBadge => {
+					singleBadge.badgeGivenInfoList.map(singleBadgeGivenBy => {
+						if(singleBadgeGivenBy.isAccepted == 0){
+							//console.log(singleBadge);
+							singleBadge['isAccepted'] = 0;
+						}
+					})
+				})
 			this.receivedBadgesObj = data.badgeReceivedList;
+			console.log(JSON.stringify(this.receivedBadgesObj));
 		})
 
 
