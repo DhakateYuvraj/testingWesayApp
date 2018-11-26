@@ -45,7 +45,6 @@ export class BadgeInfoPage {
 			this.authToken = token;
 			this.getBadgeInfo();
 		});
-		
 	}
 	
 	deleteBadge(badgeId){
@@ -79,24 +78,47 @@ export class BadgeInfoPage {
 				userId: this.frdInfo.id
 			}
 			this.traitService.getBadgeDetails(this.authToken, badgeData).subscribe(data => {
-				//let x = 
-				let x = [];//data.badgeReceivedList[0];
+				if(data.badgeReceivedList.length == 0){
+					this.navCtrl.pop();
+				}
+				let newData = [];
 				data.badgeReceivedList[0].badgeGivenInfoList.map(singleBadge => {
 					if(singleBadge.ackText == null){
 						singleBadge['isAcked'] = false;
 					}else{
 						singleBadge['isAcked'] = true;
 					}
-					x.push(singleBadge)
+					newData.push(singleBadge)
 				})
-				data.badgeReceivedList[0].badgeGivenInfoList = x;
+				data.badgeReceivedList[0].badgeGivenInfoList = newData;
 				this.badgeInfo = data.badgeReceivedList[0];
-				if(data.badgeReceivedList.length == 0){
-					this.navCtrl.pop();
-				}
 			});
 		}else if(this.forPage == "givenBadge"){
 			console.log("need to develop")
+			let badgeData = {
+				badgeId: this.badgeId
+			}
+			this.traitService.getGivenBadgeDetails(this.authToken, badgeData).subscribe(data => {
+				if(data.badgeGivenInfoList.length == 0){
+					this.navCtrl.pop();
+				}
+				let newData = [];
+				data.badgeGivenInfoList.map(singleBadge => {
+					if(singleBadge.acknowledgement == null){
+						singleBadge['isAcked'] = false;
+					}else{
+						singleBadge['isAcked'] = true;
+					}
+					
+					singleBadge['ackText'] = singleBadge.acknowledgement ? singleBadge.acknowledgement : 'Not acknowledged yet';
+					singleBadge['isAccepted'] = singleBadge.acceptanceDate ? true : false; 
+					singleBadge['userBadgeid'] = singleBadge.userBadgeId
+					newData.push(singleBadge)
+				})
+				data.badgeGivenInfoList = newData;
+				this.badgeInfo = data.badgeDTO
+				this.badgeInfo['badgeGivenInfoList'] = data.badgeGivenInfoList;
+			});
 		}
 	}
 	
@@ -114,9 +136,9 @@ export class BadgeInfoPage {
 		});
 	}
 	
-	hideUnhideBadge(badgeId,isHidden){
+	hideUnhideBadge(userBadgeid,isHidden){
 		let badgeData = {
-			userBadgeid: badgeId,
+			userBadgeid: userBadgeid,
 			isHidden: isHidden ? 1: 0
 		}
 		this.traitService.hideUnhideBadge(this.authToken, badgeData).subscribe(data => {
@@ -129,14 +151,32 @@ export class BadgeInfoPage {
 		}); 
 	}
   
-	deleteBadgeConfirmed(badgeId){
+	deleteBadgeConfirmed(userBadgeid){
 		let badgeData = {
-			userBadgeid: badgeId
+			userBadgeid: userBadgeid
 		}
 		this.traitService.deleteBadge(this.authToken, badgeData).subscribe(data => {
 			this.getBadgeInfo();
 			this.traitService.presentSuccessToast('badge deleted');
 		});  
+	}
+	
+	acceptRejectBadge(userBadgeid,isAccepted){
+		let badgeData = {
+			userBadgeid:userBadgeid,
+			badgeId:this.badgeId,
+			isAccepted: isAccepted
+		}
+		console.log(badgeData);
+		this.traitService.acceptRejectBadge(this.authToken, badgeData).subscribe(data => {
+			this.getBadgeInfo();			
+			if(badgeData.isAccepted){
+				this.traitService.presentSuccessToast('Badge is Accepted');
+			}else{
+				this.traitService.presentSuccessToast('Badge is Rejected');
+			}
+		}); 
+	
 	}
 
 }

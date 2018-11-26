@@ -31,6 +31,10 @@ page-badge-info {
 		.badgeAck{right:110px}
 	
 	}
+	.commentpost.givenBadge .commentInputBox{
+		border:none;
+		background:transparent;
+	}
 	.hidePanel{
 		display:none;
 	}
@@ -53,6 +57,13 @@ page-badge-info {
 			color: #fff;
 			right: 0px;
 			top: 35px;
+		}
+	}
+	
+	.acceptReject{
+		.btnAction{
+			font-size: 1.2em;
+			padding: 12px 0px;
 		}
 	}
 }

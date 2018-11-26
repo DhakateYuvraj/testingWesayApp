@@ -131,7 +131,7 @@ export class ProfilePage {
 					singleBadge.badgeGivenInfoList.map(singleBadgeGivenBy => {
 						if(singleBadgeGivenBy.isAccepted == 0){
 							//console.log(singleBadge);
-							singleBadge['isAccepted'] = 0;
+							singleBadge['isAccepted'] = false;
 						}
 					})
 				})
