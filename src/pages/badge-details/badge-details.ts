@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController  } from 'ionic-angular';
 import { BadgesListPage } from '../badges-list/badges-list';
 import { Storage } from "@ionic/storage";
 import { TraitService } from '../../services/traits.service';
@@ -27,7 +27,8 @@ export class BadgeDetailsPage {
 	public navCtrl: NavController, 
 	public navParams: NavParams, 
 	private storage: Storage,
-	private traitService: TraitService) {
+	private traitService: TraitService,
+	public actionSheetCtrl: ActionSheetController) {
 		this.frdInfo = navParams.get('frdInfo');
 		this.pageFor = navParams.get('pageFor');	//availableBadges  --or--  givenBadges
 		this.pageMode = navParams.get('pageMode');
@@ -83,12 +84,7 @@ export class BadgeDetailsPage {
 		if(this.pageMode == 'view' && badge == 'newBadge'){
 			this.openBadgesMasterList();
 		} else if(this.pageMode == 'view' && badge != 'newBadge'){
-			this.traitService.hideLoading();
-			this.navCtrl.push(FriendsListPage, {
-				selectFrdMode: true,
-				badgeId:badge.badgeId,
-				isAnonymous :  this.isAnonymous ? 1 : 0 
-			});		
+			this.presentActionSheet(badge);
 		} else if(this.pageMode == 'give' && badge == 'newBadge'){	
 			this.openBadgesMasterList();
 		} else if(this.pageMode == 'give' && badge != 'newBadge'){
@@ -119,6 +115,13 @@ export class BadgeDetailsPage {
 		}
 	}
 	
+	giveBadgeToFriend(badge){
+		this.navCtrl.push(FriendsListPage, {
+		selectFrdMode: true,
+		badgeId:badge.badgeId,
+		isAnonymous :  this.isAnonymous ? 1 : 0 
+		});
+	}
 	openGivenBadgeInfo(gvnBadge){		
 		this.navCtrl.push('BadgeInfoPage', {
 			badgeInfo: gvnBadge,
@@ -126,7 +129,34 @@ export class BadgeDetailsPage {
 			forPage : 'givenBadge'
 		});
 	}
-	
+	 presentActionSheet(badge) {
+   let actionSheet = this.actionSheetCtrl.create({
+     title: 'Select Action',
+     buttons: [
+       {
+         text: 'Give a badge',
+         role: '',
+         handler: () => {
+           this.giveBadgeToFriend(badge)
+         }
+       },
+       {
+         text: 'Swap a badge',
+         handler: () => {
+           this.openBadgesMasterList(badge);
+         }
+       },
+       {
+         text: 'Cancel',
+         role: 'cancel',
+         handler: () => {
+           console.log('Cancel clicked');
+         }
+       }
+     ]
+   });
+   actionSheet.present();
+ }
 	
 	
 }
