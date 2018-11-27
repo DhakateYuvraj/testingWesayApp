@@ -318,5 +318,14 @@ export class TraitService {
 	
 	
 	
+	
+	fcmTokenSend(token,fcmDeviceInfo){
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/api/persistdeviceregistrationid/', fcmDeviceInfo, this.options).map(res => res.json());		
+	}
+	
+	
+	
+	
   
 }

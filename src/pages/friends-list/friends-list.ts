@@ -137,16 +137,15 @@ export class FriendsListPage {
     };
     this.contacts.find(['displayName', 'name', 'phoneNumbers', 'emails'], options).then((res) => {
 		this.traitService.addContacts(res, this.authToken).subscribe(data => {
-		alert('sync complete');
+		// alert('sync complete');
 		this.showSyncContact = false;
 		this.navCtrl.setRoot(this.navCtrl.getActive().component);
       });
     }).catch((err) => {
 		this.showSyncContact = false;
-		alert(JSON.stringify(err));
+		// alert(JSON.stringify(err));
 		console.log('err', err);
-    });
-  
+    });  
   }
   
   ionViewDidLoad() {

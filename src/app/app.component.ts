@@ -7,6 +7,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 //import { FMC } from '@ionic-native/fcm';
 import { FcmProvider } from '../providers/fcm/fcm';
+import { TraitService } from '../services/traits.service';
 
 
 @Component({
@@ -16,33 +17,39 @@ import { FcmProvider } from '../providers/fcm/fcm';
 export class MyApp {
 	@ViewChild(Nav) nav: Nav;
 	rootPage: any; 
-	public fcmToken;
-
+	public fcmDeviceId;
+	public token;
+	
 	constructor(
 	public platform: Platform, 
 	public statusBar: StatusBar, 
 	public splashScreen: SplashScreen, 
 	private storage: Storage,
 	public modalCtrl: ModalController,
+	private traitService: TraitService, 
 	public fcm: FcmProvider
 	) {
 		this.initializeApp();
 		this.isLoggedIn();
-		this.fcmToken = fcm.getToken();
 	}
 
 	initializeApp() {
 		this.platform.ready().then(() => {
 			this.statusBar.styleDefault();
 			this.splashScreen.hide();
+			//this.fcmDeviceId = this.fcm.getToken();
 		});
 	}
 
 	isLoggedIn(){
 		this.storage.get('token').then((token) => {
-			console.log('token', token);
-			alert(JSON.stringify(this.fcmToken));
+			//console.log('token', token);
+			this.fcmDeviceId = this.fcm.getToken();
+			//alert(JSON.stringify(this.fcmDeviceId));
+			//alert(JSON.stringify(this.fcm.getToken()));
+			this.fcmTokenSend(this.fcm.getToken())
 			if (token != undefined || token != null) { 
+				this.token = token;
 				this.rootPage = TabsPage; 
 			} else {
 				this.rootPage = LoginPage; 
@@ -52,6 +59,14 @@ export class MyApp {
 
 	openPage(page) {
 		this.nav.setRoot(page.component);
+	}
+	
+	fcmTokenSend(fcmDeviceId){
+		let fcmTokenInfo = { "deviceregistrationid": fcmDeviceId}
+		this.traitService.fcmTokenSend(this.token,fcmTokenInfo).subscribe(data => {
+			//alert('from app component');
+			//alert(JSON.stringify(data));
+		})
 	}
   
 }
