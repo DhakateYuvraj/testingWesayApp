@@ -3,13 +3,7 @@ import { FormControl } from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { TraitService } from '../../services/traits.service';
-
-/**
- * Generated class for the BadgesListPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { BadgeProvider } from '../../providers/badge/badge';
 
 @IonicPage()
 @Component({
@@ -31,7 +25,8 @@ export class BadgesListPage {
 	constructor(public navCtrl: NavController, 
 		public navParams: NavParams,
 		private storage: Storage,
-		private traitService: TraitService) {
+		private traitService: TraitService,
+		private badgeProvider: BadgeProvider) {
 			this.searchControl = new FormControl();		
 		}
 
@@ -70,7 +65,16 @@ export class BadgesListPage {
 
 
 	addSelected(badge) {
-		this.selectedBadges.push({ badgename: badge.badgename});
+		if(true){
+			let emptySlots = this.badgeProvider.getBadgesEmptySlots();
+			if(emptySlots > this.selectedBadges.length){
+				this.selectedBadges.push({ badgeId: badge.badgeId});
+			}else if(emptySlots == this.selectedBadges.length){
+				this.traitService.presentSuccessToast('You have only '+emptySlots+' slots');
+			}else{
+				this.traitService.presentSuccessToast('full');
+			}
+		}
 	}
 	
 	addToPage(){

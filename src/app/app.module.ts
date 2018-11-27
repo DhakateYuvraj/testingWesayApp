@@ -28,12 +28,10 @@ import { ExpandableComponent } from '../components/expandable/expandable'
 import { LongPressModule } from 'ionic-long-press';
 import { ActionSheet } from '@ionic-native/action-sheet';
 import { IonicSwipeAllModule } from 'ionic-swipe-all';
-//import { FMC } from '@ionic-native/fcm';
-
 import { Firebase } from '@ionic-native/firebase';
 import { AngularFireModule } from 'angularfire2';
-//import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { FcmProvider } from '../providers/fcm/fcm';
+import { BadgeProvider } from '../providers/badge/badge';
 
 @NgModule({
 	declarations: [
@@ -80,10 +78,9 @@ import { FcmProvider } from '../providers/fcm/fcm';
 		SocialSharing,
 		Facebook,
 		ActionSheet,
-		
-		    Firebase,
-    FcmProvider,
-    FcmProvider
+		Firebase,
+		FcmProvider,
+    BadgeProvider
 	]
 })
 export class AppModule {}

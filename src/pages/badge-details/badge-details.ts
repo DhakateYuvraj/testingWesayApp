@@ -4,7 +4,7 @@ import { BadgesListPage } from '../badges-list/badges-list';
 import { Storage } from "@ionic/storage";
 import { TraitService } from '../../services/traits.service';
 import { FriendsListPage } from '../friends-list/friends-list';
-
+import { BadgeProvider } from '../../providers/badge/badge';
 
 @IonicPage()
 @Component({
@@ -28,7 +28,8 @@ export class BadgeDetailsPage {
 	public navParams: NavParams, 
 	private storage: Storage,
 	private traitService: TraitService,
-	public actionSheetCtrl: ActionSheetController) {
+	public actionSheetCtrl: ActionSheetController,
+	public badgeProvider: BadgeProvider) {
 		this.frdInfo = navParams.get('frdInfo');
 		this.pageFor = navParams.get('pageFor');	//availableBadges  --or--  givenBadges
 		this.pageMode = navParams.get('pageMode');
@@ -50,20 +51,29 @@ export class BadgeDetailsPage {
 
 	getBadgeInfo(token){
 	let totalBadgesEarn = 0
+	let cntData = this.badgeProvider.getAvailableBadgesCnt();
 		if(this.pageFor == "availableBadges"){
 			this.traitService.getAvailableBadges(token).subscribe(data => {
 				this.traitService.hideLoading();
-				this.availableBadgesObj = data.userBadgeList;				
+				this.badgeProvider.setAvailableBadges(data.userBadgeList);
+				this.availableBadgesObj = this.badgeProvider.getAvailableBadges();
 				this.availableBadgesObj.forEach(function (obj, index) {
-					totalBadgesEarn =+ obj.badgeCount
+					totalBadgesEarn = totalBadgesEarn + obj.badgeCount
 				});
-				this.traitService.getAvailableBadgesCnt(token).subscribe(cntData => {
+				if(totalBadgesEarn > cntData){
+					this.isAddNewBadge = true
+					console.log(this.isAddNewBadge);
+				}
+				this.badgeProvider.setBadgesEmptySlots(totalBadgesEarn - cntData)
+				
+				/* this.traitService.getAvailableBadgesCnt(token).subscribe(cntData => {
 					//this.availableBadgesCnt = cntData;
 					if(totalBadgesEarn > cntData){
 						this.isAddNewBadge = true
 						console.log(this.isAddNewBadge);
-					}					
-				})
+					}
+					this.badgeProvider.setBadgesEmptySlots(totalBadgesEarn - cntData)
+				}) */
 			})
 		}else if (this.pageFor == "givenBadges"){
 			this.traitService.getGivenBadges(token).subscribe(data => {
@@ -74,7 +84,7 @@ export class BadgeDetailsPage {
 		}
 	}
 	
-	openBadgesMasterList(){
+	openBadgesMasterList(badge){
 		this.navCtrl.push('BadgesListPage');
 	}
 	
@@ -82,11 +92,11 @@ export class BadgeDetailsPage {
 		//this.traitService.showLoading();
 
 		if(this.pageMode == 'view' && badge == 'newBadge'){
-			this.openBadgesMasterList();
+			this.openBadgesMasterList(badge);
 		} else if(this.pageMode == 'view' && badge != 'newBadge'){
 			this.presentActionSheet(badge);
 		} else if(this.pageMode == 'give' && badge == 'newBadge'){	
-			this.openBadgesMasterList();
+			this.openBadgesMasterList(badge);
 		} else if(this.pageMode == 'give' && badge != 'newBadge'){
 			if(this.selectedBadges.indexOf(badge.badgeId) > -1){
 				this.selectedBadges.splice(this.selectedBadges.indexOf(badge.badgeId),1);

@@ -6,6 +6,7 @@ import { TraitDetailsPage } from '../trait-details/trait-details';
 import { TraitService } from '../../services/traits.service';
 import { ActionSheet, ActionSheetOptions } from '@ionic-native/action-sheet';
 import { BadgeInfoPage } from '../badge-info/badge-info';
+import { BadgeProvider } from '../../providers/badge/badge';
 
 declare var $: any;
 
@@ -48,7 +49,8 @@ export class ProfilePage {
 	private storage: Storage, 
 	private alertCtrl: AlertController, 
 	public navParams: NavParams,
-	private actionSheet: ActionSheet
+	private actionSheet: ActionSheet,
+	public badgeProvider: BadgeProvider
 	) {
 		this.frdInfo = navParams.get('frdInfo');
 		let tabOpen = navParams.get('tabOpen') ? navParams.get('tabOpen') : 'trait';
@@ -120,7 +122,8 @@ export class ProfilePage {
 		});
 
 		this.traitService.getAvailableBadgesCnt(this.authToken).subscribe(data => {
-			this.availableBadgesCnt = data
+			this.badgeProvider.setAvailableBadgesCnt(data);
+			this.availableBadgesCnt = this.badgeProvider.getAvailableBadgesCnt();
 		})
 
 		this.traitService.getGivenBadgesCnt(this.authToken).subscribe(data => {

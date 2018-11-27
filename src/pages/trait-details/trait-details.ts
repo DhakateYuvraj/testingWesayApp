@@ -90,9 +90,10 @@ export class TraitDetailsPage {
 		}
 	}
 	getTraitData(param){
-		this.getTraitDetails(this.traitDetails,this.authToken)
 		if(param && param == "back"){
 			this.navCtrl.pop();
+		}else{
+			this.getTraitDetails(this.traitDetails,this.authToken)
 		}
 	}
 	getTraitComments(trait){
