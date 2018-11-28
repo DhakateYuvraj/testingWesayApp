@@ -69,7 +69,6 @@ export class SignupPage {
 	}
 
 	done() {
-		//this.form.value.dateofbirth = '22/02/2017';
 			if (this.form.value.emailaddress != '' && this.form.value.password != '' && this.form.value.retypepassword != '' && this.form.value.mobilenumber != '') {
 				this.traitService.showLoading();
 				this.authService.registerUser(this.form.value).subscribe(data => {

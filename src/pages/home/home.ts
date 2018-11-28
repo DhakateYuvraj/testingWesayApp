@@ -41,14 +41,14 @@ export class HomePage {
 	public modalCtrl: ModalController, 
 	private traitService: TraitService,
 	private storage: Storage,
-	private contactsProvider : ContactsProvider,
-	private contacts: Contacts){
+	//private contactsProvider : ContactsProvider
+	){
 		this.storage.get('token').then((token) => {
 			this.authToken = token;			
 			this.getPopularTraits(token);
 			this.getMasterTraitList();
 			this.searchControl = new FormControl();
-			this.contactsProvider.syncContacts() ? this.traitService.presentSuccessToast('Contacts sync') : this.traitService.presentSuccessToast('Error in contacts sync');
+		//	this.contactsProvider.syncContacts() ? this.traitService.presentSuccessToast('Contacts sync') : this.traitService.presentSuccessToast('Error in contacts sync');
 		});
 	}
 

@@ -65,7 +65,7 @@ export class LoginPage {
 				this.isLoggedIn = false;
 			}
 		})
-		.catch(e => alert(e));
+		.catch(e => alert(JSON.stringify(e)));
 	}
 
 	getUserDetail(userid) {

@@ -35,15 +35,12 @@
 					<ion-icon name="lock"></ion-icon>
 				</div>
 				<div class="errorMsg">{{retypePasswordMatch}}</div>
-				<div class="ion-item-wrapper">
-					<ion-item>					
+				<div class="ion-item-wrapper">				
 						<select class="dropdownClass dropdownClass item-input" formControlName="dateofbirth" name="dateofbirth">
 							<option value="" disabled selected>Select Date of Birth</option>
-							<ion-option *ngFor="#year of years">{{year}}</ion-option>
+							<option ion-item *ngFor="let year of years">{{year}}</option>
 						</select>
 						<!-- <ion-input type="date" formControlName="dateofbirth" placeholder="Date of Birth"> </ion-input> -->
-					</ion-item>
-					<ion-icon name="calendar"></ion-icon>
 				</div>
 				<div class="ion-item-wrapper">
 					<select class="dropdownClass dropdownClass item-input" formControlName="countrycode" name="countryCode">

@@ -87,7 +87,7 @@
     <plugin name="cordova-plugin-contacts" spec="^3.0.1" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.1" />
     <plugin name="cordova-plugin-facebook4" spec="^2.3.0">
-        <variable name="APP_ID" value="158711111470238" />
+        <variable name="APP_ID" value="158711111470298" />
         <variable name="APP_NAME" value="WeSay" />
     </plugin>
     <plugin name="cordova-plugin-firebase" spec="2.0.5" />

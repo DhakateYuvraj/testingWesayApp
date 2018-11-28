@@ -3,24 +3,18 @@ import { Contacts } from '@ionic-native/contacts';
 import { TraitService } from '../../services/traits.service';
 import { Storage } from "@ionic/storage";
 
-/*
-  Generated class for the ContactsProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class ContactsProvider {
 	private authToken;
-  constructor(public http: HttpClient,
-	private traitService: TraitService, 
-	private storage: Storage, 
-	private contacts: Contacts) {
-    //console.log('Hello ContactsProvider Provider');
-	this.storage.get('token').then((token) => {
+	
+	constructor(private traitService: TraitService, 
+		private storage: Storage, 
+		private contacts: Contacts) {
+		//console.log('Hello ContactsProvider Provider');
+		this.storage.get('token').then((token) => {
 			this.authToken = token;
 		});
-  }
+	}
   
 	syncContacts(){
 		let options = {
@@ -36,7 +30,7 @@ export class ContactsProvider {
 				this.navCtrl.setRoot(this.navCtrl.getActive().component); */
 			});
 		}).catch((err) => {
-			this.showSyncContact = false;
+			//this.showSyncContact = false;
 			//this.traitService.presentSuccessToast('Error in contacts sync');
 			//console.log('err', err);
 			return false

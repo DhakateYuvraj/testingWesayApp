@@ -97,7 +97,7 @@
 						<div class="traitIconBg traitIconBg_{{i}}" (click)="openTraitDetails(item)">
 							<div class="traitIcon traitIcon_{{item.traitname | lowercase}}"></div>
 						</div>
-						<div class="traitName"(click)="openTraitDetails(item)">{{item.traitname}}</div>
+						<div class="traitName" (click)="openTraitDetails(item)">{{item.traitname+' '+(item.totalRating ? item.totalRating : '')}}</div>
 					</ion-item>
 				</ion-col>
             </ion-row>
