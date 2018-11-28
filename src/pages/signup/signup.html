@@ -36,8 +36,12 @@
 				</div>
 				<div class="errorMsg">{{retypePasswordMatch}}</div>
 				<div class="ion-item-wrapper">
-					<ion-item>
-						<ion-input type="date" formControlName="dateofbirth" placeholder="Date of Birth"> </ion-input>
+					<ion-item>					
+						<select class="dropdownClass dropdownClass item-input" formControlName="dateofbirth" name="dateofbirth">
+							<option value="" disabled selected>Select Date of Birth</option>
+							<ion-option *ngFor="#year of years">{{year}}</ion-option>
+						</select>
+						<!-- <ion-input type="date" formControlName="dateofbirth" placeholder="Date of Birth"> </ion-input> -->
 					</ion-item>
 					<ion-icon name="calendar"></ion-icon>
 				</div>

@@ -32,6 +32,7 @@ import { Firebase } from '@ionic-native/firebase';
 import { AngularFireModule } from 'angularfire2';
 import { FcmProvider } from '../providers/fcm/fcm';
 import { BadgeProvider } from '../providers/badge/badge';
+import { ContactsProvider } from '../providers/contacts/contacts';
 
 @NgModule({
 	declarations: [
@@ -80,7 +81,8 @@ import { BadgeProvider } from '../providers/badge/badge';
 		ActionSheet,
 		Firebase,
 		FcmProvider,
-    BadgeProvider
+    BadgeProvider,
+    ContactsProvider
 	]
 })
 export class AppModule {}

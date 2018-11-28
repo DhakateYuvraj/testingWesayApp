@@ -2,9 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, ModalController, Content } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
 import { Storage } from "@ionic/storage";
-import { Contacts } from '@ionic-native/contacts';
 import { TraitService } from '../../services/traits.service';
 import jQuery from "jquery";
+import { ContactsProvider } from '../../providers/contacts/contacts';
 
 declare var $: any;
 
@@ -33,23 +33,26 @@ export class HomePage {
 	masterTraitsSearch = [];
 	contacttobefound = '';
 	contactsfound = [];
-	search = false; 
+	search = false;
+	isContactSync = false;
 
 	constructor(
 	public navCtrl: NavController, 
 	public modalCtrl: ModalController, 
 	private traitService: TraitService,
-	private storage: Storage, 
+	private storage: Storage,
+	private contactsProvider : ContactsProvider,
 	private contacts: Contacts){
 		this.storage.get('token').then((token) => {
 			this.authToken = token;			
 			this.getPopularTraits(token);
 			this.getMasterTraitList();
 			this.searchControl = new FormControl();
+			this.contactsProvider.syncContacts() ? this.traitService.presentSuccessToast('Contacts sync') : this.traitService.presentSuccessToast('Error in contacts sync');
 		});
 	}
 
-	fetchDeviceContact() {
+	/* fetchDeviceContact() {
 		let options = {
 			filter: "",
 			multiple: true,
@@ -62,7 +65,7 @@ export class HomePage {
 		}).catch((err) => {
 			console.log('err', err);
 		});
-	}
+	} */
 
 
   getPopularTraits(token) {

@@ -16,6 +16,7 @@ export class SignupPage {
 	isReadyToSave: boolean;
 	item: any;
 	form: FormGroup;
+	public years = [];
 	
 	passwordComplexity : string;
 	retypePasswordMatch : string;
@@ -44,7 +45,10 @@ export class SignupPage {
 		this.form.valueChanges.subscribe((v) => {
 			this.isReadyToSave = this.form.valid;
 		});
-		//this.presentLoadingDefault();
+		let startYear = new Date().getFullYear() - 16;
+		for(var i=startYear;i > startYear-80 ; i--){
+			this.years.push(i)
+		}
 	}
 
 	processWebImage(event) {
@@ -65,7 +69,7 @@ export class SignupPage {
 	}
 
 	done() {
-		this.form.value.dateofbirth = '22/02/2017';
+		//this.form.value.dateofbirth = '22/02/2017';
 			if (this.form.value.emailaddress != '' && this.form.value.password != '' && this.form.value.retypepassword != '' && this.form.value.mobilenumber != '') {
 				this.traitService.showLoading();
 				this.authService.registerUser(this.form.value).subscribe(data => {
