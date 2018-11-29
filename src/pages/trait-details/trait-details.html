@@ -39,7 +39,40 @@
 				 </div>
 			</ion-col>
 		</ion-row>
-		<ion-row class="row traitScore singleTraits {{traitDetails.traitUniqueid}}" *ngIf="traitDetails">
+<ion-row class="traitScore" *ngIf="traitDetails">
+
+<ion-col offset-3 col-6 class="singleTraits {{traitDetails.traitName}} oldDesign isMyConti_{{traitDetails.mytraitcontibution}}">
+<ion-item >
+<div class="traitAvgScore" *ngIf="showCount" style="margin-top: -3px;text-align: center;">
+<div class="traitScoreInfo" *ngIf="showCount">
+{{traitDetails ? traitDetails.totalRating : 0}}
+</div>
+<div class="traitScoreInfo hidden" *ngIf="!showCount">
+Hidden
+</div>
+</div>
+<div class="pos-number isMyContiPos_{{traitDetails.myPositive}}" (click)="giveVoteToFriend(traitDetails,1)">
+<div class="tempClass">
+<span *ngIf="showCount">{{traitDetails.positiveCount}}</span>
+<ion-icon name="arrow-dropup"></ion-icon>
+</div>
+</div>
+<div class="neg-number isMyContiNeg_{{traitDetails.myNegative}}" (click)="giveVoteToFriend(traitDetails,0)">
+<div class="tempClass">
+<span *ngIf="showCount">{{traitDetails.negativeCount}}</span>
+<ion-icon name="arrow-dropdown"></ion-icon>
+</div>
+</div>
+<div class="traitIconBg traitIconBg_4" (click)="infoPopover($event)">
+<div class="traitIcon traitIcon_{{traitDetails.traitName | lowercase}}" ></div>
+</div>
+<div class="traitName" (click)="infoPopover($event)">{{traitDetails.traitName}}</div>
+</ion-item>
+</ion-col>
+</ion-row>
+
+
+<!-- 		<ion-row class="row traitScore singleTraits {{traitDetails.traitUniqueid}}" *ngIf="traitDetails">
 			<ion-col col-3 class="traitIconContainer" (click)="infoPopover($event)">
 				<div class="traitIconBg traitIconBg_4">
 					<div class="traitIcon traitIcon_{{traitDetails.traitName | lowercase}}">
@@ -71,7 +104,7 @@
 					Hidden
 				</div>
 			</ion-col>
-		</ion-row>
+		</ion-row> -->
 		<div class="contentMainPanel">
 		<ion-row class="traitRating" *ngIf="traitDetails">
 			<ion-col col-12>

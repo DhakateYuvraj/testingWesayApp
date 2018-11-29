@@ -157,7 +157,6 @@ page-trait-details {
 	
 	
 	.panelHeader{
-		font-size: 1.3em;
 		padding: 5px;
 		background: #ddd;
 		border-radius: 5px;
@@ -307,6 +306,23 @@ page-trait-details {
 		color:#ccc;		
 	}
 }
+
+	.oldDesign.singleTraits {
+		.pos-number,.neg-number {
+			padding-top:15%;
+		}
+		.item-md{
+			background: transparent;
+			box-shadow: none;
+			border: none;
+		}
+		.label-md{
+			margin:0px !important;
+		}
+		.traitScoreInfo{
+			font-weight: bold;
+		}
+	}
 
 
 	
