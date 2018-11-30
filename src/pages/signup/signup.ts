@@ -24,7 +24,7 @@ export class SignupPage {
 	constructor(
 	public navCtrl: NavController, 
 	public viewCtrl: ViewController, 
-	formBuilder: FormBuilder,
+	public formBuilder: FormBuilder,
 	private authService: AuthService, 
 	private traitService: TraitService, 
 	private toastCtrl: ToastController,
@@ -37,7 +37,7 @@ export class SignupPage {
 			emailaddress: ['',  Validators.compose([Validators.minLength(8),Validators.maxLength(50), Validators.required])],
 			password: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(15), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
 			retypepassword: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(15), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-			dateofbirth: ['', Validators.required],
+			yearofbirth: ['', Validators.required],
 			mobilenumber: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(12), Validators.required])],
 			gender: ['', Validators.required],
 			countrycode: ['', Validators.required]
@@ -74,13 +74,13 @@ export class SignupPage {
 				this.authService.registerUser(this.form.value).subscribe(data => {
 					this.traitService.hideLoading();
 					if (data.status == 'success') {
-						this.form.reset();
+						//this.form.reset();
 						this.traitService.presentSuccessToast('Please check your email for OTP');
 						this.authService.saveToken(data.response.authtoken)
-						this.navCtrl.push('OtpPage');
+						this.navCtrl.push('OtpPage',{regPageData: this.form.value});
 					} else {
 						this.traitService.presentSuccessToast('Failed to Registered!');
-						alert(JSON.stringify(data.response));
+						//alert(JSON.stringify(data.response));
 					}
 				});
 		} else {

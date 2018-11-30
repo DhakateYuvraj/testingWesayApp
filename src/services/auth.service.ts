@@ -49,10 +49,10 @@ export class AuthService {
 		return this.http.post(rootApi + '/api/validateotpviaemail/', userOtp, this.options).map(res => res.json());
 	}
 
-	resendOTP(useremailid) {
+	/* resendOTP(useremailid) {
 	this.createAuthenticationHeaders();
 		return this.http.post(rootApi + '/api/resendactivationcode/', useremailid, this.options).map(res => res.json());
-	}
+	} */
 
 	// Function to login user
 	loginUser(user) {
@@ -77,6 +77,23 @@ export class AuthService {
 		this.createAuthenticationHeaders();
 		return this.http.post(rootApi + '/userzone/acceptfriendrequest/', friendsid, this.options).map(res => res.json());
 	}
+
+	resendOTP(payload) {
+		this.createAuthenticationHeaders();
+		return this.http.post(rootApi + '/api/resendactivationcode/', payload, this.options).map(res => res.json());
+	}
+	
+	forgotpasswordviaemail(payload){
+		this.createAuthenticationHeaders();
+		return this.http.post(rootApi + '/api/forgotpasswordviaemail/', payload, this.options).map(res => res.json());
+	}
+	
+	passwordretrievalidateotp(payload){
+		this.createAuthenticationHeaders();
+		return this.http.post(rootApi + '/api/passwordretrievalidateotp/', payload, this.options).map(res => res.json());
+	}
+	
+	
 	// Function to logout
 	logout() {
 		this.storage.remove('token');

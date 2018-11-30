@@ -11,7 +11,7 @@ import { TraitService } from '../../services/traits.service';
 })
 export class OtpPage {
 	form: FormGroup;
-
+	public regPageParam;
 	constructor(
 	private authService: AuthService, 
 	private traitService: TraitService, 
@@ -24,12 +24,13 @@ export class OtpPage {
 		this.form = formBuilder.group({
 			otp: [''],
 		});
+		this.regPageParam = navParams.get('regPageData');
+		console.log(this.regPageParam.emailaddress);
 	}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OtpPage');
   }
-  
   
   valuateOtp(){
 	 if (this.form.value.otp != "") { 
@@ -47,6 +48,19 @@ export class OtpPage {
     } else {
      this.traitService.presentSuccessToast('All Field Required');
     }
+  }
+  
+  resendOTP(){
+		let reqPayload = {"emailaddress":this.regPageParam.emailaddress} 
+		this.authService.resendOTP(reqPayload).subscribe(data => {
+			if (data.status == 'success') {
+				this.form.reset();
+				this.traitService.presentSuccessToast('Please check your email for OTP');
+			} else {
+				this.traitService.presentSuccessToast(data.message);
+			}
+		});
+
   }
 
   cancel() {

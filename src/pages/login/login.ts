@@ -91,6 +91,11 @@ export class LoginPage {
     this.navCtrl.push('ResendOtpPage');
   }
 
+
+  forgotPassword() {
+    this.navCtrl.push('ForgotPasswordPage');
+  }
+
 	login() {
 	//alert(0);
 		this.traitService.showLoading;

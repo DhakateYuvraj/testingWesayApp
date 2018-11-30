@@ -13,10 +13,10 @@ export class ResendOtpPage {
   form: FormGroup;
 
   constructor(
-  private authService: AuthService, 
-  private traitService: TraitService, 
+  public authService: AuthService, 
+  public traitService: TraitService, 
   public navCtrl: NavController,
-  private toastCtrl: ToastController,
+  public toastCtrl: ToastController,
   public viewCtrl: ViewController, 
   public navParams: NavParams,
   formBuilder: FormBuilder) {
