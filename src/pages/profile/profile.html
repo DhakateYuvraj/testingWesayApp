@@ -1,7 +1,5 @@
-f
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 <ion-header>
     <ion-navbar>
         <ion-row>
@@ -63,6 +61,9 @@ f
 				<ion-searchbar [(ngModel)]="search_string" [formControl]="searchControl" (ionInput)="filterTraits()" (ionClear)="cancelSearch()" placeholder="Search and add traits"
 					#searchInput class="search-trait-style">
 				</ion-searchbar>
+				<button class="addTraitBtn disable-hover button button-md button-default button-default-md" (click)="addTrait()">
+					<span class="button-inner">Add Trait</span>
+				</button>
                 <ion-list>
                     <ion-item *ngFor="let trait of traitsMasterList">
                         <div style="padding:10px 20px;" (click)="addCustomTrait(trait.traitname)">

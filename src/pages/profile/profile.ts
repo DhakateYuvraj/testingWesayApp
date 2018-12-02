@@ -6,6 +6,7 @@ import { TraitDetailsPage } from '../trait-details/trait-details';
 import { TraitService } from '../../services/traits.service';
 import { ActionSheet, ActionSheetOptions } from '@ionic-native/action-sheet';
 import { BadgeInfoPage } from '../badge-info/badge-info';
+import { HomePage } from '../home/home';
 import { BadgeProvider } from '../../providers/badge/badge';
 
 declare var $: any;
@@ -93,6 +94,13 @@ export class ProfilePage {
 		});		
 	}
 
+	addTrait(){	
+		this.navCtrl.push(HomePage, {
+			dataFor: 'addTraitForFrd',
+			frdInfo: this.frdInfo
+		});
+	}
+		
 	getMasterTraitList() {
 		let masterTraitsStr = localStorage.getItem('activeTraits');
 		let allTraitsData = JSON.parse(masterTraitsStr);

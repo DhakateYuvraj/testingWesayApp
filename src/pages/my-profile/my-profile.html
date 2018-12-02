@@ -1,27 +1,15 @@
 <ion-header>
-  <ion-navbar>
-    <ion-row class="header-row">
-      <ion-col col-1>
-        <ion-icon class="menu_icon" name="menu" (click)="toggleMenu()"></ion-icon>
-      </ion-col>
-      <ion-col col-9>
-        <ion-label class="header_label">My Traits</ion-label>
-      </ion-col>
-      <ion-col col-2> 
-        <ion-icon ios="ios-search" md="md-search" class="profile_icon" (click)="search()"></ion-icon> 
-      </ion-col>
-    </ion-row>
-  </ion-navbar>
-
+    <ion-navbar>
+        <ion-row>
+            <ion-col col-1>
+                <ion-icon class="menu_icon" name="menu" (click)="traitService.toggleMenu()"></ion-icon>
+            </ion-col>
+            <ion-col col-9>
+                <ion-label class="header_label">Profile</ion-label>
+            </ion-col>
+        </ion-row>
+    </ion-navbar>
 </ion-header>
-
-<ion-content #contentRef (ionScroll)="scrollingFun($event)"> 
-
-<!-- <super-tabs height="100%">
-  <super-tab [tabRoot]="tab1Root" title="Home"></super-tab>
-  <super-tab [tabRoot]="tab2Root" title="About"></super-tab>
-  <super-tab [tabRoot]="tab3Root" title="Contact"></super-tab>
-</super-tabs> -->
-
-
+<ion-content #contentRef (ionScroll)="traitService.scrollingFun($event)">
+  
 </ion-content>

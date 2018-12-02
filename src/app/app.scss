@@ -31,8 +31,16 @@ ion-header [col-1] {
 .toolbar-background-md{
 	background : url(../assets/imgs/header.jpg);
 }
-
+page-home ion-header .toolbar.toolbar-md{
+		padding: 0px;
+		background : url(../assets/imgs/header.jpg);
+		min-height:70px;
+		.back-button{
+			margin-top:-58px;
+		}
+	}
 ion-header,.toolbar-background-md{
+
 	ion-row.header-row{
 		padding: 0px;
 		background : url(../assets/imgs/header.jpg);

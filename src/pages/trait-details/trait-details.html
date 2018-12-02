@@ -24,10 +24,11 @@
 				</div>
 				<div class="userAbout" *ngIf="traitDetails">
 					<span *ngIf="traitDetails.isHidden">Trait Hiddden</span>
-					<span *ngIf="!traitDetails.isHidden">Trait Visible</span>
-					|
-					<span *ngIf="traitDetails.isTraitCountHidden">Count Hiddden</span>
-					<span *ngIf="!traitDetails.isTraitCountHidden">Count Visible</span>
+					<span *ngIf="!traitDetails.isHidden">Trait Visible</span>					
+					<span *ngIf="!traitDetails.isHidden">|
+						<span *ngIf="traitDetails.isTraitCountHidden">Count Hiddden</span>
+						<span *ngIf="!traitDetails.isTraitCountHidden">Count Visible</span>
+					</span>
 				</div>
 			</ion-col>
 			<ion-col col-2 class="userInfoLike" (click)="traitService.changeVisibilityMode()">

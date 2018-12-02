@@ -35,6 +35,7 @@ export class MyApp {
 
 	initializeApp() {
 		this.platform.ready().then(() => {
+			this.fcm.subscribeToPushNotifications();
 			this.statusBar.styleDefault();
 			this.splashScreen.hide();
 		});
@@ -43,10 +44,9 @@ export class MyApp {
 	isLoggedIn(){
 		this.storage.get('token').then((token) => {
 			this.fcmDeviceId = this.fcm.getToken();
-			this.fcm.subscribeToPushNotifications();
-			alert('app-> '+JSON.stringify(this.fcmDeviceId));
+			//alert('app-> '+JSON.stringify(this.fcmDeviceId));
 			//alert(JSON.stringify(this.fcm.getToken()));
-			//this.fcmTokenSend(this.fcmDeviceId)
+			this.fcmTokenSend(this.fcmDeviceId)
 			setTimeout(this.fcmTokenSend(this.fcmDeviceId), 5000);
 
 			
@@ -64,11 +64,11 @@ export class MyApp {
 	}
 	
 	fcmTokenSend(fcmDeviceId){
-		alert('in fcmTokenSend app compo'+fcmDeviceId)
+		//alert('in fcmTokenSend app compo'+fcmDeviceId)
 		let fcmTokenInfo = { "deviceregistrationid": fcmDeviceId}
 		this.traitService.fcmTokenSend(this.token,fcmTokenInfo).subscribe(data => {
-			alert('from app component');
-			alert(JSON.stringify(data));
+			//alert('from app component');
+			//alert(JSON.stringify(data));
 		})
 	}
   

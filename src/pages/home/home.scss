@@ -91,7 +91,12 @@ page-home {
 		height: 100%;
 	}
 	.findMoreTrait .item-inner{
-		background:#ccc;
+		background:transparent;
+	}
+	.findMoreTrait .item-md{
+		box-shadow: none !important;
+		background: transparent;
+		border: none !important;
 	}
 	.popularTraits.singleTraits.checkedStyle {display:none;}
 	.grid{padding:0px}

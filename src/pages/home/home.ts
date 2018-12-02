@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, ModalController, Content } from 'ionic-angular';
+import { NavController, ModalController, NavParams, Content } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
 import { Storage } from "@ionic/storage";
 import { TraitService } from '../../services/traits.service';
@@ -35,10 +35,13 @@ export class HomePage {
 	contactsfound = [];
 	search = false;
 	isContactSync = false;
+	public dataFor = 'own';
+	public frdInfo;
 
 	constructor(
 	public navCtrl: NavController, 
 	public modalCtrl: ModalController, 
+	public navParams: NavParams,
 	private traitService: TraitService,
 	private storage: Storage,
 	private contactsProvider : ContactsProvider
@@ -49,6 +52,8 @@ export class HomePage {
 			this.getMasterTraitList();
 			this.loadGenericSetting();
 			this.searchControl = new FormControl();
+			this.dataFor = navParams.get('dataFor');
+			this.frdInfo = navParams.get('frdInfo');
 		});
 	}
 
@@ -161,14 +166,17 @@ export class HomePage {
 
 
 
-  addToPage() {
-    this.traitService.addTraitToPage(this.checkedTraits, this.authToken).subscribe(data => {
-      //alert(JSON.stringify(data));
-      if (data.status != "error") {
-        this.openProfilePage();
-      }
-    })
-  }
+addToPage() {
+	if(dataFor && dataFor == 'addTraitForFrd'){
+	
+	}else{
+		this.traitService.addTraitToPage(this.checkedTraits, this.authToken).subscribe(data => {
+			if (data.status != "error") {
+				this.openProfilePage();
+			}
+		})
+	}
+}
 
 
   ionViewDidEnter() {

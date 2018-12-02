@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AuthService } from '../../services/auth.service';
+import { MyProfilePage } from '../my-profile/my-profile';
  
 @IonicPage()
 @Component({
@@ -19,6 +20,10 @@ export class MenuPage {
 
   close(){
     this.viewCtrl.dismiss().catch(() => {});  
+  }
+
+  openMyProfile(){
+    this.navCtrl.push('MyProfilePage');
   }
 
   logout(){

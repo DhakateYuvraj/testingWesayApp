@@ -12,17 +12,11 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-grid style="height: 100%">
-    <ion-row justify-content-center align-items-center style="height: 100%">
-      My Page
-    </ion-row>
-    <ion-row justify-content-center align-items-center class="middle-btn">
-      Friend List
-    </ion-row>
-    <ion-row justify-content-center align-items-center style="height: 100%">
-      Updated Wall
-    </ion-row>
-  </ion-grid>
+	<ion-grid style="height: 100%">
+		<ion-row justify-content-center align-items-center style="height: 100%" (click)="openMyProfile()">
+			My Page
+		</ion-row>
+	</ion-grid>
 </ion-content>
 
 <ion-footer no-shadow padding>

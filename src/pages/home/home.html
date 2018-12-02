@@ -5,7 +5,8 @@
         <ion-icon class="menu_icon" name="menu" (click)="traitService.toggleMenu()"></ion-icon>
       </ion-col>
       <ion-col col-11>
-        <ion-label class="header_label">What do you think about yourself?</ion-label>
+        <ion-label class="header_label" *ngIf="dataFor != 'addTraitForFrd'">Pickup top 3 traits</ion-label>
+        <ion-label class="header_label" *ngIf="dataFor == 'addTraitForFrd'">Pickup traits for {{frdInfo.fullname}}</ion-label>
       </ion-col>
 		<ion-searchbar [(ngModel)]="search_string" [showCancelButton]="shouldShowCancel" (ionInput)="filterTraits()" (ionCancel)="onCancel($event)"
 		placeholder="Search and add traits" #searchInput>
@@ -44,17 +45,19 @@
           </div>
         </ion-item>
       </ion-col>
-      <ion-col col-6 (click)="openTraitsList()" class="singleTraits findMoreTrait">
+      <ion-col col (click)="openTraitsList()" class="singleTraits findMoreTrait">
         <ion-item>
-		<div class="traitIconBg traitIconBg_dummy">
+		<!-- <div class="traitIconBg traitIconBg_dummy">
 			<div class="traitIcon traitIcon_dummy"></div>
-		</div>
-		<div class="traitName">Find more traits...</div>
+		</div> 
+		<div class="traitName">Find more traits...</div>-->
+		<h3 style="text-align: center;">Find more traits...</h3>
         </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
   <ion-row>
-    <button class="addPageBtn" ion-button (click)="addToPage()">Add to page</button>
+    <button class="addPageBtn" ion-button (click)="addToPage()" *ngIf="dataFor != 'addTraitForFrd'">Add to my page</button>
+    <button class="addPageBtn" ion-button disabled *ngIf="dataFor == 'addTraitForFrd'">Add to {{frdInfo.fullname}}'s page</button>
   </ion-row>
 </ion-content>
