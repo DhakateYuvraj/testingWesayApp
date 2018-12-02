@@ -34,11 +34,16 @@ page-friends-list {
     }
     .logo-contact{
         font-size: 2.5em;
+		border: 1px solid #00c5cd;
+		border-radius: 50%;
+		padding: 0px 8px;
+		color: #00c5cd;
     }
     .frdname{
         float: left;
         margin-top: 9px;
         padding-left: 10px;
+		color:#666;
     }
     .share-card{
         text-align: initial !important;
@@ -77,15 +82,36 @@ page-friends-list {
 		}
 	}
 	ion-item-sliding.frdRequestRecived{
-		background:#ccc;
+		
 	}
 	ion-item-sliding.friends{
-		background:#ccc;
+		
 	}
 	ion-item-sliding.frdRequestsSent{
-		background:#ccc;
+		
 	}
 	ion-item-sliding.allOtherContacts{
-		background:#ccc;
+		
+	}
+	.inviteFriends{
+	
+    .logo-share{
+		font-size: 2em;
+		padding: 0px 8px;
+		color: #00c5cd;
+    }
+    .frdname{
+		color:#00c5cd;
+		margin-top: 4px;
+		font-size: 1.2em;
+    }
+	
+	}
+	ion-item-sliding ion-item-options{
+		button{
+			.button-inner ion-icon{
+				font-size:2em;
+			}
+		}
 	}
 }

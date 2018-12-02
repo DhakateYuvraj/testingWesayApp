@@ -41,31 +41,26 @@ export class HomePage {
 	public modalCtrl: ModalController, 
 	private traitService: TraitService,
 	private storage: Storage,
-	//private contactsProvider : ContactsProvider
+	private contactsProvider : ContactsProvider
 	){
 		this.storage.get('token').then((token) => {
 			this.authToken = token;			
 			this.getPopularTraits(token);
 			this.getMasterTraitList();
+			this.loadGenericSetting();
 			this.searchControl = new FormControl();
-		//	this.contactsProvider.syncContacts() ? this.traitService.presentSuccessToast('Contacts sync') : this.traitService.presentSuccessToast('Error in contacts sync');
 		});
 	}
 
-	/* fetchDeviceContact() {
-		let options = {
-			filter: "",
-			multiple: true,
-			hasPhoneNumber: true
-		};
-		this.contacts.find(["*"], options).then((res) => {
-			this.traitService.addContacts(res, this.authToken).subscribe(data => {
-				console.log(data)
-			});
-		}).catch((err) => {
-			console.log('err', err);
+	loadGenericSetting(){
+		this.traitService.loadGenericSetting(this.authToken).subscribe(data => {
+			if(data.response && !data.response.isContactSynced){
+				//console.log(data.response);
+				this.contactsProvider.syncContacts();
+			}
 		});
-	} */
+		//this.contactsProvider.syncContacts();
+	}
 
 
   getPopularTraits(token) {

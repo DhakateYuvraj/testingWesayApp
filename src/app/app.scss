@@ -133,7 +133,7 @@ ion-header,.toolbar-background-md{
 		}
 	}
 	
-	.traitIcon{ display: inline-block; background: url('../assets/imgs/traitIcons.png') no-repeat; overflow: hidden; text-indent: -9999px; margin: 7px; width: 50px; height: 50px;background-position: -10px -1200px;}
+	.traitIcon{ display: inline-block; background: url('../assets/imgs/traitIcons.png') no-repeat; overflow: hidden; text-indent: -9999px; margin: 7px; width: 50px; height: 50px;background-position:1px -952px;}
 	.traitIcon_trustworthy{background-position:-11px 6px;}
 	.traitIcon_friendly{background-position: -11px -45px}
 	.traitIcon_good.looking{background-position: -11px -101px;}
@@ -214,9 +214,8 @@ ion-header,.toolbar-background-md{
 .content-md{background:#e4e3e3;background-size: auto 100%;background-repeat: no-repeat;background-position: center;}
 
 .tabs-md .tab-button[aria-selected=true] .tab-button-icon,.singleTrait .item-md h3, .singleTrait .item-md h4, .singleTrait .item-md h5, .singleTrait .item-md h6,.tabs-md .tab-button[aria-selected=true],.singleTrait .traitName{color:#4c8879}
-.singleTrait 
-.item-md.item-block .item-inner{border:none}
-
+.singleTrait .item-md.item-block .item-inner{padding-right:0px !important;border:none !important;}
+.item-md.item-block .item-inner{padding-right:0px !important;}
 .hidden-checkbox {
 	width: 100%;
 	height: 100%;

@@ -28,10 +28,10 @@ page-profile {
         font-size:1px;
         padding:0px;
         height: 3.6rem;
-        color: black !important;
+        color: #00c5cd !important;
     }
     .segment-button{
-       border-right:1px solid black;
+       border-right:1px solid #00c5cd;
     }
     .segment-button:last-child{
        border-right:none;
@@ -180,9 +180,8 @@ page-profile {
         }
         ion-segment{
             border-bottom: 1px solid #16a085;
-			background:#fff
+			background:rgba(255, 255, 255, 0.8);
         }
-
 	.addtrticons{
 		font-size: 49px;
 		margin-left: -10px;

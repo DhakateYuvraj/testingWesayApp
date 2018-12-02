@@ -13,6 +13,7 @@ import { LoginPage } from '../login/login';
 })
 export class ResetPasswordPage {
 
+	form: FormGroup;
   constructor(
 	public formBuilder: FormBuilder,
 	public navCtrl: NavController, 

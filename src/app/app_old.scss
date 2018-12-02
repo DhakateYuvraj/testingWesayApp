@@ -77,9 +77,9 @@ ion-header,.toolbar-background-md{
 }
 
 .singleTraits{
-	padding:8px 5px;
+	padding:5px;
 	.label-md {
-		margin: 10px 5px !important;
+		margin: 5px !important;
 	}
 	.traitName{
 		text-align:center;
@@ -132,7 +132,7 @@ ion-header,.toolbar-background-md{
 		}
 	}
 	
-	.traitIcon{ display: inline-block; background: url('../assets/imgs/traitIcons1.png') no-repeat; overflow: hidden; text-indent: -9999px; margin: 7px; width: 40px; height: 40px;background-position: -10px -1200px;}
+	.traitIcon{ display: inline-block; background: url('../assets/imgs/traitIcons1.png') no-repeat; overflow: hidden; text-indent: -9999px; margin: 7px; width: 40px; height: 40px;background-position: 1px -952px;;}
 	.traitIcon_trustworthy{background-position:-11px 4px;}
 	.traitIcon_friendly{background-position: -11px -40px}
 	.traitIcon_good.looking{background-position: -12px -88px}
@@ -208,7 +208,7 @@ ion-header,.toolbar-background-md{
 }
 
 .userProfie{
-	background: rgba(255,255,255,0.8);padding: 10px 0;
+	background: rgba(255,255,255,0.8);padding: 6px 0 0;
 	.userPhoto{
 		text-align:center;
 		img{

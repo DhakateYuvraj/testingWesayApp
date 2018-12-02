@@ -24,9 +24,9 @@ export class MyApp {
 	public platform: Platform, 
 	public statusBar: StatusBar, 
 	public splashScreen: SplashScreen, 
-	private storage: Storage,
+	public storage: Storage,
 	public modalCtrl: ModalController,
-	private traitService: TraitService, 
+	public traitService: TraitService, 
 	public fcm: FcmProvider
 	) {
 		this.initializeApp();
@@ -37,17 +37,19 @@ export class MyApp {
 		this.platform.ready().then(() => {
 			this.statusBar.styleDefault();
 			this.splashScreen.hide();
-			//this.fcmDeviceId = this.fcm.getToken();
 		});
 	}
 
 	isLoggedIn(){
 		this.storage.get('token').then((token) => {
-			//console.log('token', token);
 			this.fcmDeviceId = this.fcm.getToken();
-			//alert(JSON.stringify(this.fcmDeviceId));
+			this.fcm.subscribeToPushNotifications();
+			alert('app-> '+JSON.stringify(this.fcmDeviceId));
 			//alert(JSON.stringify(this.fcm.getToken()));
-			this.fcmTokenSend(this.fcm.getToken())
+			//this.fcmTokenSend(this.fcmDeviceId)
+			setTimeout(this.fcmTokenSend(this.fcmDeviceId), 5000);
+
+			
 			if (token != undefined || token != null) { 
 				this.token = token;
 				this.rootPage = TabsPage; 
@@ -62,10 +64,11 @@ export class MyApp {
 	}
 	
 	fcmTokenSend(fcmDeviceId){
+		alert('in fcmTokenSend app compo'+fcmDeviceId)
 		let fcmTokenInfo = { "deviceregistrationid": fcmDeviceId}
 		this.traitService.fcmTokenSend(this.token,fcmTokenInfo).subscribe(data => {
-			//alert('from app component');
-			//alert(JSON.stringify(data));
+			alert('from app component');
+			alert(JSON.stringify(data));
 		})
 	}
   

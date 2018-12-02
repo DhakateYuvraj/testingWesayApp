@@ -22,19 +22,21 @@ export class ContactsProvider {
 			multiple: true,
 			hasPhoneNumber: true
 		};
+		
 		this.contacts.find(['displayName', 'name', 'phoneNumbers', 'emails'], options).then((res) => {
 			this.traitService.addContacts(res, this.authToken).subscribe(data => {
-				//this.traitService.presentSuccessToast('Contacts sync');
+				this.traitService.presentSuccessToast('Contacts sync');
 				return true;
 				/* this.showSyncContact = false;
 				this.navCtrl.setRoot(this.navCtrl.getActive().component); */
 			});
 		}).catch((err) => {
 			//this.showSyncContact = false;
-			//this.traitService.presentSuccessToast('Error in contacts sync');
+			this.traitService.presentSuccessToast('Error in contacts sync');
 			//console.log('err', err);
 			return false
 		});
+		
 	}
 
 }

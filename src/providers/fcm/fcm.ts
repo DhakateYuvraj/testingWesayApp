@@ -22,7 +22,7 @@ export class FcmProvider {
 	getToken() {
 		let token;
 		token =  this.firebaseNative.getToken()
-		.then(token => {/* this.fcmTokenSend(token); alert(`The token is ${token}`); */ return token;}) // save the token server-side and use it to push notifications to this device
+		.then(token => {/* this.fcmTokenSend(token); */ alert(`The token is-- ${token}`); return token;}) // save the token server-side and use it to push notifications to this device
 		.catch(error => alert('Error getting token'+ error));
 		return(token)
 	}
@@ -34,4 +34,15 @@ export class FcmProvider {
 		//alert(JSON.stringify(data));
 		})
 	}
+	
+subscribeToPushNotifications() {
+    this.firebaseNative.onNotificationOpen().subscribe((response) => {
+	alert(JSON.stringify(response));
+      if(response.tap){
+        alert('bg');
+      }else{
+        alert('fg');
+      }
+    });
+  }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ViewController, NavController, NavParams, AlertController } from 'ionic-angular';
 import { TraitService } from '../../services/traits.service';
 import { Storage } from "@ionic/storage";
 
@@ -21,7 +21,12 @@ export class TraitDetailsMenuPage {
 	public homeRef;
 	public readOnly = true;
 	
-  constructor(public viewCtrl: ViewController,public navCtrl: NavController, private traitService: TraitService, private storage: Storage,  public navParams: NavParams) {
+  constructor(public viewCtrl: ViewController,
+		public navCtrl: NavController, 
+		private traitService: TraitService, 
+		private storage: Storage,  
+		public navParams: NavParams,
+		public alertCtrl : AlertController) {
 		this.traitDetails = navParams.get('traitDetails');
 		this.homeRef = navParams.get('homeRef');
 		this.readOnly = navParams.get('readOnly');		
@@ -70,18 +75,42 @@ export class TraitDetailsMenuPage {
 	}
 
 	deleteTrait(){
+	  let alert = this.alertCtrl.create({
+		title: 'Confirm Delete',
+		message: 'Do you want to delete '+ this.traitDetails.traitName +' ?',
+		buttons: [
+		  {
+			text: 'Cancel',
+			role: 'cancel',
+			handler: () => {
+			  console.log('Cancel clicked');
+			}
+		  },
+		  {
+			text: 'Confirm',
+			handler: () => {
+			  this.deleteTraitConfirmed(this.traitDetails.userTraitId)
+			}
+		  }
+		]
+	  });
+	  alert.present();
+	}
+	
+	deleteTraitConfirmed(userTraitId){
 		let trait_data = {
 			userTraitId: this.traitDetails.userTraitId
 		}
 		this.traitService.deleteTrait(trait_data, this.authToken).subscribe(data => {
 			this.viewCtrl.dismiss();
+			this.traitService.presentSuccessToast(this.traitDetails.traitName+' deleted successfully');
 			this.homeRef.getTraitData("back");
-			console.log(this.navCtrl)
+			//console.log(this.navCtrl)
 			//setTimeout(() => {
 			//	this.navCtrl.pop();
 			//}, 5000);
 			
-		});
+		});	
 	}
 	
 }

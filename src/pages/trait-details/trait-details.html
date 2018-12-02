@@ -164,7 +164,7 @@ Hidden
 							<ion-icon name="person"></ion-icon>
 						</div>
 						<div class="sectRight">
-							<strong class="commentBy">{{comment.commentBy ? comment.commentBy : "Anonymous"}}</strong> <span class="commentDate">@ {{traitService.calcuateTime(comment.commentDate)}}</span>
+							<span class="commentBy">{{comment.commentBy ? comment.commentBy : "Anonymous"}}</span> <span class="commentDate">@ {{traitService.calcuateTime(comment.commentDate)}}</span>
 							<div class="commentText">{{comment.commentText}}</div>
 						</div>
 					</div>
@@ -176,7 +176,7 @@ Hidden
 							<ion-icon name="thumbs-down"></ion-icon><span>{{comment.disLikeCount}}</span>
 						</span>
 						<span (click)="replyToComment(comment.commentId)" class="actionBtn reply">
-							<ion-icon name="ios-undo"></ion-icon>
+							<ion-icon name="ios-undo"></ion-icon><span>Reply</span>
 						</span>					
 					</div>
 					<div  *ngFor="let commentReply of comment.children" class="childComments commentBox commentId-{{commentReply.commentId}}">
@@ -185,7 +185,7 @@ Hidden
 								<ion-icon name="person"></ion-icon>
 							</div>
 							<div class="sectRight">
-								<strong class="commentBy">{{commentReply.commentBy ? comment.commentBy : "Anonymous"}}</strong> <span class="commentDate">@ {{traitService.calcuateTime(commentReply.commentDate)}}</span>
+								<span class="commentBy">{{commentReply.commentBy ? commentReply.commentBy : "Anonymous"}}</span> <span class="commentDate">@ {{traitService.calcuateTime(commentReply.commentDate)}}</span>
 								<div class="commentText">{{commentReply.commentText}}</div>
 							</div>
 						</div>
@@ -198,7 +198,7 @@ Hidden
 								<ion-icon name="thumbs-down"></ion-icon><span>{{commentReply.disLikeCount}}</span>
 							</span>
 							<span (click)="replyToComment(comment.commentId)" class="actionBtn reply">
-								<ion-icon name="ios-undo"></ion-icon>
+								<ion-icon name="ios-undo"></ion-icon><span>Reply</span>
 							</span>					
 						</div>
 					</div>
@@ -244,7 +244,7 @@ Hidden
 		</ion-row>
 		<br /><br /><br /><br />
 		</div>
-		<div class="traitAcceptanceOverlay bgOverlay" *ngIf="traitDetails.isWaitingForApproval">
+		<div class="traitAcceptanceOverlay bgOverlay" *ngIf="traitDetails ? traitDetails.isWaitingForApproval : false">
 			<div class="traitAcceptance clearfix">
 				<div class="traitDetail"><strong>{{traitDetails.traitName}}</strong><br />is given by  <br />{{traitDetails.traitGivenBy ? traitDetails.traitGivenBy : "Anonymous"}}</div>
 				<div class="agreeTrait traitAction" (click)="acceptTrait('accept')">

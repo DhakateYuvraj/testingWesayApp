@@ -32,7 +32,7 @@
     <ion-item>
     <ion-row>
       <ion-col col-2 class="frdListPic">
-        <ion-icon class="logo-contact" name="contact"></ion-icon>
+        <ion-icon class="logo-contact" name="ios-person"></ion-icon>
       </ion-col>
       <ion-col col-7 class="frdListInfo">
         <div class="frdname">{{ friend.fullname }}</div> 
@@ -59,7 +59,7 @@
     <ion-item>
     <ion-row>
       <ion-col col-2 class="frdListPic" (click)="openFriendProfile(friend)">
-        <ion-icon class="logo-contact" name="contact"></ion-icon>
+        <ion-icon class="logo-contact" name="ios-person"></ion-icon>
       </ion-col>
       <ion-col col-7 class="frdListInfo" (click)="openFriendProfile(friend)">
         <div class="frdname">{{ friend.fullname }}</div> 
@@ -67,16 +67,20 @@
     </ion-row>
     </ion-item>
     <ion-item-options side="right">
-      <button ion-button (click)="unread(item)">
-		<ion-icon name="thumbs-up"></ion-icon>
-		<div>Like</div>
-		<div>99+</div>
-	  </button>
-      <button ion-button (click)="unread(item)">
-		<ion-icon name="thumbs-up"></ion-icon>
+		<button ion-button (click)="unread(item)">
+			<ion-icon name="ios-bowtie-outline"></ion-icon>
+			<!--<div>Traits</div>-->
+			<div>99+</div>
 		</button>
-      <button ion-button (click)="unread(item)">
-		<ion-icon name="thumbs-up"></ion-icon>
+		<button ion-button (click)="unread(item)">
+			<ion-icon name="ios-ribbon-outline"></ion-icon>
+			<!--<div>Badges</div>-->
+			<div>99+</div>
+		</button>
+		<button ion-button (click)="unread(item)">
+			<ion-icon name="ios-chatbubbles-outline"></ion-icon>
+			<!--<div>Other</div>-->
+			<div>99+</div>
 		</button>
     </ion-item-options>
   </ion-item-sliding>
@@ -87,7 +91,7 @@
     <ion-item>
     <ion-row>
       <ion-col col-2 class="frdListPic">
-        <ion-icon class="logo-contact" name="contact"></ion-icon>
+        <ion-icon class="logo-contact" name="ios-person"></ion-icon>
       </ion-col>
       <ion-col col-7 class="frdListInfo">
         <div class="frdname">{{ friend.fullname }}</div> 
@@ -111,7 +115,7 @@
     <ion-item>
     <ion-row>
       <ion-col col-2 class="frdListPic">
-        <ion-icon class="logo-contact" name="contact"></ion-icon>
+        <ion-icon class="logo-contact" name="ios-person"></ion-icon>
       </ion-col>
       <ion-col col-7 class="frdListInfo">
         <div class="frdname">{{ friend.fullname }}</div> 
@@ -133,11 +137,11 @@
     </ion-item-options>
   </ion-item-sliding>
 	<hr />
-  <ion-item-sliding>
+  <ion-item-sliding class="inviteFriends">
     <ion-item>
     <ion-row (click)="inviteFriend()">
       <ion-col col-2 class="frdListPic">
-         <ion-icon md="md-share"></ion-icon>
+         <ion-icon class="logo-share" md="md-share"></ion-icon>
       </ion-col>
       <ion-col col-10 class="frdListInfo">
         <div class="frdname">Invite a friend</div> 

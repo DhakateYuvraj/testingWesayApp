@@ -87,39 +87,49 @@ page-trait-details {
 		background:#fff;
 		.commentpost{
 			position:relative;
+			margin-bottom:12px;
 			textarea{	
 				width: 100%;
 				border: 1px solid #ccc;
 				border-radius: 5px 5px 0 5px;
-				height: 40px;
+				height: 30px;
 				margin-bottom: 0;
 				padding-right: 50px;
 			}
 			button{
-				position: absolute;
-				margin-top: -35px;
-				padding: 10px 19px;
-				font-size: 15px;
-				background: #00c5cd;
-				color:#fff;
+			    position: absolute;
+				padding: 4px 15px;
+				font-size: 19px;
+				background: transparent;
+				color: #00c5cd;
 				right: 0px;
-				top: 35px;
+				top: 0px;
+				border-left: 1px solid#ccc;
 			}
 		}
 		.commentBox{
 			width: 96%;
-			margin: 0 auto 10px auto;
+			margin: 0 auto;
 			.commentArea{
 				.sectLeft{
 					width:40px;
 					float:left;
-					font-size:2em
+					font-size:2em;					
+					ion-icon::before{
+						color:#00c5cd;
+					}		
 				}
 				.sectRight{
 					margin-left:40px;
 					.commentDate{
 						font-size:0.8em;
-						color:#999;
+						color:#ccc;
+					}
+					.commentText{
+						color: #777;
+					}
+					.commentBy,.commentText{
+						font-size: 0.9em;
 					}
 				}
 			}
@@ -127,28 +137,28 @@ page-trait-details {
 				margin-left:40px;
 			}
 			.commentOperations{
-				margin-left:40px;
+				margin:0 0 10px 40px;
 				.actionBtn{
-					padding: 4px 5px 4px 0px;
-					margin: 0px;
-					height: 30px;
+					padding: 4px 5px 2px 0px;
+					margin: 0 5px 0 0;
+					height: 25px;
 					display: inline-block;
+					background:#eeeeee;
 				}
 				.actionBtn ion-icon::before{
-					font-size:1.2em;
 					padding:0 7px;
 				}
 				.actionBtn.reply{
+					border-left:3px solid #00c5cd;
 					color:#00c5cd;
 				}
 				.actionBtn.like{
+					border-left:3px solid #38af38;
 					color:#38af38;
 				}
 				.actionBtn.dislike{
+					border-left:3px solid #e73838;
 					color:#e73838;
-				}
-				.actionBtn span{
-					font-size:1.3em;
 				}
 			}
 		}
@@ -158,7 +168,7 @@ page-trait-details {
 	
 	.panelHeader{
 		padding: 5px;
-		background: #ddd;
+		background: #e9e9e9;
 		border-radius: 5px;
 		padding-left: 15px;
 		position: relative;
@@ -172,7 +182,6 @@ page-trait-details {
 	}
 	.panelContent{
 		padding: 10px 5px;
-		border-bottom: 1px solid #000;	
 	}
 	
 	
@@ -294,8 +303,14 @@ page-trait-details {
 
 
 .traitDetailWrapper.isHidden_true.traitDetailWrapper.isFrd_false{
-	.traitScore.singleTraits{
+	.traitIconBg{
 		background:#ddd;
+	}
+	.pos-number,.neg-number{
+		color:#ccc;		
+	}
+	.traitScoreInfo{
+		color:#ccc;		
 	}
 }
 .traitDetailWrapper.isCntHidden_true.traitDetailWrapper.isFrd_false{

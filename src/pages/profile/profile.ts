@@ -252,10 +252,12 @@ giveVoteToFriend(trait, typeofvote) {
         this.cancelSearch();
         this.getLoginUserTraits(this.authToken); 
       }
-	  if(data.customResponse.isWaitingForApproval && data.customResponse.isWaitingForApproval == 1){
-		this.traitService.presentSuccessToast('Trait is waiting for approval');
-	  }else{
-		this.traitService.presentSuccessToast('Trait is accepted');
+	  if(data.customResponse){
+		  if(data.customResponse.isWaitingForApproval && data.customResponse.isWaitingForApproval == 1){
+			this.traitService.presentSuccessToast('Trait is waiting for approval');
+		  }else{
+			this.traitService.presentSuccessToast('Trait is accepted');
+		  }
 	  }
     });
   }
