@@ -5,6 +5,7 @@ import { Storage } from "@ionic/storage";
 import { TraitService } from '../../services/traits.service';
 import jQuery from "jquery";
 import { ContactsProvider } from '../../providers/contacts/contacts';
+import { ProfilePage } from '../profile/profile';
 
 declare var $: any;
 
@@ -37,6 +38,8 @@ export class HomePage {
 	isContactSync = false;
 	public dataFor = 'own';
 	public frdInfo;
+	public profileRef;
+	public numTraitToFrds=3; 
 
 	constructor(
 	public navCtrl: NavController, 
@@ -54,6 +57,7 @@ export class HomePage {
 			this.searchControl = new FormControl();
 			this.dataFor = navParams.get('dataFor');
 			this.frdInfo = navParams.get('frdInfo');
+			this.profileRef = navParams.get('profileRef');
 		});
 	}
 
@@ -147,10 +151,15 @@ export class HomePage {
 	  isAnonymous : 0
     }
     if (!jQuery("." + traitObj.traituniqueid).hasClass("checkedStyle")) {
-      if (this.checkedTraitsTemp.indexOf(traitObj.traituniqueid) == -1) {
-        this.checkedTraits.push(traitData);
-        this.checkedTraitsTemp.push(traitObj.traituniqueid);
-      }
+		if(this.dataFor == 'addTraitForFrd' && (this.checkedTraits.length < this.numTraitToFrds)){
+			if (this.checkedTraitsTemp.indexOf(traitObj.traituniqueid) == -1) {
+				this.checkedTraits.push(traitData);
+				this.checkedTraitsTemp.push(traitObj.traituniqueid);
+			}
+		}else{
+			this.traitService.presentSuccessToast(`you can give only ${this.numTraitToFrds} traits`);
+		}
+	  
     } else {
       for (var i = 0; i < this.checkedTraits.length; i++) {
         if (this.checkedTraits[i].traituniqueid == traitObj.traituniqueid) {
@@ -167,8 +176,14 @@ export class HomePage {
 
 
 addToPage() {
-	if(dataFor && dataFor == 'addTraitForFrd'){
-	
+	if(this.dataFor == 'addTraitForFrd'){
+		var traitNames =[];		
+		this.checkedTraits.map(singleTrait => {
+			traitNames.push(singleTrait.traitname);			
+		})
+		
+		this.profileRef.addCustomTrait(traitNames);
+		this.navCtrl.pop();
 	}else{
 		this.traitService.addTraitToPage(this.checkedTraits, this.authToken).subscribe(data => {
 			if (data.status != "error") {

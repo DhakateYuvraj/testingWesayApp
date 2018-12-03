@@ -97,7 +97,8 @@ export class ProfilePage {
 	addTrait(){	
 		this.navCtrl.push(HomePage, {
 			dataFor: 'addTraitForFrd',
-			frdInfo: this.frdInfo
+			frdInfo: this.frdInfo,
+			profileRef : this
 		});
 	}
 		
@@ -241,17 +242,33 @@ giveVoteToFriend(trait, typeofvote) {
 
   addCustomTrait(traitname){
     var id;
+	let custom_Trait =[];
+	var traitObj;
     if (this.profileId == null || this.profileId == undefined) { 
       id = 0;
     } else {
       id = this.profileId.id;
     }
-    let custom_Trait = [{ 
-		traitname: traitname, 
-		traitgivenfor: id, 
-		typeofvote: 0,
-		isAnonymous : this.traitService.isAnonymousMode() ? 1 : 0 
-	}];
+	if(typeof(traitname) == "string"){
+		traitObj = { 
+			traitname: traitname, 
+			traitgivenfor: id, 
+			typeofvote: 0,
+			isAnonymous : this.traitService.isAnonymousMode() ? 1 : 0 
+		};
+		custom_Trait.push(traitObj);
+	}else{
+		traitname.map(singleTraitName => {
+			traitObj = { 
+				traitname: singleTraitName, 
+				traitgivenfor: id, 
+				typeofvote: 0,
+				isAnonymous : this.traitService.isAnonymousMode() ? 1 : 0 
+			}
+			custom_Trait.push(traitObj);			
+		})
+	
+	}
 
     this.traitService.addTraitToPage(custom_Trait, this.authToken).subscribe(data => {
       console.log(data);

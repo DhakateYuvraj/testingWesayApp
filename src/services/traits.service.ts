@@ -319,6 +319,18 @@ export class TraitService {
 	
 	
 	
+	getProfileData(token,payload){
+		this.createAuthenticationHeaders(token);
+		//{"userid":0}
+		return this.http.post(rootApi + '/userzone/myprofileview', payload, this.options).map(res => res.json());
+	}
+	
+	updateMyProfile(token,payload){
+		this.createAuthenticationHeaders(token);
+		//{"location":"asd",		"profession":"",		"workAtStudiesIn":"",		"aboutMe":"",		"mywebsite":""		}
+		return this.http.post(rootApi + '/userzone/myprofile', payload, this.options).map(res => res.json());
+	}
+	
 	loadGenericSetting(token){
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/api/genericSetting/', null, this.options).map(res => res.json());		
