@@ -344,5 +344,11 @@ openActionSheet(){
 	});
 }
 
+	openProfilePage(){
+		this.navCtrl.push('MyProfilePage', {
+			frdId:this.frdId
+		});
+	}
+
 	
 }

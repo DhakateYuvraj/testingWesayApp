@@ -327,7 +327,6 @@ export class TraitService {
 	
 	updateMyProfile(token,payload){
 		this.createAuthenticationHeaders(token);
-		//{"location":"asd",		"profession":"",		"workAtStudiesIn":"",		"aboutMe":"",		"mywebsite":""		}
 		return this.http.post(rootApi + '/userzone/myprofile', payload, this.options).map(res => res.json());
 	}
 	
@@ -338,8 +337,6 @@ export class TraitService {
 	
 	fcmTokenSend(token,fcmDeviceInfo){
 		this.createAuthenticationHeaders(token);
-		//alert('service token '+token);
-		//alert('service DeviceID '+JSON.stringify(fcmDeviceInfo));
 		return this.http.post(rootApi + '/api/persistdeviceregistrationid/', fcmDeviceInfo, this.options).map(res => res.json());		
 	}
 	

@@ -150,16 +150,26 @@ export class HomePage {
       traitgivenfor: "0",
 	  isAnonymous : 0
     }
-    if (!jQuery("." + traitObj.traituniqueid).hasClass("checkedStyle")) {
-		if(this.dataFor == 'addTraitForFrd' && (this.checkedTraits.length < this.numTraitToFrds)){
-			if (this.checkedTraitsTemp.indexOf(traitObj.traituniqueid) == -1) {
-				this.checkedTraits.push(traitData);
-				this.checkedTraitsTemp.push(traitObj.traituniqueid);
+    if (!jQuery("." + traitObj.traituniqueid).hasClass("checkedStyle")){
+		if(this.dataFor == 'addTraitForFrd'){
+			if(this.checkedTraits.length < this.numTraitToFrds){
+				if (this.checkedTraitsTemp.indexOf(traitObj.traituniqueid) == -1) {
+					this.checkedTraits.push(traitData);
+					this.checkedTraitsTemp.push(traitObj.traituniqueid);
+				}
+			}else{
+				this.traitService.presentSuccessToast(`you can give only ${this.numTraitToFrds} traits`);
 			}
 		}else{
-			this.traitService.presentSuccessToast(`you can give only ${this.numTraitToFrds} traits`);
-		}
-	  
+			if(this.checkedTraits.length < this.numTraitToFrds){
+				if(this.checkedTraitsTemp.indexOf(traitObj.traituniqueid) == -1){
+					this.checkedTraits.push(traitData);
+					this.checkedTraitsTemp.push(traitObj.traituniqueid);
+				}
+			}else{
+				this.traitService.presentSuccessToast(`you can select only ${this.numTraitToFrds} traits`);
+			}
+		}	  
     } else {
       for (var i = 0; i < this.checkedTraits.length; i++) {
         if (this.checkedTraits[i].traituniqueid == traitObj.traituniqueid) {

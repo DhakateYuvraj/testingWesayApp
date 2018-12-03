@@ -19,7 +19,7 @@
 
 <ion-content #contentRef (ionScroll)="traitService.scrollingFun($event)" [ngClass]="traitService.isAnonymousMode() ? 'anonymousMode' : 'privateMode'">
 	<ion-row class="userProfie">
-		<ion-col col-3 class="userPhoto">
+		<ion-col col-3 class="userPhoto"  (click)="openProfilePage()">
 			<img src="assets/imgs/userIcon.png">
 		</ion-col>
 		<ion-col col-7 class="userInfo">
