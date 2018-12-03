@@ -98,13 +98,13 @@ export class LoginPage {
 
 	login() {
 	//alert(0);
-		this.traitService.showLoading;
-			this.presentLoadingDefault();
-			this.loading.present();
 	//alert(1);
 	//alert(this.form.value.emailaddress);
 	//alert(this.form.value.password);
 		if (this.form.value.emailaddress != "" || this.form.value.password != "") {
+		this.traitService.showLoading;
+			this.presentLoadingDefault();
+			this.loading.present();
 	//alert(2);
 	//alert(JSON.stringify(this.form.value));
 			this.authService.loginUser(this.form.value).subscribe(data => {

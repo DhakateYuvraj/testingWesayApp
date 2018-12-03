@@ -4,6 +4,8 @@ import { IonicPage, NavController, ViewController, ModalController, ToastControl
 import { OtpPage } from '../otp/otp';
 import { AuthService } from '../../services/auth.service';
 import { TraitService } from '../../services/traits.service';
+import { TooltipsModule } from 'ionic-tooltips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @IonicPage()
 @Component({
@@ -17,6 +19,10 @@ export class SignupPage {
 	item: any;
 	form: FormGroup;
 	public years = [];
+	
+	public tooltipEvent: 'click' | 'press' = 'click';
+	public showArrow: boolean = true;
+	public duration: number = 3000;
 	
 	passwordComplexity : string;
 	retypePasswordMatch : string;

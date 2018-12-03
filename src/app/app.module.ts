@@ -33,6 +33,8 @@ import { AngularFireModule } from 'angularfire2';
 import { FcmProvider } from '../providers/fcm/fcm';
 import { BadgeProvider } from '../providers/badge/badge';
 import { ContactsProvider } from '../providers/contacts/contacts';
+import { TooltipsModule } from 'ionic-tooltips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
 	declarations: [
@@ -54,6 +56,8 @@ import { ContactsProvider } from '../providers/contacts/contacts';
 		HttpModule,
 		IonicSwipeAllModule,
 		LongPressModule,
+		TooltipsModule,
+		BrowserAnimationsModule,
 		    AngularFireModule.initializeApp(Firebase), 
     //AngularFirestoreModule,
 	],

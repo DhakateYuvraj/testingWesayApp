@@ -241,19 +241,19 @@ giveVoteToFriend(trait, typeofvote) {
   }
 
   addCustomTrait(traitname){
-    var id;
+    var profileId;
 	let custom_Trait =[];
 	var traitObj;
     if (this.profileId == null || this.profileId == undefined) { 
-      id = 0;
+      profileId = 0;
     } else {
-      id = this.profileId.id;
+      profileId = this.profileId.id;
     }
 	if(typeof(traitname) == "string"){
 		traitObj = { 
 			traitname: traitname, 
-			traitgivenfor: id, 
-			typeofvote: 0,
+			traitgivenfor: profileId, 
+			//typeofvote: 0,
 			isAnonymous : this.traitService.isAnonymousMode() ? 1 : 0 
 		};
 		custom_Trait.push(traitObj);
@@ -261,8 +261,8 @@ giveVoteToFriend(trait, typeofvote) {
 		traitname.map(singleTraitName => {
 			traitObj = { 
 				traitname: singleTraitName, 
-				traitgivenfor: id, 
-				typeofvote: 0,
+				traitgivenfor: profileId, 
+				//typeofvote: 0,
 				isAnonymous : this.traitService.isAnonymousMode() ? 1 : 0 
 			}
 			custom_Trait.push(traitObj);			

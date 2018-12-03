@@ -113,16 +113,15 @@
 
         </div>
 		<div *ngSwitchCase="'testimonials'" class="testimonials" (swiperight)="changeTab('badges')">
-		<ion-list class="accordion-list">
-		<!-- First Level -->
+		<h1 class="textCenter">Coming Soon</h1>
+		
+		<!-- <ion-list class="accordion-list">
 		<ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
-		<!-- Toggle Button -->
 		<button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
 		<ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
 		<ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
 		{{ item.name }}
 		</button>
-
 		<ion-list *ngIf="item.children && item.open" no-lines class="accordionSection">
 		<div *ngIf="i == 0 ">
 		<ion-row>
@@ -251,14 +250,15 @@
 		</ion-list>
 
 		</ion-list-header>
-		</ion-list>
+		</ion-list> -->
 
 
 
 
 		</div>
         <div *ngSwitchCase="'badges'" class="badgeWrapper" (swipeleft)="changeTab('testimonials')" (swiperight)="changeTab('trait')">
-            <ion-row class="bagdesToOthers" *ngIf="!frdProfile" >
+			<h1 class="textCenter">Coming Soon</h1>
+			<!-- <ion-row class="bagdesToOthers" *ngIf="!frdProfile" >
                 <ion-col col-6 class="badgeSection badgesAvailable">
 					<div class="badgeTitle">
 						Available Badges
@@ -306,13 +306,6 @@
             </ion-row>
 			<ion-row class="bagdesToOwn">
 			<br/>
-               <!--  <ion-col col-6 class="singleBadge clearfix" *ngIf="frdProfile" (click)="openBadgesFor('availableBadges','give')">
-					<div class="badgeInfo">
-						<div class="badgeCaption">
-							Give a Badge
-						</div>
-					</div>
-				</ion-col> -->
                 <ion-col col-6 class="singleBadge clearfix isAccepted_{{recBadge.isAccepted}}" *ngFor="let recBadge of receivedBadgesObj" (click)="openBadgeInfo(recBadge)">
 					<div class="badgeIcon">
 						<img src="assets/imgs/badge_1.png">
@@ -332,12 +325,9 @@
 				<button ion-fab mini>
 					<ion-icon class="fab_icon" name="add"></ion-icon>
 				</button>
-			</ion-fab> 
+			</ion-fab> -->
+
+			
 		</div>
     </div>
-    <!-- <ion-fab bottom right edge (click)="openTraitsList()">
-        <button ion-fab mini>
-            <ion-icon class="fab_icon" name="add"></ion-icon>
-        </button>
-    </ion-fab>  -->
 </ion-content>

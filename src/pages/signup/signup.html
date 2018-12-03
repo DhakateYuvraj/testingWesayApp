@@ -8,31 +8,40 @@
 			<h6>Please provide information.</h6>
 		</ion-label>
 		<form *ngIf="form" class="commomForm formRegister" [formGroup]="form">
+
+		<button  ion-button mode="ios" tooltip="I am a tooltip" positionH="right" 
+[attr.arrow]="showArrow" [attr.event]="tooltipEvent" 
+[attr.duration]="duration">
+              Right
+            </button>
+		
+		
+		
 			<ion-list>
 				<div class="ion-item-wrapper">
 					<ion-item>
 						<ion-input type="text" formControlName="fullname" placeholder="Name"></ion-input>
 					</ion-item>
-					<ion-icon name="person"></ion-icon>
+					<!-- <ion-icon name="person"></ion-icon> -->
 				</div>
 				<div class="ion-item-wrapper">
 					<ion-item>
 						<ion-input type="email" formControlName="emailaddress" placeholder="Email ID"></ion-input>
 					</ion-item>
-					<ion-icon name="mail"></ion-icon>
+					<!-- <ion-icon name="mail"></ion-icon> -->
 				</div>
 				<div class="ion-item-wrapper">
 					<ion-item>
 						<ion-input type="password" formControlName="password" placeholder="Password" (ionChange)="updatePass()"> </ion-input>
 					</ion-item>
-					<ion-icon name="lock"></ion-icon>
+					<ion-icon name="information-circle"></ion-icon>
 				</div>
 				<div class="errorMsg">{{passwordComplexity}}</div>
 				<div class="ion-item-wrapper">
 					<ion-item>
 						<ion-input type="password" formControlName="retypepassword" placeholder="Re-Enter Password" (ionChange)="updateRetypePass()"> </ion-input>
 					</ion-item>
-					<ion-icon name="lock"></ion-icon>
+					<ion-icon name="information-circle"></ion-icon>
 				</div>
 				<div class="errorMsg">{{retypePasswordMatch}}</div>
 				<div class="ion-item-wrapper">				
@@ -268,7 +277,7 @@
 					<ion-item>
 						<ion-input type="number" formControlName="mobilenumber" placeholder="Mobile Number"> </ion-input>
 					</ion-item>
-					<ion-icon name="call"></ion-icon>
+					<!-- <ion-icon name="call"></ion-icon> -->
 				</div>
 				<div class="ion-item-wrapper">
 					<select class="dropdownClass item-input" formControlName="gender">
