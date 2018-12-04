@@ -16,7 +16,7 @@ export class SettingsPage {
 	public askMe: any;
 	public WhoCanSee: any;  
 	public obja = {};
-
+	public settingObj ={};
 
 
 	constructor(
@@ -51,16 +51,18 @@ export class SettingsPage {
 		});
 	}
 	
-	settingChange(settingObj){
+	settingChange(setting){
 		this.traitService.showLoading();
-		settingObj.categoryvalue = settingObj.categoryvalue ? 1 : 0;
-		this.traitService.updateSettings(this.authToken,settingObj).subscribe(data => {
+		
+		this.settingObj.categoryvalue = setting.categoryvalue ? 1 : 0;
+		this.settingObj.categoryid = setting.categoryId;
+		this.traitService.updateSettings(this.authToken,this.settingObj).subscribe(data => {
 			this.traitService.hideLoading();
 			if(data.status == 'success'){
 				this.traitService.presentSuccessToast('Setting update successfuly');
 			}else{
 				for (var i = 0; i < this.settingData.length; i++) {
-					if(this.settingData[i].uniqueid == settingObj.uniqueid){
+					if(this.settingData[i].uniqueid == this.settingObj.uniqueid){
 						//this.settingData[i].categoryvalue = !this.settingData[i].categoryvalue;
 					}
 				}
