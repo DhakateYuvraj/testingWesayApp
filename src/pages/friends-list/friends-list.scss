@@ -113,5 +113,15 @@ page-friends-list {
 				font-size:2em;
 			}
 		}
+    }
+    .searchUserBtn{
+		position: absolute;
+        right: 8px;
+        top:8px;
+        padding: 17px 26px;
+        border-radius: 120px;
+        overflow: hidden;
+        height: 2.4rem;
+        text-transform: none;
 	}
 }

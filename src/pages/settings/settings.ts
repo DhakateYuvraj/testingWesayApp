@@ -15,6 +15,10 @@ export class SettingsPage {
 	public noCount: any;
 	public askMe: any;
 	public WhoCanSee: any;  
+	public obja = {};
+
+
+
 	constructor(
 	public navCtrl: NavController, 
 	public navParams: NavParams, 
@@ -32,7 +36,7 @@ export class SettingsPage {
 		this.traitService.showLoading();
 		this.traitService.getSettings(token).subscribe(data => {
 			this.settingData = data.response;
-			for (var i = 0; i < this.settingData.length; i++) {
+			/*for (var i = 0; i < this.settingData.length; i++) {
 				if(this.settingData[i].categoryname == 'Only allow my contacts to give me feedback'){
 					this.onlyMyContact = this.settingData[i].categoryvalue;
 				}else if(this.settingData[i].categoryname == 'Show my traits without showing counts'){
@@ -42,15 +46,26 @@ export class SettingsPage {
 				}else if(this.settingData[i].categoryname == 'Control who can see my page'){
 					this.WhoCanSee = this.settingData[i].categoryvalue;
 				}
-			}	  
+			}*/
 			this.traitService.hideLoading();
 		});
 	}
 	
-	settingChange(){
+	settingChange(settingObj){
 		this.traitService.showLoading();
-		//alert(this.onlyMyContact);
-		this.traitService.hideLoading();
+		settingObj.categoryvalue = settingObj.categoryvalue ? 1 : 0;
+		this.traitService.updateSettings(this.authToken,settingObj).subscribe(data => {
+			this.traitService.hideLoading();
+			if(data.status == 'success'){
+				this.traitService.presentSuccessToast('Setting update successfuly');
+			}else{
+				for (var i = 0; i < this.settingData.length; i++) {
+					if(this.settingData[i].uniqueid == settingObj.uniqueid){
+						//this.settingData[i].categoryvalue = !this.settingData[i].categoryvalue;
+					}
+				}
+			}
+		});
 	}
 
 }

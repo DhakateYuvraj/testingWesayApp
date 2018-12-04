@@ -180,9 +180,20 @@ export class TraitService {
 		return this.http.post(rootApi + '/userzone/friendsZone/', null, this.options).map(res => res.json());
 	}
 
+	searchUser(token,userObj){
+		//userObj = {"fullname":"irfan"};
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/api/searchUser/', userObj, this.options).map(res => res.json());
+	}
+
 	getSettings(token) {
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/userzone/mysettings/', null, this.options).map(res => res.json());
+	}
+
+	updateSettings(token,settingObj) {
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userzone/changemysettings/', settingObj, this.options).map(res => res.json());
 	}
 
 	addContacts(list, token) {

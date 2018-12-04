@@ -8,8 +8,6 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { AuthService } from '../../services/auth.service';
 import { TraitService } from '../../services/traits.service';
 
-declare var $: any;
-
 @Component({
 	selector: 'page-friends-list',
 	templateUrl: 'friends-list.html',
@@ -30,6 +28,8 @@ export class FriendsListPage {
 	public isAnonymous;
 	public token;
 	public loading;
+	public searchedUsers;
+	public searchUserTxt;
 	
 	constructor(
 	public navCtrl: NavController, 
@@ -72,12 +72,31 @@ export class FriendsListPage {
 
 	getAllFriends(token) {
 		this.showLoading();
-		this.traitService.getMyFriendList(token).subscribe(data => {
+		this.traitService.getMyFriendList(this.authToken).subscribe(data => {
 			this.friendList = data.response;
 			this.hideLoading();
 		});
 	}
 	
+	searchNewUser(){
+		if(this.searchUserTxt){
+			this.showLoading();
+			let usrObj = {"fullname":this.searchUserTxt};
+			this.traitService.searchUser(this.authToken,usrObj).subscribe(data => {
+				this.searchedUsers = data.response;			
+				if(!this.searchedUsers || this.searchedUsers.length < 1){
+					this.traitService.presentSuccessToast('No record found');				
+				}
+				setTimeout(() => {
+					this.hideLoading();
+				}, 1000);
+			});
+		}else{			
+			this.traitService.presentSuccessToast('Enter the username');	
+		}
+	}
+
+
 	openFriendProfile(frdInfo) {
 		if(this.selectFrd){
 			this.showLoading();

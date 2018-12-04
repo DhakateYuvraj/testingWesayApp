@@ -12,21 +12,10 @@
 </ion-header>
 <ion-content padding>
 	<ion-list>
-		<ion-item>
-			<ion-label>Only allow my contacts to give me feedback</ion-label>
-			<ion-toggle [(ngModel)]="onlyMyContact" (change)='settingChange()'></ion-toggle>
-		</ion-item>
-		<ion-item>
-			<ion-label>Show my traits without showing counts</ion-label>
-			<ion-toggle [(ngModel)]="noCount" (change)='settingChange()'></ion-toggle>
-		</ion-item>
-		<ion-item>
-			<ion-label>Ask me before publishing a new trait on my page</ion-label>
-			<ion-toggle [(ngModel)]="askMe" (click)='settingChange()'></ion-toggle>
-		</ion-item>
-		<ion-item>
-			<ion-label>Control who can see my page</ion-label>
-			<ion-toggle [(ngModel)]="WhoCanSee" (click)='settingChange()'></ion-toggle>
+			<br /><br />
+		<ion-item *ngFor="let settingRow of settingData ; let i=index">
+			<ion-label>{{settingRow.categoryname}}</ion-label>
+			<ion-toggle [(ngModel)]="settingRow.categoryvalue" (ionChange)='settingChange(settingRow)'></ion-toggle>
 		</ion-item>
 	</ion-list>
 </ion-content>

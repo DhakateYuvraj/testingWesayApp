@@ -20,14 +20,39 @@
   </ion-header>
 
 <ion-content #contentRef fullscreen (ionScroll)="traitService.scrollingFun($event)">
-  <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
-  </ion-searchbar>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
+  <div style="position:relative;">
+    <ion-searchbar [(ngModel)]="searchUserTxt" [showCancelButton]="shouldShowCancel" (keyup.enter)="searchNewUser()">
+    </ion-searchbar>
+    <button class="searchUserBtn disable-hover button button-md button-default button-default-md" (click)="searchNewUser()">
+      <span class="button-inner">Search</span>
+    </button>
+  </div>
+<!--  <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  
-<ion-list *ngIf="!selectFrd">
+-->  
 
+<ion-item-sliding  class="searchedUsers" *ngFor="let user of searchedUsers ; let i=index">
+  <ion-item>
+    <ion-row>
+      <ion-col col-2 class="frdListPic">
+        <ion-icon class="logo-contact" name="ios-person"></ion-icon>
+      </ion-col>
+      <ion-col col-7 class="frdListInfo">
+        <div class="frdname">{{ user.fullname }}</div> 
+      </ion-col>	  
+      <ion-col col-3 class="frdListInfo" (click)="sendFrdRequest(user)">
+        <div class="frdname">Send Req</div> 
+      </ion-col>  
+    </ion-row>
+  </ion-item>
+</ion-item-sliding>
+
+
+
+
+
+<ion-list *ngIf="!selectFrd">
     <ion-item-sliding class="frdRequestRecived"  *ngFor="let friend of friendList.myRecievedfriendrequest ; let i=index">
     <ion-item>
     <ion-row>

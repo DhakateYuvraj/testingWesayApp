@@ -5,6 +5,7 @@ import { HttpModule, Http } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
+import { TooltipsModule } from 'ionic-tooltips';
 import { HomePage } from '../pages/home/home'; 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,7 +34,6 @@ import { AngularFireModule } from 'angularfire2';
 import { FcmProvider } from '../providers/fcm/fcm';
 import { BadgeProvider } from '../providers/badge/badge';
 import { ContactsProvider } from '../providers/contacts/contacts';
-import { TooltipsModule } from 'ionic-tooltips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -51,15 +51,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 	],
 	imports: [
 		BrowserModule,
+		TooltipsModule,
 		IonicModule.forRoot(MyApp),
 		IonicStorageModule.forRoot(),
 		HttpModule,
 		IonicSwipeAllModule,
 		LongPressModule,
-		TooltipsModule,
 		BrowserAnimationsModule,
-		    AngularFireModule.initializeApp(Firebase), 
-    //AngularFirestoreModule,
+		AngularFireModule.initializeApp(Firebase)
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
