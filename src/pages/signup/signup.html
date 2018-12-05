@@ -2,6 +2,8 @@
 	<button class="transparentBackButton" ion-button navPop icon-only (click)="cancel()">
 		<ion-icon name="arrow-round-back" ></ion-icon>
 	</button>
+	
+	
 	<div class="roundedContainer singupContainer">
 		<ion-label>
 			<h1 class="">REGISTER</h1>
@@ -9,6 +11,9 @@
 		</ion-label>		
 		
 		<form *ngIf="form" class="commomForm formRegister" [formGroup]="form">
+
+			<button ion-button tooltip="Im a tooltip below a button" positionV="bottom" arrow>Press me to see a tooltip </button>
+			
 			<ion-list>
 				<div class="ion-item-wrapper">
 					<ion-item>

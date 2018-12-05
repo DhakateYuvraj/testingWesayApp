@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from "@ionic/storage"; 
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
 //import { FMC } from '@ionic-native/fcm';
 import { FcmProvider } from '../providers/fcm/fcm';
 import { TraitService } from '../services/traits.service';

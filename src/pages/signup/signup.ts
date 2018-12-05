@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonicPage, NavController, ViewController, ModalController, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, ViewController } from 'ionic-angular';
 import { OtpPage } from '../otp/otp';
 import { AuthService } from '../../services/auth.service';
 import { TraitService } from '../../services/traits.service';
@@ -11,7 +11,6 @@ import { TraitService } from '../../services/traits.service';
 	templateUrl: 'signup.html'
 })
 export class SignupPage {
-	@ViewChild('fileInput') fileInput;
 	public loading;
 	isReadyToSave: boolean;
 	item: any;
@@ -21,7 +20,7 @@ export class SignupPage {
 	/* public tooltipEvent: 'click' | 'press' = 'click';
 	public showArrow: boolean = true;
 	public duration: number = 3000; */
-	public tooltip = "dadadada asd"
+
 	passwordComplexity : string;
 	retypePasswordMatch : string;
 
@@ -30,10 +29,7 @@ export class SignupPage {
 	public viewCtrl: ViewController, 
 	public formBuilder: FormBuilder,
 	private authService: AuthService, 
-	private traitService: TraitService, 
-	private toastCtrl: ToastController,
-	public modalCtrl: ModalController,
-	private loadingCtrl: LoadingController
+	private traitService: TraitService
 	) {
 		this.form = formBuilder.group({
 			profilePic: [''],

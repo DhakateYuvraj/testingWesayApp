@@ -16,7 +16,7 @@ export class SettingsPage {
 	public askMe: any;
 	public WhoCanSee: any;  
 	public obja = {};
-	public settingObj ={};
+	public settingObj = {categoryvalue:null,categoryid:null,uniqueid:null};
 
 
 	constructor(
@@ -53,7 +53,6 @@ export class SettingsPage {
 	
 	settingChange(setting){
 		this.traitService.showLoading();
-		
 		this.settingObj.categoryvalue = setting.categoryvalue ? 1 : 0;
 		this.settingObj.categoryid = setting.categoryId;
 		this.traitService.updateSettings(this.authToken,this.settingObj).subscribe(data => {

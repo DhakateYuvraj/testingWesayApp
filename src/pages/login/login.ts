@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavController, NavParams, ModalController, ToastController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { SlidesPage } from '../slides/slides';
 import { AuthService } from '../../services/auth.service';
 import { TraitService } from '../../services/traits.service';
@@ -20,12 +20,10 @@ export class LoginPage {
   constructor(
 	  private authService: AuthService, 
 	  private traitService: TraitService, 
-	  private toastCtrl: ToastController, 
+	  private loadingCtrl: LoadingController, 
 	  public navCtrl: NavController, 
 	  public navParams: NavParams, 
 	  public formBuilder: FormBuilder, 
-	  public modalCtrl: ModalController,
-	  private loadingCtrl: LoadingController, 
 	  private fb: Facebook
 	) {
 		this.form = formBuilder.group({
@@ -80,11 +78,13 @@ export class LoginPage {
 	}
 
   navToSignup() {
-    let addModal = this.modalCtrl.create('SignupPage');
-    addModal.onDidDismiss(() => {
-      return false;
-    });
-    addModal.present();
+		
+		this.navCtrl.push('SignupPage');
+    // let addModal = this.modalCtrl.create('SignupPage');
+    // addModal.onDidDismiss(() => {
+    //   return false;
+    // });
+    // addModal.present();
   }
 
   resendOTP() {
