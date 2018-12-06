@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 import { LoginPage } from '../login/login';
 import { AuthService } from '../../services/auth.service';
 import { MyProfilePage } from '../my-profile/my-profile';
+import { FeedbackPage } from '../feedback/feedback';
  
 @IonicPage()
 @Component({
@@ -24,6 +25,10 @@ export class MenuPage {
 
   openMyProfile(){
     this.navCtrl.push('MyProfilePage');
+  }
+
+  openFeedback(){
+    this.navCtrl.push('FeedbackPage');
   }
 
   logout(){

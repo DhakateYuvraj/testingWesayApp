@@ -8,5 +8,29 @@ page-signup {
 	.singupContainer{
 		min-height: 750px;
 	}
+	.passwordHint,.repasswordHint{
+		width: 80%;
+		margin: 0 auto;
+		text-align: left;
+		background: rgba(0, 0, 0, 0.65);
+		color: #fff;
+		font-size: 0.8em;
+		padding: 7px;
+		border-radius: 5px;
+		margin-top: 8px;
+    	position: relative;
+	}
+
+
+	.passwordHint::after,.repasswordHint::after {
+		content: "";
+		position: absolute;
+		top: -16px;
+		left: 20px;
+		margin-left: -5px;
+		border-width: 9px;
+		border-style: solid;
+		border-color: transparent transparent #666 transparent;
+	  }
 
 }

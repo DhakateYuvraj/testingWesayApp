@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Feedback</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-label style="text-align:center">		
+  <h6>Please provide your feedback.</h6>
+</ion-label>		
+
+<form  class="commomForm formFeedback"  [formGroup]="feedbackForm">		
+  <ul>
+    <li>
+      <div class="question">Do you like the concept of the app?</div>
+      <ion-list radio-group formControlName="likeConcept" class="answereOption clearfix">    
+          <ion-item>
+            <ion-label>Yes</ion-label>
+            <ion-radio value="Yes" ></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>No</ion-label>
+            <ion-radio value="No" ></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>It's OK</ion-label>
+            <ion-radio value="It's OK" ></ion-radio>
+          </ion-item>
+      </ion-list>
+    </li>
+
+    <li>
+      <div class="question">How user friendly and intuitive was the app?</div>
+      <ion-list radio-group formControlName="isFriendly" class="answereOption clearfix">    
+          <ion-item>
+            <ion-label>Very Friendly</ion-label>
+            <ion-radio value="Very Friendly"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Friendly</ion-label>
+            <ion-radio value="Friendly"></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Not Very Intuitive</ion-label>
+            <ion-radio value="Not Very Intuitive"></ion-radio>
+          </ion-item>
+      </ion-list>
+    </li>
+
+    <li>
+      <div class="question">What feature did you like the most? (Open text)</div>
+      <div class="answereOption clearfix">
+        <textarea formControlName="whatYouLikeMost"></textarea>
+      </div>
+    </li>
+
+    <li>
+      <div class="question">Did the app throw any bugs or not work correctly at any point</div>
+      <ion-list radio-group formControlName="isBuggy" class="answereOption clearfix">    
+          <ion-item>
+            <ion-label>Yes</ion-label>
+            <ion-radio name="isBuggy" value="Yes" >Yes</ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>No</ion-label>
+            <ion-radio name="isBuggy" value="No" >No</ion-radio>
+          </ion-item>
+      </ion-list>
+    </li>
+
+    <li>
+      <div class="question">How was the responsiveness / performance of the app?</div>
+      <ion-list radio-group formControlName="performance" class="answereOption clearfix">  
+          <ion-item>
+            <ion-label>Very fast</ion-label>
+            <ion-radio name="performance" value="Very fast" ></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Fast</ion-label>
+            <ion-radio name="performance" value="Fast" ></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Slow</ion-label>
+            <ion-radio name="performance" value="Slow" ></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Unacceptable</ion-label>
+            <ion-radio name="performance" value="Unacceptable" >Unacceptable</ion-radio>
+          </ion-item>
+      </ion-list>
+    </li>
+
+    <li>
+      <div class="question">How likely are you to recommend this app to your friends?</div>
+      <ion-list radio-group formControlName="recommendToFrd" class="answereOption clearfix">  
+          <ion-item>
+            <ion-label>Definitely</ion-label>
+            <ion-radio name="recommendToFrd" value="Definitely" ></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Maybe</ion-label>
+            <ion-radio name="recommendToFrd" value="Maybe" ></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Not sure</ion-label>
+            <ion-radio name="recommendToFrd" value="Not sure" ></ion-radio>
+          </ion-item>
+      </ion-list>
+    </li>
+
+    <li>
+      <div class="question">What features would you like to see in this app</div>
+      <div class="answereOption clearfix">
+        <textarea formControlName="NewFeaturesToSee" ></textarea>
+      </div>
+    </li>
+
+    <li>
+      <div class="question">Any other suggestions / feedback</div>
+      <div class="answereOption clearfix">
+        <textarea formControlName="otherSuggestions"></textarea>
+      </div>
+    </li>
+    
+  </ul>
+  <button class="btn btn_reg" ion-button block (click)="sendFeedback()">
+      Send Feedback
+  </button>
+</form>
+</ion-content>

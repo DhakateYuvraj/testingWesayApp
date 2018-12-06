@@ -4,6 +4,7 @@ import { IonicPage, NavController, ViewController } from 'ionic-angular';
 import { OtpPage } from '../otp/otp';
 import { AuthService } from '../../services/auth.service';
 import { TraitService } from '../../services/traits.service';
+import jQuery from "jquery";
 
 @IonicPage()
 @Component({
@@ -50,6 +51,30 @@ export class SignupPage {
 			this.years.push(i)
 		}
 	}
+
+	ionViewWillEnter() {
+		jQuery('#password input').focus(function() {
+			jQuery('.passwordHint').fadeIn(100);			
+		}).focusout(function(){
+			jQuery('.passwordHint').fadeOut(100);
+		});
+
+		jQuery('#repassword input').focus(function() {
+			jQuery('.repasswordHint').fadeIn(100);			
+		}).focusout(function(){
+			jQuery('.repasswordHint').fadeOut(100);
+		});
+
+		setTimeout(function() {
+			jQuery('.passwordHint').hide();
+			jQuery('.repasswordHint').hide();
+        }, 0); 
+		
+	}
+
+
+
+
 
 	processWebImage(event) {
 		let reader = new FileReader();
@@ -107,6 +132,12 @@ export class SignupPage {
 		}
 		console.log(this.retypePasswordMatch);
 	}
+
+
+
+
+
+
 	
 }
 
