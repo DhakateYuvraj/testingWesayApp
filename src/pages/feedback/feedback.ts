@@ -32,7 +32,7 @@ export class FeedbackPage {
   }
 
   sendFeedback(){
-    console.log();
+    console.log(this.feedbackForm.value);
   }
 
 

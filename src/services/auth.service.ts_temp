@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
-var rootApi = "http://ec2-18-219-80-120.us-east-2.compute.amazonaws.com:8080";
+var rootApi = "http://ec2-18-222-216-79.us-east-2.compute.amazonaws.com:8080";
 var authToken = null;
 
 // import { environment } from '../../environments/environment';
@@ -17,7 +17,7 @@ export class AuthService {
 
   constructor(
     private http: Http
-	//public rootApi : "http://ec2-18-219-80-120.us-east-2.compute.amazonaws.com:8080"
+	//public rootApi : "http://ec2-18-222-216-79.us-east-2.compute.amazonaws.com:8080"
   )
 
   // Function to create headers, add token, to be used in HTTP requests

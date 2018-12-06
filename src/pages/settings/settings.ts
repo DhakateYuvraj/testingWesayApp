@@ -16,7 +16,7 @@ export class SettingsPage {
 	public askMe: any;
 	public WhoCanSee: any;  
 	public obja = {};
-	public settingObj = {categoryvalue:null,categoryid:null,uniqueid:null};
+	public settingObj ={};
 
 
 	constructor(
@@ -53,18 +53,21 @@ export class SettingsPage {
 	
 	settingChange(setting){
 		this.traitService.showLoading();
-		this.settingObj.categoryvalue = setting.categoryvalue ? 1 : 0;
-		this.settingObj.categoryid = setting.categoryId;
+		
+		this.settingObj = {categoryvalue : setting.categoryvalue ? 1 : 0,
+						categoryid : setting.categoryId,
+						uniqueid : setting.uniqueid
+					}
 		this.traitService.updateSettings(this.authToken,this.settingObj).subscribe(data => {
 			this.traitService.hideLoading();
 			if(data.status == 'success'){
 				this.traitService.presentSuccessToast('Setting update successfuly');
 			}else{
-				for (var i = 0; i < this.settingData.length; i++) {
-					if(this.settingData[i].uniqueid == this.settingObj.uniqueid){
+				//for (var i = 0; i < this.settingData.length; i++) {
+					//if(this.settingData[i].uniqueid == this.settingObj.uniqueid){
 						//this.settingData[i].categoryvalue = !this.settingData[i].categoryvalue;
-					}
-				}
+					//}
+				//}
 			}
 		});
 	}

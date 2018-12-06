@@ -41,16 +41,12 @@
       <ion-col col-7 class="frdListInfo">
         <div class="frdname">{{ user.fullname }}</div> 
       </ion-col>	  
-      <ion-col col-3 class="frdListInfo" (click)="sendFrdRequest(user)">
+      <ion-col col-3 class="frdListInfo" (click)="sendFrdRequest(user)" style="font-size:0.8em">
         <div class="frdname">Send Req</div> 
       </ion-col>  
     </ion-row>
   </ion-item>
 </ion-item-sliding>
-
-
-
-
 
 <ion-list *ngIf="!selectFrd">
     <ion-item-sliding class="frdRequestRecived"  *ngFor="let friend of friendList.myRecievedfriendrequest ; let i=index">
@@ -62,7 +58,7 @@
       <ion-col col-7 class="frdListInfo">
         <div class="frdname">{{ friend.fullname }}</div> 
       </ion-col>	  
-      <ion-col col-3 class="frdListInfo" (click)="acceptFrdRequest(friend)">
+      <ion-col col-3 class="frdListInfo" (click)="acceptFrdRequest(friend)" style="font-size:0.8em">
         <div class="frdname">Accept</div> 
       </ion-col>	  
     </ion-row>
@@ -111,7 +107,6 @@
   </ion-item-sliding>
 </ion-list>
 <ion-list *ngIf="!selectFrd">
-	<hr />Friend Requests Sent
     <ion-item-sliding class="frdRequestsSent"  *ngFor="let friend of friendList.mySentfriendrequest ; let i=index">
     <ion-item>
     <ion-row>
@@ -123,7 +118,7 @@
       </ion-col>	  	  
     </ion-row>
     </ion-item>
-    <ion-item-options side="right">
+    <ion-item-options side="right" style="font-size:0.8em">
       <button ion-button (click)="unread(item)">
 		<ion-icon name="thumbs-up"></ion-icon>
 		<div>Reject</div>
@@ -145,12 +140,12 @@
       <ion-col col-7 class="frdListInfo">
         <div class="frdname">{{ friend.fullname }}</div> 
       </ion-col>	  
-      <ion-col col-3 class="frdListInfo" (click)="sendFrdRequest(friend)">
+      <ion-col col-3 class="frdListInfo" (click)="sendFrdRequest(friend)" style="font-size:0.8em">
         <div class="frdname">Send Req</div> 
       </ion-col>	  	  
     </ion-row>
     </ion-item>
-    <ion-item-options side="right">
+    <ion-item-options side="right" style="font-size:0.8em">
       <button ion-button (click)="unread(item)">
 		<ion-icon name="thumbs-up"></ion-icon>
 		<div>Reject</div>

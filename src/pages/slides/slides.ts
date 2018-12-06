@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, Slides } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
+import { FcmProvider } from '../../providers/fcm/fcm';
+import { TraitService } from '../../services/traits.service';
+import { Storage } from "@ionic/storage"; 
  
 @IonicPage()
 @Component({  
@@ -11,9 +14,20 @@ import { TabsPage } from '../tabs/tabs';
 export class SlidesPage {
   @ViewChild(Slides) slides: Slides; 
  
-  public currentIndex = 0;  
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
-  }
+	public currentIndex = 0;  
+	public fcmDeviceId;
+	public token;
+	constructor(
+	public navCtrl: NavController,
+	public navParams: NavParams,
+	public viewCtrl: ViewController, 
+	public traitService: TraitService,
+	private storage: Storage,
+	public fcm: FcmProvider) {
+		this.storage.get('token').then((token) => {
+			this.getFcmToken();
+		});
+	}
   ionViewDidLoad() {
     console.log('ionViewDidLoad SlidesPage');
   }
@@ -34,5 +48,16 @@ export class SlidesPage {
   continue(){
     this.navCtrl.setRoot(TabsPage);
   }
+	getFcmToken(){
+		this.fcmDeviceId = this.fcm.getToken();
+		this.fcmTokenSend(this.fcmDeviceId)
+		setTimeout(this.fcmTokenSend(this.fcmDeviceId), 5000);	
+	}
+	
+	fcmTokenSend(fcmDeviceId){
+		let fcmTokenInfo = { "deviceregistrationid": fcmDeviceId}
+		this.traitService.fcmTokenSend(this.token,fcmTokenInfo).subscribe(data => {
+		})
+	}
 
 }

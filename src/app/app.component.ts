@@ -44,13 +44,7 @@ export class MyApp {
 
 	isLoggedIn(){
 		this.storage.get('token').then((token) => {
-			this.fcmDeviceId = this.fcm.getToken();
-			//alert('app-> '+JSON.stringify(this.fcmDeviceId));
-			//alert(JSON.stringify(this.fcm.getToken()));
-			this.fcmTokenSend(this.fcmDeviceId)
-			setTimeout(this.fcmTokenSend(this.fcmDeviceId), 5000);
-
-			
+			this.getFcmToken();		
 			if (token != undefined || token != null) { 
 				this.token = token;
 				this.rootPage = TabsPage; 
@@ -58,6 +52,11 @@ export class MyApp {
 				this.rootPage = LoginPage; 
 			}
 		}); 
+	}
+	getFcmToken(){
+		this.fcmDeviceId = this.fcm.getToken();
+		this.fcmTokenSend(this.fcmDeviceId)
+		setTimeout(this.fcmTokenSend(this.fcmDeviceId), 5000);	
 	}
 
 	openPage(page) {

@@ -6,7 +6,7 @@ import { LoadingController, ModalController, ToastController } from 'ionic-angul
 import moment from 'moment';
 import jQuery from "jquery";
 
-var rootApi = "http://ec2-18-219-80-120.us-east-2.compute.amazonaws.com:8080";
+var rootApi = "http://ec2-18-222-216-79.us-east-2.compute.amazonaws.com:8080";
 
 @Injectable()
 export class TraitService {
