@@ -1,5 +1,4 @@
 page-menu {
-
     ion-navbar.toolbar { 
         color: white;
     }
@@ -7,11 +6,15 @@ page-menu {
     .toolbar-md { 
         color: white;
     }
-    
+    .background{}
     ion-content{
         color: white !important;
+		background:url(../assets/imgs/bg-full.png) !important;
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+		background-position: center; 
         // background-image: url('../assets/imgs/bgImg2.png');
-        background-color: #9073cd !important;
+        //background-color: #9073cd !important;
     }
     .profile-icon{
         float: right;
@@ -43,5 +46,7 @@ page-menu {
             margin-top: -15%;
         }
     }
+	.menuItemName{font-size:1.5em;color:#fff}
+	.menuItemName a,.menuItemName a:hover,.menuItemName a:visited{color:#fff;text-decoration: none;}
  
 }

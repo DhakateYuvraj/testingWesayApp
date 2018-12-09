@@ -1,3 +1,4 @@
+
 <ion-header padding>
   <ion-navbar>
     <ion-row>
@@ -12,12 +13,17 @@
 </ion-header>
 
 <ion-content padding>
-	<ion-grid style="height: 100%">
-		<ion-row justify-content-center align-items-center style="height: 10%" (click)="openMyProfile()">
-			My Page
+
+	<ion-grid style="height: 100%" class="menuList">
+	<br /><br />
+		<ion-row justify-content-center align-items-center style="height:10%" (click)="openMyProfile()">
+			<span  class="menuItemName">My Profile</span>
 		</ion-row>
-		<ion-row justify-content-center align-items-center style="height: 10%" (click)="openFeedback()">
-			Feedback
+		<ion-row justify-content-center align-items-center style="height:10%" (click)="openFeedback()">
+			<span  class="menuItemName">Share feedback</span>
+		</ion-row>
+		<ion-row justify-content-center align-items-center style="height:10%">
+			<span  class="menuItemName"><a href="https://www.wesay.app/terms-and-conditions/">Terms and Conditions</a></span>
 		</ion-row>
 	</ion-grid>
 </ion-content>
@@ -25,7 +31,7 @@
 <ion-footer no-shadow padding>
   <ion-toolbar position="bottom">
     <ion-row>
-      <ion-col col-6>
+      <ion-col col-6  (click)="openSettings()">
         <ion-icon color="white_color" name="settings" class="bottom-icon"></ion-icon>
         <ion-label color="white_color">SETTINGS</ion-label>
       </ion-col>

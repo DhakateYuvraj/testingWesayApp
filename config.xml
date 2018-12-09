@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="app.wesay.wesayappDev" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>weSay</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="contact@wesay.app" href="http://wesay.app/">Ionic Framework Team</author>
+<widget id="app.wesay.wesayapp" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>WeSay</name>
+    <description>What Everybody Says About You</description>
+    <author email="contact@wesay.app" href="https://wesay.app/">WeSay Solutions</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

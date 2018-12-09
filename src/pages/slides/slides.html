@@ -4,20 +4,21 @@
 			<ion-slide>
 				<ion-card [ngClass]="{box1: currentIndex == 0}">
 					<span>
-						<h2 class="">Welcome to WeSay</h2>
-						<h5>
+						<h2 class="welcomeHeader">Welcome to WeSay</h2>
+						<h5 class="welcomeMsg welcomeMsg_1">
 							<br />
 							<br /> Wesay is a platform to help you understand 'What Everybody Says About You (WESAY).
 							<br />
 							<br /> Your friends can give you feedback publicly or anonymosly, so you get to hear real feedback.
 							<br />
-							<br> Lets start by identifying a few traits for you ...
 						</h5>
+						<h5 class="welcomeMsg welcomeMsg_2">
+							<br> Lets start by identifying a few traits for you ...</h5>
 					</span>
 					<br />
 					<br />
-					<button end ion-button outline (click)="continue()">Next &nbsp;&nbsp;
-						<ion-icon name="ios-arrow-round-forward-outline"></ion-icon>
+					<button end ion-button outline (click)="continue()">Next
+						<!-- <ion-icon name="ios-arrow-round-forward-outline"></ion-icon> -->
 					</button>
 				</ion-card>
 			</ion-slide>

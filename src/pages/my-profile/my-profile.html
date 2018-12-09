@@ -11,10 +11,16 @@
     </ion-navbar>
 </ion-header>
 <ion-content #contentRef (ionScroll)="traitService.scrollingFun($event)">
-	<ion-item>
+<div class="uploadPic">
+<ion-icon class="userImage" name="ios-person"></ion-icon>
+</div>
+<div style="text-align:center;">
+<h2>{{profileData.displayName}}</h2>
+</div>
+	<!-- <ion-item>
 		<ion-label>Display Name</ion-label>
 		<ion-input [disabled]="frdId != 0" [(ngModel)]="profileData.displayName"></ion-input>
-	</ion-item>
+	</ion-item> -->
 	<!--
 	<ion-item>
 		<ion-label>Gender</ion-label>

@@ -35,5 +35,8 @@ export class MenuPage {
     this.authService.logout();
     this.navCtrl.setRoot(LoginPage);
   }
+  openSettings(){
+    this.navCtrl.push('SettingsPage');	
+  }
 
 }
