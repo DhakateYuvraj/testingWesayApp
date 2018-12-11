@@ -127,6 +127,8 @@ export class ProfilePage {
 			this.traitService.hideLoading();
 			if (this.allTraits.length == 0) {
 				this.noTrait = true;
+			}else{
+				this.noTrait = false;
 			}
 		});
 

@@ -7,12 +7,13 @@ page-menu {
         color: white;
     }
     .background{}
-    ion-content{
-        color: white !important;
-		background:url(../assets/imgs/bg-full.png) !important;
-		background-size: 100% 100%;
-		background-repeat: no-repeat;
-		background-position: center; 
+    ion-content,.content-md{
+		background:transparent;
+        //color: white !important;
+		//background:url(../assets/imgs/bg-full.png) !important;
+		//background-size: 100% 100%;
+		//background-repeat: no-repeat;
+		//background-position: center; 
         // background-image: url('../assets/imgs/bgImg2.png');
         //background-color: #9073cd !important;
     }

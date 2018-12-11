@@ -4,18 +4,21 @@ page-my-profile {
 		margin: 10px auto;
 	}
     ion-item.item-input{margin: 10px auto;}
-	.uploadPic{    width: 200px;
-    height: 200px;
+	.uploadPic{    width: 100px;
+    height: 100px;
     border-radius: 50%;
     border: 3px solid #00c5cd;
     margin: 15px auto;}
 	
-	.userImage{font-size: 220px;
+	.userImage{font-size: 105px;
 	color:#00c5cd;
-    width: 200px;
+    width: 95px;
     margin: 0 auto;
     text-align: center;
-    margin-top: -25px;}
+    margin-top: -10px;}
 	
+	.input-wrapper .label.label-md{margin-left:15px;}
+	.item-select .input-wrapper .label.label-md{margin-left:0px;}
+	.input-wrapper .text-input.text-input-md{text-align:right}
 	
 }

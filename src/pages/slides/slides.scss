@@ -22,4 +22,11 @@ page-slides {
 	.welcomeMsg_2{text-align:center;}
 	.button.button-md.button-outline{border-color: #0d617b;color: #fff;background-color:#0d617b;}
 	.swiper-pagination.swiper-pagination-clickable.swiper-pagination-bullets{display:none;}
+	.card.card-md.box1{overflow:auto;}
+	@media only screen and (max-width: 400px) {
+		.welcomeHeader{font-size: 2rem;}		
+		.welcomeMsg{font-size: 1.5rem;}	
+	}
+	
+	
 }

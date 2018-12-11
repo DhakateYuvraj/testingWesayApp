@@ -3,8 +3,8 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Storage } from "@ionic/storage";
 
-var rootApi = "http://ec2-18-222-216-79.us-east-2.compute.amazonaws.com:8080";	// prod URL
-//var rootApi = "http://ec2-18-219-80-120.us-east-2.compute.amazonaws.com:8080";	// dev URL
+//var rootApi = "http://ec2-18-222-216-79.us-east-2.compute.amazonaws.com:8080";	// prod URL
+var rootApi = "http://ec2-18-219-80-120.us-east-2.compute.amazonaws.com:8080";	// dev URL
 
 @Injectable()
 export class AuthService {
