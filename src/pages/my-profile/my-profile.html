@@ -28,26 +28,26 @@
 	</ion-item>
 	-->
 	<ion-item>
-	<ion-label>Gender</ion-label>
+	<ion-label fixed>Gender</ion-label>
 		<ion-select [disabled]="frdId != 0" [(ngModel)]="profileData.gender">
 			<ion-option [value]="Male">Male</ion-option>
 			<ion-option [value]="Female">Female</ion-option>
 		</ion-select>
 	</ion-item>
 	<ion-item>
-		<ion-label>Location</ion-label>
+		<ion-label fixed>Location</ion-label>
 		<ion-input [disabled]="frdId != 0" [(ngModel)]="profileData.location"></ion-input>
 	</ion-item>
 	<ion-item>
-		<ion-label>Profession</ion-label>
+		<ion-label fixed>Profession</ion-label>
 		<ion-input [disabled]="frdId != 0" [(ngModel)]="profileData.profession"></ion-input>
 	</ion-item>
 	<ion-item>
-		<ion-label>Website</ion-label>
+		<ion-label fixed>Website</ion-label>
 		<ion-input [disabled]="frdId != 0" [(ngModel)]="profileData.mywebsite"></ion-input>
 	</ion-item>
 	<ion-item>
-		<ion-label>About Me</ion-label>
+		<ion-label fixed>About Me</ion-label>
 		<ion-input [disabled]="frdId != 0" [(ngModel)]="profileData.aboutMe"></ion-input>
 	</ion-item>
 	<div style="text-align:center;">

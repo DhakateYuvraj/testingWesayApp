@@ -190,8 +190,7 @@ export class FriendsListPage {
 	
 	inviteFriend(){
 		this.socialSharing.shareWithOptions(
-			{ message: "Hey there, \n \n I downloaded Wesay and found it is a cool app to understand what is the perception of me in society. \n \n Its useful, fun and secure and it lets me know what everybody says about me. I think it will be fun if you join it too and see what's the perception of all our friends.  Feedback can be given anonymously as well as publicly so we get to hear real feedback on people's perception of US.\n \n Remember it is only about our perception and  not  necessarily the reality.  But it's important that we know is it because it plays a big role in our interactions with society.\n \n Download the app at:- \n",
-			url: "http://wesay.app/dl"} 
+			{ message: "Hi there, I am inviting you to join WeSay - A fun app about our social perception. Click here to join - https://www.wesay.app/contact-us/"} 
 		)
 		.then((result) =>
 		{

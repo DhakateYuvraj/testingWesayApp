@@ -97,37 +97,27 @@ export class LoginPage {
   }
 
 	login() {
-	//alert(0);
-	//alert(1);
-	//alert(this.form.value.emailaddress);
-	//alert(this.form.value.password);
 		if (this.form.value.emailaddress != "" || this.form.value.password != "") {
 		this.traitService.showLoading;
 			this.presentLoadingDefault();
 			this.loading.present();
-	//alert(2);
-	//alert(JSON.stringify(this.form.value));
 			this.authService.loginUser(this.form.value).subscribe(data => {
 
 				this.traitService.hideLoading();
 			this.loading.dismiss();
 
 				if (data.status == 'success') {
-			this.traitService.presentSuccessToast('login Successfully !');
+			this.traitService.presentSuccessToast('Login Successful!');
 			this.authService.saveToken(data.auth_token);
 			this.navCtrl.setRoot('SlidesPage');
 				} else {
-				
-	//alert(8);
-					this.traitService.presentSuccessToast(data.email);
-					this.traitService.presentSuccessToast(data.passowrd);
+					this.traitService.presentSuccessToast(data.message);
+					//this.traitService.presentSuccessToast(data.passowrd);
 				}
 			});
 		} else {
-		//alert(9);
 			this.traitService.presentSuccessToast('Failed to login !');
 		}
-		//alert(10);
 	}
   onInputBlue(event){
 	  console.log(event);
