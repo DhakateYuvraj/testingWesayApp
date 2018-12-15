@@ -30,7 +30,7 @@ export class FriendsListPage {
 	public loading;
 	public searchedUsers;
 	public searchUserTxt;
-	
+	private isContactSynced = true;
 	constructor(
 	public navCtrl: NavController, 
 	public navParams: NavParams, 
@@ -48,11 +48,34 @@ export class FriendsListPage {
 		
 		this.storage.get('token').then((token) => {
 			this.authToken = token;
-			this.getAllFriends(token);
+			this.getAllFriends(this.authToken);
+			this.loadGenericSetting()
 			this.token = token;
 		});
 		this.presentLoadingDefault();
 	}
+	
+	doRefresh(refresher){
+		this.traitService.getMyFriendList(this.authToken).subscribe(data => {
+			this.friendList = data.response;
+			refresher.complete();
+		});		
+	}
+	
+	loadGenericSetting(){
+		this.traitService.loadGenericSetting(this.authToken).subscribe(data => {
+			if(data.response){
+				if(!data.response.isContactSynced){
+					this.isContactSynced = true;
+				}else{
+					this.isContactSynced = false;
+				}
+			}else{
+				this.isContactSynced = false;
+			}
+		});
+	}
+	
 	presentLoadingDefault() {
 		this.loading = this.loadingCtrl.create({ spinner: 'bubbles' });
 	}
@@ -179,14 +202,6 @@ export class FriendsListPage {
   addNewUser() {
     this.navCtrl.push(AddUserPage);
   }
-	doRefresh(refresher) {
-	console.log('Begin async operation', refresher);
-
-	setTimeout(() => {
-	console.log('Async operation has ended');
-	refresher.complete();
-	}, 2000);
-	}
 	
 	inviteFriend(){
 		this.socialSharing.shareWithOptions(

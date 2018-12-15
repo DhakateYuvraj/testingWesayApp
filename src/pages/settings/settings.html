@@ -11,6 +11,14 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content
+			pullingIcon="arrow-dropdown"
+			pullingText="Pull to refresh"
+			refreshingSpinner="circles"
+			refreshingText="Refreshing...">
+		</ion-refresher-content>
+	</ion-refresher>
 	<ion-list>
 			<br /><br />
 		<ion-item *ngFor="let settingRow of settingData ; let i=index">

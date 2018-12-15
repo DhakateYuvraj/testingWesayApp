@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Slides, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Slides, AlertController, Platform } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { FcmProvider } from '../../providers/fcm/fcm';
 import { TraitService } from '../../services/traits.service';
@@ -28,12 +28,12 @@ export class SlidesPage {
 	private storage: Storage,
 	public fcm: FcmProvider, 
 	private authService: AuthService,
-	//public platform: Platform,
+	public platform: Platform,
 		public alertCtrl : AlertController) {
 		this.storage.get('token').then((token) => {
 			this.getFcmToken();
 			//this.platform = platform;
-			//this.presentConfirm();
+			this.presentConfirm();
 		});
 	}
   ionViewDidLoad() {
@@ -79,7 +79,7 @@ export class SlidesPage {
 					role: 'cancel',
 					handler: () => {
 						this.authService.logout();
-						//this.platform.exitApp();
+						this.platform.exitApp();
 					}
 				},
 				{

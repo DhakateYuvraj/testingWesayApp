@@ -20,6 +20,14 @@
   </ion-header>
 
 <ion-content #contentRef fullscreen (ionScroll)="traitService.scrollingFun($event)">
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content
+			pullingIcon="arrow-dropdown"
+			pullingText="Pull to refresh"
+			refreshingSpinner="circles"
+			refreshingText="Refreshing...">
+		</ion-refresher-content>
+	</ion-refresher>
   <div style="position:relative;">
     <ion-searchbar [(ngModel)]="searchUserTxt" [showCancelButton]="shouldShowCancel" (keyup.enter)="searchNewUser()">
     </ion-searchbar>
@@ -27,10 +35,15 @@
       <span class="button-inner">Search</span>
     </button>
   </div>
-<!--  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
--->  
+  <div *ngIf="!isContactSynced">
+		Your contacts are not synced. Syncing your contacts can help you find friends on WeSay easily. Click here if you wish to sync your contacts.
+		<div *ngIf="!showSyncContact">
+			<ion-icon ios="ios-refresh" md="md-refresh" (click)="syncContacts()" style="font-size:30px;;color:#00c5cd"></ion-icon>
+		</div>
+		<div *ngIf="showSyncContact">
+			<ion-spinner name="bubbles" style="font-size:30px;color:#00c5cd" ></ion-spinner>
+		</div>
+  </div>
 
 <ion-item-sliding  class="searchedUsers" *ngFor="let user of searchedUsers ; let i=index">
   <ion-item>

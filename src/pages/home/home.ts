@@ -50,8 +50,8 @@ export class HomePage {
 	private contactsProvider : ContactsProvider
 	){
 		this.storage.get('token').then((token) => {
-			this.authToken = token;			
-			this.getPopularTraits(token);
+			this.authToken = token;
+			this.getPopularTraits(this.authToken);
 			this.getMasterTraitList();
 			this.loadGenericSetting();
 			this.searchControl = new FormControl();
@@ -59,6 +59,13 @@ export class HomePage {
 			this.frdInfo = navParams.get('frdInfo');
 			this.profileRef = navParams.get('profileRef');
 		});
+	}
+	
+	doRefresh(refresher){
+		this.traitService.getListOfPopularTraits(this.authToken).subscribe(data => {
+			this.popularTraits = data.response;
+			refresher.complete();
+		})		
 	}
 
 	loadGenericSetting(){

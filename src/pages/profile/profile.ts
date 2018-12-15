@@ -73,6 +73,34 @@ export class ProfilePage {
 		
 	}
 	
+	ionViewWillEnter() {
+		this.storage.get('token').then((token) => {
+			this.traitService.showLoading();
+			this.authToken = token;
+			this.getLoginUserTraits(this.authToken);
+			this.getMasterTraitList();
+			this.getUserProfile(this.frdId);
+		});		
+	}
+	
+	doRefresh(refresher){
+		//this.getLoginUserTraits(this.authToken);
+		this.traitService.getLoginUserTraits(this.authToken, this.profileId).subscribe(data => {
+			this.allTraits = data.response;			
+			if(data.response){
+				data.response.map(singleTrait => {
+					this.myTraitsArray.push(singleTrait.usertraitid)
+				})
+			}
+			this.traitService.hideLoading();
+			if (this.allTraits.length == 0) {
+				this.noTrait = true;
+			}else{
+				this.noTrait = false;
+			}
+			refresher.complete();
+		});
+	}
 	
 	
 	toggleSection(i) {
@@ -83,17 +111,6 @@ export class ProfilePage {
 		this.information[i].children[j].open = !this.information[i].children[j].open;
 	}
   
-	
-	ionViewWillEnter() {
-		this.storage.get('token').then((token) => {
-			this.traitService.showLoading();
-			this.authToken = token;
-			this.getLoginUserTraits(token);
-			this.getMasterTraitList();
-			this.getUserProfile(this.frdId);
-		});		
-	}
-
 	addTrait(){	
 		this.navCtrl.push(HomePage, {
 			dataFor: 'addTraitForFrd',

@@ -18,6 +18,14 @@
 </ion-header>
 
 <ion-content #contentRef (ionScroll)="traitService.scrollingFun($event)" [ngClass]="traitService.isAnonymousMode() ? 'anonymousMode' : 'privateMode'">
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content
+			pullingIcon="arrow-dropdown"
+			pullingText="Pull to refresh"
+			refreshingSpinner="circles"
+			refreshingText="Refreshing...">
+		</ion-refresher-content>
+	</ion-refresher>
 	<ion-row class="userProfie">
 		<ion-col col-3 class="userPhoto"  (click)="openProfilePage()">
 			<img src="assets/imgs/userIcon.png">
