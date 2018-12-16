@@ -36,7 +36,7 @@ import { BadgeProvider } from '../providers/badge/badge';
 import { ContactsProvider } from '../providers/contacts/contacts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Camera } from '@ionic-native/camera';
-
+import { Crop } from '@ionic-native/crop';
 
 @NgModule({
 	declarations: [
@@ -88,7 +88,8 @@ import { Camera } from '@ionic-native/camera';
 		FcmProvider,
 		BadgeProvider,
 		ContactsProvider,
-		Camera
+		Camera,
+		Crop
 	]
 })
 export class AppModule {}

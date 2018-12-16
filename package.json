@@ -26,6 +26,7 @@
     "@ionic-native/camera-preview": "^4.10.0",
     "@ionic-native/contacts": "^4.10.0",
     "@ionic-native/core": "~4.10.0",
+    "@ionic-native/crop": "^4.18.0",
     "@ionic-native/facebook": "^4.12.0",
     "@ionic-native/fcm": "^4.17.0",
     "@ionic-native/firebase": "^4.17.0",

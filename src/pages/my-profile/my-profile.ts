@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ActionSheetController  } from 'ion
 import { Storage } from "@ionic/storage";
 import { TraitService } from '../../services/traits.service';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Crop } from '@ionic-native/crop';
 
 @IonicPage()
 @Component({
@@ -30,9 +31,10 @@ export class MyProfilePage {
 		public navCtrl: NavController, 
 		public traitService: TraitService, 
 		public navParams: NavParams,
-		public actionsheetCtrl: ActionSheetController ) {
-		this.frdId = navParams.get('frdId') ? navParams.get('frdId') : 0;
-	}
+		public actionsheetCtrl: ActionSheetController,
+		public crop: Crop) {
+			this.frdId = navParams.get('frdId') ? navParams.get('frdId') : 0;
+		}
 
 
 	ionViewWillEnter() {
@@ -108,17 +110,16 @@ export class MyProfilePage {
       ...useAlbum ? {sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM} : {}
     }
 
-this.camera.getPicture(options).then((imageData) => {
-// imageData is either a base64 encoded string or a file URI
-// If it's base64 (DATA_URL):
-this.base64Image = 'data:image/jpeg;base64,' + imageData;
-}, (err) => {
-alert(JSON.stringify(err))
-});
-
-    //this.base64Image = `data:image/jpeg;base64,${imageData}`;
-
-    //this.photos.unshift(this.base64Image);
+	this.camera.getPicture(options).then((imageData) => {
+		//this.base64Image = 'data:image/jpeg;base64,' + imageData;
+		this.crop.crop(imageData, {quality: 75})
+		.then(
+			newImage => {this.base64Image = 'data:image/jpeg;base64,' + newImage; },
+			error => console.error('Error cropping image', error)
+		);
+	}, (err) => {
+		alert(JSON.stringify(err))
+	});
 
   }
   
