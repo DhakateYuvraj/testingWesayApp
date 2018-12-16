@@ -6,8 +6,8 @@ import { LoadingController, ModalController, ToastController } from 'ionic-angul
 import moment from 'moment';
 import jQuery from "jquery";
 
-var rootApi = "http://ec2-18-217-136-108.us-east-2.compute.amazonaws.com:8080";	// prod URL
-//var rootApi = "http://ec2-18-222-183-172.us-east-2.compute.amazonaws.com:8080";		// dev URL
+//var rootApi = "http://ec2-18-217-136-108.us-east-2.compute.amazonaws.com:8080";	// prod URL
+var rootApi = "http://ec2-18-222-183-172.us-east-2.compute.amazonaws.com:8080";		// dev URL
 
 
 @Injectable()
@@ -242,7 +242,14 @@ export class TraitService {
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/userzone/traits/comment', traitdata, this.options).map(res => res.json());
 	}
-	
+
+	commentDelete(traitdata, token) {
+		//userTraits/traits/deleteComment	
+		//{commentId:65,parentCommentId:64,userTraitId:8}
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/userTraits/traits/deleteComment', traitdata, this.options).map(res => res.json());
+	}
+
 	giveVote(traitdata, token){
 		this.createAuthenticationHeaders(token);
 		return this.http.post(rootApi + '/userzone/traits/vote/submit', traitdata, this.options).map(res => res.json());

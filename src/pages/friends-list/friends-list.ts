@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, ModalController, Content, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, Content, LoadingController, PopoverController } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { ProfilePage } from '../profile/profile';
 import { AddUserPage } from '../add-user/add-user';
@@ -7,6 +7,7 @@ import { Contacts } from '@ionic-native/contacts';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AuthService } from '../../services/auth.service';
 import { TraitService } from '../../services/traits.service';
+import { FriendListMenuPage } from '../friend-list-menu/friend-list-menu'
 
 @Component({
 	selector: 'page-friends-list',
@@ -40,7 +41,8 @@ export class FriendsListPage {
 	private storage: Storage, 
 	private contacts: Contacts, 
 	private loadingCtrl: LoadingController, 
-	private socialSharing: SocialSharing
+	private socialSharing: SocialSharing, 
+	public popoverCtrl: PopoverController
 	){
 		this.selectFrd = navParams.get('selectFrdMode') ? true : false;
 		this.badgeId = navParams.get('badgeId');
@@ -148,12 +150,13 @@ export class FriendsListPage {
 
 	sendFrdRequest(frdInfo) {
 		this.showLoading();
-		var reqToSend = [{ 'friendsid': frdInfo.contactid }]
+		var reqToSend = [{ 'friendsid': frdInfo.contactid ? frdInfo.contactid : frdInfo.id }]
 		this.authService.sendFrdReq(reqToSend, this.authToken).subscribe(data => {
 			this.hideLoading();
 			this.navCtrl.setRoot(this.navCtrl.getActive().component);
 		});
 	}
+	
 
 	acceptFrdRequest(frdInfo) {
 		this.showLoading();
@@ -217,4 +220,12 @@ export class FriendsListPage {
 		});
 	}
 
+	
+	presentPopover(myEvent) {
+		let popover = this.popoverCtrl.create('FriendListMenuPage',{homeRef: this});
+		popover.present({
+			ev: myEvent
+		});
+	}
+	
 }

@@ -36,13 +36,13 @@ export class SignupPage {
 			profilePic: [''],
 			fullname: ['', Validators.compose([Validators.minLength(3),Validators.maxLength(30), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
 			emailaddress: ['',  Validators.compose([Validators.minLength(8),Validators.maxLength(50), Validators.required])],
-			password: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(15), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
-			retypepassword: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(15), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+			password: ['', Validators.compose([Validators.minLength(8), Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}'), Validators.required])],
+			retypepassword: ['', Validators.compose([Validators.minLength(8), Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}'), Validators.required])],
 			yearofbirth: ['', Validators.required],
 			mobilenumber: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(12), Validators.required])],
 			gender: ['', Validators.required],
 			countrycode: ['', Validators.required]
-		});		
+		});
 		this.form.valueChanges.subscribe((v) => {
 			this.isReadyToSave = this.form.valid;
 		});
@@ -100,11 +100,11 @@ export class SignupPage {
 					this.traitService.hideLoading();
 					if (data.status == 'success') {
 						//this.form.reset();
-						this.traitService.presentSuccessToast('Please check your email for OTP');
+						this.traitService.presentSuccessToast(data.message);
 						this.authService.saveToken(data.response.authtoken)
 						this.navCtrl.push('OtpPage',{regPageData: this.form.value});
 					} else {
-						this.traitService.presentSuccessToast('Failed to Registered!');
+						this.traitService.presentSuccessToast(data.message);
 						//alert(JSON.stringify(data.response));
 					}
 				});
@@ -118,7 +118,7 @@ export class SignupPage {
 		//console.log(this.form.value.password);
 		this.passwordComplexity = "Invalid";
 		let str = this.form.value.password
-		if(str.length > 6 && str.match(/[a-z]/) && str.match(/[A-Z]/) && str.match(/[0-9]/) && str.match(format)){
+		if(str.length > 8 && str.match(/[a-z]/) && str.match(/[A-Z]/) && str.match(/[0-9]/) && str.match(format)){
 			this.passwordComplexity = "Valid password";
 		}
 		console.log(this.passwordComplexity);

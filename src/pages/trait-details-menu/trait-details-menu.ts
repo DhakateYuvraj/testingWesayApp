@@ -20,6 +20,7 @@ export class TraitDetailsMenuPage {
 	public authToken;
 	public homeRef;
 	public readOnly = true;
+	public isFrdProfile;
 	
   constructor(public viewCtrl: ViewController,
 		public navCtrl: NavController, 
@@ -29,7 +30,8 @@ export class TraitDetailsMenuPage {
 		public alertCtrl : AlertController) {
 		this.traitDetails = navParams.get('traitDetails');
 		this.homeRef = navParams.get('homeRef');
-		this.readOnly = navParams.get('readOnly');		
+		this.readOnly = navParams.get('readOnly');
+		this.isFrdProfile = navParams.get('isFrdProfile');		
 		console.log(this.traitDetails);
   }
 

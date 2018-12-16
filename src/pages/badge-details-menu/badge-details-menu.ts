@@ -24,9 +24,7 @@ export class BadgeDetailsMenuPage {
 	this.homeRef = navParams.get('homeRef');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TraitDetailsMenuPage');
-  }
+  
    ionViewWillEnter() {
     this.storage.get('token').then((token) => {
 		this.authToken = token;

@@ -28,7 +28,7 @@ export class LoginPage {
 	) {
 		this.form = formBuilder.group({
 			emailaddress: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(50), Validators.required])],
-			password: ['', Validators.compose([Validators.minLength(8),Validators.maxLength(15), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])]
+			password: ['', Validators.compose([Validators.minLength(8), Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{7,}'), Validators.required])]
 		});
 
 		fb.getLoginStatus()

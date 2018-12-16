@@ -178,9 +178,22 @@ export class TraitDetailsPage {
 			this.replyTo = commentId
 		}
 	}
+	
+	deleteComment(commentId,parentCommentId){
+		console.log('delete comment - '+commentId);
+		let trait_data = {commentId:commentId,
+							parentCommentId:parentCommentId,
+							userTraitId:this.traitDetails.usertraitid ? this.traitDetails.usertraitid : this.traitDetails.userTraitId}
+		this.traitService.commentDelete(trait_data, this.authToken).subscribe(data => {
+			if (data.status == 'success') {
+				this.traitService.presentSuccessToast(data.message);
+				this.getTraitComments(this.traitDetails);
+			}
+		});
+	}
 
 	presentPopover(myEvent) {
-		let popover = this.popoverCtrl.create('TraitDetailsMenuPage',{traitDetails:this.traitDetails,homeRef: this,readOnly:false});
+		let popover = this.popoverCtrl.create('TraitDetailsMenuPage',{traitDetails:this.traitDetails,homeRef: this,readOnly:false,isFrdProfile:this.frdProfile});
 		popover.present({
 			ev: myEvent
 		});

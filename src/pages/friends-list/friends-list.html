@@ -1,23 +1,28 @@
 <ion-header>
-    <ion-navbar> 
-      <ion-row> 
-        <ion-col col-1>  
-          <ion-icon class="menu_icon" name="menu" (click)="traitService.toggleMenu()"></ion-icon>
-        </ion-col>
-        <ion-col col-9>
-          <ion-label class="header_label">My Contacts</ion-label> 
-        </ion-col> 
-        <ion-col col-2> 
+	<ion-navbar> 
+	  <ion-row> 
+		<ion-col col-1>  
+		  <ion-icon class="menu_icon" name="menu" (click)="traitService.toggleMenu()"></ion-icon>
+		</ion-col>
+		<ion-col col-9>
+		  <ion-label class="header_label">My Contacts</ion-label> 
+		</ion-col> 		
+		<ion-col col-2> 
+			<div (click)="presentPopover($event)" class="moreBtn">
+				<ion-icon name="more"></ion-icon>
+			</div>
+		</ion-col>
+		<!--<ion-col col-2> 
 		<div *ngIf="!showSyncContact">
 			<ion-icon ios="ios-refresh" md="md-refresh" (click)="syncContacts()" style="font-size:30px;position:absolute;top:3px;right:32px;"></ion-icon>
 		</div>
 		<div *ngIf="showSyncContact">
 			<ion-spinner name="bubbles" style="font-size:30px;position:absolute;top:3px;right:32px;color:#f00" ></ion-spinner>
 		</div>
-        </ion-col>
-      </ion-row>
-    </ion-navbar>
-  </ion-header>
+		</ion-col> -->
+	  </ion-row>
+	</ion-navbar>
+</ion-header>
 
 <ion-content #contentRef fullscreen (ionScroll)="traitService.scrollingFun($event)">
 	<ion-refresher (ionRefresh)="doRefresh($event)">
@@ -35,13 +40,14 @@
       <span class="button-inner">Search</span>
     </button>
   </div>
-  <div *ngIf="!isContactSynced">
-		Your contacts are not synced. Syncing your contacts can help you find friends on WeSay easily. Click here if you wish to sync your contacts.
+  <div *ngIf="isContactSynced" style="color:#00c5cd;text-align:center;" (click)="syncContacts()">
+  <br />
+		Sync your contacts to find friends on WeSay.
 		<div *ngIf="!showSyncContact">
-			<ion-icon ios="ios-refresh" md="md-refresh" (click)="syncContacts()" style="font-size:30px;;color:#00c5cd"></ion-icon>
+			<ion-icon ios="ios-refresh" md="md-refresh" style="font-size:30px;"></ion-icon>
 		</div>
 		<div *ngIf="showSyncContact">
-			<ion-spinner name="bubbles" style="font-size:30px;color:#00c5cd" ></ion-spinner>
+			<ion-spinner name="bubbles" style="font-size:30px;" ></ion-spinner>
 		</div>
   </div>
 
@@ -54,7 +60,7 @@
       <ion-col col-7 class="frdListInfo">
         <div class="frdname">{{ user.fullname }}</div> 
       </ion-col>	  
-      <ion-col col-3 class="frdListInfo" (click)="sendFrdRequest(user)" style="font-size:0.7em;color:#00c5cd">
+      <ion-col col-3 class="frdListInfo" *ngIf="!user.isFrnd" (click)="sendFrdRequest(user)" style="font-size:0.7em;color:#00c5cd">
         <div class="frdname">Send Req</div> 
       </ion-col>  
     </ion-row>

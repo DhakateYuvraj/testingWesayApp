@@ -29,24 +29,24 @@
 					</ion-item>
 					<ion-icon name="information-circle"></ion-icon>
 					<div class="passwordHint">
-						<div>Min length 6 and Should contain 1 UPPERCASE, 1 lowercase, number and special character</div>
+						<div>Min length 8 and Should contain 1 UPPERCASE, 1 lowercase, number and special character</div>
 					</div>
+					<div class="errorMsg">{{passwordComplexity}}</div>
 				</div>
 
 
 
 				
-				<div class="errorMsg">{{passwordComplexity}}</div>
 				<div class="ion-item-wrapper">
 					<ion-item>
 						<ion-input type="password" formControlName="retypepassword" placeholder="Re-Enter Password" (ionChange)="updateRetypePass()" id="repassword"> </ion-input>
 					</ion-item>
 					<ion-icon name="information-circle"></ion-icon>
 					<div class="repasswordHint">
-						<div>Min length 6 and Should contain 1 UPPERCASE, 1 lowercase, number and special character</div>
+						<div>Min length 8 and Should contain 1 UPPERCASE, 1 lowercase, number and special character</div>
 					</div>
+					<div class="errorMsg">{{retypePasswordMatch}}</div>
 				</div>
-				<div class="errorMsg">{{retypePasswordMatch}}</div>
 				<div class="ion-item-wrapper">				
 						<select class="dropdownClass dropdownClass item-input" formControlName="yearofbirth" name="yearofbirth">
 							<option value="" disabled selected>Select year of Birth</option>

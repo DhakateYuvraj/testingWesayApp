@@ -6,7 +6,6 @@ import { Storage } from "@ionic/storage";
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
-//import { FMC } from '@ionic-native/fcm';
 import { FcmProvider } from '../providers/fcm/fcm';
 import { TraitService } from '../services/traits.service';
 
@@ -20,7 +19,7 @@ export class MyApp {
 	rootPage: any; 
 	public fcmDeviceId;
 	public token;
-	
+	public counter = 0;
 	constructor(
 	public platform: Platform, 
 	public statusBar: StatusBar, 
@@ -40,6 +39,16 @@ export class MyApp {
 			this.statusBar.styleDefault();
 			this.splashScreen.hide();
 		});
+		this.platform.registerBackButtonAction(() => {
+			if (this.counter == 0) {
+				this.counter++;
+				this.traitService.presentSuccessToast('Press again to exit');
+				setTimeout(() => { this.counter = 0 }, 3000)
+			} else {
+				console.log("exitapp");
+				this.platform.exitApp();
+			}
+		}, 0)
 	}
 
 	isLoggedIn(){

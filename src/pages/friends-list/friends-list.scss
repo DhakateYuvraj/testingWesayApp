@@ -127,4 +127,17 @@ page-friends-list {
     height: 3em;
     text-transform: none;
 	}
+
+	.moreBtn,.moreBtn:hover{
+		float: right;
+		background: transparent;
+		border: none;
+		box-shadow: none;
+		width: 45px;
+		text-align: center;
+		height: 30px;
+		font-size: 22px;
+		cursor: pointer;
+	}
+	
 }

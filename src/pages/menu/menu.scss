@@ -31,7 +31,7 @@ page-menu {
         background: none;
     } 
     ion-footer{
-        padding: 35px !important;
+        padding:10px 35px !important;
     }
     .bottom-icon{
         padding-left: 16px !important;
@@ -49,5 +49,5 @@ page-menu {
     }
 	.menuItemName{font-size:1.5em;color:#fff}
 	.menuItemName a,.menuItemName a:hover,.menuItemName a:visited{color:#fff;text-decoration: none;}
- 
+	.appVersion{text-align: center;}
 }
