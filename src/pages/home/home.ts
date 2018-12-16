@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, ModalController, NavParams, Content } from 'ionic-angular';
+import { Platform, NavController, ModalController, NavParams, Content } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
 import { Storage } from "@ionic/storage";
 import { TraitService } from '../../services/traits.service';
@@ -40,13 +40,14 @@ export class HomePage {
 	public frdInfo;
 	public profileRef;
 	public numTraitToFrds=3; 
-
+	public counter = 0;
 	constructor(
 	public navCtrl: NavController, 
 	public modalCtrl: ModalController, 
 	public navParams: NavParams,
 	private traitService: TraitService,
 	private storage: Storage,
+	public platform: Platform,
 	private contactsProvider : ContactsProvider
 	){
 		this.storage.get('token').then((token) => {
@@ -211,15 +212,34 @@ addToPage() {
 }
 
 
-  ionViewDidEnter() {
-    this.topOrBottom = this.contentHandle._tabsPlacement;
-    this.contentBox = document.querySelector(".scroll-content")['style'];
+	ionViewDidEnter() {
+		this.topOrBottom = this.contentHandle._tabsPlacement;
+		this.contentBox = document.querySelector(".scroll-content")['style'];
 
-    if (this.topOrBottom == "top") {
-      this.tabBarHeight = this.contentBox.marginTop;
-    } else if (this.topOrBottom == "bottom") {
-      this.tabBarHeight = this.contentBox.marginBottom;
-    }
-  }
+		if (this.topOrBottom == "top") {
+		  this.tabBarHeight = this.contentBox.marginTop;
+		} else if (this.topOrBottom == "bottom") {
+		  this.tabBarHeight = this.contentBox.marginBottom;
+		}
 
+		/*
+		this.platform.registerBackButtonAction(() => {
+			if (this.counter == 0) {
+				this.counter++;
+				this.traitService.presentSuccessToast('Press again to exit');
+				setTimeout(() => { this.counter = 0 }, 2000)
+			} else {
+				console.log("exitapp");
+				this.platform.exitApp();
+			}
+		}, 10)
+		*/
+	}
+	/*
+	ionViewWillLeave() {
+		this.platform.registerBackButtonAction(() => {
+			this.navCtrl.pop();
+		},10);
+	}
+	*/
 }

@@ -35,6 +35,8 @@ import { FcmProvider } from '../providers/fcm/fcm';
 import { BadgeProvider } from '../providers/badge/badge';
 import { ContactsProvider } from '../providers/contacts/contacts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Camera } from '@ionic-native/camera';
+
 
 @NgModule({
 	declarations: [
@@ -84,8 +86,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 		ActionSheet,
 		Firebase,
 		FcmProvider,
-    BadgeProvider,
-    ContactsProvider
+		BadgeProvider,
+		ContactsProvider,
+		Camera
 	]
 })
 export class AppModule {}

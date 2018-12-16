@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController  } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { TraitService } from '../../services/traits.service';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @IonicPage()
 @Component({
@@ -20,11 +21,16 @@ export class MyProfilePage {
 	};
 	public frdId = 0;
 	
-	constructor(	
+    public photos
+	public base64Image
+	
+	constructor(
+		public camera: Camera,
 		public storage: Storage, 
 		public navCtrl: NavController, 
 		public traitService: TraitService, 
-		public navParams: NavParams) {
+		public navParams: NavParams,
+		public actionsheetCtrl: ActionSheetController ) {
 		this.frdId = navParams.get('frdId') ? navParams.get('frdId') : 0;
 	}
 
@@ -66,5 +72,54 @@ export class MyProfilePage {
 	back(){
 		this.navCtrl.pop();
 	}
+	
+	openeditprofile() {
+    let actionSheet = this.actionsheetCtrl.create({
+      title: 'Option',
+      cssClass: 'action-sheets-basic-page',
+      buttons: [
+        {
+          text: 'Take photo',
+          role: 'destructive',
+          icon: 'ios-camera-outline',
+          handler: () => {
+            this.captureImage(false);
+          }
+        },
+        {
+          text: 'Choose photo from Gallery',
+          icon:'ios-images-outline',
+          handler: () => {
+            this.captureImage(true);
+          }
+        },
+      ]
+    });
+    actionSheet.present();
+  }
+
+
+  captureImage(useAlbum: boolean) {
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      ...useAlbum ? {sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM} : {}
+    }
+
+this.camera.getPicture(options).then((imageData) => {
+// imageData is either a base64 encoded string or a file URI
+// If it's base64 (DATA_URL):
+this.base64Image = 'data:image/jpeg;base64,' + imageData;
+}, (err) => {
+alert(JSON.stringify(err))
+});
+
+    //this.base64Image = `data:image/jpeg;base64,${imageData}`;
+
+    //this.photos.unshift(this.base64Image);
+
+  }
   
 }

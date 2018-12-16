@@ -91,5 +91,6 @@
         <variable name="APP_NAME" value="WeSay" />
     </plugin>
     <plugin name="cordova-plugin-firebase" spec="2.0.5" />
+    <plugin name="cordova-plugin-camera" spec="4.0.3" />
     <engine name="android" spec="6.3.0" />
 </widget>

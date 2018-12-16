@@ -3,19 +3,42 @@ page-my-profile {
 		width: 80%;
 		margin: 10px auto;
 	}
-    ion-item.item-input{margin: 10px auto;}
-	.uploadPic{    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 3px solid #00c5cd;
-    margin: 15px auto;}
-	
-	.userImage{font-size: 105px;
-	color:#00c5cd;
-    width: 95px;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: -10px;}
+    ion-item.item-input{
+		margin: 10px auto;
+	}
+	.uploadPic{
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		border: 3px solid #00c5cd;
+		margin: 15px auto;
+		position:relative;
+	}
+	.profileImage{
+		width: 94px;
+		height: 94px;
+		border-radius: 50%;
+	}	
+	.userDummyImage{
+		font-size: 105px;
+		color:#00c5cd;
+		width: 95px;
+		margin: 0 auto;
+		text-align: center;
+		margin-top: -10px;
+	}
+	.editPic{
+	    position: absolute;
+		bottom: 0px;
+		right: 0px;
+		background: #00c5cd;
+		border-radius: 50%;
+		height: 25px;
+		width: 25px;
+		padding: 5px 8px 6px;
+		font-size: 12px;
+		color: #fff;
+	}
 	
 	.input-wrapper .label.label-md{margin-left:15px;}
 	.item-select .input-wrapper .label.label-md{margin-left:0px;}

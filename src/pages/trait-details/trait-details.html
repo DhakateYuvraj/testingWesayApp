@@ -176,7 +176,7 @@ Hidden
 						<span (click)="commentLikeDislike(comment.commentId,2)" class="actionBtn dislike">
 							<ion-icon name="thumbs-down"></ion-icon><span>{{comment.disLikeCount}}</span>
 						</span>
-						<span (click)="deleteComment(comment.commentId,0)" class="actionBtn dislike" *ngIf="!frdProfile">
+						<span (click)="deleteComment(comment.commentId,0)" class="actionBtn dislike" *ngIf="!frdProfile || comment.isDeletable">
 							<ion-icon name="trash"></ion-icon>
 						</span>
 						<span (click)="replyToComment(comment.commentId)" class="actionBtn reply">
@@ -201,7 +201,7 @@ Hidden
 							<span (click)="commentLikeDislike(commentReply.commentId,2)" class="actionBtn dislike">
 								<ion-icon name="thumbs-down"></ion-icon><span>{{commentReply.disLikeCount}}</span>
 							</span>
-							<span (click)="deleteComment(commentReply.commentId,comment.commentId)" class="actionBtn dislike" *ngIf="!frdProfile || isDeletable">
+							<span (click)="deleteComment(commentReply.commentId,comment.commentId)" class="actionBtn dislike" *ngIf="!frdProfile || commentReply.isDeletable">
 								<ion-icon name="trash"></ion-icon>
 							</span>
 							<span (click)="replyToComment(comment.commentId)" class="actionBtn reply">

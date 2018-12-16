@@ -12,8 +12,14 @@
 </ion-header>
 <ion-content #contentRef (ionScroll)="traitService.scrollingFun($event)">
 <div class="uploadPic">
-<ion-icon class="userImage" name="ios-person"></ion-icon>
+	<ion-icon class="userDummyImage" name="ios-person"  *ngIf="!base64Image"></ion-icon>
+	<img class="profileImage" [src]="base64Image" *ngIf="base64Image" />
+	<div class="editPic" (click)="openeditprofile()">
+		<ion-icon name="md-create"></ion-icon>
+	</div>
 </div>
+
+
 <div style="text-align:center;">
 <h2>{{profileData.displayName}}</h2>
 </div>
