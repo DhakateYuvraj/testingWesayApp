@@ -141,7 +141,10 @@ ion-header,.toolbar-background-md{
 		}
 	}
 	
-	.traitIcon{ display: inline-block; background: url('../assets/imgs/traitIcons.png') no-repeat; overflow: hidden; text-indent: -9999px; margin: 7px; width: 50px; height: 50px;background-position:1px -952px;}
+	.traitIcon{ display: inline-block; overflow: hidden; margin: 5px; width: 50px; height: 50px;}
+	.traitIcon img{ display: block;max-width: 100%; max-height: 100%;}
+	.traitIcon img.isInvert{filter: brightness(6) invert(1);}
+	
 	.traitIcon_trustworthy{background-position:-11px 6px;}
 	.traitIcon_friendly{background-position: -11px -45px}
 	.traitIcon_good.looking{background-position: -11px -101px;}

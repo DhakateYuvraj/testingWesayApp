@@ -107,7 +107,10 @@
 							</div>
 						</div>
 						<div class="traitIconBg traitIconBg_{{i}}" (click)="openTraitDetails(item)">
-							<div class="traitIcon traitIcon_{{item.traitname | lowercase}}"></div>
+							<!-- <div class="traitIcon traitIcon_{{item.traitname | lowercase}}"></div> -->
+							<div class="traitIcon">
+								<img [src]="item.traiticonpath" onerror="this.src='assets/imgs/badge_1.png'" alt=""/>
+							</div>
 						</div>
 						<div class="traitName" (click)="openTraitDetails(item)">{{item.traitname}}</div>
 					</ion-item>
