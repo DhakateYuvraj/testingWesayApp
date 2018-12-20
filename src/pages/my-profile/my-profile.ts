@@ -103,24 +103,41 @@ export class MyProfilePage {
 
   captureImage(useAlbum: boolean) {
     const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
+      //quality: 100,
+      //destinationType: this.camera.DestinationType.DATA_URL,
+      //encodingType: this.camera.EncodingType.JPEG,
+      //mediaType: this.camera.MediaType.PICTURE,
       ...useAlbum ? {sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM} : {}
     }
 
 	this.camera.getPicture(options).then((imageData) => {
+		this.reduceImages(imageData);
+		alert(JSON.stringify(imageData));
 		//this.base64Image = 'data:image/jpeg;base64,' + imageData;
-		this.crop.crop(imageData, {quality: 75})
+		/* this.crop.crop(imageData, {quality: 75})
 		.then(
 			newImage => {this.base64Image = 'data:image/jpeg;base64,' + newImage; },
 			error => console.error('Error cropping image', error)
-		);
+		); */
 	}, (err) => {
 		alert(JSON.stringify(err))
 	});
 
   }
+  
+  reduceImages(selected_pictures: any) : any{
+  
+		alert('->'+JSON.stringify(selected_pictures));
+    return selected_pictures.reduce((promise:any, item:any) => {
+		alert('--->'+JSON.stringify(item));
+	  return promise.then((result) => {
+		alert('----->'+JSON.stringify(result));
+        return this.crop.crop(item, {quality: 75})
+				.then(cropped_image => {this.base64Image = cropped_image; alert('**>'+JSON.stringify(cropped_image))});
+      });
+    }, Promise.resolve());
+  }
+  
+  
   
 }
