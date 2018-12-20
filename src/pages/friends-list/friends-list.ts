@@ -104,7 +104,10 @@ export class FriendsListPage {
 	}
 	
 	searchNewUser(){
-		if(this.searchUserTxt){
+		if(this.searchUserTxt || this.searchUserTxt=="all rec"){
+			if(this.searchUserTxt=="all rec"){
+				this.searchUserTxt = ""
+			}
 			this.showLoading();
 			let usrObj = {"fullname":this.searchUserTxt};
 			this.traitService.searchUser(this.authToken,usrObj).subscribe(data => {

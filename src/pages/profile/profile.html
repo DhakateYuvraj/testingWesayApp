@@ -89,11 +89,7 @@
 				isWaiting_{{item.isWaitingForApproval ? true : false}}
 				isFrd_{{frdProfile ? true : false}}" 
 				[ngClass]="{'hideTrait':item.isHidden && frdProfile}">
-					<ion-item >
-					<!-- 
-					<div style="font-weight:bold;text-align:center;">{{item.totalRatings ? item.totalRatings : ''}}</div>
-					 -->
-						<!-- <ion-icon name="close" class="close-icon" *ngIf="!frdProfile" (click)="presentConfirm(item.traituniqueid)"></ion-icon> -->
+					<ion-item  (press)="lognPressed(item)">
 						<div class="pos-number isMyContiPos_{{item.mypositive}}" (click)="giveVoteToFriend(item,1)">
 							<div class="tempClass">
 								<span *ngIf="!(frdProfile && item.isTraitCountHidden)">{{item.positive}}</span>
@@ -107,7 +103,6 @@
 							</div>
 						</div>
 						<div class="traitIconBg traitIconBg_{{i}}" (click)="openTraitDetails(item)">
-							<!-- <div class="traitIcon traitIcon_{{item.traitname | lowercase}}"></div> -->
 							<div class="traitIcon">
 								<img [src]="item.traiticonpath" onerror="this.src='assets/imgs/badge_1.png'" alt=""/>
 							</div>

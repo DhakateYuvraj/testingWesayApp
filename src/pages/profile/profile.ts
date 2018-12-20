@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, ModalController, NavParams, Content, AlertController } from 'ionic-angular';
+import { NavController, ModalController, NavParams, Content, AlertController, ActionSheetController  } from 'ionic-angular';
 import { Storage } from "@ionic/storage";
 import { FormControl } from '@angular/forms';
 import { TraitDetailsPage } from '../trait-details/trait-details';
@@ -51,7 +51,8 @@ export class ProfilePage {
 	private alertCtrl: AlertController, 
 	public navParams: NavParams,
 	private actionSheet: ActionSheet,
-	public badgeProvider: BadgeProvider
+	public badgeProvider: BadgeProvider,
+	public actionsheetCtrl: ActionSheetController
 	) {
 		this.frdInfo = navParams.get('frdInfo');
 		let tabOpen = navParams.get('tabOpen') ? navParams.get('tabOpen') : 'trait';
@@ -174,41 +175,41 @@ export class ProfilePage {
 		
 	}
 
-  deleteTrait(trait_id) {
-    this.traitService.showLoading();
-    let trait_data = {
-      traituniqueid: trait_id,
-      traitgivenfor: '0'
-    }
-    this.traitService.deleteTrait(trait_data, this.authToken).subscribe(data => {
-      this.traitService.hideLoading();
-      if (data.status == 'success') {
-        this.getLoginUserTraits(this.authToken);
-      }
-    });
-  }
+  // deleteTrait(trait_id) {
+  //   this.traitService.showLoading();
+  //   let trait_data = {
+  //     traituniqueid: trait_id,
+  //     traitgivenfor: '0'
+  //   }
+  //   this.traitService.deleteTrait(trait_data, this.authToken).subscribe(data => {
+  //     this.traitService.hideLoading();
+  //     if (data.status == 'success') {
+  //       this.getLoginUserTraits(this.authToken);
+  //     }
+  //   });
+  // }
 
-  presentConfirm(trait_id) {
-    this.alert = this.alertCtrl.create({
-      title: 'Confirm',
-      message: 'Are you sure to delete ?',
-      buttons: [
-        {
-          text: 'No',
-          role: 'cancel',
-          handler: () => {
-          }
-        },
-        {
-          text: 'Yes',
-          handler: () => {
-            this.deleteTrait(trait_id);
-          }
-        }
-      ]
-    });
-    this.alert.present();
-  }
+  // presentConfirm(trait_id) {
+  //   this.alert = this.alertCtrl.create({
+  //     title: 'Confirm',
+  //     message: 'Are you sure to delete ?',
+  //     buttons: [
+  //       {
+  //         text: 'No',
+  //         role: 'cancel',
+  //         handler: () => {
+  //         }
+  //       },
+  //       {
+  //         text: 'Yes',
+  //         handler: () => {
+  //           this.deleteTrait(trait_id);
+  //         }
+  //       }
+  //     ]
+  //   });
+  //   this.alert.present();
+  // }
 
   openTraitsList() {
     this.navCtrl.push('TraitsListPage');
@@ -369,5 +370,71 @@ openActionSheet(){
 		});
 	}
 
+	lognPressed(traitDetails){		
+    let actionSheet = this.actionsheetCtrl.create({
+      title: 'Option',
+      cssClass: 'action-sheets-basic-page',
+      buttons: [
+        {
+          text: 'Delete Trait',
+          icon: '',
+          handler: () => {
+            this.deleteTrait(traitDetails);
+          }
+        },
+        {
+          text: traitDetails.isHidden ? 'Show Trait' : 'Hide Trait',
+          icon:'',
+          handler: () => {
+            this.hideTrait(traitDetails);
+          }
+        },
+      ]
+    });
+    actionSheet.present();
+	}
+
+	deleteTrait(traitDetails){
+		let alert = this.alertCtrl.create({
+			title: 'Confirm Delete',
+			message: 'Do you want to delete '+ traitDetails.traitname +' ?',
+			buttons: [
+				{
+					text: 'Cancel',
+					role: 'cancel',
+					handler: () => {
+						console.log('Cancel clicked');
+					}
+				},
+				{
+					text: 'Confirm',
+					handler: () => {
+						this.deleteTraitConfirmed(traitDetails)
+					}
+				}
+			]
+		});
+		alert.present();
+	}
+
+	deleteTraitConfirmed(traitDetails){
+		let trait_data = {
+			userTraitId: traitDetails.usertraitid
+		}
+		this.traitService.deleteTrait(trait_data, this.authToken).subscribe(data => {
+		this.traitService.presentSuccessToast(traitDetails.traitname+' deleted successfully');
+		this.getLoginUserTraits(this.authToken);		
+		});	
+	}
+
+	hideTrait(traitDetails){
+		let trait_data = {
+			userTraitId: traitDetails.usertraitid,
+			isHidden: traitDetails.isHidden ? 0 : 1
+		}
+		this.traitService.hideTrait(trait_data, this.authToken).subscribe(data => {
+			this.getLoginUserTraits(this.authToken);	
+		});
+	}
 	
 }
