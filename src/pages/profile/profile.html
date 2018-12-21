@@ -104,7 +104,7 @@
 						</div>
 						<div class="traitIconBg traitIconBg_{{i}}" (click)="openTraitDetails(item)">
 							<div class="traitIcon">
-								<img [src]="item.traiticonpath" onerror="this.src='assets/imgs/badge_1.png'" alt=""/>
+								<img [src]="item.traiticonpath" onerror="this.src='assets/imgs/dummyTrait.png'" alt=""/>
 							</div>
 						</div>
 						<div class="traitName" (click)="openTraitDetails(item)">{{item.traitname}}</div>
@@ -119,7 +119,7 @@
 
         </div>
 		<div *ngSwitchCase="'testimonials'" class="testimonials" (swiperight)="changeTab('badges')">
-		<h1 class="textCenter">Coming Soon</h1>
+		<!-- <h1 class="textCenter">Coming Soon</h1> -->
 		
 		<!-- <ion-list class="accordion-list">
 		<ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
@@ -263,8 +263,8 @@
 
 		</div>
         <div *ngSwitchCase="'badges'" class="badgeWrapper" (swipeleft)="changeTab('testimonials')" (swiperight)="changeTab('trait')">
-			<h1 class="textCenter">Coming Soon</h1>
-			<!-- <ion-row class="bagdesToOthers" *ngIf="!frdProfile" >
+			<!-- <h1 class="textCenter">Coming Soon</h1> -->
+			<ion-row class="bagdesToOthers" *ngIf="!frdProfile" >
                 <ion-col col-6 class="badgeSection badgesAvailable">
 					<div class="badgeTitle">
 						Available Badges
@@ -331,7 +331,7 @@
 				<button ion-fab mini>
 					<ion-icon class="fab_icon" name="add"></ion-icon>
 				</button>
-			</ion-fab> -->
+			</ion-fab>
 
 			
 		</div>
