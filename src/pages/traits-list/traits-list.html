@@ -19,5 +19,6 @@
     </div>
 </ion-content>
 <ion-footer>
-    <button class="addPageBtn" ion-button (click)="addToPage()">Add to page</button>
+    <button class="addPageBtn" ion-button (click)="addToPage()" *ngIf="dataFor != 'addTraitForFrd'">Add to my page</button>
+    <button class="addPageBtn" ion-button (click)="addToPage()" *ngIf="dataFor == 'addTraitForFrd'">Add to {{frdInfo.fullname}}'s page</button>
 </ion-footer>

@@ -6,8 +6,8 @@ import { LoadingController, ModalController, ToastController } from 'ionic-angul
 import moment from 'moment';
 import jQuery from "jquery";
 
-//var rootApi = "http://ec2-18-217-136-108.us-east-2.compute.amazonaws.com:8080";	// prod URL
-var rootApi = "http://ec2-18-222-183-172.us-east-2.compute.amazonaws.com:8080";		// dev URL
+var rootApi = "http://ec2-18-217-136-108.us-east-2.compute.amazonaws.com:8080";	// prod URL
+//var rootApi = "http://ec2-18-222-183-172.us-east-2.compute.amazonaws.com:8080";		// dev URL
 
 
 @Injectable()
@@ -360,7 +360,12 @@ export class TraitService {
 		return this.http.post(rootApi + '/api/persistdeviceregistrationid/', fcmDeviceInfo, this.options).map(res => res.json());		
 	}
 	
+	saveFeedback(token,payload){
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/feedback/saveFeedback/', payload, this.options).map(res => res.json());		
+	}
 	
+	 
 	
 	
   

@@ -33,6 +33,10 @@ page-feedback {
             width: 30%;
         }
     }
-    textarea{width:95%;}
+    textarea{
+		width:95%;
+		border-radius: 7px;
+		height: 50px;
+	}
     .item-md.item-block .item-inner{border-bottom:none;font-size: 11px;}
 }

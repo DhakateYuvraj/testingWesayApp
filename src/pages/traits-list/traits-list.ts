@@ -30,9 +30,15 @@ export class TraitsListPage {
   search_Pos;
   authToken;
   userId;
+  dataFor;
+	frdInfo;
+	profileRef;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    private traitService: TraitService, private loadingCtrl: LoadingController,
+  constructor(
+  public navCtrl: NavController, 
+  public navParams: NavParams,
+    private traitService: TraitService, 
+	private loadingCtrl: LoadingController,
     private storage: Storage) {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
 
@@ -47,6 +53,10 @@ export class TraitsListPage {
     });
 
     this.searchControl = new FormControl();
+
+	this.dataFor = navParams.get('dataFor');
+	this.frdInfo = navParams.get('frdInfo');
+	this.profileRef = navParams.get('profileRef');  
   }
 
   ionViewWillEnter() {
@@ -118,14 +128,23 @@ export class TraitsListPage {
   }
 
   addToPage() {
-    console.log(this.selectedTraits);
-    this.traitService.addTraitToPage(this.selectedTraits, this.authToken).subscribe(data => {
-      console.log(data);
-      if (data.status != "error") {
-        // this.navCtrl.setRoot(ProfilePage);
-        this.navCtrl.pop();
-      }
-    })
+    if(this.dataFor == 'addTraitForFrd'){
+		var traitNames =[];		
+		this.selectedTraits.map(singleTrait => {
+			traitNames.push(singleTrait.traitname);			
+		})		
+		this.profileRef.addCustomTrait(traitNames);
+		this.navCtrl.pop();
+		this.navCtrl.pop();
+	}else{
+		this.traitService.addTraitToPage(this.selectedTraits, this.authToken).subscribe(data => {
+		  console.log(data);
+		  if (data.status != "error") {
+			// this.navCtrl.setRoot(ProfilePage);
+			this.navCtrl.pop();
+		  }
+		})
+	}
   }
 
   filterTraits() {

@@ -216,11 +216,11 @@ export class FriendsListPage {
 		)
 		.then((result) =>
 		{
-			alert(JSON.stringify(result.app));
+			//alert(JSON.stringify(result.app));
 		})
 		.catch((err) =>
 		{
-			alert(JSON.stringify(err));
+			//alert(JSON.stringify(err));
 		});
 	}
 

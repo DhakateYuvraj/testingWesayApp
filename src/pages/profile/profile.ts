@@ -41,7 +41,7 @@ export class ProfilePage {
 	receivedBadgesObj;
 	givenBadgesCnt;
 	public myTraitsArray: any[];
-	
+	selectedItem;
 	
 	constructor(
 	public navCtrl: NavController, 
@@ -370,28 +370,47 @@ openActionSheet(){
 		});
 	}
 
-	lognPressed(traitDetails){		
-    let actionSheet = this.actionsheetCtrl.create({
-      title: 'Option',
-      cssClass: 'action-sheets-basic-page',
-      buttons: [
-        {
-          text: 'Delete Trait',
-          icon: '',
-          handler: () => {
-            this.deleteTrait(traitDetails);
-          }
-        },
-        {
-          text: traitDetails.isHidden ? 'Show Trait' : 'Hide Trait',
-          icon:'',
-          handler: () => {
-            this.hideTrait(traitDetails);
-          }
-        },
-      ]
-    });
-    actionSheet.present();
+	lognPressed(traitDetails){
+		if(!this.frdProfile){
+		this.selectedItem = traitDetails.usertraitid;
+		let actionSheet = this.actionsheetCtrl.create({
+		  title: traitDetails.traitname,
+		  cssClass: 'action-sheets-basic-page',
+		  buttons: [
+			{
+			  text: 'Delete Trait',
+			  icon: '',
+			  handler: () => {
+				this.deleteTrait(traitDetails);
+			  }
+			},
+			{
+			  text: traitDetails.isHidden ? 'Show Trait' : 'Hide Trait',
+			  icon:'',
+			  handler: () => {
+				this.hideTrait(traitDetails);
+			  }
+			},
+			{
+			  text: traitDetails.isTraitCountHidden ? 'Show Count' : 'Hide Count',
+			  icon:'',
+			  handler: () => {
+				this.hideCount(traitDetails);
+			  }
+			},
+			{
+			  role: 'cancel', // will always sort to be on the bottom
+			  handler: () => {
+				this.actionSheetCancel();
+			  }
+			}
+		  ]
+		});
+		actionSheet.present();
+		}
+	}
+	actionSheetCancel(){
+		this.selectedItem = null;
 	}
 
 	deleteTrait(traitDetails){
@@ -433,8 +452,19 @@ openActionSheet(){
 			isHidden: traitDetails.isHidden ? 0 : 1
 		}
 		this.traitService.hideTrait(trait_data, this.authToken).subscribe(data => {
-			this.getLoginUserTraits(this.authToken);	
+			this.getLoginUserTraits(this.authToken);
 		});
+	}
+	
+	hideCount(traitDetails){
+		let trait_data = {
+			userTraitId: traitDetails.usertraitid,
+			hideStatus: traitDetails.isTraitCountHidden ? 0 : 1
+		}
+		this.traitService.hideTraitCount(trait_data, this.authToken).subscribe(data => {
+			this.getLoginUserTraits(this.authToken);
+		});
+	
 	}
 	
 }

@@ -128,6 +128,7 @@ ion-header,.toolbar-background-md{
 	}
 	
 	.traitIcon{ display: inline-block; margin: 5px; width: 40px; height: 40px;background-position: 1px -952px;overflow: hidden;}
+	.traitIcon img{filter: brightness(6) invert(1);}
 	.traitIcon_trustworthy{background-position:-11px 4px;}
 	.traitIcon_friendly{background-position: -11px -40px}
 	.traitIcon_good.looking{background-position: -12px -88px}

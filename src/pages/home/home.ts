@@ -140,7 +140,11 @@ export class HomePage {
 
 
   openTraitsList() {
-    this.navCtrl.push('TraitsListPage');
+    this.navCtrl.push('TraitsListPage',{
+		dataFor: (this.frdInfo && this.frdInfo.id != 0) ? 'addTraitForFrd' : 'addTraitForOwn',
+		frdInfo: this.frdInfo,
+		profileRef : this.profileRef
+	});
   }
 
   openWalkthrough() {
@@ -156,7 +160,8 @@ export class HomePage {
       traitname: traitObj.traitname,
       traituniqueid: traitObj.traituniqueid,
       traitgivenfor: "0",
-	  isAnonymous : 0
+	  isAnonymous : 0,
+	  traiticonpath: traitObj.traiticonpath
     }
     if (!jQuery("." + traitObj.traituniqueid).hasClass("checkedStyle")){
 		if(this.dataFor == 'addTraitForFrd'){

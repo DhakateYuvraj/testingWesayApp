@@ -28,7 +28,26 @@
           </ion-item>
       </ion-list>
     </li>
-
+	
+    <li>
+      <div class="question">Was the app able to help you learn something that you didn't already know about yourself?</div>
+      <ion-list radio-group formControlName="helpYouselfOptions" class="answereOption clearfix">    
+          <ion-item>
+            <ion-label>Yes</ion-label>
+            <ion-radio value="Yes" ></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>Some what</ion-label>
+            <ion-radio value="Some what" ></ion-radio>
+          </ion-item>
+          <ion-item>
+            <ion-label>No</ion-label>
+            <ion-radio value="No" ></ion-radio>
+          </ion-item>
+      </ion-list>
+        <textarea formControlName="helpYouselfText"></textarea>
+    </li>
+	
     <li>
       <div class="question">How user friendly and intuitive was the app?</div>
       <ion-list radio-group formControlName="isFriendly" class="answereOption clearfix">    
@@ -48,7 +67,7 @@
     </li>
 
     <li>
-      <div class="question">What feature did you like the most? (Open text)</div>
+      <div class="question">What feature did you like the most?</div>
       <div class="answereOption clearfix">
         <textarea formControlName="whatYouLikeMost"></textarea>
       </div>
@@ -66,6 +85,7 @@
             <ion-radio name="isBuggy" value="No" >No</ion-radio>
           </ion-item>
       </ion-list>
+        <textarea formControlName="isBuggyText"></textarea>
     </li>
 
     <li>

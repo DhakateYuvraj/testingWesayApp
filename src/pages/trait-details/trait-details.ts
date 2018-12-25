@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, PopoverController, AlertController } from 'ionic-angular';
 import { TraitService } from '../../services/traits.service';
 import { Storage } from "@ionic/storage";
 
@@ -31,6 +31,7 @@ export class TraitDetailsPage {
 				public navParams: NavParams, 
 				private storage: Storage, 
 				private traitService: TraitService, 
+				private alertCtrl: AlertController, 
 				public popoverCtrl: PopoverController){
 					
 		this.traitDetails = navParams.get('trait');
@@ -60,7 +61,7 @@ export class TraitDetailsPage {
 		this.storage.get('token').then((token) => {
 			this.authToken = token;
 			this.getTraitDetails(this.traitDetails,this.authToken);
-			this.getTraitComments(this.traitDetails);
+			//this.getTraitComments(this.traitDetails);
 			this.getUserProfile(this.frdId)
 		});
 	}
@@ -82,6 +83,7 @@ export class TraitDetailsPage {
 					if(this.frdProfile && this.traitDetails.isTraitCountHidden){
 						this.showCount = false
 					}
+					this.getTraitComments(this.traitDetails);
 				}else{
 					alert('Error');
 				}
@@ -180,16 +182,38 @@ export class TraitDetailsPage {
 	}
 	
 	deleteComment(commentId,parentCommentId){
-		console.log('delete comment - '+commentId);
-		let trait_data = {commentId:commentId,
+	
+	
+		let alert = this.alertCtrl.create({
+			title: 'Confirm Delete',
+			message: 'Do you want to delete this comment ?',
+			buttons: [
+				{
+					text: 'Cancel',
+					role: 'cancel',
+					handler: () => {
+						console.log('Cancel clicked');
+					}
+				},
+				{
+					text: 'Confirm',
+					handler: () => {
+						let trait_data = {commentId:commentId,
 							parentCommentId:parentCommentId,
 							userTraitId:this.traitDetails.usertraitid ? this.traitDetails.usertraitid : this.traitDetails.userTraitId}
-		this.traitService.commentDelete(trait_data, this.authToken).subscribe(data => {
-			if (data.status == 'success') {
-				this.traitService.presentSuccessToast(data.message);
-				this.getTraitComments(this.traitDetails);
-			}
+						this.traitService.commentDelete(trait_data, this.authToken).subscribe(data => {
+							if (data.status == 'success') {
+								this.traitService.presentSuccessToast(data.message);
+								this.getTraitComments(this.traitDetails);
+							}else{
+								this.traitService.presentSuccessToast(data.message);
+							}
+						});
+					}
+				}
+			]
 		});
+		alert.present();	
 	}
 
 	presentPopover(myEvent) {
@@ -251,9 +275,19 @@ export class TraitDetailsPage {
 		let getDataFor = this.traitDetails.userTraitId;
 		let currPosition = this.myTraitsArray.indexOf(getDataFor);
 		if(param == 'next'){
-			this.getTraitDetails({usertraitid:this.myTraitsArray[currPosition+1]},this.authToken)
+			if(this.myTraitsArray.length > currPosition+1 && currPosition != -1){
+				let x = currPosition+1;
+				this.getTraitDetails({usertraitid:this.myTraitsArray[x]},this.authToken)
+			}else{
+				this.traitService.presentSuccessToast("No record");
+			}
 		}else if(param == 'prev'){
-			this.getTraitDetails({usertraitid:this.myTraitsArray[currPosition-1]},this.authToken)
+			if(this.myTraitsArray.length > currPosition && currPosition != 0){
+				let x = currPosition-1; 
+				this.getTraitDetails({usertraitid:this.myTraitsArray[x]},this.authToken)
+			}else{
+				this.traitService.presentSuccessToast("No record");			
+			}
 		}
 	}
 }

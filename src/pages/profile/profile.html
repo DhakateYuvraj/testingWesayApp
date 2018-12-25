@@ -89,7 +89,7 @@
 				isWaiting_{{item.isWaitingForApproval ? true : false}}
 				isFrd_{{frdProfile ? true : false}}" 
 				[ngClass]="{'hideTrait':item.isHidden && frdProfile}">
-					<ion-item  (press)="lognPressed(item)">
+					<ion-item  (press)="lognPressed(item)" [ngClass]="{'selected':item.usertraitid == selectedItem}">
 						<div class="pos-number isMyContiPos_{{item.mypositive}}" (click)="giveVoteToFriend(item,1)">
 							<div class="tempClass">
 								<span *ngIf="!(frdProfile && item.isTraitCountHidden)">{{item.positive}}</span>
@@ -263,7 +263,8 @@
 
 		</div>
         <div *ngSwitchCase="'badges'" class="badgeWrapper" (swipeleft)="changeTab('testimonials')" (swiperight)="changeTab('trait')">
-			<!-- <h1 class="textCenter">Coming Soon</h1> -->
+			<h1 class="textCenter">Coming Soon</h1>
+			<!--
 			<ion-row class="bagdesToOthers" *ngIf="!frdProfile" >
                 <ion-col col-6 class="badgeSection badgesAvailable">
 					<div class="badgeTitle">
@@ -332,7 +333,7 @@
 					<ion-icon class="fab_icon" name="add"></ion-icon>
 				</button>
 			</ion-fab>
-
+-->
 			
 		</div>
     </div>
