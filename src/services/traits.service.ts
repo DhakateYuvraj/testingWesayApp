@@ -365,7 +365,10 @@ export class TraitService {
 		return this.http.post(rootApi + '/feedback/saveFeedback/', payload, this.options).map(res => res.json());		
 	}
 	
-	 
+	getTstmMasterList(token){
+		this.createAuthenticationHeaders(token);
+		return this.http.post(rootApi + '/testimonialapi/api/getTestimonials/ ', null, this.options).map(res => res.json());
+	}
 	
 	
   

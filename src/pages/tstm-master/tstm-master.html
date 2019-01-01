@@ -1,0 +1,16 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>TstmMaster</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<div *ngFor="let tstm of allTstm; let i = index">
+		<span>
+			{{tstm.tstmQuestion}}
+		</span>
+	</div>
+</ion-content>

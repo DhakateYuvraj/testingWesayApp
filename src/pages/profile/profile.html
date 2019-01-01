@@ -119,144 +119,32 @@
 
         </div>
 		<div *ngSwitchCase="'testimonials'" class="testimonials" (swiperight)="changeTab('badges')">
-		<!-- <h1 class="textCenter">Coming Soon</h1> -->
-		
-		<!-- <ion-list class="accordion-list">
-		<ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
-		<button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
-		<ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
-		<ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
-		{{ item.name }}
-		</button>
-		<ion-list *ngIf="item.children && item.open" no-lines class="accordionSection">
-		<div *ngIf="i == 0 ">
-		<ion-row>
-		<ion-col col-6 class="singleTrait">
-		<ion-item>
-		<div class="pos-number">
-		<div class="tempClass">
-		0
-		<ion-icon name="arrow-dropup"></ion-icon>
-		</div>
-		</div>
-		<div class="neg-number">
-		<div class="tempClass">
-		0
-		<ion-icon name="arrow-dropdown"></ion-icon>
-		</div>
-		</div>
-		<div class="traitIconBg traitIconBg_0">
-		<div class="traitIcon traitIcon_cool"></div>
-		</div>
-		<div class="traitName">Cool</div>
-		</ion-item>
-		</ion-col>
-		<ion-col col-6 class="singleTrait">
-		<ion-item>
-		<div class="pos-number">
-		<div class="tempClass">
-		0
-		<ion-icon name="arrow-dropup"></ion-icon>
-		</div>
-		</div>
-		<div class="neg-number">
-		<div class="tempClass">
-		0
-		<ion-icon name="arrow-dropdown"></ion-icon>
-		</div>
-		</div>
-		<div class="traitIconBg traitIconBg_0">
-		<div class="traitIcon traitIcon_confident"></div>
-		</div>
-		<div class="traitName">Confident</div>
-		</ion-item>
-		</ion-col>
-		</ion-row>
-		</div>
-		<div *ngIf="i == 1 ">			
-		<div class="traitComments">
-		<div class="commentBox commentId-0">
-		<div class="commentArea clearfix">
-		<div class="sectLeft">
-		<ion-icon name="person"></ion-icon>
-		</div>
-		<div class="sectRight">
-		<strong>Yuvraj</strong> 
-		<div>Dummy text Dummy text Dummy text </div>
-		</div>
-		</div>
-		</div>
-		</div>
-		<div class="traitComments">
-		<div class="commentBox commentId-1">
-		<div class="commentArea clearfix">
-		<div class="sectLeft">
-		<ion-icon name="person"></ion-icon>
-		</div>
-		<div class="sectRight">
-		<strong>Radha</strong>
-		<div>Another comment another comment </div>
-		</div>
-		</div>
-		</div>
-		</div>
-		<div class="traitComments">
-		<div class="commentBox commentId-0">
-		<div class="commentArea clearfix">
-		<div class="sectLeft">
-		<ion-icon name="person"></ion-icon>
-		</div>
-		<div class="sectRight">
-		<strong>Yuvraj</strong>	
-		<div>Dummy text Dummy text Dummy text </div>
-		</div>
-		</div>
-		</div>
-		</div>
-		<div class="traitComments">
-		<div class="commentBox commentId-1">
-		<div class="commentArea clearfix">
-		<div class="sectLeft">
-		<ion-icon name="person"></ion-icon>
-		</div>
-		<div class="sectRight">
-		<strong>Radha</strong>	
-		<div>Another comment another comment </div>
-		</div>
-		</div>
-		</div>
-		</div>
-		<div class="traitComments">
-		<div class="commentBox commentId-0">
-		<div class="commentArea clearfix">
-		<div class="sectLeft">
-		<ion-icon name="person"></ion-icon>
-		</div>
-		<div class="sectRight">
-		<strong>Yuvraj</strong>	
-		<div>Dummy text Dummy text Dummy text </div>
-		</div>
-		</div>
-		</div>
-		</div>
-		<div class="traitComments">
-		<div class="commentBox commentId-1">
-		<div class="commentArea clearfix">
-		<div class="sectLeft">
-		<ion-icon name="person"></ion-icon>
-		</div>
-		<div class="sectRight">
-		<strong>Radha</strong>
-		<div>Another comment another comment </div>
-		</div>
-		</div>
-		</div>
-		</div>
-		</div>
-		</ion-list>
+        
+			<ion-fab bottom right edge *ngIf="!frdProfile" (click)="openTstmMaster()">
+				<button ion-fab mini>
+					<ion-icon class="fab_icon" name="add"></ion-icon>
+				</button>
+			</ion-fab>
+			
+			<ion-list class="accordion-list">
+					<ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
+					<button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
+					<ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
+					<ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
+					{{ item.name }}
+					</button>
+					<ion-list *ngIf="item.children && item.open" no-lines class="accordionSection">
+					
+						<ion-row>
+							<ion-col>
+								asdasd
+							</ion-col>
+						</ion-row>
+					
+					</ion-list>
 
-		</ion-list-header>
-		</ion-list> -->
+					</ion-list-header>
+			</ion-list>
 
 
 

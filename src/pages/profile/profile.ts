@@ -467,4 +467,8 @@ openActionSheet(){
 	
 	}
 	
+	openTstmMaster(){	
+		this.navCtrl.push('TstmMasterPage');
+	}
+	
 }
