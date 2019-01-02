@@ -10,8 +10,8 @@ import {
 import moment from "moment";
 import jQuery from "jquery";
 
-var rootApi = "http://ec2-18-217-136-108.us-east-2.compute.amazonaws.com:8080"; // prod URL
-//var rootApi = "http://ec2-18-222-183-172.us-east-2.compute.amazonaws.com:8080";		// dev URL
+//var rootApi = "http://ec2-18-217-136-108.us-east-2.compute.amazonaws.com:8080"; // prod URL
+var rootApi = "http://ec2-18-222-183-172.us-east-2.compute.amazonaws.com:8080";		// dev URL
 
 @Injectable()
 export class TraitService {
@@ -99,6 +99,7 @@ export class TraitService {
         .format()
     ).fromNow();
   }
+
   formatTime(ipDate) {
     return moment(
       moment
@@ -106,6 +107,11 @@ export class TraitService {
         .local()
         .format()
     );
+  }
+
+  replaceWithUsername(str, username){
+    console.log(str.replace('<user>',username));
+    return str.replace('<user>',username);
   }
 
   /* --------------- toggle card, collapsible --------------- */

@@ -14,15 +14,14 @@
   </ion-refresher>
   <ion-list>
     <br /><br />
-    <ion-item>
-      <ion-label
-        >asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd
-        asd asd asd asd asd asd asd asd asd
+    <ion-item *ngFor="let tstm of allTstm; let i = index">
+      <ion-label> 
+        {{traitService.replaceWithUsername(tstm.tstmQuestion,frdInfo.fullname)}}
       </ion-label>
-      <ion-toggle (ionChange)="settingChange()"></ion-toggle>
+      <ion-toggle [(ngModel)]="tstm.isActiveForUser" (ionChange)="settingChange(tstm)"></ion-toggle>
     </ion-item>
   </ion-list>
-  <div *ngFor="let tstm of allTstm; let i = index">
+  <!-- <div *ngFor="let tstm of allTstm; let i = index">
     <span> {{ tstm.tstmQuestion }} </span>
-  </div>
+  </div> -->
 </ion-content>

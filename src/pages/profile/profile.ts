@@ -48,7 +48,8 @@ export class ProfilePage {
   receivedBadgesObj;
   givenBadgesCnt;
   public myTraitsArray: any[];
-  selectedItem;
+  public selectedItem;
+  public myTstm;
 
   constructor(
     public navCtrl: NavController,
@@ -149,12 +150,22 @@ export class ProfilePage {
 
   ionViewWillEnter() {
     this.storage.get("token").then(token => {
-      this.traitService.showLoading();
       this.authToken = token;
+      this.getUserProfile(this.frdId);
+      this.reloadTabData();
+    });
+  }
+  reloadTabData(){
+    if(this.section == "trait"){
       this.getLoginUserTraits(this.authToken);
       this.getMasterTraitList();
-      this.getUserProfile(this.frdId);
-    });
+    }else if(this.section == "badges"){
+      this.getAvailableBadgesCnt();
+      this.getGivenBadgesCnt();
+      this.getReceivedBadges();
+    }else if(this.section == "testimonials"){
+      this.userTestimonialSettings();
+    }
   }
 
   doRefresh(refresher) {
@@ -213,15 +224,6 @@ export class ProfilePage {
   }
 
   // Tab functionality end ---------------------------------------------------
-
-  toggleSection(i) {
-    this.information[i].open = !this.information[i].open;
-  }
-
-  toggleItem(i, j) {
-    this.information[i].children[j].open = !this.information[i].children[j]
-      .open;
-  }
 
   addTrait() {
     this.navCtrl.push(HomePage, {
@@ -528,12 +530,19 @@ export class ProfilePage {
     this.traitService
       .userTestimonialSettings(this.authToken)
       .subscribe(data => {
-        console.log(data);
+        if(data.response){
+          this.myTstm = data.response;
+        }
       });
   }
 
   openTstmMaster() {
-    this.navCtrl.push("TstmMasterPage");
+    this.navCtrl.push("TstmMasterPage",{frdInfo:this.frdInfo});
   }
+
+  toggleSection(i) {
+    this.myTstm[i].open = !this.myTstm[i].open;
+  }
+
   // Testimonial End ------------------------------------------------------------------------
 }

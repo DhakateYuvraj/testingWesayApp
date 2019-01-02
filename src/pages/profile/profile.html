@@ -175,6 +175,7 @@
         </ion-col>
       </ion-row>
     </div>
+
     <div
       *ngSwitchCase="'testimonials'"
       class="testimonials"
@@ -182,13 +183,12 @@
     >
       <ion-fab bottom right edge *ngIf="!frdProfile" (click)="openTstmMaster()">
         <button ion-fab mini>
-          <ion-icon class="fab_icon" name="add"></ion-icon>
+          <ion-icon class="fab_icon" ios="ios-switch" md="md-switch"></ion-icon>
         </button>
       </ion-fab>
-
       <ion-list class="accordion-list">
         <ion-list-header
-          *ngFor="let item of information; let i = index"
+          *ngFor="let item of myTstm; let i = index"
           no-lines
           no-padding
         >
@@ -204,10 +204,10 @@
               *ngIf="!item.open"
             ></ion-icon>
             <ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
-            {{ item.name }}
+             {{traitService.replaceWithUsername(item.tstmQuestion,frdInfo.fullname)}} 
           </button>
           <ion-list
-            *ngIf="item.children && item.open"
+            *ngIf="item.open"
             no-lines
             class="accordionSection"
           >
@@ -216,6 +216,7 @@
         </ion-list-header>
       </ion-list>
     </div>
+
     <div
       *ngSwitchCase="'badges'"
       class="badgeWrapper"

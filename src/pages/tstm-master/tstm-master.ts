@@ -9,15 +9,18 @@ import { Storage } from "@ionic/storage";
   templateUrl: "tstm-master.html"
 })
 export class TstmMasterPage {
-  authToken;
-  allTstm;
+  public authToken;
+  public allTstm;
+  public frdInfo;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private traitService: TraitService,
     private storage: Storage
-  ) {}
+  ) {
+    this.frdInfo = navParams.get("frdInfo");
+  }
 
   ionViewWillEnter() {
     this.storage.get("token").then(token => {
@@ -25,31 +28,32 @@ export class TstmMasterPage {
       this.getTstmMasterList();
     });
   }
+  doRefresh(refresher) {
+    this.traitService.getTstmMasterList(this.authToken).subscribe(data => {
+      this.allTstm = data.response;
+      refresher.complete();
+    });
+  }
 
   getTstmMasterList() {
     //this.traitService.showLoading();
     this.traitService.getTstmMasterList(this.authToken).subscribe(data => {
-      console.log(data);
+      //this.traitService.hideLoading();
       this.allTstm = data.response;
-      this.traitService.hideLoading();
     });
   }
 
-  settingChange() {
-    console.log(1);
-    //this.traitService.showLoading();
+  settingChange(tstm) {
+    this.traitService.showLoading();
     let payload = [
       {
-        testimonialid: 10,
-        isactive: 1
+        testimonialid: tstm.id,
+        isactive: tstm.isActiveForUser ? 1 : 0
       }
     ];
-    this.traitService
-      .changeMyTestimonialSettings(this.authToken, payload)
-      .subscribe(data => {
-        console.log(data);
-        this.allTstm = data.response;
+    this.traitService.changeMyTestimonialSettings(this.authToken, payload).subscribe(data => {
         this.traitService.hideLoading();
+        this.getTstmMasterList();
       });
   }
 }
