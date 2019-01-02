@@ -1,158 +1,229 @@
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <ion-header>
-    <ion-navbar>
-        <ion-row>
-            <ion-col col-1>
-                <ion-icon class="menu_icon" name="menu" (click)="traitService.toggleMenu()"></ion-icon>
-            </ion-col>
-            <ion-col col-9>
-                <ion-label *ngIf="!frdProfile" class="header_label">My Page</ion-label>
-                <ion-label *ngIf="frdProfile" class="header_label">Friend's Page</ion-label>
-            </ion-col>
-            <ion-col col-2>
-                <ion-icon class="profile_icon" name="notifications" (click)="openProfilePage()"></ion-icon> 
-            </ion-col>
-        </ion-row>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-row>
+      <ion-col col-1>
+        <ion-icon
+          class="menu_icon"
+          name="menu"
+          (click)="traitService.toggleMenu()"
+        ></ion-icon>
+      </ion-col>
+      <ion-col col-9>
+        <ion-label *ngIf="!frdProfile" class="header_label">My Page</ion-label>
+        <ion-label *ngIf="frdProfile" class="header_label"
+          >Friend's Page</ion-label
+        >
+      </ion-col>
+      <ion-col col-2>
+        <ion-icon
+          class="profile_icon"
+          name="notifications"
+          (click)="openProfilePage()"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
 </ion-header>
 
-<ion-content #contentRef (ionScroll)="traitService.scrollingFun($event)" [ngClass]="traitService.isAnonymousMode() ? 'anonymousMode' : 'privateMode'">
-	<ion-refresher (ionRefresh)="doRefresh($event)">
-		<ion-refresher-content
-			pullingIcon="arrow-dropdown"
-			pullingText="Pull to refresh"
-			refreshingSpinner="circles"
-			refreshingText="Refreshing...">
-		</ion-refresher-content>
-	</ion-refresher>
-	<ion-row class="userProfie">
-		<ion-col col-3 class="userPhoto"  (click)="openProfilePage()">
-			<img src="assets/imgs/userIcon.png">
-		</ion-col>
-		<ion-col col-7 class="userInfo">
-			<div class="userName">
-			{{frdInfo.fullname}}
-			</div>
-			<div class="userAbout">
-				User status or little description of user 
-			</div>
-		</ion-col>
-		<ion-col col-2 class="userInfoLike" (click)="traitService.changeVisibilityMode()">
-			 <div *ngIf="!traitService.isAnonymousMode()" >
-				 <ion-icon name="eye"></ion-icon>
-			 </div>
-			 <div *ngIf="traitService.isAnonymousMode()" >
-				 <ion-icon name="eye-off"></ion-icon>
-			 </div>
-		</ion-col>
-	</ion-row>
-	
-	<!--
+<ion-content
+  #contentRef
+  (ionScroll)="traitService.scrollingFun($event)"
+  [ngClass]="traitService.isAnonymousMode() ? 'anonymousMode' : 'privateMode'"
+>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-row class="userProfie">
+    <ion-col col-3 class="userPhoto" (click)="openProfilePage()">
+      <img src="assets/imgs/userIcon.png" />
+    </ion-col>
+    <ion-col col-7 class="userInfo">
+      <div class="userName">{{ frdInfo.fullname }}</div>
+      <div class="userAbout">User status or little description of user</div>
+    </ion-col>
+    <ion-col
+      col-2
+      class="userInfoLike"
+      (click)="traitService.changeVisibilityMode()"
+    >
+      <div *ngIf="!traitService.isAnonymousMode()">
+        <ion-icon name="eye"></ion-icon>
+      </div>
+      <div *ngIf="traitService.isAnonymousMode()">
+        <ion-icon name="eye-off"></ion-icon>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <!--
 	<button ion-button ion-long-press [interval]="400" (onPressStart)="openActionSheet()" (onPressing)="active()" (onPressEnd)="released()">test</button>
-	-->	
-	
-	<ion-segment [(ngModel)]="section">
-        <ion-segment-button value="trait">
-            <span class="tabs-font">Traits</span>
-        </ion-segment-button>
-        <ion-segment-button value="badges">
-            <span class="tabs-font">badges</span>
-        </ion-segment-button>
-        <ion-segment-button value="testimonials">
-            <span class="tabs-font">Testimonials</span>
-        </ion-segment-button>
-    </ion-segment>
-    <div [ngSwitch]="section" class="frdProfile_{{frdProfile}}">
-        <div *ngSwitchCase="'trait'" class="sectionTrait" (swipeleft)="changeTab('badges')">
-            <ion-row>
-				<ion-searchbar [(ngModel)]="search_string" [formControl]="searchControl" (ionInput)="filterTraits()" (ionClear)="cancelSearch()" placeholder="Search and add traits"
-					#searchInput class="search-trait-style">
-				</ion-searchbar>
-				<button class="addTraitBtn disable-hover button button-md button-default button-default-md" (click)="addTrait()">
-					<span class="button-inner">Add Trait</span>
-				</button>
-                <ion-list>
-                    <ion-item *ngFor="let trait of traitsMasterList">
-                        <div style="padding:10px 20px;" (click)="addCustomTrait(trait.traitname)">
-                            <!-- <input class="hidden-checkbox" type="checkbox" name="popularTraits" value="{{trait.traitname}}" /> -->
-                            <h6>{{trait.traitname}}</h6>
-                        </div>
-                    </ion-item>
-                </ion-list>
-            </ion-row>
-            <ion-row>
-				<ion-col col-6 *ngFor="let item of allTraits; let i = index" class="singleTraits {{item.traituniqueid}} 
-				isMyConti_{{item.mytraitcontibution}} 
-				isHidden_{{item.isHidden ? true : false}}
-				isCntHidden_{{item.isTraitCountHidden ? true : false}}
-				isWaiting_{{item.isWaitingForApproval ? true : false}}
-				isFrd_{{frdProfile ? true : false}}" 
-				[ngClass]="{'hideTrait':item.isHidden && frdProfile}">
-					<ion-item  (press)="lognPressed(item)" [ngClass]="{'selected':item.usertraitid == selectedItem}">
-						<div class="pos-number isMyContiPos_{{item.mypositive}}" (click)="giveVoteToFriend(item,1)">
-							<div class="tempClass">
-								<span *ngIf="!(frdProfile && item.isTraitCountHidden)">{{item.positive}}</span>
-								<ion-icon name="arrow-dropup"></ion-icon>
-							</div>
-						</div>
-						<div class="neg-number isMyContiNeg_{{item.mynegative}}" (click)="giveVoteToFriend(item,0)">
-							<div class="tempClass">
-								<span *ngIf="!(frdProfile && item.isTraitCountHidden)" >{{item.negative}}</span>
-								<ion-icon name="arrow-dropdown"></ion-icon>
-							</div>
-						</div>
-						<div class="traitIconBg traitIconBg_{{i}}" (click)="openTraitDetails(item)">
-							<div class="traitIcon">
-								<img [src]="item.traiticonpath" onerror="this.src='assets/imgs/dummyTrait.png'" alt=""/>
-							</div>
-						</div>
-						<div class="traitName" (click)="openTraitDetails(item)">{{item.traitname}}</div>
-					</ion-item>
-				</ion-col>
-            </ion-row>
-            <ion-row *ngIf="noTrait">
-                <ion-col col-12 style="padding:5px;background:white">
-                    <span>&nbsp;&nbsp;No Traits Available</span>
-                </ion-col>
-            </ion-row>
+	-->
 
-        </div>
-		<div *ngSwitchCase="'testimonials'" class="testimonials" (swiperight)="changeTab('badges')">
-        
-			<ion-fab bottom right edge *ngIf="!frdProfile" (click)="openTstmMaster()">
-				<button ion-fab mini>
-					<ion-icon class="fab_icon" name="add"></ion-icon>
-				</button>
-			</ion-fab>
-			
-			<ion-list class="accordion-list">
-					<ion-list-header *ngFor="let item of information; let i = index" no-lines no-padding>
-					<button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': item.open, 'section': !item.open}">
-					<ion-icon item-left name="arrow-forward" *ngIf="!item.open"></ion-icon>
-					<ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
-					{{ item.name }}
-					</button>
-					<ion-list *ngIf="item.children && item.open" no-lines class="accordionSection">
-					
-						<ion-row>
-							<ion-col>
-								asdasd
-							</ion-col>
-						</ion-row>
-					
-					</ion-list>
+  <ion-segment [(ngModel)]="section" (ionChange)="selectedTabChanged($event)">
+    <ion-segment-button value="trait">
+      <span class="tabs-font">Traits</span>
+    </ion-segment-button>
+    <ion-segment-button value="badges">
+      <span class="tabs-font">badges</span>
+    </ion-segment-button>
+    <ion-segment-button value="testimonials">
+      <span class="tabs-font">Testimonials</span>
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="section" class="frdProfile_{{ frdProfile }}">
+    <div
+      *ngSwitchCase="'trait'"
+      class="sectionTrait"
+      (swipeleft)="changeTab('badges')"
+    >
+      <ion-row>
+        <ion-searchbar
+          [(ngModel)]="search_string"
+          [formControl]="searchControl"
+          (ionInput)="filterTraits()"
+          (ionClear)="cancelSearch()"
+          placeholder="Search and add traits"
+          #searchInput
+          class="search-trait-style"
+        >
+        </ion-searchbar>
+        <button
+          class="addTraitBtn disable-hover button button-md button-default button-default-md"
+          (click)="addTrait()"
+        >
+          <span class="button-inner">Add Trait</span>
+        </button>
+        <ion-list>
+          <ion-item *ngFor="let trait of traitsMasterList">
+            <div
+              style="padding:10px 20px;"
+              (click)="addCustomTrait(trait.traitname)"
+            >
+              <!-- <input class="hidden-checkbox" type="checkbox" name="popularTraits" value="{{trait.traitname}}" /> -->
+              <h6>{{ trait.traitname }}</h6>
+            </div>
+          </ion-item>
+        </ion-list>
+      </ion-row>
+      <ion-row>
+        <ion-col
+          col-6
+          *ngFor="let item of allTraits; let i = index"
+          class="singleTraits {{ item.traituniqueid }} 
+				isMyConti_{{ item.mytraitcontibution }} 
+				isHidden_{{ item.isHidden ? true : false }}
+				isCntHidden_{{ item.isTraitCountHidden ? true : false }}
+				isWaiting_{{ item.isWaitingForApproval ? true : false }}
+				isFrd_{{ frdProfile ? true : false }}"
+          [ngClass]="{ hideTrait: item.isHidden && frdProfile }"
+        >
+          <ion-item
+            (press)="traitLongPressed(item)"
+            [ngClass]="{ selected: item.usertraitid == selectedItem }"
+          >
+            <div
+              class="pos-number isMyContiPos_{{ item.mypositive }}"
+              (click)="giveVoteToFriend(item, 1)"
+            >
+              <div class="tempClass">
+                <span *ngIf="!(frdProfile && item.isTraitCountHidden)">{{
+                  item.positive
+                }}</span>
+                <ion-icon name="arrow-dropup"></ion-icon>
+              </div>
+            </div>
+            <div
+              class="neg-number isMyContiNeg_{{ item.mynegative }}"
+              (click)="giveVoteToFriend(item, 0)"
+            >
+              <div class="tempClass">
+                <span *ngIf="!(frdProfile && item.isTraitCountHidden)">{{
+                  item.negative
+                }}</span>
+                <ion-icon name="arrow-dropdown"></ion-icon>
+              </div>
+            </div>
+            <div
+              class="traitIconBg traitIconBg_{{ i }}"
+              (click)="openTraitDetails(item)"
+            >
+              <div class="traitIcon">
+                <img
+                  [src]="item.traiticonpath"
+                  onerror="this.src='assets/imgs/dummyTrait.png'"
+                  alt=""
+                />
+              </div>
+            </div>
+            <div class="traitName" (click)="openTraitDetails(item)">
+              {{ item.traitname }}
+            </div>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="noTrait">
+        <ion-col col-12 style="padding:5px;background:white">
+          <span>&nbsp;&nbsp;No Traits Available</span>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div
+      *ngSwitchCase="'testimonials'"
+      class="testimonials"
+      (swiperight)="changeTab('badges')"
+    >
+      <ion-fab bottom right edge *ngIf="!frdProfile" (click)="openTstmMaster()">
+        <button ion-fab mini>
+          <ion-icon class="fab_icon" name="add"></ion-icon>
+        </button>
+      </ion-fab>
 
-					</ion-list-header>
-			</ion-list>
-
-
-
-
-		</div>
-        <div *ngSwitchCase="'badges'" class="badgeWrapper" (swipeleft)="changeTab('testimonials')" (swiperight)="changeTab('trait')">
-			<h1 class="textCenter">Coming Soon</h1>
-			<!--
+      <ion-list class="accordion-list">
+        <ion-list-header
+          *ngFor="let item of information; let i = index"
+          no-lines
+          no-padding
+        >
+          <button
+            ion-item
+            (click)="toggleSection(i)"
+            detail-none
+            [ngClass]="{ 'section-active': item.open, section: !item.open }"
+          >
+            <ion-icon
+              item-left
+              name="arrow-forward"
+              *ngIf="!item.open"
+            ></ion-icon>
+            <ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
+            {{ item.name }}
+          </button>
+          <ion-list
+            *ngIf="item.children && item.open"
+            no-lines
+            class="accordionSection"
+          >
+            <ion-row> <ion-col> asdasd </ion-col> </ion-row>
+          </ion-list>
+        </ion-list-header>
+      </ion-list>
+    </div>
+    <div
+      *ngSwitchCase="'badges'"
+      class="badgeWrapper"
+      (swipeleft)="changeTab('testimonials')"
+      (swiperight)="changeTab('trait')"
+    >
+      <h1 class="textCenter">Coming Soon</h1>
+      <!--
 			<ion-row class="bagdesToOthers" *ngIf="!frdProfile" >
                 <ion-col col-6 class="badgeSection badgesAvailable">
 					<div class="badgeTitle">
@@ -222,7 +293,6 @@
 				</button>
 			</ion-fab>
 -->
-			
-		</div>
     </div>
+  </div>
 </ion-content>

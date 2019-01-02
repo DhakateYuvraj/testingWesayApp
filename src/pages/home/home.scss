@@ -1,105 +1,135 @@
 page-home {
-	.header-row {
-		padding-top:8px;
-	}
-	ion-navbar.toolbar,.toolbar{
-		height:100px;
-	}
-		
-    .grid .traitContainer .item-md {
-        padding-left: 0 !important;
-		border:1px solid #c5c5c5;
-		box-shadow: 0px 3px 10px #aaa;
-		border-radius: 5px;
-    }
-	
-    .search-navbar{padding: 0 !important;}
-    .searchbar-has-value.searchbar-has-focus .searchbar-clear-icon { display: none !important; } 
-    .cancel-search-icon{font-size: 2em;padding-top: 13px;}
-    .done-search-icon{font-size: 2.1em; padding-top: 8px; padding-left: 5px;}
+  .header-row {
+    padding-top: 8px;
+  }
+  ion-navbar.toolbar,
+  .toolbar {
+    height: 100px;
+  }
 
-    .div1{
-        color:black;
-        margin:3px;
-    }
-    .div{
-        padding:3px;
-    } 
-    .button-small-md {
-        height: 2.1em;
-        font-size: 1rem;
-        padding: 0 0.9em;
-    } 
-    .button-small-md {
-        height: 1em;
-        font-size: 6px;
-    } 
-   .button-md{
-       font-size:9px;
-       border:none;
-       color:black;
-       font-weight:lighter;
-    }
-    ion-fab[bottom][edge] {
-        bottom: 0;
-    }
-    ion-fab[right] {
-        right: 0px;
-    }
-    .fab-md {
-        color: #fff;
-        background-color: #2c9a65;
-    }
-    .fab_icon{
-        color: white;
-        font-size: none !important;
-        margin-top: 3px !important;
-    }
+  .grid .traitContainer .item-md {
+    padding-left: 0 !important;
+    border: 1px solid #c5c5c5;
+    box-shadow: 0px 3px 10px #aaa;
+    border-radius: 5px;
+  }
 
-.searchResults .item-md{padding:0px}
+  .search-navbar {
+    padding: 0 !important;
+  }
+  .searchbar-has-value.searchbar-has-focus .searchbar-clear-icon {
+    display: none !important;
+  }
+  .cancel-search-icon {
+    font-size: 2em;
+    padding-top: 13px;
+  }
+  .done-search-icon {
+    font-size: 2.1em;
+    padding-top: 8px;
+    padding-left: 5px;
+  }
 
-    .grid .searchResults .item-md {
-		border-bottom:1px solid #000;
-    }
-    .item-md.item-block .item-inner {
-        padding-right: 0 !important;
-    }
+  .div1 {
+    color: black;
+    margin: 3px;
+  }
+  .div {
+    padding: 3px;
+  }
+  .button-small-md {
+    height: 2.1em;
+    font-size: 1rem;
+    padding: 0 0.9em;
+  }
+  .button-small-md {
+    height: 1em;
+    font-size: 6px;
+  }
+  .button-md {
+    font-size: 9px;
+    border: none;
+    color: black;
+    font-weight: lighter;
+  }
+  ion-fab[bottom][edge] {
+    bottom: 0;
+  }
+  ion-fab[right] {
+    right: 0px;
+  }
+  .fab-md {
+    color: #fff;
+    background-color: #2c9a65;
+  }
+  .fab_icon {
+    color: white;
+    font-size: none !important;
+    margin-top: 3px !important;
+  }
 
-	.item-md h3, .item-md h4, .item-md h5, .item-md h6 {
-		margin: 0;
-		font-size: 1.2em;
-	}
-    .addPageBtn{ 
-        font-size: 13px !important; 
-        color: white !important;
-        font-weight: normal !important; 
-    }
-		.button{background: #084242;border: none;border-radius: 23px;width: 80%;height: 45px;margin: 10px auto;line-height: 45px;font-size: 1.2em;}
+  .searchResults .item-md {
+    padding: 0px;
+  }
 
-	.checkedStyle .input-wrapper,
-	.checkedMasterStyle,
-	.selectedTraits .input-wrapper
-	{
-		background-image: linear-gradient( 135deg, #90F7EC 10%, #32CCBC 100%);
-	}
-	
-	
-	.overlap{ position: absolute;
-		width: 99%;
-		z-index: 999;
-		background: rgba(0,0,0,0.5);
-		height: 100%;
-	}
-	.findMoreTrait .item-inner{
-		background:transparent;
-	}
-	.findMoreTrait .item-md{
-		box-shadow: none !important;
-		background: transparent;
-		border: none !important;
-	}
-	.popularTraits.singleTraits.checkedStyle {display:none;}
-	.grid{padding:0px}
-	.traitContainer{padding:5px}
+  .grid .searchResults .item-md {
+    border-bottom: 1px solid #000;
+  }
+  .item-md.item-block .item-inner {
+    padding-right: 0 !important;
+  }
+
+  .item-md h3,
+  .item-md h4,
+  .item-md h5,
+  .item-md h6 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+  .addPageBtn {
+    font-size: 13px !important;
+    color: white !important;
+    font-weight: normal !important;
+  }
+  .button {
+    background: #084242;
+    border: none;
+    border-radius: 23px;
+    width: 80%;
+    height: 45px;
+    margin: 10px auto;
+    line-height: 45px;
+    font-size: 1.2em;
+  }
+
+  .checkedStyle .input-wrapper,
+  .checkedMasterStyle,
+  .selectedTraits .input-wrapper {
+    background-image: linear-gradient(135deg, #90f7ec 10%, #32ccbc 100%);
+  }
+
+  .overlap {
+    position: absolute;
+    width: 99%;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+  }
+  .findMoreTrait .item-inner {
+    background: transparent;
+  }
+  .findMoreTrait .item-md {
+    box-shadow: none !important;
+    background: transparent;
+    border: none !important;
+  }
+  .popularTraits.singleTraits.checkedStyle {
+    display: none;
+  }
+  .grid {
+    padding: 0px;
+  }
+  .traitContainer {
+    padding: 5px;
+  }
 }
-

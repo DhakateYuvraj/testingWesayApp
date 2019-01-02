@@ -1,11 +1,34 @@
 <ion-content>
-	<ion-item *ngIf="!readOnly">
-		<div class="traitAction  hideTrait_{{traitDetails ? traitDetails.isHidden : 0}}" *ngIf="!isFrdProfile" (click)="hideUnhideTrait()">{{traitDetails.isHidden ? "Show Trait" : "Hide Trait"}}</div>
-		<div class="traitAction hideCount_{{traitDetails ? traitDetails.isTraitCountHidden : 0}}" *ngIf="!isFrdProfile" (click)="hideUnhideCount()">{{traitDetails.isTraitCountHidden ? "Show Count" : "Hide Count" }}</div>
-		<div class="traitAction deleteTrait" (click)="deleteTrait()">Delete trait</div>
-	</ion-item>
-	<ion-item *ngIf="readOnly">
-		<div class="traitAction">Given By : {{traitDetails.traitGivenBy ? traitDetails.traitGivenBy : "Anonymous"}}</div>
-		<div class="traitAction">On : {{traitService.formatTime(traitDetails.creationDate)}}</div>
-	</ion-item>
+  <ion-item *ngIf="!readOnly">
+    <div
+      class="traitAction  hideTrait_{{
+        traitDetails ? traitDetails.isHidden : 0
+      }}"
+      *ngIf="!isFrdProfile"
+      (click)="hideUnhideTrait()"
+    >
+      {{ traitDetails.isHidden ? "Show Trait" : "Hide Trait" }}
+    </div>
+    <div
+      class="traitAction hideCount_{{
+        traitDetails ? traitDetails.isTraitCountHidden : 0
+      }}"
+      *ngIf="!isFrdProfile"
+      (click)="hideUnhideCount()"
+    >
+      {{ traitDetails.isTraitCountHidden ? "Show Count" : "Hide Count" }}
+    </div>
+    <div class="traitAction deleteTrait" (click)="deleteTrait()">
+      Delete trait
+    </div>
+  </ion-item>
+  <ion-item *ngIf="readOnly">
+    <div class="traitAction">
+      Given By :
+      {{ traitDetails.traitGivenBy ? traitDetails.traitGivenBy : "Anonymous" }}
+    </div>
+    <div class="traitAction">
+      On : {{ traitService.formatTime(traitDetails.creationDate) }}
+    </div>
+  </ion-item>
 </ion-content>

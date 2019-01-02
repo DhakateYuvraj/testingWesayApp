@@ -1,22 +1,32 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>Master List of Badges</ion-title>
-    </ion-navbar>
+  <ion-navbar> <ion-title>Master List of Badges</ion-title> </ion-navbar>
 </ion-header>
 <ion-content (ionScroll)="traitService.scrollingFun($event)">
-    <ion-searchbar [(ngModel)]="search_string" [formControl]="searchControl" str (ionInput)="filterBadges()" placeholder="Search Badges . . ." #searchInput>
-    </ion-searchbar>
-    <div>
-        <ion-list>
-            <div *ngFor="let item of badgeMasterList ; let i=index" class="badgeID_{{item.badgeId}}">
-                <ion-item>
-                    <ion-label> {{ item.badgeName }}</ion-label>
-                    <ion-checkbox (ionChange)="addSelected(item)"></ion-checkbox>
-                </ion-item>
-            </div>
-        </ion-list>
-    </div>
+  <ion-searchbar
+    [(ngModel)]="search_string"
+    [formControl]="searchControl"
+    str
+    (ionInput)="filterBadges()"
+    placeholder="Search Badges . . ."
+    #searchInput
+  >
+  </ion-searchbar>
+  <div>
+    <ion-list>
+      <div
+        *ngFor="let item of badgeMasterList; let i = index"
+        class="badgeID_{{ item.badgeId }}"
+      >
+        <ion-item>
+          <ion-label> {{ item.badgeName }}</ion-label>
+          <ion-checkbox (ionChange)="addSelected(item)"></ion-checkbox>
+        </ion-item>
+      </div>
+    </ion-list>
+  </div>
 </ion-content>
 <ion-footer>
-    <button class="addPageBtn" ion-button (click)="addToPage()">Add to page</button>
+  <button class="addPageBtn" ion-button (click)="addToPage()">
+    Add to page
+  </button>
 </ion-footer>

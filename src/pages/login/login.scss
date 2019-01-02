@@ -1,32 +1,34 @@
 page-login {
-	.background {
-		background-image: url("../assets/imgs/bg_login.jpg");
-		background-size: 100% 100%;
-		background-repeat: no-repeat;
-		background-position: center; 
-	}
-	.loginContainer{
-		min-height: 500px;
-		
-		.forgotPass{
-			margin:15px;
-			padding:5px;
-			text-decoration: underline;
-			font-weight:bold;
-		}
-		
-		.socialSignIn{
-			.signInFacebook{
-				margin:10px;
-			}
-			.infoText{
-				margin:10px;
-			}
-		}
-	}
-	
-	
+  .background {
+    background-image: url("../assets/imgs/bg_login.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .loginContainer {
+    min-height: 500px;
+
+    .forgotPass {
+      margin: 15px;
+      padding: 5px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .socialSignIn {
+      .signInFacebook {
+        margin: 10px;
+      }
+      .infoText {
+        margin: 10px;
+      }
+    }
+  }
 }
 
-.loading-md .spinner-bubbles circle {fill: #2c9a65;}
-.loading-md .loading-wrapper{border-radius:50%}
+.loading-md .spinner-bubbles circle {
+  fill: #2c9a65;
+}
+.loading-md .loading-wrapper {
+  border-radius: 50%;
+}

@@ -1,429 +1,451 @@
 page-profile {
-	.hideTrait{display:none;}
-    .scroll-content { height: 100%; }
-    .custom-input-style {margin-left:5px;width:78%;padding:5px;padding-left:10px;}
-    .addCustomTraitBtn {border: 1px solid #2d9a64;background: #95d8e2;color: white;}
-    .search-trait-style { padding: 0px;}
-    [col-4] {
-        padding: 2px;
-    }
+  .hideTrait {
+    display: none;
+  }
+  .scroll-content {
+    height: 100%;
+  }
+  .custom-input-style {
+    margin-left: 5px;
+    width: 78%;
+    padding: 5px;
+    padding-left: 10px;
+  }
+  .addCustomTraitBtn {
+    border: 1px solid #2d9a64;
+    background: #95d8e2;
+    color: white;
+  }
+  .search-trait-style {
+    padding: 0px;
+  }
+  [col-4] {
+    padding: 2px;
+  }
 
-    .segment-md .segment-button.segment-activated {
-        border-color: inherit !important; 
-        opacity: 1;
-        background: #95d8e2;
-        color: white !important;
-    }
-    .button-outline-md { 
-        border-color: #2d9a64;
-        color: #2d9a64;
-        background-color: white;
-        padding: 15px !important;
-    }
-    #header{
-        font-size:16px;
-    }
-   
-    .segment-md .segment-button{
-        font-size:1px;
-        padding:0px;
-        height: 3.6rem;
-        color: #00c5cd !important;
-    }
-    .segment-button{
-       border-right:1px solid #00c5cd;
-    }
-    .segment-button:last-child{
-       border-right:none;
-    }
-    .tabs-font{
-        font-size: 11px;
-        line-height: 0em; 
-    }
-    .tabs-font:active{
-       color: #16a085;
-      
-    }
-    .active{
-        color: #16a085;
-    }
-    .icon-image{ 
-        color: #06c9a0;
-        font-weight: bold;
-        font-size: 4rem;
-        margin-top: -10px;
-    }
-    .icon-label{ 
-        text-align: center;
-        font-size: 10px;
-    }
+  .segment-md .segment-button.segment-activated {
+    border-color: inherit !important;
+    opacity: 1;
+    background: #95d8e2;
+    color: white !important;
+  }
+  .button-outline-md {
+    border-color: #2d9a64;
+    color: #2d9a64;
+    background-color: white;
+    padding: 15px !important;
+  }
+  #header {
+    font-size: 16px;
+  }
 
-    .user-icon{
-        font-size: 15px;
-        margin-left: 34px;
+  .segment-md .segment-button {
+    font-size: 1px;
+    padding: 0px;
+    height: 3.6rem;
+    color: #00c5cd !important;
+  }
+  .segment-button {
+    border-right: 1px solid #00c5cd;
+  }
+  .segment-button:last-child {
+    border-right: none;
+  }
+  .tabs-font {
+    font-size: 11px;
+    line-height: 0em;
+  }
+  .tabs-font:active {
+    color: #16a085;
+  }
+  .active {
+    color: #16a085;
+  }
+  .icon-image {
+    color: #06c9a0;
+    font-weight: bold;
+    font-size: 4rem;
+    margin-top: -10px;
+  }
+  .icon-label {
+    text-align: center;
+    font-size: 10px;
+  }
+
+  .user-icon {
+    font-size: 15px;
+    margin-left: 34px;
+  }
+  .user-name {
+    font-size: 13px;
+    color: #16a085;
+  }
+  .quote-icon {
+    position: absolute;
+  }
+  .para {
+    font-size: 10px;
+    padding-left: 20px;
+    text-align: justify;
+  }
+  .right-quote {
+    float: right;
+  }
+  .like-label {
+    font-size: 10px;
+    color: #16a085;
+  }
+  .border-col {
+    border-right: 1px solid lightgrey;
+    text-align: center;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .eye-icon {
+    float: right;
+    font-size: 16px;
+    color: #fff;
+    background: #006d6a;
+    position: absolute;
+    top: 5px;
+    right: 6px;
+    width: 20px;
+    text-align: center;
+  }
+  .fab-md {
+    color: #fff !important;
+    background-color: #006d6a !important;
+  }
+  ion-fab[bottom][edge] {
+    bottom: 100px;
+  }
+
+  .profile_icon {
+    float: right;
+    font-size: 1.8em;
+    color: white !important;
+    padding-top: 6px;
+    padding-right: 8px;
+  }
+  ion-fab[right] {
+    right: 0px;
+  }
+  .fab-md {
+    color: #fff;
+    background-color: #2c9a65;
+  }
+  .fab_icon {
+    color: white;
+    font-size: none !important;
+    margin-top: 3px !important;
+  }
+  .card-md {
+    margin: 1px;
+    width: calc(100%);
+  }
+  .card-md p {
+    margin: 3px;
+    font-size: 10px;
+    font-weight: normal;
+    line-height: 1;
+    color: #222;
+  }
+  .item-md [item-left],
+  .item-md [item-right],
+  .item-md [item-start],
+  .item-md [item-end] {
+    margin: 0px;
+  }
+  .item-md ion-avatar {
+    min-width: 20px;
+    min-height: 20px;
+  }
+  card-content-md {
+    padding: 1px 1px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  card-content-md p {
+    padding: 1px 1px;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .item-md ion-avatar ion-img,
+  .item-md ion-avatar img {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 75px;
+    height: 67px;
+    margin-left: 20px;
+  }
+  .input-wrapper {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .button-md {
+    border-radius: 120px;
+    overflow: hidden;
+    height: 2.4rem;
+    text-transform: none;
+  }
+  .item-block {
+    min-height: 0.1rem;
+  }
+  ion-segment {
+    border-bottom: 1px solid #16a085;
+    background: rgba(255, 255, 255, 0.8);
+  }
+  .addtrticons {
+    font-size: 49px;
+    margin-left: -10px;
+    margin-top: -5px;
+    color: #2ea08b;
+  }
+
+  .contact-icon {
+    font-size: 1.8em;
+  }
+  .sectionTrait {
+    margin-bottom: 100px;
+    ion-list {
+      width: 100%;
+      margin: 2px;
     }
-    .user-name{
-        font-size: 13px;
-        color: #16a085;
+  }
+
+  .badgeWrapper {
+    .bagdesToOwn {
+      margin: 12px 0 0;
     }
-    .quote-icon{
-        position: absolute;  
-    }
-    .para{
-       
-            font-size: 10px;
-            padding-left: 20px;
-            text-align: justify;
-    }
-    .right-quote{
-        float: right
-    }
-    .like-label{
-        font-size: 10px;
-        color: #16a085;
-    }
-    .border-col{
-        border-right: 1px solid lightgrey;
-        text-align: center
-    }
-    .text-center{
-        text-align: center
-    }
-    .eye-icon{
-        float: right;
-        font-size: 16px;
-        color: #FFF;
-        background: #006D6A;
+    .bagdesToOthers {
+      margin: 12px 0 0;
+      .badgeSection {
+        .badgeTitle {
+          text-align: center;
+        }
+        .badgeInfo {
+          width: 123px;
+          margin: 0 auto;
+          position: relative;
+        }
+        .addBadgeBtn {
+          color: #fff;
+          background: #03baef;
+          border-radius: 5px;
+          padding: 5px;
+          display: inline-block;
+          height: 25px;
+          width: 25px;
+          text-align: center;
+        }
+        .addBadgeIcons {
+          display: inline-block;
+          div {
+            display: inline-block;
+            margin-left: -22px;
+            height: 45px;
+            width: 45px;
+          }
+        }
+      }
+
+      .badgeCnt {
         position: absolute;
-        top: 5px;
-        right: 6px;
-        width: 20px;
-        text-align: center;
-    }
-    .fab-md {
-        color: #FFF !important;
-        background-color: #006D6A !important;
-    }
-    ion-fab[bottom][edge] {
-        bottom: 100px;
-        } 
-
-        .profile_icon{
+        right: 5px;
+        top: 0;
+      }
+      .badgesAvailable {
+        border-right: 1px solid #ccc;
+        .addBadgeIcons {
+          float: right;
+          margin-right: 20px;
+          div {
             float: right;
-            font-size: 1.8em; 
-            color: white !important;
-            padding-top: 6px;
-            padding-right: 8px;
+          }
         }
-        ion-fab[right] {
-            right: 0px;
+        .addBadgeBtn {
+          margin-right: 9px;
+          margin-top: 10px;
+          float: right;
         }
-        .fab-md {
+      }
+      .badgesGiven {
+        border-left: 1px solid #ccc;
+        .addBadgeIcons {
+          float: left;
+          margin-left: 20px;
+          div {
+            float: left;
+          }
+        }
+        .addBadgeBtn {
+          margin-left: -15px;
+          margin-top: 10px;
+        }
+      }
+    }
+    .bagdesToOwn {
+      .singleBadge:nth-child(odd) {
+        padding: 0px 10px 10px 20px;
+        .badgeIcon {
+          left: 15px;
+        }
+        .badgeInfo {
+          float: right;
+          position: relative;
+          .badgeCount {
+            right: 0;
+          }
+        }
+      }
+      .singleBadge:nth-child(even) {
+        padding: 0px 20px 10px 10px;
+        .badgeIcon {
+          right: 15px;
+        }
+        .badgeInfo {
+          float: left;
+          position: relative;
+          .badgeCount {
+            left: 0;
+          }
+        }
+      }
+      .singleBadge {
+        position: relative;
+        .badgeIcon {
+          position: absolute;
+          top: 0;
+          z-index: 1;
+        }
+        .badgeInfo {
+          position: relative;
+          width: 85%;
+          height: 100%;
+          background: #fff;
+          display: inline-block;
+          border-radius: 5px;
+          z-index: 0;
+          .badgeCaption {
+            padding: 20px 25px;
+            font-size: 12px;
+          }
+          .badgeCount {
+            position: absolute;
+            top: 0;
             color: #fff;
-            background-color: #2c9a65;
+            background: #03baef;
+            border-radius: 5px;
+            padding: 2px;
+            height: 20px;
+            width: 25px;
+            text-align: center;
+          }
         }
-        .fab_icon{
-            color: white;
-            font-size: none !important;
-            margin-top: 3px !important;
-        }
-        .card-md {
-             margin: 1px;
-             width: calc(100% );
-        }
-      .card-md p {
-            margin: 3px;
-            font-size: 10px;
-            font-weight: normal;
-            line-height: 1;
-            color: #222;
-        }
-        .item-md [item-left], .item-md [item-right], .item-md [item-start], .item-md [item-end]{
-            margin:0px;
-        }
-        .item-md ion-avatar {
-         min-width: 20px;
-         min-height: 20px;
-        }
-       card-content-md {
-            padding: 1px 1px;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-        card-content-md p{
-            padding: 1px 1px;
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-left: 15px;
-            margin-right: 15px;
-        }
-        .item-md ion-avatar ion-img, .item-md ion-avatar img {
-            border-radius: 50%;
-            overflow: hidden;
-            width: 75px;
-            height: 67px;
-            margin-left: 20px;
-        }
-        .input-wrapper{
-            padding:0px;
-            margin:0px;
-        }
-     
-        .button-md{
-            border-radius: 120px;
-            overflow: hidden;
-            height: 2.4rem;
-            text-transform: none;
-        }
-        .item-block {
-        min-height:0.1rem;
-        }
-        ion-segment{
-            border-bottom: 1px solid #16a085;
-			background:rgba(255, 255, 255, 0.8);
-        }
-	.addtrticons{
-		font-size: 49px;
-		margin-left: -10px;
-		margin-top: -5px;
-		color: #2ea08b;
-	}
-
-	.contact-icon{
-		font-size: 1.8em;
-	}
-	.sectionTrait {
-		margin-bottom:100px;
-		ion-list{
-			width:100%;
-			margin:2px;
-		}
-	}
-
-	.badgeWrapper{
-		.bagdesToOwn{
-			margin:12px 0 0;
-		}
-		.bagdesToOthers{
-			margin:12px 0 0;
-			.badgeSection{
-				.badgeTitle{
-					text-align:center;
-				}
-				.badgeInfo{
-					width:123px;
-					margin:0 auto;
-					position:relative;
-				}
-				.addBadgeBtn{
-					color: #fff;
-					background: #03baef;
-					border-radius: 5px;
-					padding: 5px;
-					display: inline-block;
-					height: 25px;
-					width: 25px;
-					text-align: center;
-				}
-				.addBadgeIcons{
-					display:inline-block;
-					div{
-						display:inline-block;
-						margin-left: -22px;
-						height: 45px;
-						width: 45px;				
-					}
-				}
-			}
-			
-				.badgeCnt{
-					position:absolute;
-					right:5px;
-					top:0;
-				}
-			.badgesAvailable{
-				border-right:1px solid #ccc;
-				.addBadgeIcons{
-					float: right;
-					margin-right: 20px;
-					div{
-						float: right;
-					}
-				}
-				.addBadgeBtn{
-					margin-right: 9px;
-					margin-top: 10px;
-					float: right;
-				}
-			}
-			.badgesGiven{
-				border-left:1px solid #ccc;
-				.addBadgeIcons{
-					float: left;
-					margin-left: 20px;
-					div{
-						float:left;
-					}
-				}
-				.addBadgeBtn{
-					margin-left: -15px;
-					margin-top: 10px;
-				}
-			}
-		}
-		.bagdesToOwn{
-			.singleBadge:nth-child(odd) {
-				padding:0px 10px 10px 20px;
-				.badgeIcon{
-					left: 15px;
-				}
-				.badgeInfo{
-					float:right;
-					position:relative;
-					.badgeCount{
-						right: 0;
-					}
-				}				
-			}
-			.singleBadge:nth-child(even) {
-				padding:0px 20px 10px 10px;
-				.badgeIcon{
-					right: 15px;
-				}
-				.badgeInfo{
-					float:left;
-					position:relative;
-					.badgeCount{
-						left: 0;
-					}
-				}				
-			}
-			.singleBadge{
-				position:relative;
-				.badgeIcon{
-					position:absolute;
-					top: 0;
-					z-index: 1;
-				}
-				.badgeInfo{
-					position:relative;
-					width:85%;
-					height:100%;
-					background:#fff;
-					display:inline-block;
-					border-radius: 5px;
-					z-index: 0;
-					.badgeCaption{
-						padding:20px 25px;
-						font-size: 12px;
-					}
-					.badgeCount{
-						position:absolute;
-						top: 0;
-						color: #fff;
-						background: #03baef;
-						border-radius: 5px;
-						padding: 2px;
-						height: 20px;
-						width: 25px;
-						text-align: center;
-					}
-				}
-			}
-			
-		}
-	}
-	
-    .accordion-list {
-        background: color($colors, light);
-        height: 100%;
+      }
     }
-    .section {
-        background: #fff;
-        color: #000;
-        margin-bottom: 4px;
-    }
-    .section-active {
-        background: #ffc400;
+  }
+
+  .accordion-list {
+    background: color($colors, light);
+    height: 100%;
+  }
+  .section {
+    background: #fff;
+    color: #000;
+    margin-bottom: 4px;
+  }
+  .section-active {
+    background: #ffc400;
+    color: #fff;
+  }
+
+  .child {
+    background: #e8e7e6;
+    color: #000;
+    margin-bottom: 4px;
+  }
+  .child-item {
+    background: #f3f2f1;
+    padding: 10px;
+  }
+  .label {
+    margin: 0px;
+  }
+  .list {
+    margin-bottom: 4px;
+  }
+  .accordionSection {
+    height: 150px;
+    overflow: auto;
+  }
+  .traitComments {
+    background: #ddd;
+    margin-top: 10px;
+    .commentpost {
+      position: relative;
+      textarea {
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px 5px 0 5px;
+        height: 50px;
+        margin-bottom: 35px;
+      }
+      button {
+        position: absolute;
+        margin-top: -35px;
+        padding: 10px 19px;
+        font-size: 15px;
+        background: #8cead3;
         color: #fff;
+        right: 0px;
+        top: 85px;
+      }
     }
- 
-    .child {
-        background: #e8e7e6;
-        color: #000;
-        margin-bottom: 4px;
+  }
+
+  .singleTraits.isHidden_true.singleTraits.isFrd_false {
+    .traitIconBg {
+      background: #ccc;
     }
-    .child-item {
-        background: #f3f2f1;
-        padding: 10px;
+    .traitName,
+    .pos-number,
+    .neg-number {
+      color: #ccc;
     }
-    .label {
-        margin: 0px;
+  }
+  .singleTraits.isCntHidden_true.singleTraits.isFrd_false {
+    .pos-number,
+    .neg-number {
+      color: #ccc;
     }
-    .list {
-        margin-bottom: 4px;
+  }
+  .singleTraits.isWaiting_true {
+    .item-md {
+      background: rgba(136, 216, 176, 0.8);
     }
-	.accordionSection{
-		height:150px;
-		overflow:auto;
-	}
-	.traitComments{
-		background:#ddd;
-		margin-top:10px;
-		.commentpost{
-			position:relative;
-			textarea{	
-				width: 100%;
-				border: 1px solid #ccc;
-				border-radius: 5px 5px 0 5px;
-				height: 50px;
-				margin-bottom: 35px;
-			}
-			button{
-				position: absolute;
-				margin-top: -35px;
-				padding: 10px 19px;
-				font-size: 15px;
-				background: #8cead3;
-				color:#fff;
-				right: 0px;
-				top: 85px;
-			}
-		}
-	}
-	
-	.singleTraits.isHidden_true.singleTraits.isFrd_false{
-		.traitIconBg{
-			background:#ccc
-		}
-		.traitName,.pos-number,.neg-number {
-			color:#ccc
-		}
-	}
-	.singleTraits.isCntHidden_true.singleTraits.isFrd_false{
-		.pos-number,.neg-number{
-			color:#ccc;		
-		}
-	}
-	.singleTraits.isWaiting_true{
-		.item-md{
-			background:rgba(136,216,176,0.8)
-		}
-	}
-	.frdProfile_false{
-		.singleBadge.isAccepted_0{
-			.badgeCaption{
-				background:rgba(136,216,176,0.8)
-			}
-		}
-	}
-	.addTraitBtn{
-		position: absolute;
-		right: 0;
-		padding: 17px 26px;
-	}
-	.selected{background:#00c5cd;}
-	
+  }
+  .frdProfile_false {
+    .singleBadge.isAccepted_0 {
+      .badgeCaption {
+        background: rgba(136, 216, 176, 0.8);
+      }
+    }
+  }
+  .addTraitBtn {
+    position: absolute;
+    right: 0;
+    padding: 17px 26px;
+  }
+  .selected {
+    background: #00c5cd;
+  }
 }
 
-	.action-sheet-group-cancel{display:none;}
+.action-sheet-group-cancel {
+  display: none;
+}

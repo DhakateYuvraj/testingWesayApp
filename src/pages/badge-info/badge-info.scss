@@ -1,69 +1,80 @@
 page-badge-info {
+  ion-header .button-md {
+    background: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  h5 {
+    text-align: center;
+  }
+  .badgeDonner {
+    position: relative;
+    padding: 0 10px;
+    border-bottom: 1px solid #ccc;
+    .badgeInfo {
+      padding: 5px 100px 5px 0px;
+      .username {
+        font-size: 1.2em;
+      }
+      .date {
+        font-size: 0.8em;
+        color: #999;
+      }
+    }
+    .btnAction {
+      position: absolute;
+      top: 0;
+      font-size: 2em;
+      text-align: center;
+      width: 55px;
+      height: 45px;
+    }
+    .badgeHide {
+      right: 55px;
+    }
+    .badgeDelete {
+      right: 0px;
+    }
+    .badgeAck {
+      right: 110px;
+    }
+  }
+  .commentpost.givenBadge .commentInputBox {
+    border: none;
+    background: transparent;
+  }
+  .hidePanel {
+    display: none;
+  }
+  .commentpost {
+    position: relative;
+    textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px 5px 0 5px;
+      height: 40px;
+      margin-bottom: 0;
+      padding-right: 50px;
+    }
+    button {
+      position: absolute;
+      margin-top: -35px;
+      padding: 10px 19px;
+      font-size: 15px;
+      background: #00c5cd;
+      color: #fff;
+      right: 0px;
+      top: 35px;
+    }
+  }
 
-	ion-header .button-md {
-		background: transparent;
-		-webkit-box-shadow: none;
-		box-shadow: none;
-		position: absolute;
-		top: 0;
-		right: 0;
-	}
-	h5{
-		text-align:center;
-	}
-	.badgeDonner{
-		position:relative;
-		padding:0 10px;
-		border-bottom: 1px solid #ccc;
-		.badgeInfo{
-			padding:5px 100px 5px 0px;
-			.username{
-				font-size:1.2em;			
-			}
-			.date{
-				font-size:0.8em;
-				color:#999;
-			}
-		}
-		.btnAction{position:absolute;top:0;font-size:2em;text-align:center;width:55px;height:45px;}
-		.badgeHide{right:55px}
-		.badgeDelete{right:0px}
-		.badgeAck{right:110px}
-	
-	}
-	.commentpost.givenBadge .commentInputBox{
-		border:none;
-		background:transparent;
-	}
-	.hidePanel{
-		display:none;
-	}
-	.commentpost {
-		position: relative;
-		textarea {
-			width: 100%;
-			border: 1px solid #ccc;
-			border-radius: 5px 5px 0 5px;
-			height: 40px;
-			margin-bottom: 0;
-			padding-right: 50px;
-		}
-		button {
-			position: absolute;
-			margin-top: -35px;
-			padding: 10px 19px;
-			font-size: 15px;
-			background: #00c5cd;
-			color: #fff;
-			right: 0px;
-			top: 35px;
-		}
-	}
-	
-	.acceptReject{
-		.btnAction{
-			font-size: 1.2em;
-			padding: 12px 0px;
-		}
-	}
+  .acceptReject {
+    .btnAction {
+      font-size: 1.2em;
+      padding: 12px 0px;
+    }
+  }
 }

@@ -1,29 +1,37 @@
 <ion-header>
-    <ion-navbar>
-        <ion-row>
-            <ion-col col-1>
-                <ion-icon class="menu_icon" name="menu" (click)="traitService.toggleMenu()"></ion-icon>
-            </ion-col>
-            <ion-col col-9>
-                <ion-label class="header_label">Settings</ion-label>
-            </ion-col>
-        </ion-row>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-row>
+      <ion-col col-1>
+        <ion-icon
+          class="menu_icon"
+          name="menu"
+          (click)="traitService.toggleMenu()"
+        ></ion-icon>
+      </ion-col>
+      <ion-col col-9>
+        <ion-label class="header_label">Settings</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
 </ion-header>
 <ion-content padding>
-	<ion-refresher (ionRefresh)="doRefresh($event)">
-		<ion-refresher-content
-			pullingIcon="arrow-dropdown"
-			pullingText="Pull to refresh"
-			refreshingSpinner="circles"
-			refreshingText="Refreshing...">
-		</ion-refresher-content>
-	</ion-refresher>
-	<ion-list>
-			<br /><br />
-		<ion-item *ngFor="let settingRow of settingData ; let i=index">
-			<ion-label>{{settingRow.categoryname}}</ion-label>
-			<ion-toggle [(ngModel)]="settingRow.categoryvalue" (ionChange)='settingChange(settingRow)'></ion-toggle>
-		</ion-item>
-	</ion-list>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <br /><br />
+    <ion-item *ngFor="let settingRow of settingData; let i = index">
+      <ion-label>{{ settingRow.categoryname }}</ion-label>
+      <ion-toggle
+        [(ngModel)]="settingRow.categoryvalue"
+        (ionChange)="settingChange(settingRow)"
+      ></ion-toggle>
+    </ion-item>
+  </ion-list>
 </ion-content>

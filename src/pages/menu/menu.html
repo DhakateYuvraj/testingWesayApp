@@ -1,5 +1,5 @@
-<div class="background" style="background:#008081;height:100%;" >
-<img src="assets/imgs/bg-full.jpg" alt="" />
+<div class="background" style="background:#008081;height:100%;">
+  <img src="assets/imgs/bg-full.jpg" alt="" />
 </div>
 <ion-header padding>
   <ion-navbar>
@@ -8,17 +8,21 @@
         <ion-icon color="white_color" name="close" (click)="close()"></ion-icon>
       </ion-col>
       <ion-col col-6>
-        <ion-icon color="white_color" name="person" class="profile-icon" (click)="openMyProfile()"></ion-icon>
+        <ion-icon
+          color="white_color"
+          name="person"
+          class="profile-icon"
+          (click)="openMyProfile()"
+        ></ion-icon>
       </ion-col>
     </ion-row>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
-	<ion-grid style="height: 100%" class="menuList">
-		<br /><br />
-		<!--
+  <ion-grid style="height: 100%" class="menuList">
+    <br /><br />
+    <!--
 			<ion-row justify-content-center align-items-center style="height:10%"  (click)="openHomePage()">
 				<span  class="menuItemName">Home</span>
 			</ion-row>
@@ -26,43 +30,63 @@
 				<span  class="menuItemName">My Page</span>
 			</ion-row> 
 		-->
-		<ion-row justify-content-center align-items-center style="height:10%"  (click)="openMyProfile()">
-			<span  class="menuItemName">Profile</span>
-		</ion-row>
-		<!--
+    <ion-row
+      justify-content-center
+      align-items-center
+      style="height:10%"
+      (click)="openMyProfile()"
+    >
+      <span class="menuItemName">Profile</span>
+    </ion-row>
+    <!--
 			<ion-row justify-content-center align-items-center style="height:10%"  (click)="openFriendList()">
 				<span  class="menuItemName">Friend List</span>
 			</ion-row>
-		--> 
-		<ion-row justify-content-center align-items-center style="height:10%" (click)="openFeedback()">
-			<span  class="menuItemName">Share feedback</span>
-		</ion-row>
-		<ion-row justify-content-center align-items-center style="height:10%">
-			<span  class="menuItemName"><a href="https://www.wesay.app/terms-and-conditions/">Terms and Conditions</a></span>
-		</ion-row>
-	</ion-grid>
+		-->
+    <ion-row
+      justify-content-center
+      align-items-center
+      style="height:10%"
+      (click)="openFeedback()"
+    >
+      <span class="menuItemName">Share feedback</span>
+    </ion-row>
+    <ion-row justify-content-center align-items-center style="height:10%">
+      <span class="menuItemName"
+        ><a href="https://www.wesay.app/terms-and-conditions/"
+          >Terms and Conditions</a
+        ></span
+      >
+    </ion-row>
+  </ion-grid>
 </ion-content>
 
 <ion-footer no-shadow padding>
   <ion-toolbar position="bottom">
     <ion-row>
       <ion-col col-6>
-	  <div>
-        <ion-icon color="white_color" name="settings" class="bottom-icon"></ion-icon>
-        <ion-label color="white_color">SETTINGS</ion-label>
-      </div>
-	  </ion-col>
+        <div>
+          <ion-icon
+            color="white_color"
+            name="settings"
+            class="bottom-icon"
+          ></ion-icon>
+          <ion-label color="white_color">SETTINGS</ion-label>
+        </div>
+      </ion-col>
       <ion-col col-6>
         <div class="profile-icon" (click)="logout()">
-          <ion-icon color="white_color" name="log-out" class="bottom-icon"></ion-icon>
+          <ion-icon
+            color="white_color"
+            name="log-out"
+            class="bottom-icon"
+          ></ion-icon>
           <ion-label color="white_color">LOG OUT</ion-label>
         </div>
       </ion-col>
     </ion-row>
     <ion-row class="appVersion">
-      <ion-col>
-		WeSay<sup>TM</sup> Version 1.0.6
-      </ion-col>
-	</ion-row>
+      <ion-col> WeSay<sup>TM</sup> Version 1.0.6 </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-footer>

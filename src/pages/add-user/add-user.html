@@ -5,16 +5,10 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>addUser</ion-title>
-  </ion-navbar>
-
+  <ion-navbar> <ion-title>addUser</ion-title> </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-
   <form *ngIf="form" [formGroup]="form">
     <ion-list class="input_list">
       <ion-item>
@@ -29,12 +23,14 @@
         <ion-label floating>Phone number</ion-label>
         <ion-input type="number" formControlName="mobilenumber"></ion-input>
       </ion-item>
-      <ion-item style="display: none">
-      </ion-item>
+      <ion-item style="display: none"> </ion-item>
     </ion-list>
     <button ion-button full (click)="addUser()">
-      <ion-icon ios="ios-checkmark" md="md-checkmark" style="font-size: 26px;"></ion-icon>
+      <ion-icon
+        ios="ios-checkmark"
+        md="md-checkmark"
+        style="font-size: 26px;"
+      ></ion-icon>
     </button>
   </form>
-
 </ion-content>

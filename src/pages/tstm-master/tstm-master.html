@@ -1,16 +1,28 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>TstmMaster</ion-title>
-  </ion-navbar>
-
+  <ion-navbar> <ion-title>TstmMaster</ion-title> </ion-navbar>
 </ion-header>
 
-
-<ion-content padding>
-	<div *ngFor="let tstm of allTstm; let i = index">
-		<span>
-			{{tstm.tstmQuestion}}
-		</span>
-	</div>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <br /><br />
+    <ion-item>
+      <ion-label
+        >asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd asd
+        asd asd asd asd asd asd asd asd asd
+      </ion-label>
+      <ion-toggle (ionChange)="settingChange()"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  <div *ngFor="let tstm of allTstm; let i = index">
+    <span> {{ tstm.tstmQuestion }} </span>
+  </div>
 </ion-content>

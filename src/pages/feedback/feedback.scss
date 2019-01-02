@@ -1,42 +1,46 @@
 page-feedback {
-    .scroll-content{
-        background: #FFF;
-    }
-    ul,ul li{
-        display: block;
-        clear: both;
-        list-style: none;
-        border-bottom:1px solid #ccc;
-        padding:0 0 7px 0px;
-        margin:0 0 7px 0px;
-    }
+  .scroll-content {
+    background: #fff;
+  }
+  ul,
+  ul li {
+    display: block;
+    clear: both;
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    padding: 0 0 7px 0px;
+    margin: 0 0 7px 0px;
+  }
 
-    .answereOption {
-        margin:0px;
-        .item-inner{
-            flex: none;
-            border-bottom: none;
-        }
-        .input-wrapper{
-            flex: none;
-            padding-left: 6px;
-        }
-        .radio-icon{
-            float: left;
-            position: absolute;
-            top: 14px;
-            left: 0px;
-        }
-        ion-item{
-            flex: none;
-            float: left;
-            width: 30%;
-        }
+  .answereOption {
+    margin: 0px;
+    .item-inner {
+      flex: none;
+      border-bottom: none;
     }
-    textarea{
-		width:95%;
-		border-radius: 7px;
-		height: 50px;
-	}
-    .item-md.item-block .item-inner{border-bottom:none;font-size: 11px;}
+    .input-wrapper {
+      flex: none;
+      padding-left: 6px;
+    }
+    .radio-icon {
+      float: left;
+      position: absolute;
+      top: 14px;
+      left: 0px;
+    }
+    ion-item {
+      flex: none;
+      float: left;
+      width: 30%;
+    }
+  }
+  textarea {
+    width: 95%;
+    border-radius: 7px;
+    height: 50px;
+  }
+  .item-md.item-block .item-inner {
+    border-bottom: none;
+    font-size: 11px;
+  }
 }

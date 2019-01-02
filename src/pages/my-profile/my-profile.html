@@ -1,64 +1,81 @@
 <ion-header>
-    <ion-navbar>
-        <ion-row>
-            <ion-col col-1>
-                <ion-icon class="menu_icon" name="menu" (click)="traitService.toggleMenu()"></ion-icon>
-            </ion-col>
-            <ion-col col-9>
-                <ion-label class="header_label">Profile</ion-label>
-            </ion-col>
-        </ion-row>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-row>
+      <ion-col col-1>
+        <ion-icon
+          class="menu_icon"
+          name="menu"
+          (click)="traitService.toggleMenu()"
+        ></ion-icon>
+      </ion-col>
+      <ion-col col-9>
+        <ion-label class="header_label">Profile</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-navbar>
 </ion-header>
 <ion-content #contentRef (ionScroll)="traitService.scrollingFun($event)">
-<div class="uploadPic">
-	<!-- <ion-icon class="userDummyImage" name="ios-person"  *ngIf="!base64Image"></ion-icon> -->
-	<img class="profileImage" src="assets/imgs/userIcon.png" />
-	<div class="editPic" (click)="openeditprofile()">
-		<ion-icon name="md-create"></ion-icon>
-	</div>
-	{{base64Image}}
-</div>
+  <div class="uploadPic">
+    <!-- <ion-icon class="userDummyImage" name="ios-person"  *ngIf="!base64Image"></ion-icon> -->
+    <img class="profileImage" src="assets/imgs/userIcon.png" />
+    <div class="editPic" (click)="openeditprofile()">
+      <ion-icon name="md-create"></ion-icon>
+    </div>
+    {{ base64Image }}
+  </div>
 
-
-<div style="text-align:center;">
-<h2>{{profileData.displayName}}</h2>
-</div>
-	<!-- <ion-item>
+  <div style="text-align:center;">
+    <h2>{{ profileData.displayName }}</h2>
+  </div>
+  <!-- <ion-item>
 		<ion-label>Display Name</ion-label>
 		<ion-input [disabled]="frdId != 0" [(ngModel)]="profileData.displayName"></ion-input>
 	</ion-item> -->
-	<!--
+  <!--
 	<ion-item>
 		<ion-label>Gender</ion-label>
 		<ion-input [disabled]="frdId != 0" [(ngModel)]="profileData.gender"></ion-input>
 	</ion-item>
 	-->
-	<ion-item>
-	<ion-label fixed>Gender</ion-label>
-		<ion-select [disabled]="frdId != 0" [(ngModel)]="profileData.gender">
-			<ion-option [value]="Male">Male</ion-option>
-			<ion-option [value]="Female">Female</ion-option>
-		</ion-select>
-	</ion-item>
-	<ion-item>
-		<ion-label fixed>Location</ion-label>
-		<ion-input [disabled]="frdId != 0" [(ngModel)]="profileData.location"></ion-input>
-	</ion-item>
-	<ion-item>
-		<ion-label fixed>Profession</ion-label>
-		<ion-input [disabled]="frdId != 0" [(ngModel)]="profileData.profession"></ion-input>
-	</ion-item>
-	<ion-item>
-		<ion-label fixed>Website</ion-label>
-		<ion-input [disabled]="frdId != 0" [(ngModel)]="profileData.mywebsite"></ion-input>
-	</ion-item>
-	<ion-item>
-		<ion-label fixed>About Me</ion-label>
-		<ion-input [disabled]="frdId != 0" [(ngModel)]="profileData.aboutMe"></ion-input>
-	</ion-item>
-	<div style="text-align:center;">
-	<span *ngIf="frdId == 0"><button ion-button round (click)="updateMyProfile()">Save</button></span>
-	<button ion-button round (click)="back()">Back</button>
-	</div>
+  <ion-item>
+    <ion-label fixed>Gender</ion-label>
+    <ion-select [disabled]="frdId != 0" [(ngModel)]="profileData.gender">
+      <ion-option [value]="Male">Male</ion-option>
+      <ion-option [value]="Female">Female</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>Location</ion-label>
+    <ion-input
+      [disabled]="frdId != 0"
+      [(ngModel)]="profileData.location"
+    ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>Profession</ion-label>
+    <ion-input
+      [disabled]="frdId != 0"
+      [(ngModel)]="profileData.profession"
+    ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>Website</ion-label>
+    <ion-input
+      [disabled]="frdId != 0"
+      [(ngModel)]="profileData.mywebsite"
+    ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label fixed>About Me</ion-label>
+    <ion-input
+      [disabled]="frdId != 0"
+      [(ngModel)]="profileData.aboutMe"
+    ></ion-input>
+  </ion-item>
+  <div style="text-align:center;">
+    <span *ngIf="frdId == 0"
+      ><button ion-button round (click)="updateMyProfile()">Save</button></span
+    >
+    <button ion-button round (click)="back()">Back</button>
+  </div>
 </ion-content>

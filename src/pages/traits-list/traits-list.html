@@ -1,24 +1,42 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>Master List of Traits</ion-title>
-    </ion-navbar>
+  <ion-navbar> <ion-title>Master List of Traits</ion-title> </ion-navbar>
 </ion-header>
 <ion-content>
-    <ion-searchbar [(ngModel)]="search_string" [formControl]="searchControl" str (ionInput)="filterTraits()" placeholder="Search Traits . . ."
-        #searchInput>
-    </ion-searchbar>
-    <div>
-        <ion-list>
-            <div *ngFor="let item of traitsMasterList ; let i=index">
-                <ion-item>
-                    <ion-label> {{ item.traitname }}</ion-label>
-                    <ion-checkbox (ionChange)="addSelected(item)"></ion-checkbox>
-                </ion-item>
-            </div>
-        </ion-list>
-    </div>
+  <ion-searchbar
+    [(ngModel)]="search_string"
+    [formControl]="searchControl"
+    str
+    (ionInput)="filterTraits()"
+    placeholder="Search Traits . . ."
+    #searchInput
+  >
+  </ion-searchbar>
+  <div>
+    <ion-list>
+      <div *ngFor="let item of traitsMasterList; let i = index">
+        <ion-item>
+          <ion-label> {{ item.traitname }}</ion-label>
+          <ion-checkbox (ionChange)="addSelected(item)"></ion-checkbox>
+        </ion-item>
+      </div>
+    </ion-list>
+  </div>
 </ion-content>
 <ion-footer>
-    <button class="addPageBtn" ion-button (click)="addToPage()" *ngIf="dataFor != 'addTraitForFrd'">Add to my page</button>
-    <button class="addPageBtn" ion-button (click)="addToPage()" *ngIf="dataFor == 'addTraitForFrd'">Add to {{frdInfo.fullname}}'s page</button>
+  <button
+    class="addPageBtn"
+    ion-button
+    (click)="addToPage()"
+    *ngIf="dataFor != 'addTraitForFrd'"
+  >
+    Add to my page
+  </button>
+  <button
+    class="addPageBtn"
+    ion-button
+    (click)="addToPage()"
+    *ngIf="dataFor == 'addTraitForFrd'"
+  >
+    Add to {{ frdInfo.fullname }}'s page
+  </button>
 </ion-footer>

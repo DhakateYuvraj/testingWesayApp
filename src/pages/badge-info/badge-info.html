@@ -1,73 +1,131 @@
 <ion-header>
-	<ion-navbar>
-		<ion-title>{{(badgeInfo && badgeInfo.badgeName) ? badgeInfo.badgeName : "Badge Info"}}</ion-title>
-	</ion-navbar>
+  <ion-navbar>
+    <ion-title>{{
+      badgeInfo && badgeInfo.badgeName ? badgeInfo.badgeName : "Badge Info"
+    }}</ion-title>
+  </ion-navbar>
 </ion-header>
 
-<ion-content #contentRef (ionScroll)="traitService.scrollingFun($event)" [ngClass]="traitService.isAnonymousMode() ? 'anonymousMode' : 'privateMode'" *ngIf="badgeInfo">
-<br /><br /><br />
-	<h5>{{(badgeInfo && badgeInfo.badgeName) ? badgeInfo.badgeName : "Badge Info"}}</h5>
-	<div *ngFor="let badge of badgeInfo.badgeGivenInfoList">
-		<div class="badgeDonner">
-			<div class="badgeInfo">
-				<div class="username">{{badge.badgeGivenby ? badge.badgeGivenby : (badge.badgeGivenByName ? badge.badgeGivenByName : 'Anonymous')}}</div>
-				<div class="date">{{traitService.calcuateTime(badge.givenDate)}}</div>
-			</div>
-			<div *ngIf="!frdInfo.id">
-				<div *ngIf="forPage == 'myBadge' && badge.isAccepted == 1">
-					<div *ngIf="!badge.isAcked" class="badgeAck btnAction" (click)="traitService.togglePanel(badge.userBadgeid)">
-						<ion-icon name="ios-undo-outline"></ion-icon>
-					</div>
-					<div *ngIf="badge.isAcked" class="badgeAck ackGiven btnAction" (click)="traitService.togglePanel(badge.userBadgeid)">
-						<ion-icon name="ios-undo"></ion-icon>
-					</div>
-					<div *ngIf="!badge.isHidden" class="badgeHide btnAction">
-						<ion-icon name="eye" (click)="hideUnhideBadge(badge.userBadgeid,true)"></ion-icon>
-					</div>
-					<div *ngIf="badge.isHidden" class="badgeHide btnAction">
-						<ion-icon name="eye-off" (click)="hideUnhideBadge(badge.userBadgeid,false)"></ion-icon>
-					</div>
-					<div class="badgeDelete btnAction">
-						<ion-icon name="close" (click)="deleteBadge(badge.userBadgeid)"></ion-icon>
-					</div>
-				</div>
-				<div *ngIf="forPage == 'myBadge' && badge.isAccepted == 0" class="acceptReject">
-					<div class="badgeAck btnAction" (click)="acceptRejectBadge(badge.userBadgeid,1)">
-						Accept
-					</div>
-					<div class="badgeDelete btnAction" (click)="acceptRejectBadge(badge.userBadgeid,0)">
-						Reject
-					</div>
-				</div>
-				<div *ngIf="forPage == 'givenBadge'">
-					<div *ngIf="!badge.isAcked" class="badgeHide btnAction" (click)="traitService.togglePanel(badge.userBadgeid)">
-						<ion-icon name="ios-undo-outline"></ion-icon>
-					</div>
-					<div *ngIf="badge.isAcked" class="badgeHide ackGiven btnAction" (click)="traitService.togglePanel(badge.userBadgeid)">
-						<ion-icon name="ios-undo"></ion-icon>
-					</div>
-					<div *ngIf="!badge.isVisible" class="badgeDelete btnAction">
-						<ion-icon name="eye" ></ion-icon>
-					</div>
-					<div *ngIf="badge.isVisible" class="badgeDelete btnAction">
-						<ion-icon name="eye-off" ></ion-icon>
-					</div>
-				</div>
-			</div>
-			<div class="commentpost {{forPage}}" [ngClass]="{hidePanel: !traitService.isPanelShow(badge.userBadgeid)}">
-				<div *ngIf="badge.isAccepted">
-					<textarea class="commentInputBox" [(ngModel)]="badge.ackText" [readonly]="badge.isAcked">
-					</textarea>
-				</div>
-				<div *ngIf="!badge.isAccepted">
-					Not accepted yet.
-					<br />
-				</div>
-				<button (click)="addAckText(badge)" *ngIf="!badge.isAcked && forPage == 'myBadge'">
-					<ion-icon name="send"></ion-icon>
-				</button>
-			</div>
-		</div >
-		<br />
-	</div>
+<ion-content
+  #contentRef
+  (ionScroll)="traitService.scrollingFun($event)"
+  [ngClass]="traitService.isAnonymousMode() ? 'anonymousMode' : 'privateMode'"
+  *ngIf="badgeInfo"
+>
+  <br /><br /><br />
+  <h5>
+    {{ badgeInfo && badgeInfo.badgeName ? badgeInfo.badgeName : "Badge Info" }}
+  </h5>
+  <div *ngFor="let badge of badgeInfo.badgeGivenInfoList">
+    <div class="badgeDonner">
+      <div class="badgeInfo">
+        <div class="username">
+          {{
+            badge.badgeGivenby
+              ? badge.badgeGivenby
+              : badge.badgeGivenByName
+              ? badge.badgeGivenByName
+              : "Anonymous"
+          }}
+        </div>
+        <div class="date">{{ traitService.calcuateTime(badge.givenDate) }}</div>
+      </div>
+      <div *ngIf="!frdInfo.id">
+        <div *ngIf="forPage == 'myBadge' && badge.isAccepted == 1">
+          <div
+            *ngIf="!badge.isAcked"
+            class="badgeAck btnAction"
+            (click)="traitService.togglePanel(badge.userBadgeid)"
+          >
+            <ion-icon name="ios-undo-outline"></ion-icon>
+          </div>
+          <div
+            *ngIf="badge.isAcked"
+            class="badgeAck ackGiven btnAction"
+            (click)="traitService.togglePanel(badge.userBadgeid)"
+          >
+            <ion-icon name="ios-undo"></ion-icon>
+          </div>
+          <div *ngIf="!badge.isHidden" class="badgeHide btnAction">
+            <ion-icon
+              name="eye"
+              (click)="hideUnhideBadge(badge.userBadgeid, true)"
+            ></ion-icon>
+          </div>
+          <div *ngIf="badge.isHidden" class="badgeHide btnAction">
+            <ion-icon
+              name="eye-off"
+              (click)="hideUnhideBadge(badge.userBadgeid, false)"
+            ></ion-icon>
+          </div>
+          <div class="badgeDelete btnAction">
+            <ion-icon
+              name="close"
+              (click)="deleteBadge(badge.userBadgeid)"
+            ></ion-icon>
+          </div>
+        </div>
+        <div
+          *ngIf="forPage == 'myBadge' && badge.isAccepted == 0"
+          class="acceptReject"
+        >
+          <div
+            class="badgeAck btnAction"
+            (click)="acceptRejectBadge(badge.userBadgeid, 1)"
+          >
+            Accept
+          </div>
+          <div
+            class="badgeDelete btnAction"
+            (click)="acceptRejectBadge(badge.userBadgeid, 0)"
+          >
+            Reject
+          </div>
+        </div>
+        <div *ngIf="forPage == 'givenBadge'">
+          <div
+            *ngIf="!badge.isAcked"
+            class="badgeHide btnAction"
+            (click)="traitService.togglePanel(badge.userBadgeid)"
+          >
+            <ion-icon name="ios-undo-outline"></ion-icon>
+          </div>
+          <div
+            *ngIf="badge.isAcked"
+            class="badgeHide ackGiven btnAction"
+            (click)="traitService.togglePanel(badge.userBadgeid)"
+          >
+            <ion-icon name="ios-undo"></ion-icon>
+          </div>
+          <div *ngIf="!badge.isVisible" class="badgeDelete btnAction">
+            <ion-icon name="eye"></ion-icon>
+          </div>
+          <div *ngIf="badge.isVisible" class="badgeDelete btnAction">
+            <ion-icon name="eye-off"></ion-icon>
+          </div>
+        </div>
+      </div>
+      <div
+        class="commentpost {{ forPage }}"
+        [ngClass]="{ hidePanel: !traitService.isPanelShow(badge.userBadgeid) }"
+      >
+        <div *ngIf="badge.isAccepted">
+          <textarea
+            class="commentInputBox"
+            [(ngModel)]="badge.ackText"
+            [readonly]="badge.isAcked"
+          >
+          </textarea>
+        </div>
+        <div *ngIf="!badge.isAccepted">Not accepted yet. <br /></div>
+        <button
+          (click)="addAckText(badge)"
+          *ngIf="!badge.isAcked && forPage == 'myBadge'"
+        >
+          <ion-icon name="send"></ion-icon>
+        </button>
+      </div>
+    </div>
+    <br />
+  </div>
 </ion-content>

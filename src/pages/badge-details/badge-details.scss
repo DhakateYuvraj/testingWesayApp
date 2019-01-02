@@ -1,67 +1,67 @@
 page-badge-details {
-	h4{
-		text-align:center;
-	}
-	.bagdesToOwn{
-		.singleBadge:nth-child(odd) {
-			padding:0px 10px 10px 20px;
-			.badgeIcon{
-				left: 15px;
-			}
-			.badgeInfo{
-				float:right;
-				.badgeCount{
-					right: 0;
-				}
-			}				
-		}
-		.singleBadge:nth-child(even) {
-			padding:0px 20px 10px 10px;
-			.badgeIcon{
-				right: 15px;
-			}
-			.badgeInfo{
-				float:left;
-				.badgeCount{
-					left: 0;
-				}
-			}				
-		}
-		.singleBadge.selected .badgeInfo{
-			background:#ccc;
-			border:1px solid #888;
-		}
-		.singleBadge{
-			position:relative;
-			.badgeIcon{
-				position:absolute;
-				top: 0;
-				z-index: 1;
-			}
-			.badgeInfo{
-				position:relative;
-				width:85%;
-				height:100%;
-				background:#fff;
-				display:inline-block;
-				border-radius: 5px;
-				z-index: 0;
-				.badgeCaption{
-					padding:20px 25px;
-					font-size: 12px;
-				}
-				.badgeCount{
-					position:absolute;
-					top: 0;
-					color: #fff;
-					background: #03baef;
-					border-radius: 5px;
-					padding: 2px;
-					height: 20px;
-					width: 25px;
-					text-align: center;
-				}
-			}
-		}		
-	}
+  h4 {
+    text-align: center;
+  }
+  .bagdesToOwn {
+    .singleBadge:nth-child(odd) {
+      padding: 0px 10px 10px 20px;
+      .badgeIcon {
+        left: 15px;
+      }
+      .badgeInfo {
+        float: right;
+        .badgeCount {
+          right: 0;
+        }
+      }
+    }
+    .singleBadge:nth-child(even) {
+      padding: 0px 20px 10px 10px;
+      .badgeIcon {
+        right: 15px;
+      }
+      .badgeInfo {
+        float: left;
+        .badgeCount {
+          left: 0;
+        }
+      }
+    }
+    .singleBadge.selected .badgeInfo {
+      background: #ccc;
+      border: 1px solid #888;
+    }
+    .singleBadge {
+      position: relative;
+      .badgeIcon {
+        position: absolute;
+        top: 0;
+        z-index: 1;
+      }
+      .badgeInfo {
+        position: relative;
+        width: 85%;
+        height: 100%;
+        background: #fff;
+        display: inline-block;
+        border-radius: 5px;
+        z-index: 0;
+        .badgeCaption {
+          padding: 20px 25px;
+          font-size: 12px;
+        }
+        .badgeCount {
+          position: absolute;
+          top: 0;
+          color: #fff;
+          background: #03baef;
+          border-radius: 5px;
+          padding: 2px;
+          height: 20px;
+          width: 25px;
+          text-align: center;
+        }
+      }
+    }
+  }
 }
