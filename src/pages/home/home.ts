@@ -76,6 +76,7 @@ export class HomePage {
 
   loadGenericSetting() {
     this.traitService.loadGenericSetting(this.authToken).subscribe(data => {
+	this.traitService.setGenericSetting(JSON.stringify(data.response));
       if (data.response && !data.response.isContactSynced) {
         //console.log(data.response);
         this.contactsProvider.syncContacts();

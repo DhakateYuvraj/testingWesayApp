@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar> <ion-title>TstmMaster</ion-title> </ion-navbar>
+  <ion-navbar> <ion-title>Choose Testimonials</ion-title> </ion-navbar>
 </ion-header>
 
 <ion-content>
@@ -12,11 +12,17 @@
     >
     </ion-refresher-content>
   </ion-refresher>
+  
   <ion-list>
-    <br /><br />
+    <br />
+	Choose any {{genericSetting ? genericSetting.noOfTstmQuestion : " " }} questions.
+	<br />
     <ion-item *ngFor="let tstm of allTstm; let i = index">
       <ion-label> 
-        {{traitService.replaceWithUsername(tstm.tstmQuestion,frdInfo.fullname)}}
+        <!--
+		{{traitService.replaceWithUsername(tstm.tstmQuestion,frdInfo.fullname)}}
+		-->
+		{{tstm.tstmQuestion}}
       </ion-label>
       <ion-toggle [(ngModel)]="tstm.isActiveForUser" (ionChange)="settingChange(tstm)"></ion-toggle>
     </ion-item>

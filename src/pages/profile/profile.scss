@@ -444,6 +444,18 @@ page-profile {
   .selected {
     background: #00c5cd;
   }
+  .addPageBtn{
+	background: #084242;
+    border: none;
+    border-radius: 23px;
+    width: 80%;
+    height: 45px;
+    margin: 10px auto;
+    line-height: 45px;
+    font-size: 13px !important;
+    color: white !important;
+    font-weight: normal !important;
+  }
 }
 
 .action-sheet-group-cancel {

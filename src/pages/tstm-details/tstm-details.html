@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Testimonial Details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<div *ngFor="let singleTstm of tstmDetails">
+		{{singleTstm.testimonial}}
+	</div>
+	<textarea  [(ngModel)]="newTstm" ></textarea>
+	<button (click)="giveTestimonialToFriend()">
+		Send
+	</button>
+</ion-content>

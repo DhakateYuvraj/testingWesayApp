@@ -12,6 +12,7 @@ export class TstmMasterPage {
   public authToken;
   public allTstm;
   public frdInfo;
+  public genericSetting;
 
   constructor(
     public navCtrl: NavController,
@@ -26,6 +27,9 @@ export class TstmMasterPage {
     this.storage.get("token").then(token => {
       this.authToken = token;
       this.getTstmMasterList();
+    });
+    this.storage.get("genericSetting").then(setting => {
+      this.genericSetting = JSON.parse(setting);
     });
   }
   doRefresh(refresher) {
@@ -44,16 +48,38 @@ export class TstmMasterPage {
   }
 
   settingChange(tstm) {
-    this.traitService.showLoading();
-    let payload = [
-      {
-        testimonialid: tstm.id,
-        isactive: tstm.isActiveForUser ? 1 : 0
-      }
-    ];
-    this.traitService.changeMyTestimonialSettings(this.authToken, payload).subscribe(data => {
-        this.traitService.hideLoading();
-        this.getTstmMasterList();
-      });
+	let totalActiveTstm = 0;
+	
+	this.allTstm.forEach(function (tstm) {
+		if(tstm.isActiveForUser){
+			totalActiveTstm += 1;
+		}
+	});
+	
+	if(totalActiveTstm <= this.genericSetting.noOfTstmQuestion ){ 
+		this.traitService.showLoading();
+		let payload = [
+			{
+				testimonialid: tstm.id,
+				isactive: tstm.isActiveForUser ? 1 : 0
+			}
+		];
+		this.traitService.changeMyTestimonialSettings(this.authToken, payload).subscribe(data => {
+			this.traitService.hideLoading();
+			this.getTstmMasterList();
+		});
+	}else{
+          this.traitService.presentSuccessToast(
+            `you can select only ${this.genericSetting.noOfTstmQuestion} testimonials`
+          );
+		  let tempAllTstm =[]
+		this.allTstm.forEach(function (tempTstm) {
+			if(tempTstm.tstmQuestion == tstm.tstmQuestion){
+				tempTstm.isActiveForUser = false;
+			}
+			tempAllTstm.push(tempTstm);
+		});
+		  this.allTstm = tempAllTstm;
+	}
   }
 }

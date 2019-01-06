@@ -72,6 +72,11 @@ export class TraitService {
     addModal.present();
   }
 
+  setGenericSetting(setting) {
+    localStorage.setItem("genericSetting", setting);
+    this.storage.set("genericSetting", setting);
+  }
+ 
   // Function to get token from client local storage
   loadToken() {
     this.authToken = localStorage.getItem("token");
@@ -110,7 +115,7 @@ export class TraitService {
   }
 
   replaceWithUsername(str, username){
-    console.log(str.replace('<user>',username));
+    //console.log(str.replace('<user>',username));
     return str.replace('<user>',username);
   }
 
@@ -491,14 +496,39 @@ export class TraitService {
       .map(res => res.json());
   }
 
-  userTestimonialSettings(token) {
+  userTestimonials(token, payload) {
     this.createAuthenticationHeaders(token);
     return this.http
       .post(
-        rootApi + "/testimonialapi/api/userTestimonialSettings/ ",
-        null,
+        rootApi + "/testimonialapi/api/userTestimonials/ ",
+        payload,
         this.options
       )
       .map(res => res.json());
   }
+  
+  getTstmDetails(token, payload){
+    this.createAuthenticationHeaders(token);
+    return this.http
+      .post(
+        rootApi + "/testimonialapi/api/getTstmMoreDetails/ ",
+        payload,
+        this.options
+      )
+      .map(res => res.json());
+  }
+  
+  giveTestimonialToFriend(token, payload){
+    this.createAuthenticationHeaders(token);
+    return this.http
+      .post(
+        rootApi + "/testimonialapi/api/giveTestimonialToFriend/ ",
+        payload,
+        this.options
+      )
+      .map(res => res.json());
+  }
+  
+  
+  
 }

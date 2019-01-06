@@ -181,14 +181,14 @@
       class="testimonials"
       (swiperight)="changeTab('badges')"
     >
-      <ion-fab bottom right edge *ngIf="!frdProfile" (click)="openTstmMaster()">
+      <!--<ion-fab bottom right edge *ngIf="!frdProfile" (click)="openTstmMaster()">
         <button ion-fab mini>
           <ion-icon class="fab_icon" ios="ios-switch" md="md-switch"></ion-icon>
         </button>
-      </ion-fab>
+      </ion-fab>-->
       <ion-list class="accordion-list">
         <ion-list-header
-          *ngFor="let item of myTstm; let i = index"
+          *ngFor="let tstm of myTstm; let i = index"
           no-lines
           no-padding
         >
@@ -196,25 +196,46 @@
             ion-item
             (click)="toggleSection(i)"
             detail-none
-            [ngClass]="{ 'section-active': item.open, section: !item.open }"
+            [ngClass]="{ 'section-active': tstm.open, section: !tstm.open }"
           >
             <ion-icon
               item-left
               name="arrow-forward"
-              *ngIf="!item.open"
+              *ngIf="!tstm.open"
             ></ion-icon>
-            <ion-icon item-left name="arrow-down" *ngIf="item.open"></ion-icon>
-             {{traitService.replaceWithUsername(item.tstmQuestion,frdInfo.fullname)}} 
+            <ion-icon item-left name="arrow-down" *ngIf="tstm.open"></ion-icon>
+             <!-- 
+			 {{traitService.replaceWithUsername(item.tstmQuestion,frdInfo.fullname)}}
+				-->
+				{{tstm.tstmQuestion}}
           </button>
           <ion-list
-            *ngIf="item.open"
+            *ngIf="tstm.open"
             no-lines
             class="accordionSection"
+			(click)="openTstmDetails(tstm.testimonialid)"			
           >
-            <ion-row> <ion-col> asdasd </ion-col> </ion-row>
+            <ion-row> 
+			<ion-col *ngFor="let tstmComment of tstm.testimonials"> 
+			{{tstmComment.tstmGivenByName}} --> {{tstmComment.testimonial}}
+			</ion-col> </ion-row>
+            <ion-row> 
+			<ion-col> 
+			Write a rsponse
+			</ion-col> </ion-row>
           </ion-list>
         </ion-list-header>
       </ion-list>
+	    <ion-row>
+			<button
+				class="addPageBtn"
+				ion-button
+				*ngIf="!frdProfile" (click)="openTstmMaster()"
+			>
+				Choose Testimonials
+			</button>
+		</ion-row>
+	  
     </div>
 
     <div
@@ -223,8 +244,8 @@
       (swipeleft)="changeTab('testimonials')"
       (swiperight)="changeTab('trait')"
     >
-      <h1 class="textCenter">Coming Soon</h1>
-      <!--
+      <!-- <h1 class="textCenter">Coming Soon</h1> -->
+      
 			<ion-row class="bagdesToOthers" *ngIf="!frdProfile" >
                 <ion-col col-6 class="badgeSection badgesAvailable">
 					<div class="badgeTitle">
@@ -293,7 +314,6 @@
 					<ion-icon class="fab_icon" name="add"></ion-icon>
 				</button>
 			</ion-fab>
--->
     </div>
   </div>
 </ion-content>

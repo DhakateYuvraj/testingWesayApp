@@ -42,7 +42,6 @@ export class ProfilePage {
   traitsMasterList;
   master_list;
   search_string;
-  information: any[];
   availableBadges;
   availableBadgesCnt;
   receivedBadgesObj;
@@ -77,75 +76,6 @@ export class ProfilePage {
     }
     //this.getUserProfile(this.frdId);
     this.searchControl = new FormControl();
-
-    this.information = [
-      {
-        name: "What is your first impression of Yuvraj",
-        children: [
-          {
-            name: "Special Academy Pizza",
-            information:
-              "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-            price: "$25"
-          }
-        ]
-      },
-      {
-        name: "What's the nicest thing about Yuvraj",
-        children: [
-          {
-            name: "Special Academy Pizza",
-            information:
-              "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-            price: "$25"
-          }
-        ]
-      },
-      {
-        name: "What would you like to thank Yuvraj for",
-        children: [
-          {
-            name: "Special Academy Pizza",
-            information:
-              "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-            price: "$25"
-          }
-        ]
-      },
-      {
-        name: "What have you learn from Yuvraj",
-        children: [
-          {
-            name: "Special Academy Pizza",
-            information:
-              "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-            price: "$25"
-          }
-        ]
-      },
-      {
-        name: "Whats the one thing Yuvraj needs to improve upon?",
-        children: [
-          {
-            name: "Special Academy Pizza",
-            information:
-              "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-            price: "$25"
-          }
-        ]
-      },
-      {
-        name: "Say something privately to Yuvraj",
-        children: [
-          {
-            name: "Special Academy Pizza",
-            information:
-              "Pastrami pork belly ball tip andouille corned beef jerky shankle landjaeger. Chicken chuck porchetta picanha, ham brisket tenderloin venison meatloaf landjaeger jowl.",
-            price: "$25"
-          }
-        ]
-      }
-    ];
   }
 
   ionViewWillEnter() {
@@ -164,7 +94,7 @@ export class ProfilePage {
       this.getGivenBadgesCnt();
       this.getReceivedBadges();
     }else if(this.section == "testimonials"){
-      this.userTestimonialSettings();
+      this.userTestimonials();
     }
   }
 
@@ -209,13 +139,12 @@ export class ProfilePage {
 
   // Tab functionality start ---------------------------------------------------
   selectedTabChanged(e) {
-    console.log(e._value);
     if (e._value == "badges") {
       this.getAvailableBadgesCnt();
       this.getGivenBadgesCnt();
       this.getReceivedBadges();
     } else if (e._value == "testimonials") {
-      this.userTestimonialSettings();
+      this.userTestimonials();
     }
   }
 
@@ -526,9 +455,12 @@ export class ProfilePage {
   // Badge End ------------------------------------------------------------------------
 
   // Testimonial started ------------------------------------------------------------------------
-  userTestimonialSettings() {
+  userTestimonials() {
+	let payload = {
+		"userid":this.frdId
+	}
     this.traitService
-      .userTestimonialSettings(this.authToken)
+      .userTestimonials(this.authToken, payload)
       .subscribe(data => {
         if(data.response){
           this.myTstm = data.response;
@@ -542,6 +474,13 @@ export class ProfilePage {
 
   toggleSection(i) {
     this.myTstm[i].open = !this.myTstm[i].open;
+  }
+  
+  openTstmDetails(tstmId){
+    this.navCtrl.push("TstmDetailsPage",{
+		testimonialId:tstmId,
+		frdInfo: this.frdInfo
+	});
   }
 
   // Testimonial End ------------------------------------------------------------------------
