@@ -466,8 +466,21 @@ page-tabs .tabbar.show-tabbar {
   }
 }
 .panelHeader {
+  padding: 5px;
+  background: #e9e9e9;
+  border-radius: 5px;
+  padding-left: 15px;
+  position: relative;
+  ion-icon {
+    position: absolute;
+    right: 5px;
+    top: 0px;
+    padding: 6px;
+    color: #888888;
+  }
 }
 .panelContent {
+  padding: 10px 5px;
   transition: 0.09s all linear;
 }
 .panelContent.hidePanel {
@@ -487,4 +500,91 @@ ion-content.anonymousMode {
 .textCenter {
   text-align: center;
   min-height: 500px;
+}
+
+.traitComments,
+.testimonial-accordion {
+  background: #fff;
+  .commentpost {
+    position: relative;
+    margin-bottom: 12px;
+    textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px 5px 0 5px;
+      height: 30px;
+      margin-bottom: 0;
+      padding-right: 50px;
+    }
+    button {
+      position: absolute;
+      padding: 4px 15px;
+      font-size: 19px;
+      background: transparent;
+      color: #00c5cd;
+      right: 0px;
+      top: 0px;
+      border-left: 1px solid#ccc;
+    }
+  }
+  .commentBox {
+    width: 96%;
+    margin: 0 auto;
+    .commentArea {
+      .sectLeft {
+        width: 40px;
+        float: left;
+        font-size: 2em;
+        ion-icon::before {
+          color: #00c5cd;
+        }
+      }
+      .sectRight {
+        margin-left: 40px;
+        .commentDate {
+          font-size: 0.8em;
+          color: #ccc;
+        }
+        .commentText {
+          color: #777;
+        }
+        .commentBy,
+        .commentText {
+          font-size: 0.9em;
+        }
+      }
+    }
+    .childComments {
+      margin-left: 40px;
+    }
+    .commentOperations {
+      margin: 0 0 10px 40px;
+      .actionBtn {
+        padding: 4px 5px 2px 0px;
+        margin: 0 5px 0 0;
+        height: 25px;
+        display: inline-block;
+        background: #eeeeee;
+      }
+      .actionBtn ion-icon::before {
+        padding: 0 7px;
+      }
+      .actionBtn.reply {
+        border-left: 3px solid #00c5cd;
+        color: #00c5cd;
+      }
+      .actionBtn.like {
+        border-left: 3px solid #38af38;
+        color: #38af38;
+      }
+      .actionBtn.dislike {
+        border-left: 3px solid #e73838;
+        color: #e73838;
+      }
+      .actionBtn.delete {
+        border-left: 3px solid #666;
+        color: #666;
+      }
+    }
+  }
 }

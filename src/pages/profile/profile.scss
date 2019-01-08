@@ -444,8 +444,8 @@ page-profile {
   .selected {
     background: #00c5cd;
   }
-  .addPageBtn{
-	background: #084242;
+  .addPageBtn {
+    background: #084242;
     border: none;
     border-radius: 23px;
     width: 80%;
@@ -456,8 +456,36 @@ page-profile {
     color: white !important;
     font-weight: normal !important;
   }
+  .testimonials {
+    background: #fff;
+    .panelContent {
+      border: 1px solid #ccc;
+      border-top: none;
+      margin: 0 4px;
+      margin-top: -2px;
+      .commentBox {
+        border-bottom: 1px solid #95d8e2;
+        margin-bottom: 6px;
+        padding-bottom: 5px;
+      }
+      .writeResponse {
+        text-align: center;
+        color: #95d8e2;
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 .action-sheet-group-cancel {
   display: none;
+}
+.commentText {
+  display: block;
+  display: -webkit-box;
+  max-height: 100px;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

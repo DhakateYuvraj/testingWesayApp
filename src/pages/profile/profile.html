@@ -181,61 +181,55 @@
       class="testimonials"
       (swiperight)="changeTab('badges')"
     >
-      <!--<ion-fab bottom right edge *ngIf="!frdProfile" (click)="openTstmMaster()">
-        <button ion-fab mini>
-          <ion-icon class="fab_icon" ios="ios-switch" md="md-switch"></ion-icon>
-        </button>
-      </ion-fab>-->
-      <ion-list class="accordion-list">
-        <ion-list-header
-          *ngFor="let tstm of myTstm; let i = index"
-          no-lines
-          no-padding
+      <ion-row class="testimonial-accordion">
+        <ion-col col-12 *ngFor="let tstm of myTstm; let i = index">
+          <div
+            class="panelHeader"
+            (click)="traitService.togglePanel(tstm.id)"
+            [ngClass]="{ active: traitService.isPanelShow(tstm.id) }"
+          >
+            <span> {{ tstm.tstmQuestion }} </span>
+            <div *ngIf="traitService.isPanelShow(tstm.id)">
+              <ion-icon name="ios-arrow-down-outline"></ion-icon>
+            </div>
+            <div *ngIf="!traitService.isPanelShow(tstm.id)">
+              <ion-icon name="ios-arrow-up-outline"></ion-icon>
+            </div>
+          </div>
+          <div
+            class="panelContent"
+            [hidden]="traitService.isPanelShow(tstm.id)"
+            [ngClass]="{ hidePanel: traitService.isPanelShow(tstm.id) }"
+            (click)="openTstmDetails(tstm.testimonialid)"	
+          >
+            <div *ngFor="let tstmComment of tstm.testimonials">
+              <div class="commentBox commentId-112">
+                <div class="commentArea clearfix">      
+                  <div class="sectLeft">      
+                    <ion-icon name="person" role="img" class="icon icon-md ion-md-person" aria-label="person" ng-reflect-name="person"></ion-icon>      
+                  </div>      
+                  <div class="sectRight">      
+                    <span class="commentBy">{{ tstmComment.tstmGivenByName ? tstmComment.tstmGivenByName : "Anonymous" }}</span> <span class="commentDate">@ {{traitService.calcuateTime(tstmComment.updateDate)}}</span>      
+                    <div class="commentText">{{ tstmComment.testimonial }}</div>      
+                  </div>      
+                </div>      
+              </div>
+            </div>
+            <div class="writeResponse"> Write a rsponse </div>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <button
+          class="addPageBtn"
+          ion-button
+          *ngIf="!frdProfile"
+          (click)="openTstmMaster()"
         >
-          <button
-            ion-item
-            (click)="toggleSection(i)"
-            detail-none
-            [ngClass]="{ 'section-active': tstm.open, section: !tstm.open }"
-          >
-            <ion-icon
-              item-left
-              name="arrow-forward"
-              *ngIf="!tstm.open"
-            ></ion-icon>
-            <ion-icon item-left name="arrow-down" *ngIf="tstm.open"></ion-icon>
-             <!-- 
-			 {{traitService.replaceWithUsername(item.tstmQuestion,frdInfo.fullname)}}
-				-->
-				{{tstm.tstmQuestion}}
-          </button>
-          <ion-list
-            *ngIf="tstm.open"
-            no-lines
-            class="accordionSection"
-			(click)="openTstmDetails(tstm.testimonialid)"			
-          >
-            <ion-row> 
-			<ion-col *ngFor="let tstmComment of tstm.testimonials"> 
-			{{tstmComment.tstmGivenByName}} --> {{tstmComment.testimonial}}
-			</ion-col> </ion-row>
-            <ion-row> 
-			<ion-col> 
-			Write a rsponse
-			</ion-col> </ion-row>
-          </ion-list>
-        </ion-list-header>
-      </ion-list>
-	    <ion-row>
-			<button
-				class="addPageBtn"
-				ion-button
-				*ngIf="!frdProfile" (click)="openTstmMaster()"
-			>
-				Choose Testimonials
-			</button>
-		</ion-row>
-	  
+          Choose Testimonials
+        </button>
+      </ion-row>
     </div>
 
     <div
@@ -245,75 +239,66 @@
       (swiperight)="changeTab('trait')"
     >
       <!-- <h1 class="textCenter">Coming Soon</h1> -->
-      
-			<ion-row class="bagdesToOthers" *ngIf="!frdProfile" >
-                <ion-col col-6 class="badgeSection badgesAvailable">
-					<div class="badgeTitle">
-						Available Badges
-					</div>
-					<div class="badgeInfo clearfix" (click)="openBadgesFor('availableBadges','view')">
-						<div class="addBadgeIcons">
-							<div>
-								<img src="assets/imgs/badge_1.png">
-							</div>
-							<div>
-								<img src="assets/imgs/badge_2.png">
-							</div>
-							<div>
-								<img src="assets/imgs/badge_1.png">
-							</div>
-						</div>
-						<div class="badgeCnt">{{availableBadgesCnt || '0' }}</div>
-						<div class="addBadgeBtn">
-							<ion-icon name="add"></ion-icon>
-						</div>
-					</div>
-                </ion-col>
-                <ion-col col-6 class="badgeSection badgesGiven">
-					<div class="badgeTitle">
-						Badges Given
-					</div>
-					<div class="badgeInfo clearfix" (click)="openBadgesFor('givenBadges')">
-						<div class="addBadgeBtn">
-							<ion-icon name="more"></ion-icon>
-						</div>
-						<div class="badgeCnt">{{givenBadgesCnt || '0' }}</div>
-						<div class="addBadgeIcons">
-							<div>
-								<img src="assets/imgs/badge_3.png">
-							</div>
-							<div>
-								<img src="assets/imgs/badge_3.png">
-							</div>
-							<div>
-								<img src="assets/imgs/badge_3.png">
-							</div>
-						</div>
-					</div>
-                </ion-col>
-            </ion-row>
-			<ion-row class="bagdesToOwn">
-			<br/>
-                <ion-col col-6 class="singleBadge clearfix isAccepted_{{recBadge.isAccepted}}" *ngFor="let recBadge of receivedBadgesObj" (click)="openBadgeInfo(recBadge)">
-					<div class="badgeIcon">
-						<img src="assets/imgs/badge_1.png">
-					</div>
-					<div class="badgeInfo">
-						<div class="badgeCaption">
-							{{recBadge.badgeName}}
-						</div>
-						<div class="badgeCount">
-							{{recBadge.badgeCount}}
-						</div>
-					</div>
-				</ion-col>
-			</ion-row>
-        
-			<ion-fab bottom right edge *ngIf="frdProfile" (click)="openBadgesFor('availableBadges','give')">
-				<button ion-fab mini>
-					<ion-icon class="fab_icon" name="add"></ion-icon>
-				</button>
-			</ion-fab>
+
+      <ion-row class="bagdesToOthers" *ngIf="!frdProfile">
+        <ion-col col-6 class="badgeSection badgesAvailable">
+          <div class="badgeTitle">Available Badges</div>
+          <div
+            class="badgeInfo clearfix"
+            (click)="openBadgesFor('availableBadges', 'view')"
+          >
+            <div class="addBadgeIcons">
+              <div><img src="assets/imgs/badge_1.png" /></div>
+              <div><img src="assets/imgs/badge_2.png" /></div>
+              <div><img src="assets/imgs/badge_1.png" /></div>
+            </div>
+            <div class="badgeCnt">{{ availableBadgesCnt || "0" }}</div>
+            <div class="addBadgeBtn"><ion-icon name="add"></ion-icon></div>
+          </div>
+        </ion-col>
+        <ion-col col-6 class="badgeSection badgesGiven">
+          <div class="badgeTitle">Badges Given</div>
+          <div
+            class="badgeInfo clearfix"
+            (click)="openBadgesFor('givenBadges')"
+          >
+            <div class="addBadgeBtn"><ion-icon name="more"></ion-icon></div>
+            <div class="badgeCnt">{{ givenBadgesCnt || "0" }}</div>
+            <div class="addBadgeIcons">
+              <div><img src="assets/imgs/badge_3.png" /></div>
+              <div><img src="assets/imgs/badge_3.png" /></div>
+              <div><img src="assets/imgs/badge_3.png" /></div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row class="bagdesToOwn">
+        <br />
+        <ion-col
+          col-6
+          class="singleBadge clearfix isAccepted_{{ recBadge.isAccepted }}"
+          *ngFor="let recBadge of receivedBadgesObj"
+          (click)="openBadgeInfo(recBadge)"
+        >
+          <div class="badgeIcon"><img src="assets/imgs/badge_1.png" /></div>
+          <div class="badgeInfo">
+            <div class="badgeCaption">{{ recBadge.badgeName }}</div>
+            <div class="badgeCount">{{ recBadge.badgeCount }}</div>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-fab
+        bottom
+        right
+        edge
+        *ngIf="frdProfile"
+        (click)="openBadgesFor('availableBadges', 'give')"
+      >
+        <button ion-fab mini>
+          <ion-icon class="fab_icon" name="add"></ion-icon>
+        </button>
+      </ion-fab>
     </div>
   </div>
 </ion-content>

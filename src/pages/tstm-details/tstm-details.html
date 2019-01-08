@@ -1,16 +1,43 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Testimonial Details</ion-title>
-  </ion-navbar>
+  <ion-navbar> <ion-title>Testimonial Details</ion-title> </ion-navbar>
 </ion-header>
 
+<ion-content padding class="testimonials">
+  <ion-row class="testimonial-accordion">
+    <ion-col col-12>
+      <div class="panelContent">
+        <div *ngFor="let tstmComment of tstmDetails">
+          <div class="commentBox commentId-112">
+            <div class="commentArea clearfix">
+              <div class="sectLeft">
+                <ion-icon
+                  name="person"
+                  role="img"
+                  class="icon icon-md ion-md-person"
+                  aria-label="person"
+                  ng-reflect-name="person"
+                ></ion-icon>
+              </div>
+              <div class="sectRight">
+                <span class="commentBy">{{
+                  tstmComment.tstmGivenByName
+                    ? tstmComment.tstmGivenByName
+                    : "Anonymous"
+                }}</span>
+                <span class="commentDate"
+                  >@
+                  {{ traitService.calcuateTime(tstmComment.updateDate) }}</span
+                >
+                <div class="commentText">{{ tstmComment.testimonial }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
 
-<ion-content padding>
-	<div *ngFor="let singleTstm of tstmDetails">
-		{{singleTstm.testimonial}}
-	</div>
-	<textarea  [(ngModel)]="newTstm" ></textarea>
-	<button (click)="giveTestimonialToFriend()">
-		Send
-	</button>
+  <div *ngFor="let singleTstm of tstmDetails">{{ singleTstm.testimonial }}</div>
+  <textarea [(ngModel)]="newTstm"></textarea>
+  <button (click)="giveTestimonialToFriend()">Send</button>
 </ion-content>

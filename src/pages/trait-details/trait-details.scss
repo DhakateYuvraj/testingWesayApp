@@ -1,348 +1,242 @@
 page-trait-details {
-	ion-header{
-		.button-md{
-			background:transparent;
-			box-shadow: none;
-			position: absolute;
-			top: 0;
-			right: 0;
-		}
-		.button-md:hover:not(.disable-hover){
-			background:transparent;
-			ion-icon::before{
-				color:#0396FF
-			}
-		}
-		.toolbar-title{
-			margin-top:5px;
-		}
-	}
-	
-	
-	.contentMainPanel {
-		padding: 0 10px;
-	.traitRating{
-		background:#fff;
-		/* .range-md-secondary .range-bar-active, .range-md-secondary .range-knob, .range-md-secondary .range-pin, .range-md-secondary .range-pin::before{
+  ion-header {
+    .button-md {
+      background: transparent;
+      box-shadow: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    .button-md:hover:not(.disable-hover) {
+      background: transparent;
+      ion-icon::before {
+        color: #0396ff;
+      }
+    }
+    .toolbar-title {
+      margin-top: 5px;
+    }
+  }
+
+  .contentMainPanel {
+    padding: 0 10px;
+    .traitRating {
+      background: #fff;
+      /* .range-md-secondary .range-bar-active, .range-md-secondary .range-knob, .range-md-secondary .range-pin, .range-md-secondary .range-pin::before{
 		background-image: linear-gradient( 135deg, #FDD819 10%, #E80505 100%);
 		
 		} */
-		.ratingComponent{
-			min-width:300px;
-			width:100px;
-			margin:0 auto;
-			.traitRate{
-				border: 1px solid #ccc;
-				border-radius: 50%;
-				width: 20px;
-				height: 20px;
-				display: block;
-				text-align: center;
-				float: left;
-				padding: 2px 0px;
-				margin: 3px;
-				font-size: 12px;
-			}
-			.traitRate_0{
-				background:#FF0000;
-			}
-			.traitRate_1{
-				background:#FF3400;
-			}
-			.traitRate_2{
-				background:#FF6900;
-			}
-			.traitRate_3{
-				background:#FF9E00;
-			}
-			.traitRate_4{
-				background:#FFD300;
-			}
-			.traitRate_5{
-				background:#F7FF00;
-			}
-			.traitRate_6{
-				background:#C2FF00;
-			}
-			.traitRate_7{
-				background:#8DFF00;
-			}
-			.traitRate_8{
-				background:#58FF00;
-			}
-			.traitRate_9{
-				background:#24FF00;
-			}
-			.traitRate_10{
-				background:#00FF00;
-			}
-		}
-	}
-	.traitRate.active{
-		border: 2px solid #00f !important;
-		font-weight: bold;
-	}
+      .ratingComponent {
+        min-width: 300px;
+        width: 100px;
+        margin: 0 auto;
+        .traitRate {
+          border: 1px solid #ccc;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          display: block;
+          text-align: center;
+          float: left;
+          padding: 2px 0px;
+          margin: 3px;
+          font-size: 12px;
+        }
+        .traitRate_0 {
+          background: #ff0000;
+        }
+        .traitRate_1 {
+          background: #ff3400;
+        }
+        .traitRate_2 {
+          background: #ff6900;
+        }
+        .traitRate_3 {
+          background: #ff9e00;
+        }
+        .traitRate_4 {
+          background: #ffd300;
+        }
+        .traitRate_5 {
+          background: #f7ff00;
+        }
+        .traitRate_6 {
+          background: #c2ff00;
+        }
+        .traitRate_7 {
+          background: #8dff00;
+        }
+        .traitRate_8 {
+          background: #58ff00;
+        }
+        .traitRate_9 {
+          background: #24ff00;
+        }
+        .traitRate_10 {
+          background: #00ff00;
+        }
+      }
+    }
+    .traitRate.active {
+      border: 2px solid #00f !important;
+      font-weight: bold;
+    }
 
-	.traitComments{
-		background:#fff;
-		.commentpost{
-			position:relative;
-			margin-bottom:12px;
-			textarea{	
-				width: 100%;
-				border: 1px solid #ccc;
-				border-radius: 5px 5px 0 5px;
-				height: 30px;
-				margin-bottom: 0;
-				padding-right: 50px;
-			}
-			button{
-			    position: absolute;
-				padding: 4px 15px;
-				font-size: 19px;
-				background: transparent;
-				color: #00c5cd;
-				right: 0px;
-				top: 0px;
-				border-left: 1px solid#ccc;
-			}
-		}
-		.commentBox{
-			width: 96%;
-			margin: 0 auto;
-			.commentArea{
-				.sectLeft{
-					width:40px;
-					float:left;
-					font-size:2em;					
-					ion-icon::before{
-						color:#00c5cd;
-					}		
-				}
-				.sectRight{
-					margin-left:40px;
-					.commentDate{
-						font-size:0.8em;
-						color:#ccc;
-					}
-					.commentText{
-						color: #777;
-					}
-					.commentBy,.commentText{
-						font-size: 0.9em;
-					}
-				}
-			}
-			.childComments{
-				margin-left:40px;
-			}
-			.commentOperations{
-				margin:0 0 10px 40px;
-				.actionBtn{
-					padding: 4px 5px 2px 0px;
-					margin: 0 5px 0 0;
-					height: 25px;
-					display: inline-block;
-					background:#eeeeee;
-				}
-				.actionBtn ion-icon::before{
-					padding:0 7px;
-				}
-				.actionBtn.reply{
-					border-left:3px solid #00c5cd;
-					color:#00c5cd;
-				}
-				.actionBtn.like{
-					border-left:3px solid #38af38;
-					color:#38af38;
-				}
-				.actionBtn.dislike{
-					border-left:3px solid #e73838;
-					color:#e73838;
-				}
-				.actionBtn.delete{
-					border-left:3px solid #666;
-					color:#666;
-				}
-			}
-		}
-	}
+    .traitPublicVoting {
+      background: #fff;
+    }
+  }
 
-	
-	
-	.panelHeader{
-		padding: 5px;
-		background: #e9e9e9;
-		border-radius: 5px;
-		padding-left: 15px;
-		position: relative;
-		ion-icon{
-			position: absolute;
-			right: 5px;
-			top: 0px;
-			padding: 6px;
-			color:#888888;
-		}
-	}
-	.panelContent{
-		padding: 10px 5px;
-	}
-	
-	
-	
-	.traitPublicVoting {
-		background:#fff;
-		
-	}
-}
+  .traitAcceptanceOverlay {
+    .traitAcceptance {
+      background: #fff;
+      width: 50%;
+      margin: 45% auto;
+      padding: 5% 0;
+      .traitAction {
+        float: left;
+        text-align: center;
+        width: 50%;
+        ion-icon {
+          display: block;
+          font-size: 2.5em;
+        }
+      }
+      .agreeTrait {
+        color: #38af38;
+      }
+      .disagreeTrait {
+        color: #e73838;
+      }
+      .traitDetail {
+        text-align: center;
+        margin-bottom: 7px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 7px;
+      }
+    }
+  }
 
-	.traitAcceptanceOverlay{
-		.traitAcceptance{
-			background: #fff;
-			width: 50%;
-			margin: 45% auto;
-			padding: 5% 0;
-			.traitAction{
-				float:left;
-				text-align:center;
-				width:50%;
-				ion-icon{
-					display:block;
-					font-size:2.5em;
-				}
-			}
-			.agreeTrait{color:#38af38;}
-			.disagreeTrait{color:#e73838;}
-			.traitDetail{
-				text-align:center;
-				margin-bottom:7px;
-				border-bottom: 1px solid #ccc;
-				padding-bottom: 7px;
-			}
-		}
-	}
+  .singleVote {
+    position: relative;
+    .voteArrow {
+      font-size: 2.5em;
+      line-height: 0.5em;
+    }
+    .pos-number {
+      color: #00b32c;
+    }
+    .neg-number {
+      color: #dc3d2a;
+    }
+    .voteUsername {
+      position: relative;
+      top: -12px;
+    }
+    .voteRating {
+      position: absolute;
+      top: 12px;
+      right: 10px;
+      display: inline-block;
+      text-align: right;
+    }
+  }
 
-.singleVote{
-	position: relative;
-	.voteArrow{
-		font-size:2.5em;
-		line-height:0.5em
-	}
-	.pos-number{
-		color:#00B32C
-	}
-	.neg-number {
-		color:#DC3D2A;
-	}
-	.voteUsername{
-		position: relative;
-		top: -12px;
-	}
-	.voteRating{    position: absolute;
-    top: 12px;
-    right: 10px;
-    display: inline-block;
-    text-align: right;}
-}
-
-
-
-.traitScore.singleTraits{
-	background: rgba(255, 255, 255, 0.8);
+  .traitScore.singleTraits {
+    background: rgba(255, 255, 255, 0.8);
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     margin-bottom: 10px;
-	.traitInfoContainer{
-		border-right:1px solid #ccc;
-		border-left:1px solid #ccc;
-	}
-	.traitIconContainer{
-		text-align:center;
-	}
-	.traitScoreContainer{
-		.moreOptions{
-			position: absolute;
-			top: 0;
-			right: 0;
-			background: transparent;
-			color: #000;
-			box-shadow: none;
-		}
-		.traitScoreInfo{
-			font-size: 2.5em;
-			text-align: center;
-			padding: 4px;
-		}
-		.traitScoreInfo.hidden{
-			font-size: 1em;
-			margin-top:14px;
-		}
-	}
-	.traitInfoContainer{
-		.traitName{
-			position: relative;
-			top: -10px;
-			font-size: 1.4em;
-			color: #000;
-		}
-		.pos-number,.neg-number{
-			width: 100px;
-			.tempClass{
-				margin: 0 10px;
-				font-size: 1.3em;
-				ion-icon{
-					display: inline;
-					position: relative;
-					top: 6px;
-				}
-				span{
-					position: relative;
-					top: -3px;
-				}
-			}
-		}		
-	}	
-}
+    .traitInfoContainer {
+      border-right: 1px solid #ccc;
+      border-left: 1px solid #ccc;
+    }
+    .traitIconContainer {
+      text-align: center;
+    }
+    .traitScoreContainer {
+      .moreOptions {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: transparent;
+        color: #000;
+        box-shadow: none;
+      }
+      .traitScoreInfo {
+        font-size: 2.5em;
+        text-align: center;
+        padding: 4px;
+      }
+      .traitScoreInfo.hidden {
+        font-size: 1em;
+        margin-top: 14px;
+      }
+    }
+    .traitInfoContainer {
+      .traitName {
+        position: relative;
+        top: -10px;
+        font-size: 1.4em;
+        color: #000;
+      }
+      .pos-number,
+      .neg-number {
+        width: 100px;
+        .tempClass {
+          margin: 0 10px;
+          font-size: 1.3em;
+          ion-icon {
+            display: inline;
+            position: relative;
+            top: 6px;
+          }
+          span {
+            position: relative;
+            top: -3px;
+          }
+        }
+      }
+    }
+  }
 
+  .traitDetailWrapper.isHidden_true.traitDetailWrapper.isFrd_false {
+    .traitIconBg {
+      background: #ddd;
+    }
+    .pos-number,
+    .neg-number {
+      color: #ccc;
+    }
+    .traitScoreInfo {
+      color: #ccc;
+    }
+  }
+  .traitDetailWrapper.isCntHidden_true.traitDetailWrapper.isFrd_false {
+    .pos-number,
+    .neg-number {
+      color: #ccc;
+    }
+    .traitScoreInfo {
+      color: #ccc;
+    }
+  }
 
-
-.traitDetailWrapper.isHidden_true.traitDetailWrapper.isFrd_false{
-	.traitIconBg{
-		background:#ddd;
-	}
-	.pos-number,.neg-number{
-		color:#ccc;		
-	}
-	.traitScoreInfo{
-		color:#ccc;		
-	}
-}
-.traitDetailWrapper.isCntHidden_true.traitDetailWrapper.isFrd_false{
-	.pos-number,.neg-number{
-		color:#ccc;		
-	}
-	.traitScoreInfo{
-		color:#ccc;		
-	}
-}
-
-	.oldDesign.singleTraits {
-		.pos-number,.neg-number {
-			padding-top:15%;
-		}
-		.item-md{
-			background: transparent;
-			box-shadow: none;
-			border: none;
-		}
-		.label-md{
-			margin:0px !important;
-		}
-		.traitScoreInfo{
-			font-weight: bold;
-		}
-	}
-
-
-	
+  .oldDesign.singleTraits {
+    .pos-number,
+    .neg-number {
+      padding-top: 15%;
+    }
+    .item-md {
+      background: transparent;
+      box-shadow: none;
+      border: none;
+    }
+    .label-md {
+      margin: 0px !important;
+    }
+    .traitScoreInfo {
+      font-weight: bold;
+    }
+  }
 }
