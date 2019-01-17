@@ -57,19 +57,23 @@ export class BadgeDetailsPage {
   getBadgeInfo(token) {
     let totalBadgesEarn = 0;
     let cntData = this.badgeProvider.getAvailableBadgesCnt();
+    console.log(cntData);
     if (this.pageFor == "availableBadges") {
       this.traitService.getAvailableBadges(token).subscribe(data => {
         this.traitService.hideLoading();
         this.badgeProvider.setAvailableBadges(data.userBadgeList);
         this.availableBadgesObj = this.badgeProvider.getAvailableBadges();
         this.availableBadgesObj.forEach(function(obj, index) {
-          totalBadgesEarn = totalBadgesEarn + obj.badgeCount;
+          if (obj.badgeName == "NEWLY ADDED BADGE") {
+            totalBadgesEarn = totalBadgesEarn + obj.badgeCount;
+            console.log(obj);
+          }
         });
-        if (totalBadgesEarn > cntData) {
+        if (totalBadgesEarn > 0) {
           this.isAddNewBadge = true;
           console.log(this.isAddNewBadge);
         }
-        this.badgeProvider.setBadgesEmptySlots(totalBadgesEarn - cntData);
+        this.badgeProvider.setBadgesEmptySlots(totalBadgesEarn);
 
         /* this.traitService.getAvailableBadgesCnt(token).subscribe(cntData => {
 					//this.availableBadgesCnt = cntData;
@@ -90,12 +94,10 @@ export class BadgeDetailsPage {
   }
 
   openBadgesMasterList(badge) {
-    this.navCtrl.push("BadgesListPage");
+    this.navCtrl.push("BadgesListPage", { frdInfo: this.frdInfo });
   }
 
   actionOnBadge(badge) {
-    //this.traitService.showLoading();
-
     if (this.pageMode == "view" && badge == "newBadge") {
       this.openBadgesMasterList(badge);
     } else if (this.pageMode == "view" && badge != "newBadge") {
@@ -152,22 +154,10 @@ export class BadgeDetailsPage {
     });
   }
   presentActionSheet(badge) {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: "Select Action",
-      buttons: [
-        {
-          text: "Give a badge",
-          role: "",
-          handler: () => {
-            this.giveBadgeToFriend(badge);
-          }
-        },
-        {
-          text: "Swap a badge",
-          handler: () => {
-            this.openBadgesMasterList(badge);
-          }
-        },
+    console.log(badge);
+
+    let getButtons = function(that) {
+      let btn = [
         {
           text: "Cancel",
           role: "cancel",
@@ -175,7 +165,41 @@ export class BadgeDetailsPage {
             console.log("Cancel clicked");
           }
         }
-      ]
+      ];
+      if (badge.badgeName == "NEWLY ADDED BADGE") {
+        btn.push({
+          text: "Select a badge",
+          role: "",
+          handler: () => {
+            that.openBadgesMasterList(badge);
+          }
+        });
+      } else {
+        btn.push(
+          {
+            text: "Swap a badge",
+            role: "",
+            handler: () => {
+              that.openBadgesMasterList(badge);
+            }
+          },
+          {
+            text: "Give a badge",
+            role: "",
+            handler: () => {
+              that.giveBadgeToFriend(badge);
+            }
+          }
+        );
+      }
+      console.log(btn);
+
+      return btn;
+    };
+
+    let actionSheet = this.actionSheetCtrl.create({
+      title: "Select Action",
+      buttons: getButtons(this)
     });
     actionSheet.present();
   }

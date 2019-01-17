@@ -18,12 +18,8 @@ export class BadgesListPage {
   token;
 
   public badgeMasterList = [{ badgename: "badge name" }];
-  public allBadgesData = [
-    { badgename: "badge name" },
-    { badgename: "badge name 1" },
-    { badgename: "badge name 2" },
-    { badgename: "badge name 3" }
-  ];
+  public allBadgesData = [];
+  public frdInfo;
 
   constructor(
     public navCtrl: NavController,
@@ -33,6 +29,7 @@ export class BadgesListPage {
     private badgeProvider: BadgeProvider
   ) {
     this.searchControl = new FormControl();
+    this.frdInfo = navParams.get("frdInfo");
   }
 
   ionViewDidLoad() {
@@ -82,5 +79,6 @@ export class BadgesListPage {
 
   addToPage() {
     alert(JSON.stringify(this.selectedBadges));
+    console.log(this.frdInfo);
   }
 }
