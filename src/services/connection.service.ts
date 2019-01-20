@@ -23,7 +23,7 @@ export class ConnectionService extends Http {
         console.log("staus 0");
         alert("Server is Down... Please try agin later!!!!");
       }else if(error.status === 500){
-        alert("Server is Down... Please try agin later!!!!");		
+        alert("Please contact admin");		
 	  }
       return Observable.throw(error);
     });

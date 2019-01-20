@@ -434,6 +434,13 @@ export class TraitService {
       .map(res => res.json());
   }
 
+  chooseBadge(token, badgeInfo) {
+    this.createAuthenticationHeaders(token);
+    return this.http
+      .post(rootApi + "/badge/chooseBadge/", badgeInfo, this.options)
+      .map(res => res.json());
+  }
+
   getProfileData(token, payload) {
     this.createAuthenticationHeaders(token);
     //{"userid":0}

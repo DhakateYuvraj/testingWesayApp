@@ -94,7 +94,7 @@ export class BadgeDetailsPage {
   }
 
   openBadgesMasterList(badge) {
-    this.navCtrl.push("BadgesListPage", { frdInfo: this.frdInfo });
+    this.navCtrl.push("BadgesListPage", { frdInfo: this.frdInfo, badge: badge });
   }
 
   actionOnBadge(badge) {

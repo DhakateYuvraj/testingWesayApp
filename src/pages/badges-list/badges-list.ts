@@ -14,7 +14,8 @@ export class BadgesListPage {
   @ViewChild("searchInput") myInput;
   searchControl: FormControl;
   search_string;
-  selectedBadges = [];
+  selectedBadge;
+  oldBadge;
   token;
 
   public badgeMasterList = [{ badgename: "badge name" }];
@@ -30,6 +31,7 @@ export class BadgesListPage {
   ) {
     this.searchControl = new FormControl();
     this.frdInfo = navParams.get("frdInfo");
+    this.oldBadge = navParams.get("badge");
   }
 
   ionViewDidLoad() {
@@ -62,23 +64,26 @@ export class BadgesListPage {
     }
   }
 
-  addSelected(badge) {
-    if (true) {
-      let emptySlots = this.badgeProvider.getBadgesEmptySlots();
-      if (emptySlots > this.selectedBadges.length) {
-        this.selectedBadges.push({ badgeId: badge.badgeId });
-      } else if (emptySlots == this.selectedBadges.length) {
-        this.traitService.presentSuccessToast(
-          "You have only " + emptySlots + " slots"
-        );
-      } else {
-        this.traitService.presentSuccessToast("full");
-      }
-    }
-  }
-
   addToPage() {
-    alert(JSON.stringify(this.selectedBadges));
-    console.log(this.frdInfo);
+
+	  
+	let badgeData = {
+		"newBadgeId":this.selectedBadge,
+		"userBadgeCountId":this.oldBadge.userBadgeCountid,
+		"badgeId":this.oldBadge.badgeId,
+	};
+	
+	
+	
+    this.traitService.chooseBadge(this.token,badgeData).subscribe(data => {
+      this.navCtrl.pop();
+    });
+	
+	
+	
+	
+	
+	
+	
   }
 }

@@ -16,10 +16,11 @@
       <div
         *ngFor="let item of badgeMasterList; let i = index"
         class="badgeID_{{ item.badgeId }}"
+		radio-group [(ngModel)]="selectedBadge"
       >
         <ion-item>
           <ion-label> {{ item.badgeName }}</ion-label>
-          <ion-checkbox (ionChange)="addSelected(item)"></ion-checkbox>
+          <ion-radio [(value)]="item.badgeId"></ion-radio>
         </ion-item>
       </div>
     </ion-list>
