@@ -69,7 +69,7 @@ export class BadgesListPage {
 	  
 	let badgeData = {
 		"newBadgeId":this.selectedBadge,
-		"userBadgeCountId":this.oldBadge.userBadgeCountid,
+		//"userBadgeCountId":this.oldBadge.userBadgeCountid,
 		"badgeId":this.oldBadge.badgeId,
 	};
 	
